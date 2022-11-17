@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ContinenteController;
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\DivisionPoliticaController;
+use App\Http\Controllers\DivisionPoliticaTipoController;
+use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,34 +21,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::get('/', InicioController::class);
+Route::get('continentes', [ContinenteController::class, 'index']);
+Route::get('continentes/create', [ContinenteController::class, 'create']);
+Route::get('continentes/{continente}', [ContinenteController::class, 'show']);
 
-Route::get('continentes', function () {
-    return view('continentes');
-});
+Route::get('paises', [PaisController::class, 'index']);
+Route::get('paises/create', [PaisController::class, 'create']);
+Route::get('paises/{pais}', [PaisController::class, 'show']);
 
-Route::get('paises', function () {
-    return view('paises');
-});
+Route::get('divisiones_politicas', [DivisionPoliticaController::class, 'index']);
+Route::get('divisiones_politicas/create', [DivisionPoliticaController::class, 'create']);
+Route::get('divisiones_politicas/{division_politica}', [DivisionPoliticaController::class, 'show']);
 
-Route::get('divisiones_politicas', function () {
-    return view('divisiones_politicas');
-});
+Route::get('divisiones_politicas_tipos', [DivisionPoliticaTipoController::class, 'index']);
+Route::get('divisiones_politicas_tipos/create', [DivisionPoliticaTipoController::class, 'create']);
+Route::get('divisiones_politicas_tipos/{divisiones_politicas_tipo}', [DivisionPoliticaTipoController::class, 'show']);
 
-Route::get('divisiones_politicas_tipo', function () {
-    return view('divisiones_politicas_tipo');
-});
+Route::get('localidades', [LocalidadController::class, 'index']);
+Route::get('localidades/create', [LocalidadController::class, 'create']);
+Route::get('localidades/{localidad}', [LocalidadController::class, 'show']);
 
-Route::get('ciudades', function () {
-    return view('ciudades');
-});
+Route::get('personas', [PersonaController::class, 'index']);
+Route::get('personas/create', [PersonaController::class, 'create']);
+Route::get('personas/{persona}', [PersonaController::class, 'show']);
 
-Route::get('personas', function () {
-    return view('personas');
-});
-
-Route::get('usuarios', function () {
-    return view('usuarios');
-});
+Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/create', [UsuarioController::class, 'create']);
+Route::get('usuarios/{usuario}', [UsuarioController::class, 'show']);
