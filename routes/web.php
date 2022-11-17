@@ -14,5 +14,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
+});
+
+Route::get('continentes', function () {
+    return view('continentes');
+});
+
+Route::get('paises', function () {
+    return view('paises');
+});
+
+Route::get('divisiones_politicas', function () {
+    return view('divisiones_politicas');
+});
+
+Route::get('divisiones_politicas_tipo', function () {
+    return view('divisiones_politicas_tipo');
+});
+
+Route::get('ciudades', function () {
+    return view('ciudades');
+});
+
+Route::get('personas', function () {
+    return view('personas');
+});
+
+Route::get('usuarios', function () {
+    return view('usuarios');
 });
