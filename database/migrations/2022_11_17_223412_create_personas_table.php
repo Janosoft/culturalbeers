@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->id("persona_id");
+            $table->id('persona_id');
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('profesion', 100)->nullable();
-            $table->foreignId("localidad_id")->constrained("localidades","localidad_id");
-            $table->string('imagen');
+            $table->foreignId('localidad_id')->constrained('localidades','localidad_id');
+            $table->string('imagen')->nullable();
             $table->timestamps();
 
             $table->index('nombre');

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('localidades', function (Blueprint $table) {
-            $table->id("localidad_id");
-            $table->foreignId("division_politica_id")->constrained("divisiones_politicas","division_politica_id");
+            $table->id('localidad_id');
+            $table->foreignId('division_politica_id')->constrained('divisiones_politicas','division_politica_id');
             $table->string('nombre', 50);
             $table->timestamps();
 

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('paises', function (Blueprint $table) {
-            $table->id("pais_id");
-            $table->foreignId("continente_id")->constrained("continentes","continente_id");
+            $table->id('pais_id');
+            $table->foreignId('continente_id')->constrained('continentes','continente_id');
             $table->string('nombre', 100)->unique();
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

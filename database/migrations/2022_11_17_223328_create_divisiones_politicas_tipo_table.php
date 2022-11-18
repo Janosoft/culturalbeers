@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('divisiones_politicas_tipos', function (Blueprint $table) {
-            $table->id("division_politica_tipo_id");
-            $table->foreignId("pais_id")->constrained("paises","pais_id");
+            $table->id('division_politica_tipo_id');
+            $table->foreignId('pais_id')->constrained('paises','pais_id');
             $table->string('nombre', 50)->unique();
             $table->timestamps();
         });

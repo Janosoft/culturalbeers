@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('continentes', function (Blueprint $table) {
-            $table->id("continente_id");
+            $table->id('continente_id');
             $table->string('nombre', 30)->unique();
             $table->timestamps();
         });
