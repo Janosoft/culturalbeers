@@ -9,4 +9,5 @@ class Continente extends Model
 {
     use HasFactory;
     protected $table = 'continentes';
+    protected $primaryKey = 'continente_id';
 }

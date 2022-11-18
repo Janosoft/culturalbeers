@@ -9,4 +9,5 @@ class DivisionesPoliticasTipo extends Model
 {
     use HasFactory;
     protected $table = 'divisiones_politicas_tipo';
+    protected $primaryKey = 'divisiones_politicas_tipo_id';
 }

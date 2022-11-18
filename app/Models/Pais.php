@@ -9,4 +9,5 @@ class Pais extends Model
 {
     use HasFactory;
     protected $table = 'paises';
+    protected $primaryKey = 'pais_id';
 }

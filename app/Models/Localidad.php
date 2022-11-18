@@ -9,4 +9,5 @@ class Localidad extends Model
 {
     use HasFactory;
     protected $table = 'localidades';
+    protected $primaryKey = 'localidad_id';
 }
