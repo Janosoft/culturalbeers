@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Continente::factory(10)->create();
         \App\Models\DivisionesPoliticasTipo::factory(10)->create();
-        \App\Models\Pais::factory(10)->create();
+        \App\Models\Pais::factory(50)->create();
         \App\Models\DivisionPolitica::factory(10)->create();
-        \App\Models\Localidad::factory(10)->create();
-        \App\Models\Persona::factory(10)->create();
-        \App\Models\Usuario::factory(10)->create();
+        \App\Models\Localidad::factory(50)->create();
+        \App\Models\Persona::factory(30)->create();
+        \App\Models\Usuario::factory(30)->create();
     }
 }
