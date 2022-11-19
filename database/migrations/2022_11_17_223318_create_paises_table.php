@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id('pais_id');
-            $table->foreignId('continente_id')->constrained('continentes','continente_id');
             $table->string('nombre', 100)->unique();
+            $table->foreignId('continente_id')->constrained('continentes','continente_id');
+            $table->foreignId('division_politica_tipo_id')->constrained('divisiones_politicas_tipos','division_politica_tipo_id');
             $table->string('imagen')->nullable();
             $table->timestamps();
         });
