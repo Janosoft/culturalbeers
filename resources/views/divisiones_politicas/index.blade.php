@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Divisiones Políticas')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($divisiones_politicas as $division_politica)
+                <li>{{ $division_politica->nombre }}</li>
+            @endforeach
+        </ul>
+        {{ $divisiones_politicas->links() }}
+    </div>
 @endsection

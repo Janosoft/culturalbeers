@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Continentes')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($continentes as $continente)
+                <li>{{ $continente->nombre }}</li>
+            @endforeach
+        </ul>
+        {{ $continentes->links() }}
+    </div>
 @endsection

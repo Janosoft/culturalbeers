@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Personas')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($personas as $persona)
+                <li>{{ $persona->nombre }}</li>
+            @endforeach
+        </ul>
+        {{ $personas->links() }}
+    </div>
 @endsection
