@@ -20,11 +20,11 @@ class UsuarioFactory extends Factory
         return [
             'persona_id' => fake()->numberBetween(1,10),
             'email' => fake()->unique()->safeEmail(),
-            'password' => fake()->password(),
-            'email_visible' => fake()->numberBetween(1,10),
+            'password' => fake()->md5(),
+            'email_visible' => fake()->boolean(),
             'email_verificado' => fake()->dateTime(),
-            'activado' => fake()->numberBetween(1,10),
-            'bloqueado' => fake()->numberBetween(1,10),
+            'activado' => fake()->boolean(),
+            'bloqueado' => fake()->boolean(),
             'remember_token' => Str::random(10),
         ];
     }

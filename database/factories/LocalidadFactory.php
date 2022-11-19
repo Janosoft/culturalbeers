@@ -17,7 +17,7 @@ class LocalidadFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->unique()->sentence(1),
+            'nombre' => fake()->unique()->word(),
             'division_politica_id' => fake()->numberBetween(1,10),
         ];
     }

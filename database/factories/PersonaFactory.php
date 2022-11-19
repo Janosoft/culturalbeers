@@ -19,7 +19,7 @@ class PersonaFactory extends Factory
         return [
             'nombre' => fake()->name(),
             'apellido' => fake()->lastname(),
-            'profesion' => fake()->sentence(2),
+            'profesion' => rtrim(fake()->sentence(2),'.'),
             'localidad_id' => fake()->numberBetween(1,10),
         ];
     }

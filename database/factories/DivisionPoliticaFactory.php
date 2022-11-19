@@ -18,7 +18,7 @@ class DivisionPoliticaFactory extends Factory
     {
         return [
             'pais_id' => fake()->numberBetween(1,10),
-            'nombre' => fake()->sentence(2),
+            'nombre' => fake()->word(),
             
         ];
     }

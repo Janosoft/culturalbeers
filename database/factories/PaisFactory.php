@@ -17,7 +17,7 @@ class PaisFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->unique()->sentence(1),
+            'nombre' => fake()->unique()->word(),
             'continente_id' => fake()->numberBetween(1,10),
             'division_politica_tipo_id' => fake()->numberBetween(1,10),
         ];

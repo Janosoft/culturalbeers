@@ -18,7 +18,7 @@ class ContinenteFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->unique()->sentence(1),
+            'nombre' => fake()->unique()->word(),
         ];
     }
 }
