@@ -3,9 +3,10 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('usuarios.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($usuarios as $usuario)
-                <li>{{ $usuario->email }}</li>
+                <li><a href="{{ route('usuarios.show', $usuario->usuario_id) }}">{{ $usuario->email }}</a></li>
             @endforeach
         </ul>
         {{ $usuarios->links() }}

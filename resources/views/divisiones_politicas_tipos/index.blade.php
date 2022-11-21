@@ -3,9 +3,12 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('divisiones_politicas_tipos.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($divisiones_politicas_tipos as $divisiones_politicas_tipo)
-                <li>{{ $divisiones_politicas_tipo->nombre }}</li>
+                <li><a
+                        href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo->continente_id) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
+                </li>
             @endforeach
         </ul>
         {{ $divisiones_politicas_tipos->links() }}

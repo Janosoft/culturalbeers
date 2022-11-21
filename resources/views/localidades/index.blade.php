@@ -3,9 +3,12 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('localidades.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($localidades as $localidad)
-                <li>{{ $localidad->nombre }}</li>
+                <li><a
+                        href="{{ route('localidades.show', $localidad->localidad_id) }}">{{ $localidad->nombre }}</a>
+                </li>
             @endforeach
         </ul>
         {{ $localidades->links() }}

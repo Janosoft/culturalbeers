@@ -3,9 +3,10 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('paises.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($paises as $pais)
-                <li>{{ $pais->nombre }}</li>
+                <li><a href="{{ route('paises.show', $pais->pais_id) }}">{{ $pais->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $paises->links() }}
