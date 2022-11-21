@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Usuarios')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($usuarios as $usuario)
+                <li>{{ $usuario->email }}</li>
+            @endforeach
+        </ul>
+        {{ $usuarios->links() }}
+    </div>
 @endsection

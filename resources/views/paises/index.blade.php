@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Paises')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($paises as $pais)
+                <li>{{ $pais->nombre }}</li>
+            @endforeach
+        </ul>
+        {{ $paises->links() }}
+    </div>
 @endsection

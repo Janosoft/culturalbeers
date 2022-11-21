@@ -2,5 +2,12 @@
 @section('title', 'Mostrar Localidades')
 
 @section('content')
-    <h1>Contenido</h1>
+    <div class="container">
+        <ul>
+            @foreach ($localidades as $localidad)
+                <li>{{ $localidad->nombre }}</li>
+            @endforeach
+        </ul>
+        {{ $localidades->links() }}
+    </div>
 @endsection
