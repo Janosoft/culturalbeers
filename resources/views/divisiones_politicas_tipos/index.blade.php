@@ -6,8 +6,8 @@
         <a href="{{ route('divisiones_politicas_tipos.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($divisiones_politicas_tipos as $divisiones_politicas_tipo)
-                <li><a
-                        href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo->continente_id) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
+                <li>
+                    <a href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo->division_politica_tipo_id) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
                 </li>
             @endforeach
         </ul>
