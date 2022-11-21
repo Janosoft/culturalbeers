@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DivisionPolitica;
 
 class DivisionPoliticaController extends Controller
 {
     public function index()
     {
-        return view('divisiones_politicas.index');
+        $divisiones_politicas= DivisionPolitica::paginate();
+        return view('divisiones_politicas.index', compact('divisiones_politicas'));
     }
 
     public function create()

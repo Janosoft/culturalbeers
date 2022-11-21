@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Localidad;
 
 class LocalidadController extends Controller
 {
     public function index()
     {
-        return view('localidades.index');
+        $localidades= Localidad::paginate();
+        return view('localidades.index', compact('localidades'));
     }
 
     public function create()
