@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('cervezas_familias.create') }}">Crear Nuevo</a>
+        <a href="{{ route('cervezas_familias.create') }}">Crear Nueva</a>
         <ul>
             @foreach ($cervezas_familias as $cervezas_familia)
                 <li><a href="{{ route('cervezas_familias.show', $cervezas_familia->familia_id) }}">{{ $cervezas_familia->nombre }}</a></li>
