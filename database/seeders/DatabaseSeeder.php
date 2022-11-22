@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\Localidad::factory(50)->create();
         \App\Models\Persona::factory(30)->create();
         \App\Models\Usuario::factory(30)->create();
+        \App\Models\CervezasEnvase::factory(30)->create();
+        \App\Models\ProductoresFabricacion::factory(30)->create();
+        \App\Models\Productor::factory(30)->create();
+        \App\Models\CervezasColor::factory(30)->create();
+        \App\Models\CervezasFermento::factory(30)->create();
+        \App\Models\CervezasFamilia::factory(30)->create();
+        \App\Models\CervezasEstilo::factory(30)->create();
+        \App\Models\Cerveza::factory(30)->create();
     }
 }
