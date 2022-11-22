@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
-@section('title', 'Mostrar Tipo de Fermento: ' . $cerveza_familia)
+@section('title', 'Mostrar Tipo de Fermento: ' . $cervezas_fermento)
 
 @section('content')
-    <h1>Contenido de {{ $cerveza_familia }}</h1>
+    <h1>Contenido de {{ $cervezas_fermento }}</h1>
 @endsection
