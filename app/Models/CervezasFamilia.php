@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class CervezasFamilia extends Model
 {
     use HasFactory;
-    protected $table = 'cervezas_familiass';
+    protected $table = 'cervezas_familias';
     protected $primaryKey = 'familia_id';
 
     /* MUTATORS */
