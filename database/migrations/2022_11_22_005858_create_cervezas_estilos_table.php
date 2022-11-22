@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cervezas_estilos', function (Blueprint $table) {
-            $table->id();
+            $table->id('estilo_id');
+            $table->string('nombre', 100);
+            $table->foreignId('familia_id')->constrained('cervezas_familias','familia_id');
             $table->timestamps();
         });
     }

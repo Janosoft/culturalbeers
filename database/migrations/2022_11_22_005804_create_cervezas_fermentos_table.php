@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cervezas_familias', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cervezas_fermentos', function (Blueprint $table) {
+            $table->id('fermento_id');
+            $table->string('nombre', 100);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cervezas_familias');
+        Schema::dropIfExists('cervezas_fermentos');
     }
 };

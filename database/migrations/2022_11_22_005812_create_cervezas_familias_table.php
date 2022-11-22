@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cervezas_fermentos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cervezas_familias', function (Blueprint $table) {
+            $table->id('familia_id');
+            $table->string('nombre', 100);
+            $table->foreignId('fermento_id')->constrained('cervezas_fermentos','fermento_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cervezas_fermentos');
+        Schema::dropIfExists('cervezas_familias');
     }
 };
