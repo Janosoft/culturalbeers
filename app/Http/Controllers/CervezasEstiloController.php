@@ -9,7 +9,7 @@ class CervezasEstiloController extends Controller
 {
     public function index()
     {
-        $cervezas_estilos= CervezasEstilo::paginate();
+        $cervezas_estilos = CervezasEstilo::paginate();
         return view('cervezas_estilos.index', compact('cervezas_estilos'));
     }
 
@@ -18,8 +18,9 @@ class CervezasEstiloController extends Controller
         return view('cervezas_estilos.create');
     }
 
-    public function show($cervezas_estilo)
+    public function show($estilo_id)
     {
+        $cervezas_estilo = CervezasEstilo::find($estilo_id);
         return view('cervezas_estilos.show', compact('cervezas_estilo'));
     }
 }

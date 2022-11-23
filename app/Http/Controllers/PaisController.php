@@ -18,8 +18,9 @@ class PaisController extends Controller
         return view('paises.create');
     }
 
-    public function show($pais)
+    public function show($pais_id)
     {
+        $pais = Pais::find($pais_id);
         return view('paises.show', compact('pais'));
     }
 }

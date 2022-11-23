@@ -9,7 +9,7 @@ class LocalidadController extends Controller
 {
     public function index()
     {
-        $localidades= Localidad::paginate();
+        $localidades = Localidad::paginate();
         return view('localidades.index', compact('localidades'));
     }
 
@@ -18,8 +18,9 @@ class LocalidadController extends Controller
         return view('localidades.create');
     }
 
-    public function show($localidad)
+    public function show($localidad_id)
     {
+        $localidad = Localidad::find($localidad_id);;
         return view('localidades.show', compact('localidad'));
     }
 }

@@ -9,7 +9,7 @@ class CervezasEnvaseController extends Controller
 {
     public function index()
     {
-        $cervezas_envases= CervezasEnvase::paginate();
+        $cervezas_envases = CervezasEnvase::paginate();
         return view('cervezas_envases.index', compact('cervezas_envases'));
     }
 
@@ -18,8 +18,9 @@ class CervezasEnvaseController extends Controller
         return view('cervezas_envases.create');
     }
 
-    public function show($cervezas_envase)
+    public function show($envase_id)
     {
+        $cervezas_envase = CervezasEnvase::find($envase_id);
         return view('cervezas_envases.show', compact('cervezas_envase'));
     }
 }

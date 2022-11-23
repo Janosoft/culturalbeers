@@ -9,7 +9,7 @@ class ProductorController extends Controller
 {
     public function index()
     {
-        $productores= Productor::paginate();
+        $productores = Productor::paginate();
         return view('productores.index', compact('productores'));
     }
 
@@ -18,8 +18,9 @@ class ProductorController extends Controller
         return view('productores.create');
     }
 
-    public function show($productor)
+    public function show($productor_id)
     {
+        $productor = Productor::find($productor_id);
         return view('productores.show', compact('productor'));
     }
 }

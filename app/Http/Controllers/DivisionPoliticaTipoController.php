@@ -9,7 +9,7 @@ class DivisionPoliticaTipoController extends Controller
 {
     public function index()
     {
-        $divisiones_politicas_tipos= DivisionesPoliticasTipo::paginate();
+        $divisiones_politicas_tipos = DivisionesPoliticasTipo::paginate();
         return view('divisiones_politicas_tipos.index', compact('divisiones_politicas_tipos'));
     }
 
@@ -18,9 +18,9 @@ class DivisionPoliticaTipoController extends Controller
         return view('divisiones_politicas_tipos.create');
     }
 
-    public function show($division_politica_tipo)
+    public function show($division_politica_tipo_id)
     {
+        $division_politica_tipo = DivisionesPoliticasTipo::find($division_politica_tipo_id);
         return view('divisiones_politicas_tipos.show', compact('division_politica_tipo'));
     }
-
 }

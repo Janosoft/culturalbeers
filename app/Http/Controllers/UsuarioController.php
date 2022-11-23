@@ -9,7 +9,7 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios= Usuario::paginate();
+        $usuarios = Usuario::paginate();
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -18,8 +18,9 @@ class UsuarioController extends Controller
         return view('usuarios.create');
     }
 
-    public function show($usuario)
+    public function show($usuario_id)
     {
+        $usuario = Usuario::find($usuario_id);
         return view('usuarios.show', compact('usuario'));
     }
 }

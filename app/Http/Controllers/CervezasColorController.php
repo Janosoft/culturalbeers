@@ -9,7 +9,7 @@ class CervezasColorController extends Controller
 {
     public function index()
     {
-        $cervezas_colores= CervezasColor::paginate();
+        $cervezas_colores = CervezasColor::paginate();
         return view('cervezas_colores.index', compact('cervezas_colores'));
     }
 
@@ -18,8 +18,9 @@ class CervezasColorController extends Controller
         return view('cervezas_colores.create');
     }
 
-    public function show($cervezas_color)
+    public function show($color_id)
     {
+        $cervezas_color = CervezasColor::find($color_id);
         return view('cervezas_colores.show', compact('cervezas_color'));
     }
 }

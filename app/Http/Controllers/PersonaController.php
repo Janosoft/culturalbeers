@@ -9,8 +9,8 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        $personas= Persona::paginate();
-        return view('personas.index', compact('personas'));        
+        $personas = Persona::paginate();
+        return view('personas.index', compact('personas'));
     }
 
     public function create()
@@ -18,8 +18,9 @@ class PersonaController extends Controller
         return view('personas.create');
     }
 
-    public function show($persona)
+    public function show($persona_id)
     {
+        $persona = Persona::find($persona_id);
         return view('personas.show', compact('persona'));
     }
 }
