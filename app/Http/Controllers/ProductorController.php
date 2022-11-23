@@ -9,7 +9,7 @@ class ProductorController extends Controller
 {
     public function index()
     {
-        $productores = Productor::paginate();
+        $productores = Productor::orderBy('nombre')->paginate();
         return view('productores.index', compact('productores'));
     }
 
@@ -18,9 +18,28 @@ class ProductorController extends Controller
         return view('productores.create');
     }
 
-    public function show($productor_id)
+    public function store(Request $request)
     {
-        $productor = Productor::find($productor_id);
+        $productor = new Productor();
+        $productor->nombre = $request->nombre;
+        $productor->save();
+        return redirect()->route('productores.show', $productor);
+    }
+
+    public function show(Productor $productor)
+    {
         return view('productores.show', compact('productor'));
+    }
+
+    public function edit(Productor $productor)
+    {
+        return view('productores.edit', compact('productor'));
+    }
+
+    public function update(Request $request, Productor $productor)
+    {
+        $productor->nombre = $request->nombre;
+        $productor->save();
+        return redirect()->route('productores.show', $productor);
     }
 }

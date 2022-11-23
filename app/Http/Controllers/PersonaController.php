@@ -9,7 +9,7 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        $personas = Persona::paginate();
+        $personas = Persona::orderBy('nombre')->paginate();
         return view('personas.index', compact('personas'));
     }
 
@@ -18,9 +18,28 @@ class PersonaController extends Controller
         return view('personas.create');
     }
 
-    public function show($persona_id)
+    public function store(Request $request)
     {
-        $persona = Persona::find($persona_id);
+        $persona = new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->save();
+        return redirect()->route('personas.show', $persona);
+    }
+
+    public function show(Persona $persona)
+    {
         return view('personas.show', compact('persona'));
+    }
+
+    public function edit(Persona $persona)
+    {
+        return view('personas.edit', compact('persona'));
+    }
+
+    public function update(Request $request, Persona $persona)
+    {
+        $persona->nombre = $request->nombre;
+        $persona->save();
+        return redirect()->route('personas.show', $persona);
     }
 }

@@ -9,7 +9,7 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuario::paginate();
+        $usuarios = Usuario::orderBy('email')->paginate();
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -18,9 +18,28 @@ class UsuarioController extends Controller
         return view('usuarios.create');
     }
 
-    public function show($usuario_id)
+    public function store(Request $request)
     {
-        $usuario = Usuario::find($usuario_id);
+        $usuario = new Usuario();
+        $usuario->email = $request->email;
+        $usuario->save();
+        return redirect()->route('usuarios.show', $usuario);
+    }
+
+    public function show(Usuario $usuario)
+    {
         return view('usuarios.show', compact('usuario'));
+    }
+
+    public function edit(Usuario $usuario)
+    {
+        return view('usuarios.edit', compact('usuario'));
+    }
+
+    public function update(Request $request, Usuario $usuario)
+    {
+        $usuario->email = $request->email;
+        $usuario->save();
+        return redirect()->route('usuarios.show', $usuario);
     }
 }

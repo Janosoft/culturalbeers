@@ -3,12 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\CervezasEnvase;
+use App\Models\CervezasEnvaseTipo;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CervezasEnvase>
  */
-class CervezasEnvaseFactory extends Factory
+class CervezasEnvaseTipoFactory extends Factory
 {
     /**
      * Define the model's default state.

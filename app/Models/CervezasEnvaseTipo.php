@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class CervezasEnvase extends Model
+class CervezasEnvaseTipo extends Model
 {
     use HasFactory;
-    protected $table = 'cervezas_envases';
+    protected $table = 'cervezas_envases_tipos';
     protected $primaryKey = 'envase_id';
 
     /* MUTATORS */

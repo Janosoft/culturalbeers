@@ -6,7 +6,7 @@
         <a href="{{ route('cervezas_colores.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($cervezas_colores as $cervezas_color)
-                <li><a href="{{ route('cervezas_colores.show', $cervezas_color->color_id) }}">{{ $cervezas_color->nombre }}</a></li>
+                <li><a href="{{ route('cervezas_colores.show', $cervezas_color) }}">{{ $cervezas_color->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $cervezas_colores->links() }}

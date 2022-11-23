@@ -6,7 +6,7 @@
         <a href="{{ route('paises.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($paises as $pais)
-                <li><a href="{{ route('paises.show', $pais->pais_id) }}">{{ $pais->nombre }}</a></li>
+                <li><a href="{{ route('paises.show', $pais) }}">{{ $pais->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $paises->links() }}

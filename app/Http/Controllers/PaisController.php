@@ -9,7 +9,7 @@ class PaisController extends Controller
 {
     public function index()
     {
-        $paises = Pais::paginate();
+        $paises = Pais::orderBy('nombre')->paginate();
         return view('paises.index', compact('paises'));
     }
 
@@ -18,9 +18,28 @@ class PaisController extends Controller
         return view('paises.create');
     }
 
-    public function show($pais_id)
+    public function store(Request $request)
     {
-        $pais = Pais::find($pais_id);
+        $pais = new Pais();
+        $pais->nombre = $request->nombre;
+        $pais->save();
+        return redirect()->route('paises.show', $pais);
+    }
+
+    public function show(Pais $pais)
+    {
         return view('paises.show', compact('pais'));
+    }
+
+    public function edit(Pais $pais)
+    {
+        return view('paises.edit', compact('pais'));
+    }
+
+    public function update(Request $request, Pais $pais)
+    {
+        $pais->nombre = $request->nombre;
+        $pais->save();
+        return redirect()->route('paises.show', $pais);
     }
 }

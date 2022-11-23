@@ -6,7 +6,7 @@
         <a href="{{ route('usuarios.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($usuarios as $usuario)
-                <li><a href="{{ route('usuarios.show', $usuario->usuario_id) }}">{{ $usuario->email }}</a></li>
+                <li><a href="{{ route('usuarios.show', $usuario) }}">{{ $usuario->email }}</a></li>
             @endforeach
         </ul>
         {{ $usuarios->links() }}

@@ -6,7 +6,7 @@
         <a href="{{ route('continentes.create') }}">Crear Nuevo</a>
         <ul>
             @foreach ($continentes as $continente)
-                <li><a href="{{ route('continentes.show', $continente->continente_id) }}">{{ $continente->nombre }}</a></li>
+                <li><a href="{{ route('continentes.show', $continente) }}">{{ $continente->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $continentes->links() }}

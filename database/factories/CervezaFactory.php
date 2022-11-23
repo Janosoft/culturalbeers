@@ -22,6 +22,7 @@ class CervezaFactory extends Factory
             'productor_id' => fake()->numberBetween(1,10),
             'color_id' => fake()->numberBetween(1,10),
             'estilo_id' => fake()->numberBetween(1,10),
+            'envase_id' => fake()->numberBetween(1,10),
         ];
     }
 }

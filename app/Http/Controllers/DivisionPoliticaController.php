@@ -9,7 +9,7 @@ class DivisionPoliticaController extends Controller
 {
     public function index()
     {
-        $divisiones_politicas = DivisionPolitica::paginate();
+        $divisiones_politicas = DivisionPolitica::orderBy('nombre')->paginate();
         return view('divisiones_politicas.index', compact('divisiones_politicas'));
     }
 
@@ -18,9 +18,28 @@ class DivisionPoliticaController extends Controller
         return view('divisiones_politicas.create');
     }
 
-    public function show($division_politica_id)
+    public function store(Request $request)
     {
-        $division_politica = DivisionPolitica::find($division_politica_id);
+        $division_politica = new DivisionPolitica();
+        $division_politica->nombre = $request->nombre;
+        $division_politica->save();
+        return redirect()->route('divisiones_politicas.show', $division_politica);
+    }
+
+    public function show(DivisionPolitica $division_politica)
+    {
         return view('divisiones_politicas.show', compact('division_politica'));
+    }
+
+    public function edit(DivisionPolitica $division_politica)
+    {
+        return view('divisiones_politicas.edit', compact('division_politica'));
+    }
+
+    public function update(Request $request, DivisionPolitica $division_politica)
+    {
+        $division_politica->nombre = $request->nombre;
+        $division_politica->save();
+        return redirect()->route('divisiones_politicas.show', $division_politica);
     }
 }

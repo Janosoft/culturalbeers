@@ -9,7 +9,7 @@ class ContinenteController extends Controller
 {
     public function index()
     {
-        $continentes = Continente::paginate();
+        $continentes = Continente::orderBy('nombre')->paginate();
         return view('continentes.index', compact('continentes'));
     }
 
@@ -18,9 +18,28 @@ class ContinenteController extends Controller
         return view('continentes.create');
     }
 
-    public function show($continente_id)
+    public function store(Request $request)
     {
-        $continente = Continente::find($continente_id);
+        $continente = new Continente();
+        $continente->nombre = $request->nombre;
+        $continente->save();
+        return redirect()->route('continentes.show', $continente);
+    }
+
+    public function show(Continente $continente)
+    {
         return view('continentes.show', compact('continente'));
+    }
+
+    public function edit(Continente $continente)
+    {
+        return view('continentes.edit', compact('continente'));
+    }
+
+    public function update(Request $request, Continente $continente)
+    {
+        $continente->nombre = $request->nombre;
+        $continente->save();
+        return redirect()->route('continentes.show', $continente);
     }
 }

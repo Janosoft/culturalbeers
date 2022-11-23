@@ -7,7 +7,7 @@
         <ul>
             @foreach ($localidades as $localidad)
                 <li><a
-                        href="{{ route('localidades.show', $localidad->localidad_id) }}">{{ $localidad->nombre }}</a>
+                        href="{{ route('localidades.show', $localidad) }}">{{ $localidad->nombre }}</a>
                 </li>
             @endforeach
         </ul>

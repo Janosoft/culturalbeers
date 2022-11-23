@@ -11,7 +11,7 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CervezaController;
 use App\Http\Controllers\CervezasColorController;
-use App\Http\Controllers\CervezasEnvaseController;
+use App\Http\Controllers\CervezasEnvaseTipoController;
 use App\Http\Controllers\CervezasEstiloController;
 use App\Http\Controllers\CervezasFamiliaController;
 use App\Http\Controllers\CervezasFermentoController;
@@ -112,13 +112,13 @@ Route::controller(CervezasColorController::class)->group(function () {
     Route::put('cervezas_colores/{cervezas_color}', 'update')->name('cervezas_colores.update');
 });
 
-Route::controller(CervezasEnvaseController::class)->group(function () {
-    Route::get('cervezas_envases', 'index')->name('cervezas_envases.index');
-    Route::get('cervezas_envases/create', 'create')->name('cervezas_envases.create');
-    Route::post('cervezas_envases/create', 'store')->name('cervezas_envases.store');
-    Route::get('cervezas_envases/{cervezas_envase}', 'show')->name('cervezas_envases.show');
-    Route::get('cervezas_envases/{cervezas_envase}/edit', 'edit')->name('cervezas_envases.edit');
-    Route::put('cervezas_envases/{cervezas_envase}', 'update')->name('cervezas_envases.update');
+Route::controller(CervezasEnvaseTipoController::class)->group(function () {
+    Route::get('cervezas_envases_tipos', 'index')->name('cervezas_envases_tipos.index');
+    Route::get('cervezas_envases_tipos/create', 'create')->name('cervezas_envases_tipos.create');
+    Route::post('cervezas_envases_tipos/create', 'store')->name('cervezas_envases_tipos.store');
+    Route::get('cervezas_envases_tipos/{cervezas_envase_tipo}', 'show')->name('cervezas_envases_tipos.show');
+    Route::get('cervezas_envases_tipos/{cervezas_envase_tipo}/edit', 'edit')->name('cervezas_envases_tipos.edit');
+    Route::put('cervezas_envases_tipos/{cervezas_envase_tipo}', 'update')->name('cervezas_envases_tipos.update');
 });
 
 Route::controller(CervezasEstiloController::class)->group(function () {

@@ -6,7 +6,7 @@
         <a href="{{ route('cervezas.create') }}">Crear Nueva</a>
         <ul>
             @foreach ($cervezas as $cerveza)
-                <li><a href="{{ route('cervezas.show', $cerveza->cerveza_id) }}">{{ $cerveza->nombre }}</a></li>
+                <li><a href="{{ route('cervezas.show', $cerveza) }}">{{ $cerveza->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $cervezas->links() }}

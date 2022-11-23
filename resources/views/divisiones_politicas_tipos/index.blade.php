@@ -7,7 +7,7 @@
         <ul>
             @foreach ($divisiones_politicas_tipos as $divisiones_politicas_tipo)
                 <li>
-                    <a href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo->division_politica_tipo_id) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
+                    <a href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
                 </li>
             @endforeach
         </ul>

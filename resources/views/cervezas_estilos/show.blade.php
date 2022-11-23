@@ -2,5 +2,7 @@
 @section('title', 'Mostrar Estilo de Cerveza: ' . $cervezas_estilo->nombre)
 
 @section('content')
-    <h1>Contenido de {{ $cervezas_estilo }}</h1>
+    <h1>{{ $cervezas_estilo->nombre }}</h1>
+    <a href="{{ route('cervezas_estilos.index') }}"> Volver</a>
+    <a href="{{ route('cervezas_estilos.edit', $cervezas_estilo) }}"> Editar</a>
 @endsection

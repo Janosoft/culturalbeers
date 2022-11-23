@@ -9,7 +9,7 @@ class LocalidadController extends Controller
 {
     public function index()
     {
-        $localidades = Localidad::paginate();
+        $localidades = Localidad::orderBy('nombre')->paginate();
         return view('localidades.index', compact('localidades'));
     }
 
@@ -18,9 +18,28 @@ class LocalidadController extends Controller
         return view('localidades.create');
     }
 
-    public function show($localidad_id)
+    public function store(Request $request)
     {
-        $localidad = Localidad::find($localidad_id);;
+        $localidad = new Localidad();
+        $localidad->nombre = $request->nombre;
+        $localidad->save();
+        return redirect()->route('localidades.show', $localidad);
+    }
+
+    public function show(Localidad $localidad)
+    {
         return view('localidades.show', compact('localidad'));
+    }
+
+    public function edit(Localidad $localidad)
+    {
+        return view('localidades.edit', compact('localidad'));
+    }
+
+    public function update(Request $request, Localidad $localidad)
+    {
+        $localidad->nombre = $request->nombre;
+        $localidad->save();
+        return redirect()->route('localidades.show', $localidad);
     }
 }

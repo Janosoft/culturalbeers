@@ -6,7 +6,7 @@
         <a href="{{ route('personas.create') }}">Crear Nueva</a>
         <ul>
             @foreach ($personas as $persona)
-                <li><a href="{{ route('personas.show', $persona->persona_id) }}">{{ $persona->nombre }}</a></li>
+                <li><a href="{{ route('personas.show', $persona) }}">{{ $persona->nombre }}</a></li>
             @endforeach
         </ul>
         {{ $personas->links() }}
