@@ -9,7 +9,7 @@ class CervezaController extends Controller
 {
     public function index()
     {
-        $cervezas = Cerveza::paginate();
+        $cervezas = Cerveza::orderBy('nombre')->paginate();
         return view('cervezas.index', compact('cervezas'));
     }
 
@@ -18,9 +18,28 @@ class CervezaController extends Controller
         return view('cervezas.create');
     }
 
-    public function show($cerveza_id)
+    public function store(Request $request)
     {
-        $cerveza = Cerveza::find($cerveza_id);
+        $cerveza = new Cerveza();
+        $cerveza->nombre = $request->nombre;
+        $cerveza->save();
+        return redirect()->route('cervezas.show', $cerveza);
+    }
+
+    public function show(Cerveza $cerveza)
+    {
         return view('cervezas.show', compact('cerveza'));
+    }
+
+    public function edit(Cerveza $cerveza)
+    {
+        return view('cervezas.edit', compact('cerveza'));
+    }
+
+    public function update(Request $request, Cerveza $cerveza)
+    {
+        $cerveza->nombre = $request->nombre;
+        $cerveza->save();
+        return redirect()->route('cervezas.show', $cerveza);
     }
 }
