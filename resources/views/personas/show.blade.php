@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Mostrar Persona: ' . $persona)
+@section('title', 'Mostrar Persona: ' . $persona->nombre)
 
 @section('content')
     <h1>Contenido {{ $persona }}</h1>
