@@ -10,6 +10,9 @@
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" placeholder="Nombre de la Cerveza">
+                        @error('nombre')
+                            <label for="floatingInputInvalid">*{{ $message }}</label>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Crear</button>
