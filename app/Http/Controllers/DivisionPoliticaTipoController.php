@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\DivisionesPoliticasTipo;
+use App\Http\Requests\StoreDivisionPoliticaTipo;
 
 class DivisionesPoliticasTipoTipoController extends Controller
 {
@@ -18,7 +18,7 @@ class DivisionesPoliticasTipoTipoController extends Controller
         return view('divisiones_politicas_tipos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreDivisionPoliticaTipo $request)
     {
         $division_politica_tipo = new DivisionesPoliticasTipo();
         $division_politica_tipo->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class DivisionesPoliticasTipoTipoController extends Controller
         return view('divisiones_politicas_tipos.edit', compact('division_politica_tipo'));
     }
 
-    public function update(Request $request, DivisionesPoliticasTipo $division_politica_tipo)
+    public function update(StoreDivisionPoliticaTipo $request, DivisionesPoliticasTipo $division_politica_tipo)
     {
         $division_politica_tipo->nombre = $request->nombre;
         $division_politica_tipo->save();

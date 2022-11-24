@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Http\Requests\StorePersona;
 
 class PersonaController extends Controller
 {
@@ -18,7 +18,7 @@ class PersonaController extends Controller
         return view('personas.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePersona $request)
     {
         $persona = new Persona();
         $persona->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class PersonaController extends Controller
         return view('personas.edit', compact('persona'));
     }
 
-    public function update(Request $request, Persona $persona)
+    public function update(StorePersona $request, Persona $persona)
     {
         $persona->nombre = $request->nombre;
         $persona->save();

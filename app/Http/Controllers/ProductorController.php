@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Productor;
+use App\Http\Requests\StoreProductor;
 
 class ProductorController extends Controller
 {
@@ -18,7 +18,7 @@ class ProductorController extends Controller
         return view('productores.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProductor $request)
     {
         $productor = new Productor();
         $productor->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class ProductorController extends Controller
         return view('productores.edit', compact('productor'));
     }
 
-    public function update(Request $request, Productor $productor)
+    public function update(StoreProductor $request, Productor $productor)
     {
         $productor->nombre = $request->nombre;
         $productor->save();

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Continente;
+use App\Http\Requests\StoreContinente;
 
 class ContinenteController extends Controller
 {
@@ -18,7 +18,7 @@ class ContinenteController extends Controller
         return view('continentes.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreContinente $request)
     {
         $continente = new Continente();
         $continente->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class ContinenteController extends Controller
         return view('continentes.edit', compact('continente'));
     }
 
-    public function update(Request $request, Continente $continente)
+    public function update(StoreContinente $request, Continente $continente)
     {
         $continente->nombre = $request->nombre;
         $continente->save();

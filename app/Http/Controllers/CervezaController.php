@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Cerveza;
-use Symfony\Contracts\Service\Attribute\Required;
+use App\Http\Requests\StoreCerveza;
 
 class CervezaController extends Controller
 {
@@ -19,12 +18,8 @@ class CervezaController extends Controller
         return view('cervezas.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-        ]);
-        
+    public function store(StoreCerveza $request)
+    {        
         $cerveza = new Cerveza();
         $cerveza->nombre = $request->nombre;
         $cerveza->save();
@@ -41,7 +36,7 @@ class CervezaController extends Controller
         return view('cervezas.edit', compact('cerveza'));
     }
 
-    public function update(Request $request, Cerveza $cerveza)
+    public function update(StoreCerveza $request, Cerveza $cerveza)
     {
         $cerveza->nombre = $request->nombre;
         $cerveza->save();

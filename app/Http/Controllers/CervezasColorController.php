@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CervezasColor;
+use App\Http\Requests\StoreCervezaColor;
 
 class CervezasColorController extends Controller
 {
@@ -18,7 +18,7 @@ class CervezasColorController extends Controller
         return view('cervezas_colores.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCervezaColor $request)
     {
         $cervezas_color = new CervezasColor();
         $cervezas_color->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class CervezasColorController extends Controller
         return view('cervezas_colores.edit', compact('cervezas_color'));
     }
 
-    public function update(Request $request, CervezasColor $cervezas_color)
+    public function update(StoreCervezaColor $request, CervezasColor $cervezas_color)
     {
         $cervezas_color->nombre = $request->nombre;
         $cervezas_color->save();

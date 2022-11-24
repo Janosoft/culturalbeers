@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ProductoresFabricacion;
+use App\Http\Requests\StoreProductorFabricacion;
 
 class ProductoresFabricacionController extends Controller
 {
@@ -18,7 +18,7 @@ class ProductoresFabricacionController extends Controller
         return view('productores_fabricaciones.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProductorFabricacion $request)
     {
         $productores_fabricacion = new ProductoresFabricacion();
         $productores_fabricacion->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class ProductoresFabricacionController extends Controller
         return view('productores_fabricaciones.edit', compact('productores_fabricacion'));
     }
 
-    public function update(Request $request, ProductoresFabricacion $productores_fabricacion)
+    public function update(StoreProductorFabricacion $request, ProductoresFabricacion $productores_fabricacion)
     {
         $productores_fabricacion->nombre = $request->nombre;
         $productores_fabricacion->save();

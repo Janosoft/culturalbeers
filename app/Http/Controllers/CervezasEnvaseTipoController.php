@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CervezasEnvaseTipo;
+use App\Http\Requests\StoreCervezaEnvaseTipo;
 
 class CervezasEnvaseTipoController extends Controller
 {
@@ -18,7 +18,7 @@ class CervezasEnvaseTipoController extends Controller
         return view('cervezas_envases_tipos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCervezaEnvaseTipo $request)
     {
         $cervezas_envase_tipo = new CervezasEnvaseTipo();
         $cervezas_envase_tipo->nombre = $request->nombre;
@@ -36,7 +36,7 @@ class CervezasEnvaseTipoController extends Controller
         return view('cervezas_envases_tipos.edit', compact('cervezas_envase_tipo'));
     }
 
-    public function update(Request $request, CervezasEnvaseTipo $cervezas_envase_tipo)
+    public function update(StoreCervezaEnvaseTipo $request, CervezasEnvaseTipo $cervezas_envase_tipo)
     {
         $cervezas_envase_tipo->nombre = $request->nombre;
         $cervezas_envase_tipo->save();
