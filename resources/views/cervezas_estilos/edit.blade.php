@@ -10,7 +10,10 @@
                     @method('put')
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre del Estilo de Cerveza" value="{{ $cervezas_estilo->nombre }}">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre del Estilo de Cerveza" value="{{ old('nombre', $cervezas_estilo->nombre) }}">
+                        @error('nombre')
+                            <label for="floatingInputInvalid">*{{ $message }}</label>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Editar</button>
