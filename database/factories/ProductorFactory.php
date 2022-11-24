@@ -19,7 +19,7 @@ class ProductorFactory extends Factory
     {
         return [
             'nombre' => implode(" ", fake()->unique()->words(2)),
-            'fabricacion_id' => fake()->numberBetween(1, 10),
+            'fabricacion_id' => fake()->numberBetween(1, 3),
             'localidad_origen' => fake()->numberBetween(1, 10),
         ];
     }
