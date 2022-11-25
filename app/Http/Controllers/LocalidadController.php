@@ -20,9 +20,7 @@ class LocalidadController extends Controller
 
     public function store(StoreLocalidad $request)
     {
-        $localidad = new Localidad();
-        $localidad->nombre = $request->nombre;
-        $localidad->save();
+        $localidad = Localidad::create($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
 
@@ -38,8 +36,7 @@ class LocalidadController extends Controller
 
     public function update(StoreLocalidad $request, Localidad $localidad)
     {
-        $localidad->nombre = $request->nombre;
-        $localidad->save();
+        $localidad->update($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
 }

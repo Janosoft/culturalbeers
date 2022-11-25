@@ -20,9 +20,7 @@ class CervezasEstiloController extends Controller
 
     public function store(StoreCervezaEstilo $request)
     {
-        $cervezas_estilo = new CervezasEstilo();
-        $cervezas_estilo->nombre = $request->nombre;
-        $cervezas_estilo->save();
+        $cervezas_estilo = CervezasEstilo::create($request->all());
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
 
@@ -38,8 +36,7 @@ class CervezasEstiloController extends Controller
 
     public function update(StoreCervezaEstilo $request, CervezasEstilo $cervezas_estilo)
     {
-        $cervezas_estilo->nombre = $request->nombre;
-        $cervezas_estilo->save();
+        $cervezas_estilo->update($request->all());
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
 }

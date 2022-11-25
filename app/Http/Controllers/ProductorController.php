@@ -20,9 +20,7 @@ class ProductorController extends Controller
 
     public function store(StoreProductor $request)
     {
-        $productor = new Productor();
-        $productor->nombre = $request->nombre;
-        $productor->save();
+        $productor = Productor::create($request->all());
         return redirect()->route('productores.show', $productor);
     }
 
@@ -38,8 +36,7 @@ class ProductorController extends Controller
 
     public function update(StoreProductor $request, Productor $productor)
     {
-        $productor->nombre = $request->nombre;
-        $productor->save();
+        $productor->update($request->all());
         return redirect()->route('productores.show', $productor);
     }
 }

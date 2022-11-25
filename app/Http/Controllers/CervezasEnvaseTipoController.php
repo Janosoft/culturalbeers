@@ -20,9 +20,7 @@ class CervezasEnvaseTipoController extends Controller
 
     public function store(StoreCervezaEnvaseTipo $request)
     {
-        $cervezas_envase_tipo = new CervezasEnvaseTipo();
-        $cervezas_envase_tipo->nombre = $request->nombre;
-        $cervezas_envase_tipo->save();
+        $cervezas_envase_tipo = CervezasEnvaseTipo::create($request->all());
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
     }
 
@@ -38,8 +36,7 @@ class CervezasEnvaseTipoController extends Controller
 
     public function update(StoreCervezaEnvaseTipo $request, CervezasEnvaseTipo $cervezas_envase_tipo)
     {
-        $cervezas_envase_tipo->nombre = $request->nombre;
-        $cervezas_envase_tipo->save();
+        $cervezas_envase_tipo->update($request->all());
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
     }
 }

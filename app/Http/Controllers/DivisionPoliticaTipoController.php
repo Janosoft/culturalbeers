@@ -20,9 +20,7 @@ class DivisionesPoliticasTipoTipoController extends Controller
 
     public function store(StoreDivisionPoliticaTipo $request)
     {
-        $division_politica_tipo = new DivisionesPoliticasTipo();
-        $division_politica_tipo->nombre = $request->nombre;
-        $division_politica_tipo->save();
+        $division_politica_tipo = DivisionesPoliticasTipo::create($request->all());
         return redirect()->route('divisiones_politicas_tipos.show', $division_politica_tipo);
     }
 
@@ -38,8 +36,7 @@ class DivisionesPoliticasTipoTipoController extends Controller
 
     public function update(StoreDivisionPoliticaTipo $request, DivisionesPoliticasTipo $division_politica_tipo)
     {
-        $division_politica_tipo->nombre = $request->nombre;
-        $division_politica_tipo->save();
+        $division_politica_tipo->update($request->all());
         return redirect()->route('divisiones_politicas_tipos.show', $division_politica_tipo);
     }
 }

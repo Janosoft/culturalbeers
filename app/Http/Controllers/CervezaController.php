@@ -19,10 +19,8 @@ class CervezaController extends Controller
     }
 
     public function store(StoreCerveza $request)
-    {        
-        $cerveza = new Cerveza();
-        $cerveza->nombre = $request->nombre;
-        $cerveza->save();
+    {
+        $cerveza = Cerveza::create($request->all());
         return redirect()->route('cervezas.show', $cerveza);
     }
 
@@ -38,8 +36,7 @@ class CervezaController extends Controller
 
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
-        $cerveza->nombre = $request->nombre;
-        $cerveza->save();
+        $cerveza->update($request->all());
         return redirect()->route('cervezas.show', $cerveza);
     }
 }

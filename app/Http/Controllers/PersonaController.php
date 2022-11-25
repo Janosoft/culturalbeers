@@ -20,9 +20,7 @@ class PersonaController extends Controller
 
     public function store(StorePersona $request)
     {
-        $persona = new Persona();
-        $persona->nombre = $request->nombre;
-        $persona->save();
+        $persona = Persona::create($request->all());
         return redirect()->route('personas.show', $persona);
     }
 
@@ -38,8 +36,7 @@ class PersonaController extends Controller
 
     public function update(StorePersona $request, Persona $persona)
     {
-        $persona->nombre = $request->nombre;
-        $persona->save();
+        $persona->update($request->all());
         return redirect()->route('personas.show', $persona);
     }
 }

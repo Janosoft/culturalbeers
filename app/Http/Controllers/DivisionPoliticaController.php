@@ -20,9 +20,7 @@ class DivisionPoliticaController extends Controller
 
     public function store(StoreDivisionPolitica $request)
     {
-        $division_politica = new DivisionPolitica();
-        $division_politica->nombre = $request->nombre;
-        $division_politica->save();
+        $division_politica = DivisionPolitica::create($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
 
@@ -38,8 +36,7 @@ class DivisionPoliticaController extends Controller
 
     public function update(StoreDivisionPolitica $request, DivisionPolitica $division_politica)
     {
-        $division_politica->nombre = $request->nombre;
-        $division_politica->save();
+        $division_politica->update($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
 }

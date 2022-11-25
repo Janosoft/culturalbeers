@@ -20,9 +20,7 @@ class ContinenteController extends Controller
 
     public function store(StoreContinente $request)
     {
-        $continente = new Continente();
-        $continente->nombre = $request->nombre;
-        $continente->save();
+        $continente = Continente::create($request->all());
         return redirect()->route('continentes.show', $continente);
     }
 
@@ -38,8 +36,7 @@ class ContinenteController extends Controller
 
     public function update(StoreContinente $request, Continente $continente)
     {
-        $continente->nombre = $request->nombre;
-        $continente->save();
+        $continente->update($request->all());
         return redirect()->route('continentes.show', $continente);
     }
 }

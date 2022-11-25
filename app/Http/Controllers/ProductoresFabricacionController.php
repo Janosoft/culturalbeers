@@ -20,9 +20,7 @@ class ProductoresFabricacionController extends Controller
 
     public function store(StoreProductorFabricacion $request)
     {
-        $productores_fabricacion = new ProductoresFabricacion();
-        $productores_fabricacion->nombre = $request->nombre;
-        $productores_fabricacion->save();
+        $productores_fabricacion = ProductoresFabricacion::create($request->all());
         return redirect()->route('productores_fabricaciones.show', $productores_fabricacion);
     }
 
@@ -38,8 +36,7 @@ class ProductoresFabricacionController extends Controller
 
     public function update(StoreProductorFabricacion $request, ProductoresFabricacion $productores_fabricacion)
     {
-        $productores_fabricacion->nombre = $request->nombre;
-        $productores_fabricacion->save();
+        $productores_fabricacion->update($request->all());
         return redirect()->route('productores_fabricaciones.show', $productores_fabricacion);
     }
 }
