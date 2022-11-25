@@ -11,6 +11,7 @@ class CervezasEnvaseTipo extends Model
     use HasFactory;
     protected $table = 'cervezas_envases_tipos';
     protected $primaryKey = 'envase_id';
+    protected $fillable = ['nombre'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

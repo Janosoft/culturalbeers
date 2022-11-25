@@ -11,6 +11,7 @@ class Persona extends Model
     use HasFactory;
     protected $table = 'personas';
     protected $primaryKey = 'persona_id';
+    protected $fillable = ['nombre', 'apellido', 'profesion', 'localidad_id', 'imagen'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

@@ -11,6 +11,7 @@ class CervezasEstilo extends Model
     use HasFactory;
     protected $table = 'cervezas_estilos';
     protected $primaryKey = 'estilo_id';
+    protected $fillable = ['nombre', 'familia_id'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

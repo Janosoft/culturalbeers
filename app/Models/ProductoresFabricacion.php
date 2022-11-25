@@ -11,6 +11,7 @@ class ProductoresFabricacion extends Model
     use HasFactory;
     protected $table = 'productores_fabricaciones';
     protected $primaryKey = 'fabricacion_id';
+    protected $fillable = ['nombre'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

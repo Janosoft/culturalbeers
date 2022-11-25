@@ -11,6 +11,7 @@ class CervezasColor extends Model
     use HasFactory;
     protected $table = 'cervezas_colores';
     protected $primaryKey = 'color_id';
+    protected $fillable = ['nombre'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

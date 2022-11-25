@@ -11,6 +11,7 @@ class DivisionesPoliticasTipo extends Model
     use HasFactory;
     protected $table = 'divisiones_politicas_tipos';
     protected $primaryKey = 'divisiones_politicas_tipo_id';
+    protected $fillable = ['nombre'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
