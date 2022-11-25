@@ -5,7 +5,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ContinenteController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\DivisionPoliticaController;
-use App\Http\Controllers\DivisionPoliticaTipoController;
+use App\Http\Controllers\DivisionesPoliticasTipoController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\UsuarioController;
@@ -61,7 +61,7 @@ Route::controller(DivisionPoliticaController::class)->group(function () {
     Route::delete('divisiones_politicas/{division_politica}', 'destroy')->name('divisiones_politicas.destroy');
 });
 
-Route::controller(DivisionPoliticaTipoController::class)->group(function () {
+Route::controller(DivisionesPoliticasTipoController::class)->group(function () {
     Route::get('divisiones_politicas_tipos', 'index')->name('divisiones_politicas_tipos.index');
     Route::get('divisiones_politicas_tipos/create', 'create')->name('divisiones_politicas_tipos.create');
     Route::post('divisiones_politicas_tipos/create', 'store')->name('divisiones_politicas_tipos.store');
