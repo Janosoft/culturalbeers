@@ -37,7 +37,7 @@ Route::resource('cervezas_envases_tipos', CervezasEnvaseTipoController::class);
 Route::resource('cervezas_estilos', CervezasEstiloController::class);
 Route::resource('cervezas_familias', CervezasFamiliaController::class);
 Route::resource('cervezas_fermentos', CervezasFermentoController::class);
-Route::resource('continentes', ContinenteController::class);
+Route::resource('continentes', ContinenteController::class)->parameters(['continentes' => 'continente']);
 Route::resource('divisiones_politicas', DivisionPoliticaController::class)->parameters(['divisiones_politicas' => 'division_politica']);
 Route::resource('divisiones_politicas_tipos', DivisionesPoliticasTipoController::class);
 Route::resource('localidades', LocalidadController::class);
