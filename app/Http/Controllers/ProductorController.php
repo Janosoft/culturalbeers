@@ -39,4 +39,10 @@ class ProductorController extends Controller
         $productor->update($request->all());
         return redirect()->route('productores.show', $productor);
     }
+    
+    public function destroy(Productor $productor)
+    {
+        $productor->delete();
+        return redirect()->route('productores.index');
+    }
 }

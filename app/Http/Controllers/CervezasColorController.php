@@ -39,4 +39,10 @@ class CervezasColorController extends Controller
         $cervezas_color->update($request->all());
         return redirect()->route('cervezas_colores.show', $cervezas_color);
     }
+
+    public function destroy(CervezasColor $cervezas_color)
+    {
+        $cervezas_color->delete();
+        return redirect()->route('cervezas_colores.index');
+    }
 }

@@ -39,4 +39,10 @@ class PersonaController extends Controller
         $persona->update($request->all());
         return redirect()->route('personas.show', $persona);
     }
+    
+    public function destroy(Persona $persona)
+    {
+        $persona->delete();
+        return redirect()->route('personas.index');
+    }
 }

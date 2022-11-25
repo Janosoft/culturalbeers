@@ -39,4 +39,10 @@ class LocalidadController extends Controller
         $localidad->update($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
+    
+    public function destroy(Localidad $localidad)
+    {
+        $localidad->delete();
+        return redirect()->route('localidades.index');
+    }
 }

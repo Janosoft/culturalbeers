@@ -39,4 +39,10 @@ class CervezasEnvaseTipoController extends Controller
         $cervezas_envase_tipo->update($request->all());
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
     }
+    
+    public function destroy(CervezasEnvaseTipo $cervezas_envase_tipo)
+    {
+        $cervezas_envase_tipo->delete();
+        return redirect()->route('cervezas_envases_tipos.index');
+    }
 }

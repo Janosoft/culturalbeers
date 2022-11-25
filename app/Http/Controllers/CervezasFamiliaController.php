@@ -39,4 +39,10 @@ class CervezasFamiliaController extends Controller
         $cervezas_familia->update($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
+    
+    public function destroy(CervezasFamilia $cervezas_familia)
+    {
+        $cervezas_familia->delete();
+        return redirect()->route('cervezas_familias.index');
+    }
 }

@@ -38,6 +38,7 @@ Route::controller(ContinenteController::class)->group(function () {
     Route::get('continentes/{continente}', 'show')->name('continentes.show');
     Route::get('continentes/{continente}/edit', 'edit')->name('continentes.edit');
     Route::put('continentes/{continente}', 'update')->name('continentes.update');
+    Route::delete('continentes/{continente}', 'destroy')->name('continentes.destroy');
 });
 
 Route::controller(PaisController::class)->group(function () {
@@ -47,6 +48,7 @@ Route::controller(PaisController::class)->group(function () {
     Route::get('paises/{pais}', 'show')->name('paises.show');
     Route::get('paises/{pais}/edit', 'edit')->name('paises.edit');
     Route::put('paises/{pais}', 'update')->name('paises.update');
+    Route::delete('paises/{pais}', 'destroy')->name('paises.destroy');
 });
 
 Route::controller(DivisionPoliticaController::class)->group(function () {
@@ -56,6 +58,7 @@ Route::controller(DivisionPoliticaController::class)->group(function () {
     Route::get('divisiones_politicas/{division_politica}', 'show')->name('divisiones_politicas.show');
     Route::get('divisiones_politicas/{division_politica}/edit', 'edit')->name('divisiones_politicas.edit');
     Route::put('divisiones_politicas/{division_politica}', 'update')->name('divisiones_politicas.update');
+    Route::delete('divisiones_politicas/{division_politica}', 'destroy')->name('divisiones_politicas.destroy');
 });
 
 Route::controller(DivisionPoliticaTipoController::class)->group(function () {
@@ -65,6 +68,7 @@ Route::controller(DivisionPoliticaTipoController::class)->group(function () {
     Route::get('divisiones_politicas_tipos/{divisiones_politicas_tipo}', 'show')->name('divisiones_politicas_tipos.show');
     Route::get('divisiones_politicas_tipos/{divisiones_politicas_tipo}/edit', 'edit')->name('divisiones_politicas_tipos.edit');
     Route::put('divisiones_politicas_tipos/{divisiones_politicas_tipo}', 'update')->name('divisiones_politicas_tipos.update');
+    Route::delete('divisiones_politicas_tipos/{divisiones_politicas_tipo}', 'destroy')->name('divisiones_politicas_tipos.destroy');
 });
 
 Route::controller(LocalidadController::class)->group(function () {
@@ -74,6 +78,7 @@ Route::controller(LocalidadController::class)->group(function () {
     Route::get('localidades/{localidad}', 'show')->name('localidades.show');
     Route::get('localidades/{localidad}/edit', 'edit')->name('localidades.edit');
     Route::put('localidades/{localidad}', 'update')->name('localidades.update');
+    Route::delete('localidades/{localidad}', 'destroy')->name('localidades.destroy');
 });
 
 Route::controller(PersonaController::class)->group(function () {
@@ -83,6 +88,7 @@ Route::controller(PersonaController::class)->group(function () {
     Route::get('personas/{persona}', 'show')->name('personas.show');
     Route::get('personas/{persona}/edit', 'edit')->name('personas.edit');
     Route::put('personas/{persona}', 'update')->name('personas.update');
+    Route::delete('personas/{persona}', 'destroy')->name('personas.destroy');
 });
 
 Route::controller(UsuarioController::class)->group(function () {
@@ -92,6 +98,7 @@ Route::controller(UsuarioController::class)->group(function () {
     Route::get('usuarios/{usuario}', 'show')->name('usuarios.show');
     Route::get('usuarios/{usuario}/edit', 'edit')->name('usuarios.edit');
     Route::put('usuarios/{usuario}', 'update')->name('usuarios.update');
+    Route::delete('usuarios/{usuario}', 'destroy')->name('usuarios.destroy');
 });
 
 Route::controller(CervezaController::class)->group(function () {
@@ -101,6 +108,7 @@ Route::controller(CervezaController::class)->group(function () {
     Route::get('cervezas/{cerveza}', 'show')->name('cervezas.show');
     Route::get('cervezas/{cerveza}/edit', 'edit')->name('cervezas.edit');
     Route::put('cervezas/{cerveza}', 'update')->name('cervezas.update');
+    Route::delete('cervezas/{cerveza}', 'destroy')->name('cervezas.destroy');
 });
 
 Route::controller(CervezasColorController::class)->group(function () {
@@ -110,6 +118,7 @@ Route::controller(CervezasColorController::class)->group(function () {
     Route::get('cervezas_colores/{cervezas_color}', 'show')->name('cervezas_colores.show');
     Route::get('cervezas_colores/{cervezas_color}/edit', 'edit')->name('cervezas_colores.edit');
     Route::put('cervezas_colores/{cervezas_color}', 'update')->name('cervezas_colores.update');
+    Route::delete('cervezas_colores/{cervezas_color}', 'destroy')->name('cervezas_colores.destroy');
 });
 
 Route::controller(CervezasEnvaseTipoController::class)->group(function () {
@@ -119,6 +128,7 @@ Route::controller(CervezasEnvaseTipoController::class)->group(function () {
     Route::get('cervezas_envases_tipos/{cervezas_envase_tipo}', 'show')->name('cervezas_envases_tipos.show');
     Route::get('cervezas_envases_tipos/{cervezas_envase_tipo}/edit', 'edit')->name('cervezas_envases_tipos.edit');
     Route::put('cervezas_envases_tipos/{cervezas_envase_tipo}', 'update')->name('cervezas_envases_tipos.update');
+    Route::delete('cervezas_envases_tipos/{cervezas_envase_tipo}', 'destroy')->name('cervezas_envases_tipos.destroy');
 });
 
 Route::controller(CervezasEstiloController::class)->group(function () {
@@ -128,6 +138,7 @@ Route::controller(CervezasEstiloController::class)->group(function () {
     Route::get('cervezas_estilos/{cervezas_estilo}', 'show')->name('cervezas_estilos.show');
     Route::get('cervezas_estilos/{cervezas_estilo}/edit', 'edit')->name('cervezas_estilos.edit');
     Route::put('cervezas_estilos/{cervezas_estilo}', 'update')->name('cervezas_estilos.update');
+    Route::delete('cervezas_estilos/{cervezas_estilo}', 'destroy')->name('cervezas_estilos.destroy');
 });
 
 Route::controller(CervezasFamiliaController::class)->group(function () {
@@ -137,6 +148,7 @@ Route::controller(CervezasFamiliaController::class)->group(function () {
     Route::get('cervezas_familias/{cervezas_familia}', 'show')->name('cervezas_familias.show');
     Route::get('cervezas_familias/{cervezas_familia}/edit', 'edit')->name('cervezas_familias.edit');
     Route::put('cervezas_familias/{cervezas_familia}', 'update')->name('cervezas_familias.update');
+    Route::delete('cervezas_familias/{cervezas_familia}', 'destroy')->name('cervezas_familias.destroy');
 });
 
 Route::controller(CervezasFermentoController::class)->group(function () {
@@ -146,6 +158,7 @@ Route::controller(CervezasFermentoController::class)->group(function () {
     Route::get('cervezas_fermentos/{cervezas_fermento}', 'show')->name('cervezas_fermentos.show');
     Route::get('cervezas_fermentos/{cervezas_fermento}/edit', 'edit')->name('cervezas_fermentos.edit');
     Route::put('cervezas_fermentos/{cervezas_fermento}', 'update')->name('cervezas_fermentos.update');
+    Route::delete('cervezas_fermentos/{cervezas_fermento}', 'destroy')->name('cervezas_fermentos.destroy');
 });
 
 Route::controller(ProductorController::class)->group(function () {
@@ -155,6 +168,7 @@ Route::controller(ProductorController::class)->group(function () {
     Route::get('productores/{productor}', 'show')->name('productores.show');
     Route::get('productores/{productor}/edit', 'edit')->name('productores.edit');
     Route::put('productores/{productor}', 'update')->name('productores.update');
+    Route::delete('productores/{productor}', 'destroy')->name('productores.destroy');
 });
 
 Route::controller(ProductoresFabricacionController::class)->group(function () {
@@ -164,4 +178,5 @@ Route::controller(ProductoresFabricacionController::class)->group(function () {
     Route::get('productores_fabricaciones/{productores_fabricacion}', 'show')->name('productores_fabricaciones.show');
     Route::get('productores_fabricaciones/{productores_fabricacion}/edit', 'edit')->name('productores_fabricaciones.edit');
     Route::put('productores_fabricaciones/{productores_fabricacion}', 'update')->name('productores_fabricaciones.update');
+    Route::delete('productores_fabricaciones/{productores_fabricacion}', 'destroy')->name('productores_fabricaciones.destroy');
 });

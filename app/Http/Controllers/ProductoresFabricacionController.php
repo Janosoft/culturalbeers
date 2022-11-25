@@ -39,4 +39,10 @@ class ProductoresFabricacionController extends Controller
         $productores_fabricacion->update($request->all());
         return redirect()->route('productores_fabricaciones.show', $productores_fabricacion);
     }
+    
+    public function destroy(ProductoresFabricacion $productores_fabricacion)
+    {
+        $productores_fabricacion->delete();
+        return redirect()->route('productores_fabricaciones.index');
+    }
 }

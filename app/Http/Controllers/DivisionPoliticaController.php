@@ -39,4 +39,10 @@ class DivisionPoliticaController extends Controller
         $division_politica->update($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
+    
+    public function destroy(DivisionPolitica $division_politica)
+    {
+        $division_politica->delete();
+        return redirect()->route('divisiones_politicas.index');
+    }
 }

@@ -39,4 +39,10 @@ class CervezasFermentoController extends Controller
         $cervezas_fermento->update($request->all());
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
     }
+    
+    public function destroy(CervezasFermento $cervezas_fermento)
+    {
+        $cervezas_fermento->delete();
+        return redirect()->route('cervezas_fermentos.index');
+    }
 }

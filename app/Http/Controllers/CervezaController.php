@@ -39,4 +39,10 @@ class CervezaController extends Controller
         $cerveza->update($request->all());
         return redirect()->route('cervezas.show', $cerveza);
     }
+
+    public function destroy(Cerveza $cerveza)
+    {
+        $cerveza->delete();
+        return redirect()->route('cervezas.index', $cerveza);
+    }
 }

@@ -39,4 +39,10 @@ class PaisController extends Controller
         $pais->update($request->all());
         return redirect()->route('paises.show', $pais);
     }
+    
+    public function destroy(Pais $pais)
+    {
+        $pais->delete();
+        return redirect()->route('paises.index');
+    }
 }

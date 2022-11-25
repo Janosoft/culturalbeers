@@ -39,4 +39,10 @@ class DivisionesPoliticasTipoTipoController extends Controller
         $division_politica_tipo->update($request->all());
         return redirect()->route('divisiones_politicas_tipos.show', $division_politica_tipo);
     }
+    
+    public function destroy(DivisionesPoliticasTipo $division_politica_tipo)
+    {
+        $division_politica_tipo->delete();
+        return redirect()->route('divisiones_politicas_tipos.index');
+    }
 }

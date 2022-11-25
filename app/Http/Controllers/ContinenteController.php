@@ -39,4 +39,10 @@ class ContinenteController extends Controller
         $continente->update($request->all());
         return redirect()->route('continentes.show', $continente);
     }
+    
+    public function destroy(Continente $continente)
+    {
+        $continente->delete();
+        return redirect()->route('continentes.index');
+    }
 }
