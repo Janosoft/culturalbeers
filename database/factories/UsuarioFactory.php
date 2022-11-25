@@ -17,15 +17,17 @@ class UsuarioFactory extends Factory
      */
     public function definition()
     {
+        $email = fake()->unique()->safeEmail();
         return [
-            'persona_id' => fake()->numberBetween(1,10),
-            'email' => fake()->unique()->safeEmail(),
+            'persona_id' => fake()->numberBetween(1, 10),
+            'email' => $email,
             'password' => fake()->md5(),
             'email_visible' => fake()->boolean(),
             'email_verificado' => fake()->dateTime(),
             'activado' => fake()->boolean(),
             'bloqueado' => fake()->boolean(),
             'remember_token' => Str::random(10),
+            'slug' => str()->slug($email, '-', 'es'),
         ];
     }
 }

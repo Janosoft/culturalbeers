@@ -16,10 +16,12 @@ class PaisFactory extends Factory
      */
     public function definition()
     {
+        $nombre = fake()->unique()->word();
         return [
-            'nombre' => fake()->unique()->word(),
-            'continente_id' => fake()->numberBetween(1,10),
-            'divisiones_politicas_tipo_id' => fake()->numberBetween(1,10),
+            'nombre' => $nombre,
+            'continente_id' => fake()->numberBetween(1, 10),
+            'divisiones_politicas_tipo_id' => fake()->numberBetween(1, 10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

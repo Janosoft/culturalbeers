@@ -17,9 +17,11 @@ class CervezasFamiliaFactory extends Factory
      */
     public function definition()
     {
+        $nombre = fake()->unique()->word();
         return [
-            'nombre' => implode(" ", fake()->unique()->words(2)),
+            'nombre' => $nombre,
             'fermento_id' => fake()->numberBetween(1,10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

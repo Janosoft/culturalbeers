@@ -23,4 +23,11 @@ class CervezasEnvaseTipo extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

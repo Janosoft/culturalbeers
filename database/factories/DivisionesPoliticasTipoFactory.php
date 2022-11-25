@@ -16,8 +16,10 @@ class DivisionesPoliticasTipoFactory extends Factory
      */
     public function definition()
     {
+        $nombre = fake()->unique()->word();
         return [
-            'nombre' => fake()->unique()->word(),
-        ];
+            'nombre' => $nombre,
+            'slug' => str()->slug($nombre, '-', 'es'),
+        ];        
     }
 }

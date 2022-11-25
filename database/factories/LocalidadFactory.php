@@ -16,9 +16,11 @@ class LocalidadFactory extends Factory
      */
     public function definition()
     {
+        $nombre = fake()->unique()->word();
         return [
-            'nombre' => fake()->unique()->word(),
-            'division_politica_id' => fake()->numberBetween(1,10),
+            'nombre' => $nombre,
+            'division_politica_id' => fake()->numberBetween(1, 10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

@@ -16,10 +16,11 @@ class DivisionPoliticaFactory extends Factory
      */
     public function definition()
     {
+        $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'pais_id' => fake()->numberBetween(1,10),
-            'nombre' => fake()->word(),
-            
+            'pais_id' => fake()->numberBetween(1, 10),
+            'nombre' => $nombre,
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

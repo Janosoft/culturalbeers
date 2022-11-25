@@ -22,8 +22,10 @@ return new class extends Migration
             $table->timestamp('email_verificado')->nullable();
             $table->boolean('activado')->default(false);
             $table->boolean('bloqueado')->default(false);
+            $table->string('slug');
             $table->rememberToken();
             $table->timestamps();
+
         });
     }
 

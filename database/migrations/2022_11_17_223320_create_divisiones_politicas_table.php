@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('division_politica_id');
             $table->foreignId('pais_id')->constrained('paises','pais_id');
             $table->string('nombre');
+            $table->string('slug');
             $table->timestamps();
 
             $table->index('nombre');

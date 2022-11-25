@@ -17,8 +17,10 @@ class CervezasEnvaseTipoFactory extends Factory
      */
     public function definition()
     {
+        $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'nombre' => fake()->unique()->word(),
+            'nombre' => $nombre,
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

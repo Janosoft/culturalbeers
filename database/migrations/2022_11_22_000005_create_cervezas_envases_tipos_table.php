@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('cervezas_envases_tipos', function (Blueprint $table) {
             $table->id('envase_id');
-            $table->string('nombre', 100);
+            $table->string('nombre', 100)->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }

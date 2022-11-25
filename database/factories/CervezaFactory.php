@@ -17,12 +17,14 @@ class CervezaFactory extends Factory
      */
     public function definition()
     {
+        $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'nombre' => implode(" ", fake()->unique()->words(2)),
-            'productor_id' => fake()->numberBetween(1,10),
-            'color_id' => fake()->numberBetween(1,10),
-            'estilo_id' => fake()->numberBetween(1,10),
-            'envase_id' => fake()->numberBetween(1,10),
+            'nombre' => $nombre,
+            'productor_id' => fake()->numberBetween(1, 10),
+            'color_id' => fake()->numberBetween(1, 10),
+            'estilo_id' => fake()->numberBetween(1, 10),
+            'envase_id' => fake()->numberBetween(1, 10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }
