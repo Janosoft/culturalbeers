@@ -29,7 +29,7 @@ use App\Http\Controllers\ProductoresFabricacionController;
 |
 */
 
-Route::get('/', InicioController::class);
+Route::get('/', InicioController::class)->name('inicio');
 
 Route::resource('cervezas', CervezaController::class);
 Route::resource('cervezas_colores', CervezasColorController::class);
