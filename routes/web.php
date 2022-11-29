@@ -15,8 +15,10 @@ use App\Http\Controllers\CervezasEnvaseTipoController;
 use App\Http\Controllers\CervezasEstiloController;
 use App\Http\Controllers\CervezasFamiliaController;
 use App\Http\Controllers\CervezasFermentoController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ use App\Http\Controllers\ProductoresFabricacionController;
 */
 
 Route::get('/', InicioController::class)->name('inicio');
+Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
+Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');
 
 Route::resource('cervezas', CervezaController::class);
 Route::resource('cervezas_colores', CervezasColorController::class);
