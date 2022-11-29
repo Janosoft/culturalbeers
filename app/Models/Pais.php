@@ -11,7 +11,7 @@ class Pais extends Model
     use HasFactory;
     protected $table = 'paises';
     protected $primaryKey = 'pais_id';
-    protected $fillable = ['nombre', 'continente_id', 'divisiones_politicas_tipo_id', 'imagen'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

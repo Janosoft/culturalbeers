@@ -11,7 +11,7 @@ class CervezasFamilia extends Model
     use HasFactory;
     protected $table = 'cervezas_familias';
     protected $primaryKey = 'familia_id';
-    protected $fillable = ['nombre', 'fermento_id'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

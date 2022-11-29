@@ -11,7 +11,7 @@ class Continente extends Model
     use HasFactory;
     protected $table = 'continentes';
     protected $primaryKey = 'continente_id';
-    protected $fillable = ['nombre'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

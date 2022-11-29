@@ -11,7 +11,7 @@ class Localidad extends Model
     use HasFactory;
     protected $table = 'localidades';
     protected $primaryKey = 'localidad_id';
-    protected $fillable = ['nombre', 'division_politica_id'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute

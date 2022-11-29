@@ -11,7 +11,7 @@ class Cerveza extends Model
     use HasFactory;
     protected $table = 'cervezas';
     protected $primaryKey = 'cerveza_id';
-    protected $fillable = ['nombre', 'productor_id', 'color_id', 'estilo_id', 'envase_id'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -23,7 +23,7 @@ class Cerveza extends Model
         );
     }
     /* MUTATORS */
-    
+
     /* ROUTE NAME */
     public function getRouteKeyName()
     {
