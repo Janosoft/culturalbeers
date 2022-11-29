@@ -20,6 +20,7 @@ class ContinenteController extends Controller
 
     public function store(StoreContinente $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $continente = Continente::create($request->all());
         return redirect()->route('continentes.show', $continente);
     }
@@ -36,6 +37,7 @@ class ContinenteController extends Controller
 
     public function update(StoreContinente $request, Continente $continente)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $continente->update($request->all());
         return redirect()->route('continentes.show', $continente);
     }

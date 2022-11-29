@@ -20,6 +20,7 @@ class CervezasEnvaseTipoController extends Controller
 
     public function store(StoreCervezaEnvaseTipo $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $cervezas_envase_tipo = CervezasEnvaseTipo::create($request->all());
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
     }
@@ -36,6 +37,7 @@ class CervezasEnvaseTipoController extends Controller
 
     public function update(StoreCervezaEnvaseTipo $request, CervezasEnvaseTipo $cervezas_envase_tipo)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $cervezas_envase_tipo->update($request->all());
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
     }

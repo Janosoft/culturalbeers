@@ -20,6 +20,7 @@ class CervezasFamiliaController extends Controller
 
     public function store(StoreCervezaFamilia $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $cervezas_familia = CervezasFamilia::create($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
@@ -36,6 +37,7 @@ class CervezasFamiliaController extends Controller
 
     public function update(StoreCervezaFamilia $request, CervezasFamilia $cervezas_familia)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $cervezas_familia->update($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }

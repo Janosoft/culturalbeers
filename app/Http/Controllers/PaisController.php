@@ -20,6 +20,7 @@ class PaisController extends Controller
 
     public function store(StorePais $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $pais = Pais::create($request->all());
         return redirect()->route('paises.show', $pais);
     }
@@ -36,6 +37,7 @@ class PaisController extends Controller
 
     public function update(StorePais $request, Pais $pais)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $pais->update($request->all());
         return redirect()->route('paises.show', $pais);
     }

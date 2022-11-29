@@ -20,6 +20,7 @@ class UsuarioController extends Controller
 
     public function store(StoreUsuario $request)
     {
+        $request['slug'] = str()->slug($request->email);
         $usuario = Usuario::create($request->all());
         return redirect()->route('usuarios.show', $usuario);
     }
@@ -36,6 +37,7 @@ class UsuarioController extends Controller
 
     public function update(StoreUsuario $request, Usuario $usuario)
     {
+        $request['slug'] = str()->slug($request->email);
         $usuario->update($request->all());
         return redirect()->route('usuarios.show', $usuario);
     }

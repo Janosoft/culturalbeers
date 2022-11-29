@@ -20,6 +20,7 @@ class LocalidadController extends Controller
 
     public function store(StoreLocalidad $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $localidad = Localidad::create($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
@@ -36,6 +37,7 @@ class LocalidadController extends Controller
 
     public function update(StoreLocalidad $request, Localidad $localidad)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $localidad->update($request->all());
         return redirect()->route('localidades.show', $localidad);
     }

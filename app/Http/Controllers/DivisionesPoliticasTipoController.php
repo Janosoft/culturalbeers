@@ -20,6 +20,7 @@ class DivisionesPoliticasTipoController extends Controller
 
     public function store(StoreDivisionPoliticaTipo $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::create($request->all());
         return redirect()->route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo);
     }
@@ -36,6 +37,7 @@ class DivisionesPoliticasTipoController extends Controller
 
     public function update(StoreDivisionPoliticaTipo $request, DivisionesPoliticasTipo $divisiones_politicas_tipo)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $divisiones_politicas_tipo->update($request->all());
         return redirect()->route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo);
     }

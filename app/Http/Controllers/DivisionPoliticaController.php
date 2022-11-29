@@ -20,6 +20,7 @@ class DivisionPoliticaController extends Controller
 
     public function store(StoreDivisionPolitica $request)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $division_politica = DivisionPolitica::create($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
@@ -36,6 +37,7 @@ class DivisionPoliticaController extends Controller
 
     public function update(StoreDivisionPolitica $request, DivisionPolitica $division_politica)
     {
+        $request['slug'] = str()->slug($request->nombre);
         $division_politica->update($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
