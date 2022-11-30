@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id('usuario_id');
-            $table->foreignId('persona_id')->constrained('personas','persona_id');
+            $table->foreignId('persona_id')->constrained('personas','persona_id')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('email_visible')->default(false);
