@@ -21,7 +21,7 @@ class ProductorFactory extends Factory
         return [
             'nombre' => $nombre,
             'fabricacion_id' => fake()->numberBetween(1, 3),
-            'localidad_origen' => fake()->numberBetween(1, 10),
+            'localidad_id' => fake()->numberBetween(1, 10),
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

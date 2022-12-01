@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Productor;
+use App\Models\CervezasColor;
+use App\Models\CervezasEstilo;
+use App\Models\CervezasEnvaseTipo;
 
 class Cerveza extends Model
 {
@@ -30,4 +34,26 @@ class Cerveza extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function productor()
+    {
+        return $this->hasOne(Productor::class);
+    }
+
+    public function color()
+    {
+        return $this->hasOne(CervezasColor::class);
+    }
+
+    public function estilo()
+    {
+        return $this->hasOne(CervezasEstilo::class);
+    }
+
+    public function envase()
+    {
+        return $this->hasOne(CervezasEnvaseTipo::class);
+    }
+    /* ATRIBUTOS EXTERNOS */
 }

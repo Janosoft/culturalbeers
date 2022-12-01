@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Persona;
 
 class Usuario extends Model
 {
@@ -39,4 +40,11 @@ class Usuario extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function persona()
+    {
+        return $this->hasOne(Persona::class);
+    }
+    /* ATRIBUTOS EXTERNOS */
 }

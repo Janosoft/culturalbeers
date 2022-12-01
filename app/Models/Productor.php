@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Localidad;
+use App\Models\ProductoresFabricacion;
 
 class Productor extends Model
 {
@@ -30,4 +32,16 @@ class Productor extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function localidad()
+    {
+        return $this->hasOne(Localidad::class);
+    }
+
+    public function fabricacion()
+    {
+        return $this->hasOne(ProductoresFabricacion::class);
+    }
+    /* ATRIBUTOS EXTERNOS */
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\CervezasFermento;
 
 class CervezasFamilia extends Model
 {
@@ -30,4 +31,11 @@ class CervezasFamilia extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function fermento()
+    {
+        return $this->hasOne(CervezasFermento::class);
+    }
+    /* ATRIBUTOS EXTERNOS */
 }

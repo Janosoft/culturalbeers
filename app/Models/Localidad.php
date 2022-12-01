@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\DivisionPolitica;
 
 class Localidad extends Model
 {
@@ -30,4 +31,11 @@ class Localidad extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function division_politica()
+    {
+        return $this->hasOne(DivisionPolitica::class);
+    }
+    /* ATRIBUTOS EXTERNOS */
 }
