@@ -11,6 +11,7 @@ class Usuario extends Model
     use HasFactory;
     protected $table = 'usuarios';
     protected $primaryKey = 'usuario_id';
+    protected $fillable = ['persona_id', 'email', 'password', 'email_visible'];
 
     /* MUTATORS */
     protected function email(): Attribute
@@ -31,4 +32,11 @@ class Usuario extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

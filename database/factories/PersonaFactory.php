@@ -16,11 +16,13 @@ class PersonaFactory extends Factory
      */
     public function definition()
     {
+        $nombre = fake()->name();
         return [
-            'nombre' => fake()->name(),
+            'nombre' => $nombre,
             'apellido' => fake()->lastname(),
-            'profesion' => rtrim(fake()->sentence(2),'.'),
-            'localidad_id' => fake()->numberBetween(1,10),
+            'profesion' => rtrim(fake()->sentence(2), '.'),
+            'localidad_id' => fake()->numberBetween(1, 10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

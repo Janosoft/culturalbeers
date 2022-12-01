@@ -11,6 +11,7 @@ class Persona extends Model
     use HasFactory;
     protected $table = 'personas';
     protected $primaryKey = 'persona_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -31,4 +32,11 @@ class Persona extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

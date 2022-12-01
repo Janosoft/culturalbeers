@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Cerveza;
+use App\Http\Requests\StoreCerveza;
 
 class CervezaController extends Controller
 {
@@ -18,11 +18,10 @@ class CervezaController extends Controller
         return view('cervezas.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCerveza $request)
     {
-        $cerveza = new Cerveza();
-        $cerveza->nombre = $request->nombre;
-        $cerveza->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cerveza = Cerveza::create($request->all());
         return redirect()->route('cervezas.show', $cerveza);
     }
 
@@ -36,10 +35,16 @@ class CervezaController extends Controller
         return view('cervezas.edit', compact('cerveza'));
     }
 
-    public function update(Request $request, Cerveza $cerveza)
+    public function update(StoreCerveza $request, Cerveza $cerveza)
     {
-        $cerveza->nombre = $request->nombre;
-        $cerveza->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cerveza->update($request->all());
         return redirect()->route('cervezas.show', $cerveza);
+    }
+
+    public function destroy(Cerveza $cerveza)
+    {
+        $cerveza->delete();
+        return redirect()->route('cervezas.index', $cerveza);
     }
 }

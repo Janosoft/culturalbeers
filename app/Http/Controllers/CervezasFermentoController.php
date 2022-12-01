@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CervezasFermento;
+use App\Http\Requests\StoreCervezaFermento;
 
 class CervezasFermentoController extends Controller
 {
@@ -18,11 +18,10 @@ class CervezasFermentoController extends Controller
         return view('cervezas_fermentos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCervezaFermento $request)
     {
-        $cervezas_fermento = new CervezasFermento();
-        $cervezas_fermento->nombre = $request->nombre;
-        $cervezas_fermento->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_fermento = CervezasFermento::create($request->all());
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
     }
 
@@ -36,10 +35,16 @@ class CervezasFermentoController extends Controller
         return view('cervezas_fermentos.edit', compact('cervezas_fermento'));
     }
 
-    public function update(Request $request, CervezasFermento $cervezas_fermento)
+    public function update(StoreCervezaFermento $request, CervezasFermento $cervezas_fermento)
     {
-        $cervezas_fermento->nombre = $request->nombre;
-        $cervezas_fermento->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_fermento->update($request->all());
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
+    }
+    
+    public function destroy(CervezasFermento $cervezas_fermento)
+    {
+        $cervezas_fermento->delete();
+        return redirect()->route('cervezas_fermentos.index');
     }
 }

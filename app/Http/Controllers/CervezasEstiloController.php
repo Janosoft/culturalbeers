@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CervezasEstilo;
+use App\Http\Requests\StoreCervezaEstilo;
 
 class CervezasEstiloController extends Controller
 {
@@ -18,11 +18,10 @@ class CervezasEstiloController extends Controller
         return view('cervezas_estilos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCervezaEstilo $request)
     {
-        $cervezas_estilo = new CervezasEstilo();
-        $cervezas_estilo->nombre = $request->nombre;
-        $cervezas_estilo->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_estilo = CervezasEstilo::create($request->all());
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
 
@@ -36,10 +35,16 @@ class CervezasEstiloController extends Controller
         return view('cervezas_estilos.edit', compact('cervezas_estilo'));
     }
 
-    public function update(Request $request, CervezasEstilo $cervezas_estilo)
+    public function update(StoreCervezaEstilo $request, CervezasEstilo $cervezas_estilo)
     {
-        $cervezas_estilo->nombre = $request->nombre;
-        $cervezas_estilo->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_estilo->update($request->all());
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
+    }
+    
+    public function destroy(CervezasEstilo $cervezas_estilo)
+    {
+        $cervezas_estilo->delete();
+        return redirect()->route('cervezas_estilos.index');
     }
 }

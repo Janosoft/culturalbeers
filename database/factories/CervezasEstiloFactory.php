@@ -17,9 +17,11 @@ class CervezasEstiloFactory extends Factory
      */
     public function definition()
     {
+        $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'nombre' => implode(" ", fake()->unique()->words(2)),
+            'nombre' => $nombre,
             'familia_id' => fake()->numberBetween(1,10),
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

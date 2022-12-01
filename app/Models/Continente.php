@@ -11,6 +11,7 @@ class Continente extends Model
     use HasFactory;
     protected $table = 'continentes';
     protected $primaryKey = 'continente_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -22,4 +23,11 @@ class Continente extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

@@ -11,6 +11,7 @@ class CervezasColor extends Model
     use HasFactory;
     protected $table = 'cervezas_colores';
     protected $primaryKey = 'color_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -22,4 +23,11 @@ class CervezasColor extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

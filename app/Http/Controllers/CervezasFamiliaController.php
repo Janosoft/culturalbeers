@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CervezasFamilia;
+use App\Http\Requests\StoreCervezaFamilia;
 
 class CervezasFamiliaController extends Controller
 {
@@ -18,11 +18,10 @@ class CervezasFamiliaController extends Controller
         return view('cervezas_familias.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCervezaFamilia $request)
     {
-        $cervezas_familia = new CervezasFamilia();
-        $cervezas_familia->nombre = $request->nombre;
-        $cervezas_familia->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_familia = CervezasFamilia::create($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
 
@@ -36,10 +35,16 @@ class CervezasFamiliaController extends Controller
         return view('cervezas_familias.edit', compact('cervezas_familia'));
     }
 
-    public function update(Request $request, CervezasFamilia $cervezas_familia)
+    public function update(StoreCervezaFamilia $request, CervezasFamilia $cervezas_familia)
     {
-        $cervezas_familia->nombre = $request->nombre;
-        $cervezas_familia->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $cervezas_familia->update($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
+    }
+    
+    public function destroy(CervezasFamilia $cervezas_familia)
+    {
+        $cervezas_familia->delete();
+        return redirect()->route('cervezas_familias.index');
     }
 }

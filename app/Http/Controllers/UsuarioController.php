@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Http\Requests\StoreUsuario;
 
 class UsuarioController extends Controller
 {
@@ -18,11 +18,10 @@ class UsuarioController extends Controller
         return view('usuarios.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUsuario $request)
     {
-        $usuario = new Usuario();
-        $usuario->email = $request->email;
-        $usuario->save();
+        $request['slug'] = str()->slug($request->email);
+        $usuario = Usuario::create($request->all());
         return redirect()->route('usuarios.show', $usuario);
     }
 
@@ -36,10 +35,16 @@ class UsuarioController extends Controller
         return view('usuarios.edit', compact('usuario'));
     }
 
-    public function update(Request $request, Usuario $usuario)
+    public function update(StoreUsuario $request, Usuario $usuario)
     {
-        $usuario->email = $request->email;
-        $usuario->save();
+        $request['slug'] = str()->slug($request->email);
+        $usuario->update($request->all());
         return redirect()->route('usuarios.show', $usuario);
+    }
+    
+    public function destroy(Usuario $usuario)
+    {
+        $usuario->delete();
+        return redirect()->route('usuarios.index');
     }
 }

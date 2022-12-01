@@ -11,6 +11,7 @@ class CervezasEstilo extends Model
     use HasFactory;
     protected $table = 'cervezas_estilos';
     protected $primaryKey = 'estilo_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -22,4 +23,11 @@ class CervezasEstilo extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('profesion', 100)->nullable();
             $table->foreignId('localidad_id')->constrained('localidades','localidad_id');
             $table->string('imagen')->nullable();
+            $table->string('slug');
             $table->timestamps();
 
             $table->index('nombre');

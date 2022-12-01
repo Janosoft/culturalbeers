@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('productores_fabricaciones', function (Blueprint $table) {
             $table->id('fabricacion_id');
-            $table->string('nombre', 100);
+            $table->string('nombre', 100)->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }

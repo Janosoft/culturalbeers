@@ -11,6 +11,7 @@ class CervezasFamilia extends Model
     use HasFactory;
     protected $table = 'cervezas_familias';
     protected $primaryKey = 'familia_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -22,4 +23,11 @@ class CervezasFamilia extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

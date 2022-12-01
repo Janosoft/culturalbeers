@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Http\Requests\StorePersona;
 
 class PersonaController extends Controller
 {
@@ -18,11 +18,10 @@ class PersonaController extends Controller
         return view('personas.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePersona $request)
     {
-        $persona = new Persona();
-        $persona->nombre = $request->nombre;
-        $persona->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $persona = Persona::create($request->all());
         return redirect()->route('personas.show', $persona);
     }
 
@@ -36,10 +35,16 @@ class PersonaController extends Controller
         return view('personas.edit', compact('persona'));
     }
 
-    public function update(Request $request, Persona $persona)
+    public function update(StorePersona $request, Persona $persona)
     {
-        $persona->nombre = $request->nombre;
-        $persona->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $persona->update($request->all());
         return redirect()->route('personas.show', $persona);
+    }
+    
+    public function destroy(Persona $persona)
+    {
+        $persona->delete();
+        return redirect()->route('personas.index');
     }
 }

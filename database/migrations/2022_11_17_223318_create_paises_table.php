@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id('pais_id');
             $table->string('nombre', 100)->unique();
             $table->foreignId('continente_id')->constrained('continentes','continente_id');
-            $table->foreignId('division_politica_tipo_id')->constrained('divisiones_politicas_tipos','division_politica_tipo_id');
+            $table->foreignId('divisiones_politicas_tipo_id')->constrained('divisiones_politicas_tipos','divisiones_politicas_tipo_id');
             $table->string('imagen')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ class DivisionPolitica extends Model
     use HasFactory;
     protected $table = 'divisiones_politicas';
     protected $primaryKey = 'division_politica_id';
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function nombre(): Attribute
@@ -22,4 +23,11 @@ class DivisionPolitica extends Model
         );
     }
     /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
 }

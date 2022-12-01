@@ -17,8 +17,10 @@ class CervezasFermentoFactory extends Factory
      */
     public function definition()
     {
+        $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'nombre' => implode(" ", fake()->unique()->words(2)),
+            'nombre' => $nombre,
+            'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }
 }

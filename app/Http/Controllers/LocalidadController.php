@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Localidad;
+use App\Http\Requests\StoreLocalidad;
 
 class LocalidadController extends Controller
 {
@@ -18,11 +18,10 @@ class LocalidadController extends Controller
         return view('localidades.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreLocalidad $request)
     {
-        $localidad = new Localidad();
-        $localidad->nombre = $request->nombre;
-        $localidad->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $localidad = Localidad::create($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
 
@@ -36,10 +35,16 @@ class LocalidadController extends Controller
         return view('localidades.edit', compact('localidad'));
     }
 
-    public function update(Request $request, Localidad $localidad)
+    public function update(StoreLocalidad $request, Localidad $localidad)
     {
-        $localidad->nombre = $request->nombre;
-        $localidad->save();
+        $request['slug'] = str()->slug($request->nombre);
+        $localidad->update($request->all());
         return redirect()->route('localidades.show', $localidad);
+    }
+    
+    public function destroy(Localidad $localidad)
+    {
+        $localidad->delete();
+        return redirect()->route('localidades.index');
     }
 }
