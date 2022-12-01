@@ -44,7 +44,7 @@ class Persona extends Model
     /* ATRIBUTOS EXTERNOS */
     public function localidad()
     {
-        return $this->hasOne(Localidad::class);
+        return $this->belongsTo(Localidad::class);
     }
     /* ATRIBUTOS EXTERNOS */
 }

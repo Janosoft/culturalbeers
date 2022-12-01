@@ -36,7 +36,7 @@ class CervezasEstilo extends Model
     /* ATRIBUTOS EXTERNOS */
     public function familia()
     {
-        return $this->hasOne(CervezasFamilia::class);
+        return $this->belongsTo(CervezasFamilia::class);
     }
     /* ATRIBUTOS EXTERNOS */
 

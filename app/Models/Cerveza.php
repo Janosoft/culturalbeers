@@ -38,22 +38,22 @@ class Cerveza extends Model
     /* ATRIBUTOS EXTERNOS */
     public function productor()
     {
-        return $this->hasOne(Productor::class);
+        return $this->belongsTo(Productor::class);
     }
 
     public function color()
     {
-        return $this->hasOne(CervezasColor::class);
+        return $this->belongsTo(CervezasColor::class);
     }
 
     public function estilo()
     {
-        return $this->hasOne(CervezasEstilo::class);
+        return $this->belongsTo(CervezasEstilo::class);
     }
 
     public function envase()
     {
-        return $this->hasOne(CervezasEnvaseTipo::class);
+        return $this->belongsTo(CervezasEnvaseTipo::class);
     }
     /* ATRIBUTOS EXTERNOS */
 }

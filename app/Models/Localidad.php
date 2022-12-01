@@ -37,7 +37,7 @@ class Localidad extends Model
     /* ATRIBUTOS EXTERNOS */
     public function division_politica()
     {
-        return $this->hasOne(DivisionPolitica::class);
+        return $this->belongsTo(DivisionPolitica::class);
     }
     /* ATRIBUTOS EXTERNOS */
 

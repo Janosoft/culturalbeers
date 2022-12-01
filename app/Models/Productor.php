@@ -37,12 +37,12 @@ class Productor extends Model
     /* ATRIBUTOS EXTERNOS */
     public function localidad()
     {
-        return $this->hasOne(Localidad::class);
+        return $this->belongsTo(Localidad::class);
     }
 
     public function fabricacion()
     {
-        return $this->hasOne(ProductoresFabricacion::class);
+        return $this->belongsTo(ProductoresFabricacion::class);
     }
     /* ATRIBUTOS EXTERNOS */
 

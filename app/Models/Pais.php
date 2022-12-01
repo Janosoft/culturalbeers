@@ -38,12 +38,12 @@ class Pais extends Model
     /* ATRIBUTOS EXTERNOS */
     public function continente()
     {
-        return $this->hasOne(Continente::class);
+        return $this->belongsTo(Continente::class);
     }
 
     public function division_politica_tipo()
     {
-        return $this->hasOne(DivisionesPoliticasTipo::class);
+        return $this->belongsTo(DivisionesPoliticasTipo::class);
     }
     /* ATRIBUTOS EXTERNOS */
 

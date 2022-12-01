@@ -36,7 +36,7 @@ class DivisionPolitica extends Model
     /* ATRIBUTOS EXTERNOS */
     public function pais()
     {
-        return $this->hasOne(Pais::class);
+        return $this->belongsTo(Pais::class);
     }
     /* ATRIBUTOS EXTERNOS */
 
