@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Localidad;
 use App\Models\ProductoresFabricacion;
+use App\Models\Cerveza;
 
 class Productor extends Model
 {
@@ -44,4 +45,11 @@ class Productor extends Model
         return $this->hasOne(ProductoresFabricacion::class);
     }
     /* ATRIBUTOS EXTERNOS */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function cervezas()
+    {
+        return $this->belongsToMany(Cerveza::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }

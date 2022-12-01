@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\CervezasFermento;
+use App\Models\CervezasEstilo;
 
 class CervezasFamilia extends Model
 {
@@ -38,4 +39,11 @@ class CervezasFamilia extends Model
         return $this->hasOne(CervezasFermento::class);
     }
     /* ATRIBUTOS EXTERNOS */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function estilos()
+    {
+        return $this->belongsToMany(CervezasEstilo::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }

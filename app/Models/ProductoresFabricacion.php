@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Productor;
 
 class ProductoresFabricacion extends Model
 {
@@ -30,4 +31,11 @@ class ProductoresFabricacion extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function productores()
+    {
+        return $this->belongsToMany(Productor::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }

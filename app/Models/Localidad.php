@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\DivisionPolitica;
+use App\Models\Productor;
+use App\Models\Persona;
 
 class Localidad extends Model
 {
@@ -38,4 +40,16 @@ class Localidad extends Model
         return $this->hasOne(DivisionPolitica::class);
     }
     /* ATRIBUTOS EXTERNOS */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function productores()
+    {
+        return $this->belongsToMany(Productor::class);
+    }
+
+    public function personas()
+    {
+        return $this->belongsToMany(Persona::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }

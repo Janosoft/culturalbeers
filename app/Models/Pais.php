@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
+use App\Models\DivisionPolitica;
+
 
 class Pais extends Model
 {
@@ -44,4 +46,11 @@ class Pais extends Model
         return $this->hasOne(DivisionesPoliticasTipo::class);
     }
     /* ATRIBUTOS EXTERNOS */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function divisiones_politicas()
+    {
+        return $this->belongsToMany(DivisionPolitica::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }

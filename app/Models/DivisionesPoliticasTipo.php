@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Pais;
 
 class DivisionesPoliticasTipo extends Model
 {
@@ -30,4 +31,11 @@ class DivisionesPoliticasTipo extends Model
         return 'slug';
     }
     /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function paises()
+    {
+        return $this->belongsToMany(Pais::class);
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }
