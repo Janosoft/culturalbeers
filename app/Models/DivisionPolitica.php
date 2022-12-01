@@ -43,7 +43,7 @@ class DivisionPolitica extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function localidades()
     {
-        return $this->belongsToMany(Localidad::class);
+        return $this->hasMany(Localidad::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

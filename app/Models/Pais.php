@@ -50,7 +50,7 @@ class Pais extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function divisiones_politicas()
     {
-        return $this->belongsToMany(DivisionPolitica::class);
+        return $this->hasMany(DivisionPolitica::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

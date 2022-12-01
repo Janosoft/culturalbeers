@@ -35,7 +35,7 @@ class DivisionesPoliticasTipo extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function paises()
     {
-        return $this->belongsToMany(Pais::class);
+        return $this->hasMany(Pais::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

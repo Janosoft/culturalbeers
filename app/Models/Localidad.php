@@ -44,12 +44,12 @@ class Localidad extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function productores()
     {
-        return $this->belongsToMany(Productor::class);
+        return $this->hasMany(Productor::class);
     }
 
     public function personas()
     {
-        return $this->belongsToMany(Persona::class);
+        return $this->hasMany(Persona::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

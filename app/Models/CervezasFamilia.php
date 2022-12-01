@@ -43,7 +43,7 @@ class CervezasFamilia extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function estilos()
     {
-        return $this->belongsToMany(CervezasEstilo::class);
+        return $this->hasMany(CervezasEstilo::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

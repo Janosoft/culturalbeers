@@ -49,7 +49,7 @@ class Productor extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function cervezas()
     {
-        return $this->belongsToMany(Cerveza::class);
+        return $this->hasMany(Cerveza::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

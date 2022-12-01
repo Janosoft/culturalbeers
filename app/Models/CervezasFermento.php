@@ -35,7 +35,7 @@ class CervezasFermento extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function familias()
     {
-        return $this->belongsToMany(CervezasFamilia::class);
+        return $this->hasMany(CervezasFamilia::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

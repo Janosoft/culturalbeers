@@ -35,7 +35,7 @@ class ProductoresFabricacion extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function productores()
     {
-        return $this->belongsToMany(Productor::class);
+        return $this->hasMany(Productor::class);
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
