@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Persona;
+use App\Models\Persona;
 
 class Usuario extends Model
 {
@@ -44,7 +44,7 @@ class Usuario extends Model
     /* ATRIBUTOS EXTERNOS */
     public function persona()
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
     /* ATRIBUTOS EXTERNOS */
 }

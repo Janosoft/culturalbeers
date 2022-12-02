@@ -35,7 +35,7 @@ class DivisionesPoliticasTipo extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function paises()
     {
-        return $this->hasMany(Pais::class);
+        return $this->hasMany(Pais::class, 'divisiones_politicas_tipo_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

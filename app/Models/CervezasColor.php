@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Cerveza;
+use App\Models\Cerveza;
 
 class CervezasColor extends Model
 {
@@ -35,7 +35,7 @@ class CervezasColor extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function cervezas()
     {
-        return $this->hasMany(Cerveza::class);
+        return $this->hasMany(Cerveza::class, 'color_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

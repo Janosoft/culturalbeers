@@ -37,19 +37,19 @@ class Productor extends Model
     /* ATRIBUTOS EXTERNOS */
     public function localidad()
     {
-        return $this->belongsTo(Localidad::class);
+        return $this->belongsTo(Localidad::class, 'localidad_id');
     }
 
     public function fabricacion()
     {
-        return $this->belongsTo(ProductoresFabricacion::class);
+        return $this->belongsTo(ProductoresFabricacion::class, 'fabricacion_id');
     }
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function cervezas()
     {
-        return $this->hasMany(Cerveza::class);
+        return $this->hasMany(Cerveza::class, 'productor_id');
     }
 
     public function imagenes()

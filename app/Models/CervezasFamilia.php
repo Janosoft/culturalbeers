@@ -36,14 +36,14 @@ class CervezasFamilia extends Model
     /* ATRIBUTOS EXTERNOS */
     public function fermento()
     {
-        return $this->belongsTo(CervezasFermento::class);
+        return $this->belongsTo(CervezasFermento::class, 'fermento_id');
     }
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function estilos()
     {
-        return $this->hasMany(CervezasEstilo::class);
+        return $this->hasMany(CervezasEstilo::class, 'familia_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

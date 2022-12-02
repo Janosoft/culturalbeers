@@ -37,19 +37,19 @@ class Localidad extends Model
     /* ATRIBUTOS EXTERNOS */
     public function division_politica()
     {
-        return $this->belongsTo(DivisionPolitica::class);
+        return $this->belongsTo(DivisionPolitica::class, 'division_politica_id');
     }
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function productores()
     {
-        return $this->hasMany(Productor::class);
+        return $this->hasMany(Productor::class, 'localidad_id');
     }
 
     public function personas()
     {
-        return $this->hasMany(Persona::class);
+        return $this->hasMany(Persona::class, 'localidad_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

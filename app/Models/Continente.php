@@ -35,7 +35,7 @@ class Continente extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function paises()
     {
-        return $this->hasMany(Pais::class);
+        return $this->hasMany(Pais::class, 'continente_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

@@ -36,14 +36,14 @@ class DivisionPolitica extends Model
     /* ATRIBUTOS EXTERNOS */
     public function pais()
     {
-        return $this->belongsTo(Pais::class);
+        return $this->belongsTo(Pais::class, 'pais_id');
     }
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function localidades()
     {
-        return $this->hasMany(Localidad::class);
+        return $this->hasMany(Localidad::class, 'division_politica_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
