@@ -46,5 +46,10 @@ class Persona extends Model
     {
         return $this->belongsTo(Localidad::class);
     }
+
+    public function imagen()
+    {
+        return $this->morphOne(Imagen::class, 'imageable');
+    }
     /* ATRIBUTOS EXTERNOS */
 }
