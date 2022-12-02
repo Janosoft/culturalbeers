@@ -47,7 +47,7 @@ class Persona extends Model
         return $this->belongsTo(Localidad::class);
     }
 
-    public function imagen()
+    public function imagenes()
     {
         return $this->morphMany(Imagen::class, 'imageable');
     }
