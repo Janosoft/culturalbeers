@@ -49,7 +49,7 @@ class Persona extends Model
 
     public function imagen()
     {
-        return $this->morphOne(Imagen::class, 'imageable');
+        return $this->morphMany(Imagen::class, 'imageable');
     }
     /* ATRIBUTOS EXTERNOS */
 }

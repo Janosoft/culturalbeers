@@ -51,5 +51,10 @@ class Productor extends Model
     {
         return $this->hasMany(Cerveza::class);
     }
+
+    public function imagenes()
+    {
+        return $this->morphMany(Imagen::class, 'imageable');
+    }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

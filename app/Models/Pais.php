@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
 use App\Models\DivisionPolitica;
-
+use App\Models\Imagen;
 
 class Pais extends Model
 {
@@ -51,6 +51,11 @@ class Pais extends Model
     public function divisiones_politicas()
     {
         return $this->hasMany(DivisionPolitica::class);
+    }
+
+    public function imagenes()
+    {
+        return $this->morphMany(Imagen::class, 'imageable');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

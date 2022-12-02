@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('color_id')->constrained('cervezas_colores','color_id');
             $table->foreignId('estilo_id')->constrained('cervezas_estilos','estilo_id');
             $table->foreignId('envase_id')->constrained('cervezas_envases_tipos','envase_id');
+            $table->string('imagen_id')->nullable();
             $table->string('slug');
             $table->timestamps();
 

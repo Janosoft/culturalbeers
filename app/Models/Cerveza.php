@@ -9,6 +9,7 @@ use App\Models\Productor;
 use App\Models\CervezasColor;
 use App\Models\CervezasEstilo;
 use App\Models\CervezasEnvaseTipo;
+use App\Models\Imagen;
 
 class Cerveza extends Model
 {
@@ -56,4 +57,11 @@ class Cerveza extends Model
         return $this->belongsTo(CervezasEnvaseTipo::class);
     }
     /* ATRIBUTOS EXTERNOS */
+
+    /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function imagenes()
+    {
+        return $this->morphMany(Imagen::class, 'imageable');
+    }
+    /* ATRIBUTOS EXTERNOS (inversos)*/
 }
