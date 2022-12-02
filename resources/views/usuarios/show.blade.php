@@ -2,11 +2,12 @@
 @section('title', 'Mostrar Usuario: ' . $usuario->email)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
                 <h1>{{ $usuario->email }}</h1>
+                <h2><li><a href="{{ route('usuarios.show', $usuario->persona) }}">{{ $usuario->persona->nombre }}</a></li></h2>
             </div>
         </div>
 

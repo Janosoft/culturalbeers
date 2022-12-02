@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Tipo de Envase: ' . $cervezas_envase_tipo->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
@@ -21,6 +21,18 @@
                     @method('delete')
                     <button type="submit" class="btn btn-danger"> Eliminar</button>
                 </form>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($cervezas_envase_tipo->cervezas as $cerveza)
+                        <div class="col">
+                            <li><a href="{{ route('cervezas.show', $cerveza) }}">{{ $cerveza->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
             </div>
         </div>
 

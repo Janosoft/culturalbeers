@@ -2,11 +2,12 @@
 @section('title', 'Mostrar Localidad: ' . $localidad->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
                 <h1>{{ $localidad->nombre }}</h1>
+                <h2>{{ $localidad->division_politica->nombre }}</h2>
             </div>
         </div>
 
@@ -21,5 +22,30 @@
                 </form>
             </div>
         </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($localidad->productores as $productor)
+                        <div class="col">
+                            <li><a href="{{ route('productores.show', $productor) }}">{{ $productor->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($localidad->personas as $persona)
+                        <div class="col">
+                            <li><a href="{{ route('personas.show', $persona) }}">{{ $persona->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
     </div>
 @endsection

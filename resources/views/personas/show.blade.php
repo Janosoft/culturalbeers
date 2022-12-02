@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col">
                 <h1>{{ $persona->nombre }}</h1>
+                <h2>{{ $persona->localidad->nombre }}</h2>
             </div>
         </div>
 
@@ -22,7 +23,7 @@
             </div>
         </div>
 
-        <div class="row mv-3">
+        <div class="row mb-3">
             @foreach ($persona->imagenes as $imagen)
                 <div class="col">
                     <img class="img-fluid" src="../storage/{{ $imagen->url }}">

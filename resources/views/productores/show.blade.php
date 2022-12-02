@@ -7,6 +7,8 @@
         <div class="row">
             <div class="col">
                 <h1>{{ $productor->nombre }}</h1>
+                <h2>{{ $productor->localidad->nombre }}</h2>
+                <h2>{{ $productor->fabricacion->nombre }}</h2>
             </div>
         </div>
 
@@ -22,12 +24,24 @@
             </div>
         </div>
 
-        <div class="row mv-3">
+        <div class="row mb-3">
             @foreach ($productor->imagenes as $imagen)
                 <div class="col">
                     <img class="img-fluid" src="../storage/{{ $imagen->url }}">
                 </div>
             @endforeach
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($productor->cervezas as $cerveza)
+                        <div class="col">
+                            <li><a href="{{ route('cervezas.show', $cerveza) }}">{{ $cerveza->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
         </div>
 
     </div>

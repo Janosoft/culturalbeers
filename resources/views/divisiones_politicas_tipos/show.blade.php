@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Divisiones Políticas Tipo: ' . $divisiones_politicas_tipo->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
@@ -23,7 +23,19 @@
                 </form>
             </div>
         </div>
-        
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($divisiones_politicas_tipo->paises as $pais)
+                        <div class="col">
+                            <li><a href="{{ route('paises.show', $pais) }}">{{ $pais->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 @endsection

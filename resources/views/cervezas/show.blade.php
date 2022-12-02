@@ -7,7 +7,10 @@
         <div class="row">
             <div class="col">
                 <h1>{{ $cerveza->nombre }}</h1>
-                <h2>{{ $cerveza->productor}}</h2>
+                <h2>{{ $cerveza->productor->nombre }}</h2>
+                <h4>Color: {{ $cerveza->color->nombre }}</h4>
+                <h4>Estilo: {{ $cerveza->estilo->nombre }}</h4>
+                <h4>Tipo de Envase: {{ $cerveza->envase->nombre }}</h4>
             </div>
         </div>
 
@@ -23,7 +26,7 @@
             </div>
         </div>
 
-        <div class="row mv-3">
+        <div class="row mb-3">
             @foreach ($cerveza->imagenes as $imagen)
                 <div class="col">
                     <img class="img-fluid" src="../storage/{{ $imagen->url }}">

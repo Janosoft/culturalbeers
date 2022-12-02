@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Tipo de Fabricación: ' . $productores_fabricacion->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
@@ -21,6 +21,18 @@
                     @method('delete')
                     <button type="submit" class="btn btn-danger"> Eliminar</button>
                 </form>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($productores_fabricacion->productores as $productor)
+                        <div class="col">
+                            <li><a href="{{ route('productores.show', $productor) }}">{{ $productor->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
             </div>
         </div>
 

@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Color de Cerveza: ' . $cervezas_color->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
@@ -22,6 +22,18 @@
                 </form>
             </div>
         </div>
-        
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($cervezas_color->cervezas as $cerveza)
+                        <div class="col">
+                            <li><a href="{{ route('cervezas.show', $cerveza) }}">{{ $cerveza->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
     </div>
 @endsection

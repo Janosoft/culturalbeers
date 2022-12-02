@@ -2,11 +2,12 @@
 @section('title', 'Mostrar División Política: ' . $division_politica->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
                 <h1>{{ $division_politica->nombre }}</h1>
+                <h2>{{ $division_politica->pais->nombre }}</h2>
             </div>
         </div>
 
@@ -20,6 +21,18 @@
                     @method('delete')
                     <button type="submit" class="btn btn-danger"> Eliminar</button>
                 </form>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($division_politica->localidades as $localidad)
+                        <div class="col">
+                            <li><a href="{{ route('localidades.show', $localidad) }}">{{ $localidad->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
             </div>
         </div>
 

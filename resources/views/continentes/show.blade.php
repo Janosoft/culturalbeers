@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Continente: ' . $continente->nombre)
 
 @section('content')
-    <div class="content">
+    <div class="container">
 
         <div class="row">
             <div class="col">
@@ -21,5 +21,18 @@
                 </form>
             </div>
         </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <ul>
+                    @foreach ($continente->paises as $pais)
+                        <div class="col">
+                            <li><a href="{{ route('paises.show', $pais) }}">{{ $pais->nombre }}</a></li>
+                        </div>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
     </div>
 @endsection
