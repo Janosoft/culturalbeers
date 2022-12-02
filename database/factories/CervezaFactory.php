@@ -4,6 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Cerveza;
+use App\Models\CervezasColor;
+use App\Models\CervezasEnvaseTipo;
+use App\Models\CervezasEstilo;
+use App\Models\Productor;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cerveza>
@@ -20,10 +24,10 @@ class CervezaFactory extends Factory
         $nombre = implode(" ", fake()->unique()->words(2));
         return [
             'nombre' => $nombre,
-            'productor_id' => fake()->numberBetween(1, 10),
-            'color_id' => fake()->numberBetween(1, 10),
-            'estilo_id' => fake()->numberBetween(1, 10),
-            'envase_id' => fake()->numberBetween(1, 10),
+            'productor_id' => Productor::all()->random()->productor_id,
+            'color_id' => CervezasColor::all()->random()->color_id,
+            'estilo_id' => CervezasEstilo::all()->random()->estilo_id,
+            'envase_id' => CervezasEnvaseTipo::all()->random()->envase_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Continente;
+use App\Models\DivisionesPoliticasTipo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +21,8 @@ class PaisFactory extends Factory
         $nombre = fake()->unique()->word();
         return [
             'nombre' => $nombre,
-            'continente_id' => fake()->numberBetween(1, 10),
-            'divisiones_politicas_tipo_id' => fake()->numberBetween(1, 10),
+            'continente_id' => Continente::all()->random()->continente_id,
+            'divisiones_politicas_tipo_id' => DivisionesPoliticasTipo::all()->random()->divisiones_politicas_tipo_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

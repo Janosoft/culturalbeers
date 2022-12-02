@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Localidad;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Productor;
+use App\Models\ProductoresFabricacion;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Productor>
@@ -20,8 +22,8 @@ class ProductorFactory extends Factory
         $nombre = implode(" ", fake()->unique()->words(2));
         return [
             'nombre' => $nombre,
-            'fabricacion_id' => fake()->numberBetween(1, 3),
-            'localidad_id' => fake()->numberBetween(1, 10),
+            'fabricacion_id' => ProductoresFabricacion::all()->random()->fabricacion_id,
+            'localidad_id' => Localidad::all()->random()->localidad_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

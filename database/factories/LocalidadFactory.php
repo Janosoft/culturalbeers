@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DivisionPolitica;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class LocalidadFactory extends Factory
         $nombre = fake()->unique()->word();
         return [
             'nombre' => $nombre,
-            'division_politica_id' => fake()->numberBetween(1, 10),
+            'division_politica_id' => DivisionPolitica::all()->random()->division_politica_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

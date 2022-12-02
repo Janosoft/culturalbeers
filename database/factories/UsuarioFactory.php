@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ class UsuarioFactory extends Factory
     {
         $email = fake()->unique()->safeEmail();
         return [
-            'persona_id' => fake()->numberBetween(1, 10),
+            'persona_id' => Persona::all()->random()->persona_id,
             'email' => $email,
             'password' => fake()->md5(),
             'email_visible' => fake()->boolean(),

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Localidad;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class PersonaFactory extends Factory
             'nombre' => $nombre,
             'apellido' => fake()->lastname(),
             'profesion' => rtrim(fake()->sentence(2), '.'),
-            'localidad_id' => fake()->numberBetween(1, 10),
+            'localidad_id' => Localidad::all()->random()->localidad_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

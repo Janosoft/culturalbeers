@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Pais;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class DivisionPoliticaFactory extends Factory
     {
         $nombre = implode(" ", fake()->unique()->words(2));
         return [
-            'pais_id' => fake()->numberBetween(1, 10),
+            'pais_id' => Pais::all()->random()->pais_id,
             'nombre' => $nombre,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
