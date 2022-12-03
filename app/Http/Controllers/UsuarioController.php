@@ -20,7 +20,7 @@ class UsuarioController extends Controller
 
     public function store(StoreUsuario $request)
     {
-        $request['slug'] = str()->slug($request->email);
+        $request['slug'] = md5($request->email);
         $usuario = Usuario::create($request->all());
         return redirect()->route('usuarios.show', $usuario);
     }
@@ -37,11 +37,11 @@ class UsuarioController extends Controller
 
     public function update(StoreUsuario $request, Usuario $usuario)
     {
-        $request['slug'] = str()->slug($request->email);
+        $request['slug'] = md5($request->email);
         $usuario->update($request->all());
         return redirect()->route('usuarios.show', $usuario);
     }
-    
+
     public function destroy(Usuario $usuario)
     {
         $usuario->delete();

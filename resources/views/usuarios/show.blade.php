@@ -1,13 +1,15 @@
 @extends('layouts.plantilla')
-@section('title', 'Mostrar Usuario: ' . $usuario->email)
+@section('title', 'Mostrar Usuario')
 
 @section('content')
     <div class="container">
 
         <div class="row">
             <div class="col">
-                <h1>{{ $usuario->email }}</h1>
-                <h2><li><a href="{{ route('usuarios.show', $usuario->persona) }}">{{ $usuario->persona->nombre }}</a></li></h2>
+                <h1><li><a href="{{ route('usuarios.show', $usuario->persona) }}">{{ $usuario->persona->nombre }}</a></li></h1>
+                @if ($usuario->email_visible)
+                    <h2>{{ $usuario->email }}</h2>
+                @endif
             </div>
         </div>
 
@@ -22,6 +24,6 @@
                 </form>
             </div>
         </div>
-        
+
     </div>
 @endsection

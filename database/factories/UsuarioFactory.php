@@ -28,7 +28,7 @@ class UsuarioFactory extends Factory
             'activado' => fake()->boolean(),
             'bloqueado' => fake()->boolean(),
             'remember_token' => Str::random(10),
-            'slug' => str()->slug($email, '-', 'es'),
+            'slug' => md5($email),
         ];
     }
 }
