@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CervezasFamilia;
+use App\Models\CervezasFermento;
 use App\Http\Requests\StoreCervezaFamilia;
 
 class CervezasFamiliaController extends Controller
@@ -15,7 +16,8 @@ class CervezasFamiliaController extends Controller
 
     public function create()
     {
-        return view('cervezas_familias.create');
+        $cervezas_fermentos = CervezasFermento::pluck('nombre', 'fermento_id');
+        return view('cervezas_familias.create', compact('cervezas_fermentos'));
     }
 
     public function store(StoreCervezaFamilia $request)
@@ -41,7 +43,7 @@ class CervezasFamiliaController extends Controller
         $cervezas_familia->update($request->all());
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
-    
+
     public function destroy(CervezasFamilia $cervezas_familia)
     {
         $cervezas_familia->delete();
