@@ -29,7 +29,7 @@
         <div class="row mb-3">
             @foreach ($cerveza->imagenes as $imagen)
                 <div class="col">
-                    <img class="img-fluid" src="../storage/{{ $imagen->url }}">
+                    <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
                 </div>
             @endforeach
         </div>
