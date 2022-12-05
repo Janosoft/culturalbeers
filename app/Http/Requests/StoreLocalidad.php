@@ -25,6 +25,7 @@ class StoreLocalidad extends FormRequest
     {
         return [
             'nombre' => 'required|min:3',
+            'division_politica_id' => 'required',
         ];
     }
 
@@ -32,6 +33,7 @@ class StoreLocalidad extends FormRequest
     {
         return [
             'nombre' => 'nombre de la localidad',
+            'division_politica_id' => 'división política',
         ];
     }
 
@@ -39,9 +41,8 @@ class StoreLocalidad extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'nombre.required' => 'Debe ingresar un nombre a la localidad',
+            'division_politica_id.required' => 'Debe elegir una división política',
         ];
         
     }

@@ -25,6 +25,7 @@ class StoreCervezaEstilo extends FormRequest
     {
         return [
             'nombre' => 'required|min:3',
+            'familia_id' => 'required',
         ];
     }
 
@@ -32,6 +33,7 @@ class StoreCervezaEstilo extends FormRequest
     {
         return [
             'nombre' => 'nombre del estilo',
+            'familia_id' => 'familia de cerveza',
         ];
     }
 
@@ -39,9 +41,8 @@ class StoreCervezaEstilo extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'nombre.required' => 'Debe ingresar un nombre al estilo de cerveza',
+            'familia_id.required' => 'Debe elegir una familia de cerveza a la que pertenece',
         ];
         
     }

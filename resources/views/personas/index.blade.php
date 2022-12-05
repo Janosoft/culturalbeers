@@ -4,11 +4,11 @@
 @section('content')
     <div class="container">
         <a href="{{ route('personas.create') }}">Crear Nueva</a>
-        <ul>
+        <div class="list-group">
             @foreach ($personas as $persona)
-                <li><a href="{{ route('personas.show', $persona) }}">{{ $persona->nombre }}</a></li>
+                <a href="{{ route('personas.show', $persona) }}" class="list-group-item list-group-item-action">{{ $persona->nombre }}</a>
             @endforeach
-        </ul>
+        </div>
         {{ $personas->links() }}
     </div>
 @endsection

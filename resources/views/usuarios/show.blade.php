@@ -6,7 +6,8 @@
 
         <div class="row">
             <div class="col">
-                <h1><li><a href="{{ route('usuarios.show', $usuario->persona) }}">{{ $usuario->persona->nombre }}</a></li></h1>
+                <h1><a href="{{ route('personas.show', $usuario->persona) }}">{{ $usuario->persona->nombre }}</a>
+                </h1>
                 @if ($usuario->email_visible)
                     <h2>{{ $usuario->email }}</h2>
                 @endif

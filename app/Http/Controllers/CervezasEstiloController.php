@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CervezasEstilo;
 use App\Http\Requests\StoreCervezaEstilo;
+use App\Models\CervezasFamilia;
 
 class CervezasEstiloController extends Controller
 {
@@ -15,7 +16,8 @@ class CervezasEstiloController extends Controller
 
     public function create()
     {
-        return view('cervezas_estilos.create');
+        $familias = CervezasFamilia::pluck('nombre', 'familia_id');
+        return view('cervezas_estilos.create', compact('familias'));
     }
 
     public function store(StoreCervezaEstilo $request)
@@ -32,7 +34,8 @@ class CervezasEstiloController extends Controller
 
     public function edit(CervezasEstilo $cervezas_estilo)
     {
-        return view('cervezas_estilos.edit', compact('cervezas_estilo'));
+        $familias = CervezasFamilia::pluck('nombre', 'familia_id');
+        return view('cervezas_estilos.edit', compact(['cervezas_estilo', 'familias']));
     }
 
     public function update(StoreCervezaEstilo $request, CervezasEstilo $cervezas_estilo)
@@ -41,7 +44,7 @@ class CervezasEstiloController extends Controller
         $cervezas_estilo->update($request->all());
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
-    
+
     public function destroy(CervezasEstilo $cervezas_estilo)
     {
         $cervezas_estilo->delete();

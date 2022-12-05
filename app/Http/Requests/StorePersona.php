@@ -25,6 +25,8 @@ class StorePersona extends FormRequest
     {
         return [
             'nombre' => 'required|min:3',
+            'apellido' => 'required|min:3',
+            'localidad_id' => 'required',
         ];
     }
 
@@ -32,6 +34,8 @@ class StorePersona extends FormRequest
     {
         return [
             'nombre' => 'nombre de la persona',
+            'apellido' => 'apellido de la persona',
+            'localidad_id' => 'localidad actual',
         ];
     }
 
@@ -39,9 +43,9 @@ class StorePersona extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'nombre.required' => 'Debe ingresar un nombre a la persona',
+            'apellido.required' => 'Debe ingresar un apellido a la persona',
+            'localidad_id.required' => 'Debe elegir una localidad actual',
         ];
         
     }

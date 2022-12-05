@@ -26,13 +26,13 @@
 
         <div class="row mb-3">
             <div class="col">
-                <ul>
+                <div class="list-group">
                     @foreach ($divisiones_politicas_tipo->paises as $pais)
                         <div class="col">
-                            <li><a href="{{ route('paises.show', $pais) }}">{{ $pais->nombre }}</a></li>
+                            <a href="{{ route('paises.show', $pais) }}" class="list-group-item list-group-item-action">{{ $pais->nombre }}</a>
                         </div>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
 

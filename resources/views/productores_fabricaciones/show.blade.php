@@ -26,13 +26,11 @@
 
         <div class="row mb-3">
             <div class="col">
-                <ul>
+                <div class="list-group">
                     @foreach ($productores_fabricacion->productores as $productor)
-                        <div class="col">
-                            <li><a href="{{ route('productores.show', $productor) }}">{{ $productor->nombre }}</a></li>
-                        </div>
+                        <a href="{{ route('productores.show', $productor) }}" class="list-group-item list-group-item-action">{{ $productor->nombre }}</a>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
 

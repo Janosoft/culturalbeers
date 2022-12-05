@@ -34,7 +34,8 @@ class CervezasFamiliaController extends Controller
 
     public function edit(CervezasFamilia $cervezas_familia)
     {
-        return view('cervezas_familias.edit', compact('cervezas_familia'));
+        $cervezas_fermentos = CervezasFermento::pluck('nombre', 'fermento_id');
+        return view('cervezas_familias.edit', compact(['cervezas_familia', 'cervezas_fermentos']));
     }
 
     public function update(StoreCervezaFamilia $request, CervezasFamilia $cervezas_familia)

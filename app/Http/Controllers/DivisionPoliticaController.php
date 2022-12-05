@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DivisionPolitica;
 use App\Http\Requests\StoreDivisionPolitica;
+use App\Models\Pais;
 
 class DivisionPoliticaController extends Controller
 {
@@ -15,7 +16,8 @@ class DivisionPoliticaController extends Controller
 
     public function create()
     {
-        return view('divisiones_politicas.create');
+        $paises = Pais::pluck('nombre', 'pais_id');
+        return view('divisiones_politicas.create', compact('paises'));
     }
 
     public function store(StoreDivisionPolitica $request)
@@ -32,7 +34,8 @@ class DivisionPoliticaController extends Controller
 
     public function edit(DivisionPolitica $division_politica)
     {
-        return view('divisiones_politicas.edit', compact('division_politica'));
+        $paises = Pais::pluck('nombre', 'pais_id');
+        return view('divisiones_politicas.edit', compact(['division_politica', 'paises']));
     }
 
     public function update(StoreDivisionPolitica $request, DivisionPolitica $division_politica)
@@ -41,7 +44,7 @@ class DivisionPoliticaController extends Controller
         $division_politica->update($request->all());
         return redirect()->route('divisiones_politicas.show', $division_politica);
     }
-    
+
     public function destroy(DivisionPolitica $division_politica)
     {
         $division_politica->delete();

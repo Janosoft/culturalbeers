@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col">
                 <h1>{{ $localidad->nombre }}</h1>
-                <h2>{{ $localidad->division_politica->nombre }}</h2>
+                <h2><a href="{{ route('divisiones_politicas.show', $localidad->division_politica) }}">{{ $localidad->division_politica->nombre }}</a></h2>
             </div>
         </div>
 
@@ -25,25 +25,21 @@
 
         <div class="row mb-3">
             <div class="col">
-                <ul>
+                <div class="list-group">
                     @foreach ($localidad->productores as $productor)
-                        <div class="col">
-                            <li><a href="{{ route('productores.show', $productor) }}">{{ $productor->nombre }}</a></li>
-                        </div>
+                        <a href="{{ route('productores.show', $productor) }}" class="list-group-item list-group-item-action">{{ $productor->nombre }}</a>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-                <ul>
+                <div class="list-group">
                     @foreach ($localidad->personas as $persona)
-                        <div class="col">
-                            <li><a href="{{ route('personas.show', $persona) }}">{{ $persona->nombre }}</a></li>
-                        </div>
+                        <a href="{{ route('personas.show', $persona) }}" class="list-group-item list-group-item-action">{{ $persona->nombre }}</a>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
 

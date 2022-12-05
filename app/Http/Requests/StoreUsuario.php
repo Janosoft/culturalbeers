@@ -25,6 +25,8 @@ class StoreUsuario extends FormRequest
     {
         return [
             'email' => 'required|email:rfc,dns',
+            'persona_id' => 'required',
+            'password' => 'required|min:10',
         ];
     }
 
@@ -32,6 +34,8 @@ class StoreUsuario extends FormRequest
     {
         return [
             'email' => 'dirección de email',
+            'persona_id' => 'persona',
+            'password' => 'contraseña',
         ];
     }
 
@@ -39,10 +43,9 @@ class StoreUsuario extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'email.required' => 'Debe ingresar un email de contacto',
+            'persona_id.required' => 'Debe elegir una persona',
+            'password.required' => 'Debe ingresar una contraseña',
         ];
-        
     }
 }

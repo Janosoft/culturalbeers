@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use App\Http\Requests\StorePersona;
+use App\Models\Localidad;
 
 class PersonaController extends Controller
 {
@@ -15,7 +16,8 @@ class PersonaController extends Controller
 
     public function create()
     {
-        return view('personas.create');
+        $localidades = Localidad::pluck('nombre', 'localidad_id');
+        return view('personas.create', compact('localidades'));
     }
 
     public function store(StorePersona $request)
@@ -32,7 +34,8 @@ class PersonaController extends Controller
 
     public function edit(Persona $persona)
     {
-        return view('personas.edit', compact('persona'));
+        $localidades = Localidad::pluck('nombre', 'localidad_id');
+        return view('personas.edit', compact(['persona', 'localidades']));
     }
 
     public function update(StorePersona $request, Persona $persona)
@@ -41,7 +44,7 @@ class PersonaController extends Controller
         $persona->update($request->all());
         return redirect()->route('personas.show', $persona);
     }
-    
+
     public function destroy(Persona $persona)
     {
         $persona->delete();

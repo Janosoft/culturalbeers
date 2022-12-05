@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Localidad;
 use App\Http\Requests\StoreLocalidad;
+use App\Models\DivisionPolitica;
 
 class LocalidadController extends Controller
 {
@@ -15,7 +16,8 @@ class LocalidadController extends Controller
 
     public function create()
     {
-        return view('localidades.create');
+        $divisiones_politicas = DivisionPolitica::pluck('nombre', 'division_politica_id');
+        return view('localidades.create', compact('divisiones_politicas'));
     }
 
     public function store(StoreLocalidad $request)
@@ -32,7 +34,8 @@ class LocalidadController extends Controller
 
     public function edit(Localidad $localidad)
     {
-        return view('localidades.edit', compact('localidad'));
+        $divisiones_politicas = DivisionPolitica::pluck('nombre', 'division_politica_id');
+        return view('localidades.edit', compact(['localidad', 'divisiones_politicas']));
     }
 
     public function update(StoreLocalidad $request, Localidad $localidad)
@@ -41,7 +44,7 @@ class LocalidadController extends Controller
         $localidad->update($request->all());
         return redirect()->route('localidades.show', $localidad);
     }
-    
+
     public function destroy(Localidad $localidad)
     {
         $localidad->delete();

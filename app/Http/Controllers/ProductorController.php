@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Productor;
 use App\Http\Requests\StoreProductor;
+use App\Models\ProductoresFabricacion;
+use App\Models\Localidad;
 
 class ProductorController extends Controller
 {
@@ -15,7 +17,9 @@ class ProductorController extends Controller
 
     public function create()
     {
-        return view('productores.create');
+        $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
+        $localidades = Localidad::pluck('nombre', 'localidad_id');
+        return view('productores.create', compact(['fabricaciones', 'localidades']));
     }
 
     public function store(StoreProductor $request)
@@ -32,7 +36,9 @@ class ProductorController extends Controller
 
     public function edit(Productor $productor)
     {
-        return view('productores.edit', compact('productor'));
+        $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
+        $localidades = Localidad::pluck('nombre', 'localidad_id');
+        return view('productores.edit', compact(['productor', 'fabricaciones', 'localidades']));
     }
 
     public function update(StoreProductor $request, Productor $productor)
@@ -41,7 +47,7 @@ class ProductorController extends Controller
         $productor->update($request->all());
         return redirect()->route('productores.show', $productor);
     }
-    
+
     public function destroy(Productor $productor)
     {
         $productor->delete();

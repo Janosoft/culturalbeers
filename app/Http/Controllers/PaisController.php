@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pais;
 use App\Http\Requests\StorePais;
+use App\Models\Continente;
+use App\Models\DivisionesPoliticasTipo;
 
 class PaisController extends Controller
 {
@@ -15,7 +17,9 @@ class PaisController extends Controller
 
     public function create()
     {
-        return view('paises.create');
+        $continentes = Continente::pluck('nombre', 'continente_id');
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::pluck('nombre', 'divisiones_politicas_tipo_id');
+        return view('paises.create', compact(['continentes','divisiones_politicas_tipo']));
     }
 
     public function store(StorePais $request)
@@ -32,7 +36,9 @@ class PaisController extends Controller
 
     public function edit(Pais $pais)
     {
-        return view('paises.edit', compact('pais'));
+        $continentes = Continente::pluck('nombre', 'continente_id');
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::pluck('nombre', 'divisiones_politicas_tipo_id');
+        return view('paises.edit', compact(['pais','continentes','divisiones_politicas_tipo']));
     }
 
     public function update(StorePais $request, Pais $pais)

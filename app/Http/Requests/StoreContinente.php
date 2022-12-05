@@ -24,7 +24,7 @@ class StoreContinente extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => 'required|min:8',
         ];
     }
 
@@ -39,10 +39,7 @@ class StoreContinente extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'nombre.required' => 'Debe ingresar un nombre al continente',
         ];
-        
     }
 }

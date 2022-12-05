@@ -39,9 +39,7 @@ class StoreDivisionPoliticaTipo extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'nombre.required' => 'Debe ingresar un nombre al tipo de división política',
         ];
         
     }

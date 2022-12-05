@@ -25,13 +25,13 @@
 
         <div class="row mb-3">
             <div class="col">
-                <ul>
+                <div class="list-group">
                     @foreach ($cervezas_color->cervezas as $cerveza)
                         <div class="col">
-                            <li><a href="{{ route('cervezas.show', $cerveza) }}">{{ $cerveza->nombre }}</a></li>
+                            <a href="{{ route('cervezas.show', $cerveza) }}" class="list-group-item list-group-item-action">{{ $cerveza->nombre }}</a>
                         </div>
                     @endforeach
-                </ul>
+                    </div>
             </div>
         </div>
 

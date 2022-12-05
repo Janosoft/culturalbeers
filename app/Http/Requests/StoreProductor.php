@@ -25,6 +25,8 @@ class StoreProductor extends FormRequest
     {
         return [
             'nombre' => 'required|min:3',
+            'fabricacion_id' => 'required',
+            'localidad_id' => 'required',
         ];
     }
 
@@ -32,6 +34,8 @@ class StoreProductor extends FormRequest
     {
         return [
             'nombre' => 'nombre del productor',
+            'fabricacion_id' => 'tipo de fabricación',
+            'localidad_id' => 'localidad de origen',
         ];
     }
 
@@ -39,9 +43,9 @@ class StoreProductor extends FormRequest
     {
         // Para personalizar los mensajes de error de validación        
         return [
-            /*
             'nombre.required' => 'Debe ingresar un nombre a la cerveza',
-            */
+            'fabricacion_id.required' => 'Debe elegir un tipo de fabricación',
+            'localidad_id.required' => 'Debe elegir una localidad de origen',
         ];
         
     }

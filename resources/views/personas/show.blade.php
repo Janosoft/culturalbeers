@@ -6,8 +6,8 @@
 
         <div class="row">
             <div class="col">
-                <h1>{{ $persona->nombre }}</h1>
-                <h2>{{ $persona->localidad->nombre }}</h2>
+                <h1>{{ $persona->nombre . ' ' . $persona->apellido }}</h1>
+                <h2><a href="{{ route('localidades.show', $persona->localidad) }}">{{ $persona->localidad->nombre }}</a></h2>
             </div>
         </div>
 

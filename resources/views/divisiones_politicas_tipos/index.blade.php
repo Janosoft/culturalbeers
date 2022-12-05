@@ -4,13 +4,11 @@
 @section('content')
     <div class="container">
         <a href="{{ route('divisiones_politicas_tipos.create') }}">Crear Nuevo</a>
-        <ul>
+        <div class="list-group">
             @foreach ($divisiones_politicas_tipos as $divisiones_politicas_tipo)
-                <li>
-                    <a href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo) }}">{{ $divisiones_politicas_tipo->nombre }}</a>
-                </li>
+                    <a href="{{ route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo) }}" class="list-group-item list-group-item-action">{{ $divisiones_politicas_tipo->nombre }}</a>
             @endforeach
-        </ul>
+        </div>
         {{ $divisiones_politicas_tipos->links() }}
     </div>
 @endsection
