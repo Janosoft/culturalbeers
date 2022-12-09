@@ -6,7 +6,6 @@ use App\Models\Persona;
 use App\Http\Requests\StorePersona;
 use App\Models\Imagen;
 use App\Models\Localidad;
-use Illuminate\Support\Facades\Storage;
 
 class PersonaController extends Controller
 {
@@ -58,11 +57,6 @@ class PersonaController extends Controller
 
     public function destroy(Persona $persona)
     {
-        foreach ($persona->imagenes as $imagen)
-         {
-            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
-            $imagen->delete();
-         }
         $persona->delete();
         return redirect()->route('personas.index');
     }

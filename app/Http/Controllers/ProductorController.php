@@ -7,7 +7,6 @@ use App\Http\Requests\StoreProductor;
 use App\Models\Imagen;
 use App\Models\ProductoresFabricacion;
 use App\Models\Localidad;
-use Illuminate\Support\Facades\Storage;
 
 class ProductorController extends Controller
 {
@@ -61,11 +60,6 @@ class ProductorController extends Controller
 
     public function destroy(Productor $productor)
     {
-        foreach ($productor->imagenes as $imagen)
-         {
-            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
-            $imagen->delete();
-         }
         $productor->delete();
         return redirect()->route('productores.index');
     }

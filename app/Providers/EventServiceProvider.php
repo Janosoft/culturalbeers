@@ -7,6 +7,15 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Models\Cerveza;
+use App\Observers\CervezaObserver;
+use App\Models\Pais;
+use App\Observers\PaisObserver;
+use App\Models\Persona;
+use App\Observers\PersonaObserver;
+use App\Models\Productor;
+use App\Observers\ProductorObserver;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +36,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Cerveza::observe(CervezaObserver::class);
+        Pais::observe(PaisObserver::class);
+        Persona::observe(PersonaObserver::class);
+        Productor::observe(ProductorObserver::class);
     }
 
     /**
