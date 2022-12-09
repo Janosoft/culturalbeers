@@ -7,6 +7,7 @@ use App\Http\Requests\StorePais;
 use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
 use App\Models\Imagen;
+use Illuminate\Support\Facades\Storage;
 
 class PaisController extends Controller
 {
@@ -60,6 +61,11 @@ class PaisController extends Controller
 
     public function destroy(Pais $pais)
     {
+        foreach ($pais->imagenes as $imagen)
+         {
+            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
+            $imagen->delete();
+         }
         $pais->delete();
         return redirect()->route('paises.index');
     }

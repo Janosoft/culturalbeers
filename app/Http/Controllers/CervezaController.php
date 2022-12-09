@@ -9,6 +9,7 @@ use App\Models\CervezasEnvaseTipo;
 use App\Models\CervezasEstilo;
 use App\Models\Imagen;
 use App\Models\Productor;
+use Illuminate\Support\Facades\Storage;
 
 class CervezaController extends Controller
 {
@@ -66,6 +67,11 @@ class CervezaController extends Controller
 
     public function destroy(Cerveza $cerveza)
     {
+        foreach ($cerveza->imagenes as $imagen)
+         {
+            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
+            $imagen->delete();
+         }
         $cerveza->delete();
         return redirect()->route('cervezas.index', $cerveza);
     }
