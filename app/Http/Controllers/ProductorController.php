@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Productor;
 use App\Http\Requests\StoreProductor;
+use App\Models\Imagen;
 use App\Models\ProductoresFabricacion;
 use App\Models\Localidad;
 
@@ -26,6 +27,15 @@ class ProductorController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $productor = Productor::create($request->all());
+        if ($request->imagen) {
+            $fileName = time() . '.' . $request->imagen->extension();
+            $request->imagen->move(public_path('storage/imagenes'), $fileName);
+            Imagen::create([
+                'imageable_id' => $productor->productor_id,
+                'url' => 'imagenes/' . $fileName,
+                'imageable_type' => Productor::class,
+            ]);
+        }
         return redirect()->route('productores.show', $productor);
     }
 

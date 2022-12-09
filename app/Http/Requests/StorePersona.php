@@ -27,6 +27,7 @@ class StorePersona extends FormRequest
             'nombre' => 'required|min:3',
             'apellido' => 'required|min:3',
             'localidad_id' => 'required',
+            'imagen' => 'image',
         ];
     }
 
@@ -46,6 +47,7 @@ class StorePersona extends FormRequest
             'nombre.required' => 'Debe ingresar un nombre a la persona',
             'apellido.required' => 'Debe ingresar un apellido a la persona',
             'localidad_id.required' => 'Debe elegir una localidad actual',
+            'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, etc)',
         ];
         
     }

@@ -43,6 +43,14 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*">
+                        @error('imagen')
+                            <label for="floatingInputInvalid">*{{ $message }}</label>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Crear</button>
                     </div>
 

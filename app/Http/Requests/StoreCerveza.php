@@ -29,6 +29,7 @@ class StoreCerveza extends FormRequest
             'color_id' => 'required',
             'estilo_id' => 'required',
             'envase_id' => 'required',
+            'imagen' => 'image',
         ];
     }
 
@@ -52,6 +53,7 @@ class StoreCerveza extends FormRequest
             'color_id.required' => 'Debe elegir el color de la cerveza',
             'estilo_id.required' => 'Debe elegir el estilo de la cerveza',
             'envase_id.required' => 'Debe elegir el tipo de envase de la cerveza',
+            'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, etc)',
         ];
     }
 }

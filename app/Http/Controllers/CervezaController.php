@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCerveza;
 use App\Models\CervezasColor;
 use App\Models\CervezasEnvaseTipo;
 use App\Models\CervezasEstilo;
+use App\Models\Imagen;
 use App\Models\Productor;
 
 class CervezaController extends Controller
@@ -30,6 +31,15 @@ class CervezaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cerveza = Cerveza::create($request->all());
+        if ($request->imagen) {
+            $fileName = time() . '.' . $request->imagen->extension();
+            $request->imagen->move(public_path('storage/imagenes'), $fileName);
+            Imagen::create([
+                'imageable_id' => $cerveza->cerveza_id,
+                'url' => 'imagenes/' . $fileName,
+                'imageable_type' => Cerveza::class,
+            ]);
+        }
         return redirect()->route('cervezas.show', $cerveza);
     }
 

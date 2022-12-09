@@ -27,6 +27,7 @@ class StoreProductor extends FormRequest
             'nombre' => 'required|min:3',
             'fabricacion_id' => 'required',
             'localidad_id' => 'required',
+            'imagen' => 'image',
         ];
     }
 
@@ -46,6 +47,7 @@ class StoreProductor extends FormRequest
             'nombre.required' => 'Debe ingresar un nombre a la cerveza',
             'fabricacion_id.required' => 'Debe elegir un tipo de fabricación',
             'localidad_id.required' => 'Debe elegir una localidad de origen',
+            'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, etc)',
         ];
         
     }

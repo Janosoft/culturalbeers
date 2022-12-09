@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{ route('paises.store') }}" method="POST">
+                <form action="{{ route('paises.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     
                     <div class="mb-3">
@@ -38,6 +38,14 @@
                             @endforeach
                         </select>
                         @error('divisiones_politicas_tipo_id')
+                            <label for="floatingInputInvalid">*{{ $message }}</label>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*">
+                        @error('imagen')
                             <label for="floatingInputInvalid">*{{ $message }}</label>
                         @enderror
                     </div>

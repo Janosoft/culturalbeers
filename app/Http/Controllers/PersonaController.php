@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use App\Http\Requests\StorePersona;
+use App\Models\Imagen;
 use App\Models\Localidad;
 
 class PersonaController extends Controller
@@ -24,6 +25,15 @@ class PersonaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $persona = Persona::create($request->all());
+        if ($request->imagen) {
+            $fileName = time() . '.' . $request->imagen->extension();
+            $request->imagen->move(public_path('storage/imagenes'), $fileName);
+            Imagen::create([
+                'imageable_id' => $persona->persona_id,
+                'url' => 'imagenes/' . $fileName,
+                'imageable_type' => Persona::class,
+            ]);
+        }
         return redirect()->route('personas.show', $persona);
     }
 
