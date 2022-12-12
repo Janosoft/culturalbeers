@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <h1>{{ $cerveza->nombre }}</h1>
                 <h2><a href="{{ route('productores.show', $cerveza->productor) }}">{{ $cerveza->productor->nombre }}</a></h2>

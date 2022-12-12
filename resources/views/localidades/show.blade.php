@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <a href="{{ route('localidades.index') }}"> Volver</a>
                 <a href="{{ route('localidades.edit', $localidad) }}" class="btn btn-primary"> Editar</a>

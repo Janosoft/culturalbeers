@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <a href="{{ route('cervezas_familias.index') }}"> Volver</a>
                 <a href="{{ route('cervezas_familias.edit', $cervezas_familia) }}" class="btn btn-primary"> Editar</a>
@@ -28,9 +28,7 @@
             <div class="col">
                 <div class="list-group">
                     @foreach ($cervezas_familia->estilos as $estilo)
-                        <div class="col">
-                            <a href="{{ route('cervezas_estilos.show', $estilo) }}" class="list-group-item list-group-item-action">{{ $estilo->nombre }}</a>
-                        </div>
+                        <a href="{{ route('cervezas_estilos.show', $estilo) }}" class="list-group-item list-group-item-action">{{ $estilo->nombre }}</a>
                     @endforeach
                     </div>
             </div>

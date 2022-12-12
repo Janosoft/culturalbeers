@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <a href="{{ route('divisiones_politicas.index') }}"> Volver</a>
                 <a href="{{ route('divisiones_politicas.edit', $division_politica) }}" class="btn btn-primary"> Editar</a>
@@ -28,9 +28,7 @@
             <div class="col">
                 <div class="list-group">
                     @foreach ($division_politica->localidades as $localidad)
-                        <div class="col">
-                            <a href="{{ route('localidades.show', $localidad) }}" class="list-group-item list-group-item-action">{{ $localidad->nombre }}</a>
-                        </div>
+                        <a href="{{ route('localidades.show', $localidad) }}" class="list-group-item list-group-item-action">{{ $localidad->nombre }}</a>
                     @endforeach
                 </div>
             </div>
