@@ -31,6 +31,7 @@ class CervezaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cerveza = Cerveza::create($request->all());
+        $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
             $fileName = time() . '.' . $request->imagen->extension();
             $request->imagen->move(public_path('storage/imagenes'), $fileName);
@@ -54,13 +55,15 @@ class CervezaController extends Controller
         $colores = CervezasColor::pluck('nombre', 'color_id');
         $estilos = CervezasEstilo::pluck('nombre', 'estilo_id');
         $envases_tipos = CervezasEnvaseTipo::pluck('nombre', 'envase_id');
-        return view('cervezas.edit', compact(['cerveza', 'productores', 'colores', 'estilos', 'envases_tipos']));
+        $envases = $cerveza->envases->pluck('envase_id');
+        return view('cervezas.edit', compact(['cerveza', 'productores', 'colores', 'estilos', 'envases_tipos', 'envases']));
     }
 
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
         $request['slug'] = str()->slug($request->nombre);
         $cerveza->update($request->all());
+        $cerveza->envases()->sync($request->envases);
         return redirect()->route('cervezas.show', $cerveza);
     }
 

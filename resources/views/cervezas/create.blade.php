@@ -57,15 +57,15 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="envase_id" class="form-label">Tipo de Envase</label>
-                        <select class="form-select" name="envase_id">
-                            <option value="" selected>Elija el tipo de envase que corresponda</option>
-                            @foreach ($envases_tipos as $envase_id => $envase)
-                                <option value="{{ $envase_id }}">{{ $envase }}</option>
-                            @endforeach
-                        </select>
-                        @error('envase_id')
-                            <label for="floatingInputInvalid">*{{ $message }}</label>
+                        <label for="envases" class="form-label">Tipo de Envase</label>
+                        @foreach ($envases_tipos as $envase_id => $envase)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="envases[]" id="evase_{{ $envase_id }}" value="{{ $envase_id }}">
+                                <label class="form-check-label" for="evase_{{ $envase_id }}">{{ $envase }}</label>
+                            </div>
+                        @endforeach
+                        @error('envases')
+                            <br><label for="floatingInputInvalid">*{{ $message }}</label>
                         @enderror
                     </div>
 
