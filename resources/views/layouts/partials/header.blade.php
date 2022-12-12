@@ -27,31 +27,45 @@
                         <a href="{{ route('cervezas_fermentos.index') }}" class="nav-link {{ request()->routeIs('cervezas_fermentos.*') ? 'active' : '' }}">Fermentos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('continentes.index') }}" class="nav-link {{ request()->routeIs('continentes.*') ? 'active' : '' }}">Continentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('divisiones_politicas.index') }}" class="nav-link {{ request()->routeIs('divisiones_politicas.*') ? 'active' : '' }}">Divisiones Políticas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('divisiones_politicas_tipos.index') }}" class="nav-link {{ request()->routeIs('divisiones_politicas_tipos.*') ? 'active' : '' }}">DP Tipo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('localidades.index') }}" class="nav-link {{ request()->routeIs('localidades.*') ? 'active' : '' }}">Localidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('paises.index') }}" class="nav-link {{ request()->routeIs('paises.*') ? 'active' : '' }}">Paises</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('personas.index') }}" class="nav-link {{ request()->routeIs('personas.*') ? 'active' : '' }}">Personas</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('productores.index') }}" class="nav-link {{ request()->routeIs('productores.*') ? 'active' : '' }}">Productores</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('productores_fabricaciones.index') }}" class="nav-link {{ request()->routeIs('productores_fabricaciones.*') ? 'active' : '' }}">Productores Fabricaciones</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Por Ubicación</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('continentes.index') }}" class="dropdown-item {{ request()->routeIs('continentes.*') ? 'active' : '' }}">Continentes</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('paises.index') }}" class="dropdown-item {{ request()->routeIs('paises.*') ? 'active' : '' }}">Paises</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('divisiones_politicas.index') }}" class="dropdown-item {{ request()->routeIs('divisiones_politicas.*') ? 'active' : '' }}">Divisiones Políticas</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('localidades.index') }}" class="dropdown-item {{ request()->routeIs('localidades.*') ? 'active' : '' }}">Localidades</a>
+                            </li>
+                        </ul>                        
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('usuarios.index') }}" class="nav-link {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Configuración</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('divisiones_politicas_tipos.index') }}"
+                                    class="dropdown-item {{ request()->routeIs('divisiones_politicas_tipos.*') ? 'active' : '' }}">Tipos de Divisiones Políticas</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('productores_fabricaciones.index') }}"
+                                    class="dropdown-item {{ request()->routeIs('productores_fabricaciones.*') ? 'active' : '' }}">Tipo de Fabricaciones</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('usuarios.index') }}" class="dropdown-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuarios</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
