@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Cerveza;
+use App\Models\CervezasEnvaseTipo;
 use App\Models\Imagen;
 
 class CervezaSeeder extends Seeder
@@ -22,6 +23,7 @@ class CervezaSeeder extends Seeder
                 'imageable_id' => $cerveza->cerveza_id,
                 'imageable_type' => Cerveza::class,
             ]);
+            $cerveza->envases()->sync([CervezasEnvaseTipo::all()->random()->envase_id]);
         }
     }
 }

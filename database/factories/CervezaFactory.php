@@ -27,7 +27,6 @@ class CervezaFactory extends Factory
             'productor_id' => Productor::all()->random()->productor_id,
             'color_id' => CervezasColor::all()->random()->color_id,
             'estilo_id' => CervezasEstilo::all()->random()->estilo_id,
-            'envase_id' => CervezasEnvaseTipo::all()->random()->envase_id,
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

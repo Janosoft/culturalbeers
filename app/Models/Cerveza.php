@@ -52,9 +52,9 @@ class Cerveza extends Model
         return $this->belongsTo(CervezasEstilo::class, 'estilo_id');
     }
 
-    public function envase()
+    public function envases()
     {
-        return $this->belongsTo(CervezasEnvaseTipo::class, 'envase_id');
+        return $this->belongsToMany(CervezasEnvaseTipo::class, 'cervezas_envases', 'cerveza_id', 'envase_id');
     }
     /* ATRIBUTOS EXTERNOS */
 

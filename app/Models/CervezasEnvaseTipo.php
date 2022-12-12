@@ -35,7 +35,7 @@ class CervezasEnvaseTipo extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function cervezas()
     {
-        return $this->hasMany(Cerveza::class, 'envase_id');
+        return $this->belongsToMany(Cerveza::class, 'cervezas_envases', 'envase_id', 'cerveza_id');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
