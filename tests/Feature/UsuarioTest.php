@@ -92,6 +92,7 @@ class UsuarioTest extends TestCase
 
     public function test_usuarios_index_can_be_shown()
     {
+        //FIXME
         $this->withoutExceptionHandling();
 
         DivisionesPoliticasTipo::factory(2)->create();
