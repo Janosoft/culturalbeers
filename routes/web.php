@@ -37,7 +37,7 @@ Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.st
 
 Route::resource('cervezas', CervezaController::class);
 Route::resource('cervezas_colores', CervezasColorController::class);
-Route::resource('cervezas_envases_tipos', CervezasEnvaseTipoController::class)->parameters(['cervezas_envases_tipos' => 'cervezas_envase_tipo']);
+Route::resource('cervezas_envases_tipos', CervezasEnvaseTipoController::class)->parameters(['cervezas_envases_tipos' => 'cervezas_envases_tipo']);
 Route::resource('cervezas_estilos', CervezasEstiloController::class);
 Route::resource('cervezas_familias', CervezasFamiliaController::class);
 Route::resource('cervezas_fermentos', CervezasFermentoController::class);

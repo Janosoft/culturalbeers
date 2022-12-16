@@ -21,30 +21,30 @@ class CervezasEnvaseTipoController extends Controller
     public function store(StoreCervezaEnvaseTipo $request)
     {
         $request['slug'] = str()->slug($request->nombre);
-        $cervezas_envase_tipo = CervezasEnvaseTipo::create($request->all());
-        return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
+        $cervezas_envases_tipo = CervezasEnvaseTipo::create($request->all());
+        return redirect()->route('cervezas_envases_tipos.show', $cervezas_envases_tipo);
     }
 
-    public function show(CervezasEnvaseTipo $cervezas_envase_tipo)
+    public function show(CervezasEnvaseTipo $cervezas_envases_tipo)
     {
-        return view('cervezas_envases_tipos.show', compact('cervezas_envase_tipo'));
+        return view('cervezas_envases_tipos.show', compact('cervezas_envases_tipo'));
     }
 
-    public function edit(CervezasEnvaseTipo $cervezas_envase_tipo)
+    public function edit(CervezasEnvaseTipo $cervezas_envases_tipo)
     {
-        return view('cervezas_envases_tipos.edit', compact('cervezas_envase_tipo'));
+        return view('cervezas_envases_tipos.edit', compact('cervezas_envases_tipo'));
     }
 
-    public function update(StoreCervezaEnvaseTipo $request, CervezasEnvaseTipo $cervezas_envase_tipo)
+    public function update(StoreCervezaEnvaseTipo $request, CervezasEnvaseTipo $cervezas_envases_tipo)
     {
         $request['slug'] = str()->slug($request->nombre);
-        $cervezas_envase_tipo->update($request->all());
-        return redirect()->route('cervezas_envases_tipos.show', $cervezas_envase_tipo);
+        $cervezas_envases_tipo->update($request->all());
+        return redirect()->route('cervezas_envases_tipos.show', $cervezas_envases_tipo);
     }
     
-    public function destroy(CervezasEnvaseTipo $cervezas_envase_tipo)
+    public function destroy(CervezasEnvaseTipo $cervezas_envases_tipo)
     {
-        $cervezas_envase_tipo->delete();
+        $cervezas_envases_tipo->delete();
         return redirect()->route('cervezas_envases_tipos.index');
     }
 }

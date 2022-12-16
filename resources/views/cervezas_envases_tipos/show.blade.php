@@ -1,21 +1,21 @@
 @extends('layouts.plantilla')
-@section('title', 'Mostrar Tipo de Envase: ' . $cervezas_envase_tipo->nombre)
+@section('title', 'Mostrar Tipo de Envase: ' . $cervezas_envases_tipo->nombre)
 
 @section('content')
     <div class="container">
 
         <div class="row">
             <div class="col">
-                <h1>{{ $cervezas_envase_tipo->nombre }}</h1>
+                <h1>{{ $cervezas_envases_tipo->nombre }}</h1>
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
                 <a href="{{ route('cervezas_envases_tipos.index') }}"> Volver</a>
-                <a href="{{ route('cervezas_envases_tipos.edit', $cervezas_envase_tipo) }}" class="btn btn-primary">
+                <a href="{{ route('cervezas_envases_tipos.edit', $cervezas_envases_tipo) }}" class="btn btn-primary">
                     Editar</a>
-                <form action="{{ route('cervezas_envases_tipos.destroy', $cervezas_envase_tipo) }}" method="POST"
+                <form action="{{ route('cervezas_envases_tipos.destroy', $cervezas_envases_tipo) }}" method="POST"
                     style="display: inline;">
                     @csrf
                     @method('delete')
@@ -27,7 +27,7 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="list-group">
-                    @foreach ($cervezas_envase_tipo->cervezas as $cerveza)
+                    @foreach ($cervezas_envases_tipo->cervezas as $cerveza)
                         <a href="{{ route('cervezas.show', $cerveza) }}" class="list-group-item list-group-item-action">{{ $cerveza->nombre }}</a>
                     @endforeach
                 </div>
