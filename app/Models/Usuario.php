@@ -12,7 +12,7 @@ class Usuario extends Model
     use HasFactory;
     protected $table = 'usuarios';
     protected $primaryKey = 'usuario_id';
-    protected $fillable = ['persona_id', 'email', 'password', 'email_visible'];
+    protected $guarded = ['email_verificado','activado','bloqueado','remember_token','created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function email(): Attribute

@@ -97,7 +97,6 @@ class LocalidadTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         $divisiones_politicas= DivisionPolitica::factory(2)->create();
-        Localidad::factory(2)->create();
         $response = $this->post('/localidades', [
             'nombre' => '',
             'division_politica_id' => $divisiones_politicas->random()->division_politica_id,
