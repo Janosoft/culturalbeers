@@ -92,36 +92,15 @@ class UsuarioTest extends TestCase
 
     public function test_usuarios_index_can_be_shown()
     {
-        //FIXME
-        $this->withoutExceptionHandling();
-
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         Persona::factory(2)->create();
-        Usuario::factory()->create();
+        Usuario::factory(2)->create();
         $response = $this->get('/usuarios');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('usuarios.index'); // Se está mostrando la vista correcta
-        $usuarios = Usuario::orderBy('slug')->paginate();
-        $response->assertViewHas('usuarios', $usuarios); // Tiene los elementos creados
     }
-
-    // public function test_usuarios_email_is_required()
-    // {
-    //     DivisionesPoliticasTipo::factory(2)->create();
-    //     Continente::factory(2)->create();
-    //     Pais::factory(2)->create();
-    //     DivisionPolitica::factory(2)->create();
-    //     $localidades= Localidad::factory(2)->create();
-    //     $response = $this->post('/usuarios', [
-    //         'email' => '',
-    //         'fabricacion_id' => $usuarios->random()->fabricacion_id,
-    //         'localidad_id' => $localidades->random()->localidad_id,
-    //     ]);
-    //     $response->assertSessionHasErrors('email');
-    //     $this->assertCount(0, Usuario::all()); // No fue Creado
-    // }
 }

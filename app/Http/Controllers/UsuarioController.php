@@ -9,7 +9,7 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuario::orderBy('slug')->paginate();
+        $usuarios = Usuario::orderBy('email')->paginate();
         return view('usuarios.index', compact('usuarios'));
     }
 
