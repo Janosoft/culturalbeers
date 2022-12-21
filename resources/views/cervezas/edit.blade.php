@@ -64,8 +64,15 @@
                         <label for="envases" class="form-label">Tipo de Envase</label>
                         @foreach ($envases_tipos as $envase_id => $envase)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="envases[]" id="evase_{{ $envase_id }}" value="{{ $envase_id }}" {{ in_array($envase_id, json_decode($envases)) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="evase_{{ $envase_id }}">{{ $envase }}</label>
+                                @if (empty(old('envases')))
+                                    <input class="form-check-input" type="checkbox" name="envases[]"
+                                        id="evase_{{ $envase_id }}" value="{{ $envase_id }}" {{ in_array($envase_id, json_decode($envases)) ? 'checked' : '' }}>
+                                @else
+                                    <input class="form-check-input" type="checkbox" name="envases[]"
+                                        id="evase_{{ $envase_id }}" value="{{ $envase_id }}" {{ in_array($envase_id, old('envases')) ? 'checked' : '' }}>
+                                @endif
+                                <label class="form-check-label"
+                                    for="evase_{{ $envase_id }}">{{ $envase }}</label>
                             </div>
                         @endforeach
                         @error('envases')

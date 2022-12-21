@@ -55,7 +55,8 @@
                             <option value="" {{ empty(old('productor_id')) ? '' : 'selected' }}>Elija estilo de la
                                 cerveza</option>
                             @foreach ($estilos as $estilo_id => $estilo)
-                                <option value="{{ $estilo_id }}" {{ old('estilo_id') == $estilo_id ? 'selected' : '' }}>
+                                <option value="{{ $estilo_id }}"
+                                    {{ old('estilo_id') == $estilo_id ? 'selected' : '' }}>
                                     {{ $estilo }}</option>
                             @endforeach
                         </select>
@@ -69,7 +70,8 @@
                         @foreach ($envases_tipos as $envase_id => $envase)
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="envases[]"
-                                    id="evase_{{ $envase_id }}" value="{{ $envase_id }}">
+                                    id="evase_{{ $envase_id }}" value="{{ $envase_id }}"
+                                    {{ in_array($envase_id, empty(old('envases')) ? [] : old('envases')) ? 'checked' : '' }}>
                                 <label class="form-check-label"
                                     for="evase_{{ $envase_id }}">{{ $envase }}</label>
                             </div>
