@@ -48,7 +48,7 @@ class CervezasColorTest extends TestCase
     {
         $cervezas_color = CervezasColor::factory()->create();
         $response = $this->delete('/cervezas_colores/' . $cervezas_color->slug);
-        $this->assertCount(0, CervezasColor::all()); // Fue Creado
+        $this->assertCount(0, CervezasColor::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_colores'); // Funciona la redirección
     }

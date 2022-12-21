@@ -48,7 +48,7 @@ class CervezasFermentoTest extends TestCase
     {
         $cervezas_fermento = CervezasFermento::factory()->create();
         $response = $this->delete('/cervezas_fermentos/' . $cervezas_fermento->slug);
-        $this->assertCount(0, CervezasFermento::all()); // Fue Creado
+        $this->assertCount(0, CervezasFermento::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_fermentos'); // Funciona la redirección
     }

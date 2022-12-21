@@ -60,7 +60,7 @@ class CervezasEstiloTest extends TestCase
         CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
         $response = $this->delete('/cervezas_estilos/' . $cervezas_estilo->slug);
-        $this->assertCount(0, CervezasEstilo::all()); // Fue Creado
+        $this->assertCount(0, CervezasEstilo::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_estilos'); // Funciona la redirección
     }

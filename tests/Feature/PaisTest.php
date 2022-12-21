@@ -62,7 +62,7 @@ class PaisTest extends TestCase
         Continente::factory(2)->create();
         $pais = Pais::factory()->create();
         $response = $this->delete('/paises/' . $pais->slug);
-        $this->assertCount(0, Pais::all()); // Fue Creado
+        $this->assertCount(0, Pais::all()); // Fue Eliminado
         $response->assertRedirect('/paises'); // Funciona la redirección
     }
 

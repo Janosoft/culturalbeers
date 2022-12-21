@@ -82,7 +82,7 @@ class ProductorTest extends TestCase
         ProductoresFabricacion::factory(2)->create();
         $productor = Productor::factory()->create();
         $response = $this->delete('/productores/' . $productor->slug);
-        $this->assertCount(0, Productor::all()); // Fue Creado
+        $this->assertCount(0, Productor::all()); // Fue Eliminado
         $response->assertRedirect('/productores'); // Funciona la redirección
     }
 

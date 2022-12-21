@@ -86,7 +86,7 @@ class UsuarioTest extends TestCase
         Persona::factory(2)->create();
         $usuario = Usuario::factory()->create();
         $response = $this->delete('/usuarios/' . $usuario->slug);
-        $this->assertCount(0, Usuario::all()); // Fue Creado
+        $this->assertCount(0, Usuario::all()); // Fue Eliminado
         $response->assertRedirect('/usuarios'); // Funciona la redirección
     }
 

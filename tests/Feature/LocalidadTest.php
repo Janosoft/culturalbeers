@@ -70,7 +70,7 @@ class LocalidadTest extends TestCase
         DivisionPolitica::factory(2)->create();
         $localidad = Localidad::factory()->create();
         $response = $this->delete('/localidades/' . $localidad->slug);
-        $this->assertCount(0, Localidad::all()); // Fue Creado
+        $this->assertCount(0, Localidad::all()); // Fue Eliminado
 
         $response->assertRedirect('/localidades'); // Funciona la redirección
     }

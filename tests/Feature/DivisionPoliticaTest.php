@@ -65,7 +65,7 @@ class DivisionPoliticaTest extends TestCase
         Pais::factory(2)->create();
         $division_politica = DivisionPolitica::factory()->create();
         $response = $this->delete('/divisiones_politicas/' . $division_politica->slug);
-        $this->assertCount(0, DivisionPolitica::all()); // Fue Creado
+        $this->assertCount(0, DivisionPolitica::all()); // Fue Eliminado
 
         $response->assertRedirect('/divisiones_politicas'); // Funciona la redirección
     }

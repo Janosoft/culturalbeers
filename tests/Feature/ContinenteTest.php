@@ -48,7 +48,7 @@ class ContinenteTest extends TestCase
     {
         $continente = Continente::factory()->create();
         $response = $this->delete('/continentes/' . $continente->slug);
-        $this->assertCount(0, Continente::all()); // Fue Creado
+        $this->assertCount(0, Continente::all()); // Fue Eliminado
 
         $response->assertRedirect('/continentes'); // Funciona la redirección
     }

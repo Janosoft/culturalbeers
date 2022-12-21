@@ -48,7 +48,7 @@ class CervezasEnvaseTipoTest extends TestCase
     {
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
         $response = $this->delete('/cervezas_envases_tipos/' . $cervezas_envases_tipo->slug);
-        $this->assertCount(0, CervezasEnvaseTipo::all()); // Fue Creado
+        $this->assertCount(0, CervezasEnvaseTipo::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_envases_tipos'); // Funciona la redirección
     }

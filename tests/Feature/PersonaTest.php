@@ -79,7 +79,7 @@ class PersonaTest extends TestCase
         Localidad::factory(2)->create();
         $persona = Persona::factory()->create();
         $response = $this->delete('/personas/' . $persona->slug);
-        $this->assertCount(0, Persona::all()); // Fue Creado
+        $this->assertCount(0, Persona::all()); // Fue Eliminado
         $response->assertRedirect('/personas'); // Funciona la redirección
     }
 
