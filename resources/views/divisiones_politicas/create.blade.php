@@ -20,9 +20,10 @@
                     <div class="mb-3">
                         <label for="pais_id" class="form-label">País</label>
                         <select class="form-select" name="pais_id">
-                            <option value="" selected>Elija el país al que pertenece</option>
+                            <option value="" {{ empty(old('pais_id')) ? '' : 'selected' }}>Elija el país al que pertenece</option>
                             @foreach ($paises as $pais_id => $pais)
-                                <option value="{{ $pais_id }}">{{ $pais }}</option>
+                                <option value="{{ $pais_id }}" {{ old('pais_id') == $pais_id ? 'selected' : '' }}>
+                                    {{ $pais }}</option>
                             @endforeach
                         </select>
                         @error('pais_id')

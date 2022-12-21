@@ -29,9 +29,11 @@
                     <div class="mb-3">
                         <label for="localidad_id" class="form-label">Localidad Actual</label>
                         <select class="form-select" name="localidad_id">
-                            <option value="" selected>Elija la localidad actual</option>
+                            <option value="" {{ empty(old('localidad_id')) ? '' : 'selected' }}>Elija la localidad actual</option>
                             @foreach ($localidades as $localidad_id => $localidad)
-                                <option value="{{ $localidad_id }}">{{ $localidad }}</option>
+                                <option value="{{ $localidad_id }}"
+                                    {{ old('localidad_id') == $localidad_id ? 'selected' : '' }}>{{ $localidad }}
+                                </option>
                             @endforeach
                         </select>
                         @error('localidad_id')

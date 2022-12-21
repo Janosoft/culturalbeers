@@ -19,9 +19,9 @@
                     <div class="mb-3">
                         <label for="fermento_id" class="form-label">Tipo de Fermento</label>
                         <select class="form-select" name="fermento_id">
-                            <option value="" selected>Elija un tipo de fermento</option>
+                            <option value="" {{ empty(old('fermento_id')) ? '' : 'selected' }}>Elija un tipo de fermento</option>
                             @foreach ($cervezas_fermentos as $fermento_id => $fermento)
-                                <option value="{{ $fermento_id }}">{{ $fermento }}</option>
+                                <option value="{{ $fermento_id }}" {{ old('fermento_id') == $fermento_id ? 'selected' : '' }}>{{ $fermento }}</option>
                             @endforeach
                         </select>
                         @error('fermento_id')
