@@ -70,6 +70,6 @@ class CervezaController extends Controller
     public function destroy(Cerveza $cerveza)
     {
         $cerveza->delete();
-        return redirect()->route('cervezas.index', $cerveza);
+        return redirect()->route('cervezas.index');
     }
 }
