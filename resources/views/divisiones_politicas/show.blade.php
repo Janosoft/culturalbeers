@@ -13,7 +13,7 @@
 
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ route('divisiones_politicas.index') }}"> Volver</a>
+                <a href="{{ url()->previous() }}"> Volver</a>
                 <a href="{{ route('divisiones_politicas.edit', $division_politica) }}" class="btn btn-primary"> Editar</a>
                 <form action="{{ route('divisiones_politicas.destroy', $division_politica) }}" method="POST"
                     style="display: inline;">

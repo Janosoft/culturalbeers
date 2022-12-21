@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col">
-                <a href="{{ route('productores.index') }}"> Volver</a>
+                <a href="{{ url()->previous() }}"> Volver</a>
                 <a href="{{ route('productores.edit', $productor) }}" class="btn btn-primary"> Editar</a>
                 <form action="{{ route('productores.destroy', $productor) }}" method="POST" style="display: inline;">
                     @csrf
