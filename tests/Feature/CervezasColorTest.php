@@ -61,8 +61,9 @@ class CervezasColorTest extends TestCase
         $response = $this->get('/cervezas_colores');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_colores.index'); // Se está mostrando la vista correcta
-        $cervezas_colores = CervezasColor::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas_colores', $cervezas_colores); // Tiene los elementos creados
+        $response->assertViewHas('cervezas_colores', function ($cervezas_colores) {
+            return $cervezas_colores->contains(CervezasColor::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_colores_nombre_is_required()

@@ -13,12 +13,12 @@ use Tests\TestCase;
 class DivisionPoliticaTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_divisiones_politicas_can_be_created()
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
-        $paises= Pais::factory(2)->create();
+        $paises = Pais::factory(2)->create();
         $response = $this->post('/divisiones_politicas', [
             'nombre' => 'nombre de prueba',
             'pais_id' => $paises->random()->pais_id,
@@ -46,7 +46,7 @@ class DivisionPoliticaTest extends TestCase
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
-        $paises= Pais::factory(2)->create();
+        $paises = Pais::factory(2)->create();
         $division_politica = DivisionPolitica::factory()->create();
         $response = $this->put('/divisiones_politicas/' . $division_politica->slug, [
             'nombre' => 'nombre de prueba',
@@ -81,15 +81,16 @@ class DivisionPoliticaTest extends TestCase
         $response = $this->get('/divisiones_politicas');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('divisiones_politicas.index'); // Se está mostrando la vista correcta
-        $divisiones_politicas = DivisionPolitica::orderBy('nombre')->paginate();
-        $response->assertViewHas('divisiones_politicas', $divisiones_politicas); // Tiene los elementos creados
+        $response->assertViewHas('divisiones_politicas', function ($divisiones_politicas) {
+            return $divisiones_politicas->contains(DivisionPolitica::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_divisiones_politicas_nombre_is_required()
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
-        $paises= Pais::factory(2)->create();
+        $paises = Pais::factory(2)->create();
         $response = $this->post('/divisiones_politicas', [
             'nombre' => '',
             'pais_id' => $paises->random()->pais_id,

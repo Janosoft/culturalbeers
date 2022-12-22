@@ -14,13 +14,13 @@ use Tests\TestCase;
 class LocalidadTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_localidades_can_be_created()
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
-        $divisiones_politicas= DivisionPolitica::factory(2)->create();
+        $divisiones_politicas = DivisionPolitica::factory(2)->create();
         $response = $this->post('/localidades', [
             'nombre' => 'nombre de prueba',
             'division_politica_id' => $divisiones_politicas->random()->division_politica_id,
@@ -50,7 +50,7 @@ class LocalidadTest extends TestCase
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
-        $divisiones_politicas= DivisionPolitica::factory(2)->create();
+        $divisiones_politicas = DivisionPolitica::factory(2)->create();
         $localidad = Localidad::factory()->create();
         $response = $this->put('/localidades/' . $localidad->slug, [
             'nombre' => 'nombre de prueba',
@@ -87,8 +87,9 @@ class LocalidadTest extends TestCase
         $response = $this->get('/localidades');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('localidades.index'); // Se está mostrando la vista correcta
-        $localidades = Localidad::orderBy('nombre')->paginate();
-        $response->assertViewHas('localidades', $localidades); // Tiene los elementos creados
+        $response->assertViewHas('localidades', function ($localidades) {
+            return $localidades->contains(Localidad::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_localidades_nombre_is_required()
@@ -96,7 +97,7 @@ class LocalidadTest extends TestCase
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
-        $divisiones_politicas= DivisionPolitica::factory(2)->create();
+        $divisiones_politicas = DivisionPolitica::factory(2)->create();
         $response = $this->post('/localidades', [
             'nombre' => '',
             'division_politica_id' => $divisiones_politicas->random()->division_politica_id,

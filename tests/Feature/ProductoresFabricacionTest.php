@@ -60,8 +60,9 @@ class ProductoresFabricacionTest extends TestCase
         $response = $this->get('/productores_fabricaciones');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('productores_fabricaciones.index'); // Se está mostrando la vista correcta
-        $productores_fabricaciones = ProductoresFabricacion::orderBy('nombre')->paginate();
-        $response->assertViewHas('productores_fabricaciones', $productores_fabricaciones); // Tiene los elementos creados
+        $response->assertViewHas('productores_fabricaciones', function ($productores_fabricaciones) {
+            return $productores_fabricaciones->contains(ProductoresFabricacion::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_productores_fabricaciones_nombre_is_required()

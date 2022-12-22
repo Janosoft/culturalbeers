@@ -16,7 +16,7 @@ use Tests\TestCase;
 class UsuarioTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_usuarios_can_be_created()
     {
         $this->withoutExceptionHandling();
@@ -26,7 +26,7 @@ class UsuarioTest extends TestCase
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
-        $personas= Persona::factory(2)->create();
+        $personas = Persona::factory(2)->create();
         $response = $this->post('/usuarios', [
             'email' => 'EMAIL@gmail.com',
             'password' => '1234567890',
@@ -62,7 +62,7 @@ class UsuarioTest extends TestCase
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
-        $personas= Persona::factory(2)->create();
+        $personas = Persona::factory(2)->create();
         $usuario = Usuario::factory()->create();
         $response = $this->put('/usuarios/' . $usuario->slug, [
             'email' => 'EMAIL@gmail.com',
@@ -102,5 +102,8 @@ class UsuarioTest extends TestCase
         $response = $this->get('/usuarios');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('usuarios.index'); // Se está mostrando la vista correcta
+        $response->assertViewHas('usuarios', function ($usuarios) {
+            return $usuarios->contains(Usuario::first());
+        });
     }
 }

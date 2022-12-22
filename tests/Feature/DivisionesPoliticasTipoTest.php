@@ -10,7 +10,7 @@ use Tests\TestCase;
 class DivisionesPoliticasTipoTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_divisiones_politicas_tipos_can_be_created()
     {
         $response = $this->post('/divisiones_politicas_tipos', [
@@ -61,8 +61,9 @@ class DivisionesPoliticasTipoTest extends TestCase
         $response = $this->get('/divisiones_politicas_tipos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('divisiones_politicas_tipos.index'); // Se está mostrando la vista correcta
-        $divisiones_politicas_tipos = DivisionesPoliticasTipo::orderBy('nombre')->paginate();
-        $response->assertViewHas('divisiones_politicas_tipos', $divisiones_politicas_tipos); // Tiene los elementos creados
+        $response->assertViewHas('divisiones_politicas_tipos', function ($divisiones_politicas_tipos) {
+            return $divisiones_politicas_tipos->contains(DivisionesPoliticasTipo::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_divisiones_politicas_tipos_nombre_is_required()

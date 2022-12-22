@@ -15,14 +15,14 @@ use App\Models\Persona;
 class PersonaTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_personas_can_be_created()
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
         $response = $this->post('/personas', [
             'nombre' => 'nombre de prueba',
             'apellido' => 'apellido de prueba',
@@ -56,7 +56,7 @@ class PersonaTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
         $persona = Persona::factory()->create();
         $response = $this->put('/personas/' . $persona->slug, [
             'nombre' => 'nombre de prueba',
@@ -96,8 +96,9 @@ class PersonaTest extends TestCase
         $response = $this->get('/personas');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('personas.index'); // Se está mostrando la vista correcta
-        $personas = Persona::orderBy('nombre')->paginate();
-        $response->assertViewHas('personas', $personas); // Tiene los elementos creados
+        $response->assertViewHas('personas', function ($personas) {
+            return $personas->contains(Persona::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_personas_nombre_is_required()
@@ -106,7 +107,7 @@ class PersonaTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
         $response = $this->post('/personas', [
             'nombre' => '',
             'apellido' => 'apellido de prueba',
@@ -122,7 +123,7 @@ class PersonaTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
         $response = $this->post('/personas', [
             'nombre' => 'nombre de prueba',
             'apellido' => '',

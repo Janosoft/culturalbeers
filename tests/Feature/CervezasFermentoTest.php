@@ -10,7 +10,7 @@ use Tests\TestCase;
 class CervezasFermentoTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_fermentos_can_be_created()
     {
         $response = $this->post('/cervezas_fermentos', [
@@ -61,8 +61,9 @@ class CervezasFermentoTest extends TestCase
         $response = $this->get('/cervezas_fermentos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_fermentos.index'); // Se está mostrando la vista correcta
-        $cervezas_fermentos = CervezasFermento::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas_fermentos', $cervezas_fermentos); // Tiene los elementos creados
+        $response->assertViewHas('cervezas_fermentos', function ($cervezas_fermentos) {
+            return $cervezas_fermentos->contains(CervezasFermento::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_fermentos_nombre_is_required()

@@ -11,10 +11,10 @@ use Tests\TestCase;
 class CervezasFamiliaTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_familias_can_be_created()
     {
-        $cervezas_fermentos= CervezasFermento::factory(2)->create();
+        $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $response = $this->post('/cervezas_familias', [
             'nombre' => 'nombre de prueba',
             'fermento_id' => $cervezas_fermentos->random()->fermento_id,
@@ -38,7 +38,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_can_be_updated()
     {
-        $cervezas_fermentos= CervezasFermento::factory(2)->create();
+        $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $cervezas_familia = CervezasFamilia::factory()->create();
         $response = $this->put('/cervezas_familias/' . $cervezas_familia->slug, [
             'nombre' => 'nombre de prueba',
@@ -69,13 +69,14 @@ class CervezasFamiliaTest extends TestCase
         $response = $this->get('/cervezas_familias');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_familias.index'); // Se está mostrando la vista correcta
-        $cervezas_familias = CervezasFamilia::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas_familias', $cervezas_familias); // Tiene los elementos creados
+        $response->assertViewHas('cervezas_familias', function ($cervezas_familias) {
+            return $cervezas_familias->contains(CervezasFamilia::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_familias_nombre_is_required()
     {
-        $cervezas_fermentos= CervezasFermento::factory(2)->create();
+        $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $response = $this->post('/cervezas_familias', [
             'nombre' => '',
             'fermento_id' => $cervezas_fermentos->random()->fermento_id,

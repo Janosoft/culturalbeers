@@ -141,8 +141,9 @@ class CervezaTest extends TestCase
         $response = $this->get('/cervezas');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas.index'); // Se está mostrando la vista correcta
-        $cervezas = Cerveza::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas', $cervezas); // Tiene los elementos creados
+        $response->assertViewHas('cervezas', function ($cervezas) {
+            return $cervezas->contains(Cerveza::first());
+        });
     }
 
     public function test_cervezas_nombre_is_required()

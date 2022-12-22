@@ -16,15 +16,15 @@ use App\Models\ProductoresFabricacion;
 class ProductorTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_productores_can_be_created()
     {
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
-        $productores_fabricaciones= ProductoresFabricacion::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
+        $productores_fabricaciones = ProductoresFabricacion::factory(2)->create();
         $response = $this->post('/productores', [
             'nombre' => 'nombre de prueba',
             'fabricacion_id' => $productores_fabricaciones->random()->fabricacion_id,
@@ -58,8 +58,8 @@ class ProductorTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
-        $productores_fabricaciones= ProductoresFabricacion::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
+        $productores_fabricaciones = ProductoresFabricacion::factory(2)->create();
         $productor = Productor::factory()->create();
         $response = $this->put('/productores/' . $productor->slug, [
             'nombre' => 'nombre de prueba',
@@ -100,8 +100,9 @@ class ProductorTest extends TestCase
         $response = $this->get('/productores');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('productores.index'); // Se está mostrando la vista correcta
-        $productores = Productor::orderBy('nombre')->paginate();
-        $response->assertViewHas('productores', $productores); // Tiene los elementos creados
+        $response->assertViewHas('productores', function ($productores) {
+            return $productores->contains(Productor::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_productores_nombre_is_required()
@@ -110,8 +111,8 @@ class ProductorTest extends TestCase
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
-        $localidades= Localidad::factory(2)->create();
-        $productores_fabricaciones= ProductoresFabricacion::factory(2)->create();
+        $localidades = Localidad::factory(2)->create();
+        $productores_fabricaciones = ProductoresFabricacion::factory(2)->create();
         $response = $this->post('/productores', [
             'nombre' => '',
             'fabricacion_id' => $productores_fabricaciones->random()->fabricacion_id,

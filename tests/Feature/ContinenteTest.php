@@ -10,7 +10,7 @@ use Tests\TestCase;
 class ContinenteTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_continentes_can_be_created()
     {
         $response = $this->post('/continentes', [
@@ -61,8 +61,9 @@ class ContinenteTest extends TestCase
         $response = $this->get('/continentes');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('continentes.index'); // Se está mostrando la vista correcta
-        $continentes = Continente::orderBy('nombre')->paginate();
-        $response->assertViewHas('continentes', $continentes); // Tiene los elementos creados
+        $response->assertViewHas('continentes', function ($continentes) {
+            return $continentes->contains(Continente::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_continentes_nombre_is_required()

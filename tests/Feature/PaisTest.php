@@ -12,11 +12,11 @@ use App\Models\Pais;
 class PaisTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_paises_can_be_created()
     {
-        $divisiones_politicas_tipo= DivisionesPoliticasTipo::factory(2)->create();
-        $continentes= Continente::factory(2)->create();
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
+        $continentes = Continente::factory(2)->create();
         $response = $this->post('/paises', [
             'nombre' => 'nombre de prueba',
             'continente_id' => $continentes->random()->continente_id,
@@ -42,8 +42,8 @@ class PaisTest extends TestCase
 
     public function test_paises_can_be_updated()
     {
-        $divisiones_politicas_tipo= DivisionesPoliticasTipo::factory(2)->create();
-        $continentes= Continente::factory(2)->create();
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
+        $continentes = Continente::factory(2)->create();
         $pais = Pais::factory()->create();
         $response = $this->put('/paises/' . $pais->slug, [
             'nombre' => 'nombre de prueba',
@@ -76,14 +76,15 @@ class PaisTest extends TestCase
         $response = $this->get('/paises');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('paises.index'); // Se está mostrando la vista correcta
-        $paises = Pais::orderBy('nombre')->paginate();
-        $response->assertViewHas('paises', $paises); // Tiene los elementos creados
+        $response->assertViewHas('paises', function ($paises) {
+            return $paises->contains(Pais::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_paises_nombre_is_required()
     {
-        $divisiones_politicas_tipo= DivisionesPoliticasTipo::factory(2)->create();
-        $continentes= Continente::factory(2)->create();
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
+        $continentes = Continente::factory(2)->create();
         $response = $this->post('/paises', [
             'nombre' => '',
             'continente_id' => $continentes->random()->continente_id,

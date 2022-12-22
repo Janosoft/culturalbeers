@@ -10,7 +10,7 @@ use Tests\TestCase;
 class CervezasEnvaseTipoTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_envases_tipos_can_be_created()
     {
         $response = $this->post('/cervezas_envases_tipos', [
@@ -61,8 +61,9 @@ class CervezasEnvaseTipoTest extends TestCase
         $response = $this->get('/cervezas_envases_tipos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_envases_tipos.index'); // Se está mostrando la vista correcta
-        $cervezas_envases_tipos = CervezasEnvaseTipo::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas_envases_tipos', $cervezas_envases_tipos); // Tiene los elementos creados
+        $response->assertViewHas('cervezas_envases_tipos', function ($cervezas_envases_tipos) {
+            return $cervezas_envases_tipos->contains(CervezasEnvaseTipo::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_envases_tipos_nombre_is_required()

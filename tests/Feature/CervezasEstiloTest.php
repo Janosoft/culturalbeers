@@ -12,11 +12,11 @@ use Tests\TestCase;
 class CervezasEstiloTest extends TestCase
 {
     use RefreshDatabase; // utiliza una base de datos en blanco
-    
+
     public function test_estilos_can_be_created()
     {
         CervezasFermento::factory(2)->create();
-        $cervezas_familias= CervezasFamilia::factory(2)->create();
+        $cervezas_familias = CervezasFamilia::factory(2)->create();
         $response = $this->post('/cervezas_estilos', [
             'nombre' => 'nombre de prueba',
             'familia_id' => $cervezas_familias->random()->familia_id,
@@ -42,7 +42,7 @@ class CervezasEstiloTest extends TestCase
     public function test_estilos_can_be_updated()
     {
         CervezasFermento::factory(2)->create();
-        $cervezas_familias= CervezasFamilia::factory(2)->create();
+        $cervezas_familias = CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
         $response = $this->put('/cervezas_estilos/' . $cervezas_estilo->slug, [
             'nombre' => 'nombre de prueba',
@@ -74,8 +74,9 @@ class CervezasEstiloTest extends TestCase
         $response = $this->get('/cervezas_estilos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_estilos.index'); // Se está mostrando la vista correcta
-        $cervezas_estilos = CervezasEstilo::orderBy('nombre')->paginate();
-        $response->assertViewHas('cervezas_estilos', $cervezas_estilos); // Tiene los elementos creados
+        $response->assertViewHas('cervezas_estilos', function ($cervezas_estilos) {
+            return $cervezas_estilos->contains(CervezasEstilo::first());
+        }); // Tiene los elementos creados
     }
 
     public function test_estilos_nombre_is_required()
