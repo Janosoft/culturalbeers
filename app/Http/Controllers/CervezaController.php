@@ -29,7 +29,8 @@ class CervezaController extends Controller
 
     public function store(StoreCerveza $request)
     {
-        $request['slug'] = str()->slug($request->nombre);
+        $productor= Productor::where('productor_id', $request->productor_id)->first();
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
@@ -61,7 +62,8 @@ class CervezaController extends Controller
 
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
-        $request['slug'] = str()->slug($request->nombre);
+        $productor= Productor::where('productor_id', $request->productor_id)->first();
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza->update($request->all());
         $cerveza->envases()->sync($request->envases);
         return redirect()->route('cervezas.show', $cerveza);

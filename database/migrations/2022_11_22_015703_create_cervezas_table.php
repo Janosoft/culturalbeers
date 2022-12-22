@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('slug');
             $table->timestamps();
 
-            $table->index('nombre');
+            $table->unique(['nombre', 'productor_id']);
         });
     }
 

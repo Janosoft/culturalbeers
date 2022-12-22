@@ -24,7 +24,7 @@ class StoreCerveza extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => 'required|unique:cervezas,nombre, productor_id = ' . $this->productor_id . ',cerveza_id,productor_id,' . $this->productor_id . '|min:3',
             'productor_id' => 'required',
             'color_id' => 'required',
             'estilo_id' => 'required',

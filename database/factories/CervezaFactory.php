@@ -22,12 +22,13 @@ class CervezaFactory extends Factory
     public function definition()
     {
         $nombre = implode(" ", fake()->unique()->words(2));
+        $productor = Productor::all()->random();
         return [
             'nombre' => $nombre,
-            'productor_id' => Productor::all()->random()->productor_id,
+            'productor_id' => $productor->productor_id,
             'color_id' => CervezasColor::all()->random()->color_id,
             'estilo_id' => CervezasEstilo::all()->random()->estilo_id,
-            'slug' => str()->slug($nombre, '-', 'es'),
+            'slug' => str()->slug($productor->nombre . '-' . $nombre, '-', 'es'),
         ];
     }
 }
