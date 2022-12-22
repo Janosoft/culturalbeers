@@ -12,7 +12,6 @@
 
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ url()->previous() }}"> Volver</a>
                 <a href="{{ route('cervezas_envases_tipos.edit', $cervezas_envases_tipo) }}" class="btn btn-primary">
                     Editar</a>
                 <form action="{{ route('cervezas_envases_tipos.destroy', $cervezas_envases_tipo) }}" method="POST"

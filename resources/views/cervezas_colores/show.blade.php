@@ -11,8 +11,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col">
-                <a href="{{ url()->previous() }}"> Volver</a>
+            <div class="col">                
                 <a href="{{ route('cervezas_colores.edit', $cervezas_color) }}" class="btn btn-primary"> Editar</a>
                 <form action="{{ route('cervezas_colores.destroy', $cervezas_color) }}" method="POST"
                     style="display: inline;">

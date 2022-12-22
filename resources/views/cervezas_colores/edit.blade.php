@@ -16,7 +16,6 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <a href="{{ url()->previous() }}"> Volver</a>
                         <button type="submit" class="btn btn-primary">Editar</button>
                     </div>
                 </form>

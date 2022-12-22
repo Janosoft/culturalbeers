@@ -12,7 +12,6 @@
 
         <div class="row">
             <div class="col">
-                <a href="{{ url()->previous() }}"> Volver</a>
                 <a href="{{ route('productores_fabricaciones.edit', $productores_fabricacion) }}" class="btn btn-primary">
                     Editar</a>
                 <form action="{{ route('productores_fabricaciones.destroy', $productores_fabricacion) }}" method="POST"
