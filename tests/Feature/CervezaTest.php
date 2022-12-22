@@ -159,9 +159,8 @@ class CervezaTest extends TestCase
         $productores = Productor::factory(2)->create();
         $colores = CervezasColor::factory(2)->create();
         $estilos = CervezasEstilo::factory(2)->create();
-        $cerveza = Cerveza::factory()->create();
         $response = $this->post('/cervezas', [
-            'nombre' => 'nombre de prueba',
+            'nombre' => '',
             'productor_id' => $productores->random()->productor_id,
             'color_id' => $colores->random()->color_id,
             'estilo_id' => $estilos->random()->estilo_id,
