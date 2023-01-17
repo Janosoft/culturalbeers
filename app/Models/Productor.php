@@ -56,5 +56,10 @@ class Productor extends Model
     {
         return $this->morphMany(Imagen::class, 'imageable');
     }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'commentable');
+    }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

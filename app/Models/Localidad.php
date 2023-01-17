@@ -51,5 +51,10 @@ class Localidad extends Model
     {
         return $this->hasMany(Persona::class, 'localidad_id');
     }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'commentable');
+    }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

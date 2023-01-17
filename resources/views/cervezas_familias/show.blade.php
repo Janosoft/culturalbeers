@@ -33,5 +33,21 @@
             </div>
         </div>
 
+        <hr>
+
+        @forelse ($cervezas_familia->comentarios as $comentario)
+            <div class="row mb-3">
+                <div class="col">
+                    {{ $comentario->comentario }}
+                </div>
+            </div>
+        @empty
+            <div class="row mb-3">
+                <div class="col">
+                    No hay Comentarios
+                </div>
+            </div>
+        @endforelse
+
     </div>
 @endsection

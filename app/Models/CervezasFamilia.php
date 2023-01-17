@@ -45,5 +45,10 @@ class CervezasFamilia extends Model
     {
         return $this->hasMany(CervezasEstilo::class, 'familia_id');
     }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'commentable');
+    }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

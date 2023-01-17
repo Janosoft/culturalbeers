@@ -45,5 +45,10 @@ class CervezasEstilo extends Model
     {
         return $this->hasMany(Cerveza::class, 'estilo_id');
     }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'commentable');
+    }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
