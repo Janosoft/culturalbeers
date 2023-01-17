@@ -10,6 +10,7 @@ use App\Models\CervezasColor;
 use App\Models\CervezasEstilo;
 use App\Models\CervezasEnvaseTipo;
 use App\Models\Imagen;
+use App\Models\Comentario;
 
 class Cerveza extends Model
 {
@@ -62,6 +63,11 @@ class Cerveza extends Model
     public function imagenes()
     {
         return $this->morphMany(Imagen::class, 'imageable');
+    }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'commentable');
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }

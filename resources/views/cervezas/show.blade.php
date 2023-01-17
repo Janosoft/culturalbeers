@@ -14,7 +14,8 @@
                         href="{{ route('cervezas_estilos.show', $cerveza->estilo) }}">{{ $cerveza->estilo->nombre }}</a></h4>
                 <h4>Envases: <ul class="list-group list-group-horizontal">
                         @foreach ($cerveza->envases as $envase)
-                            <a class="list-group-item" href="{{ route('cervezas_envases_tipos.show', $envase) }}">{{ $envase->nombre }}</a>
+                            <a class="list-group-item"
+                                href="{{ route('cervezas_envases_tipos.show', $envase) }}">{{ $envase->nombre }}</a>
                         @endforeach
                     </ul>
                 </h4>
@@ -40,5 +41,15 @@
             @endforeach
         </div>
 
+        <hr>
+
+        @foreach ($cerveza->comentarios as $comentario)
+            <div class="row mb-3">
+                <div class="col">
+                    {{ $comentario->comentario }}
+                </div>
+            </div>
+        @endforeach
+        
     </div>
 @endsection

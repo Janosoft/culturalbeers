@@ -21,6 +21,11 @@ class CervezaObserver
             if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
             $imagen->delete();
          }
+
+        foreach ($cerveza->comentarios as $comentario)
+         {
+            $comentario->delete();
+         }
     }
 
 }
