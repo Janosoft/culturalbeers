@@ -43,13 +43,19 @@
 
         <hr>
 
-        @foreach ($cerveza->comentarios as $comentario)
+        @forelse ($cerveza->comentarios as $comentario)
             <div class="row mb-3">
                 <div class="col">
                     {{ $comentario->comentario }}
                 </div>
             </div>
-        @endforeach
-        
+        @empty
+            <div class="row mb-3">
+                <div class="col">
+                    No hay Comentarios
+                </div>
+            </div>
+        @endforelse
+
     </div>
 @endsection
