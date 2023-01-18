@@ -10,6 +10,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::orderBy('email')->paginate();
+
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -22,6 +23,10 @@ class UsuarioController extends Controller
     {
         $request['slug'] = md5($request->email);
         $usuario = Usuario::create($request->all());
+        session()->flash('statusTitle', 'Usuario Creado');
+        session()->flash('statusMessage', 'El usuario fue creado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('usuarios.show', $usuario);
     }
 
@@ -39,12 +44,20 @@ class UsuarioController extends Controller
     {
         $request['slug'] = md5($request->email);
         $usuario->update($request->all());
+        session()->flash('statusTitle', 'Usuario Actualizado');
+        session()->flash('statusMessage', 'El usuario fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('usuarios.show', $usuario);
     }
 
     public function destroy(Usuario $usuario)
     {
         $usuario->delete();
+        session()->flash('statusTitle', 'Usuario Eliminado');
+        session()->flash('statusMessage', 'El usuario fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('usuarios.index');
     }
 }

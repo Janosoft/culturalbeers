@@ -13,6 +13,7 @@ class PaisController extends Controller
     public function index()
     {
         $paises = Pais::orderBy('nombre')->paginate();
+
         return view('paises.index', compact('paises'));
     }
 
@@ -20,6 +21,7 @@ class PaisController extends Controller
     {
         $continentes = Continente::pluck('nombre', 'continente_id');
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::pluck('nombre', 'divisiones_politicas_tipo_id');
+
         return view('paises.create', compact(['continentes', 'divisiones_politicas_tipo']));
     }
 
@@ -36,6 +38,10 @@ class PaisController extends Controller
                 'imageable_type' => Pais::class,
             ]);
         }
+        session()->flash('statusTitle', 'País Creado');
+        session()->flash('statusMessage', 'El país fue creado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('paises.show', $pais);
     }
 
@@ -48,6 +54,7 @@ class PaisController extends Controller
     {
         $continentes = Continente::pluck('nombre', 'continente_id');
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::pluck('nombre', 'divisiones_politicas_tipo_id');
+
         return view('paises.edit', compact(['pais', 'continentes', 'divisiones_politicas_tipo']));
     }
 
@@ -55,12 +62,20 @@ class PaisController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $pais->update($request->all());
+        session()->flash('statusTitle', 'País Actualizado');
+        session()->flash('statusMessage', 'El país fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('paises.show', $pais);
     }
 
     public function destroy(Pais $pais)
     {
         $pais->delete();
+        session()->flash('statusTitle', 'País Eliminado');
+        session()->flash('statusMessage', 'El país fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('paises.index');
     }
 }

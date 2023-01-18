@@ -13,6 +13,7 @@ class ProductorController extends Controller
     public function index()
     {
         $productores = Productor::orderBy('nombre')->paginate();
+
         return view('productores.index', compact('productores'));
     }
 
@@ -20,6 +21,7 @@ class ProductorController extends Controller
     {
         $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
         $localidades = Localidad::pluck('nombre', 'localidad_id');
+
         return view('productores.create', compact(['fabricaciones', 'localidades']));
     }
 
@@ -36,6 +38,10 @@ class ProductorController extends Controller
                 'imageable_type' => Productor::class,
             ]);
         }
+        session()->flash('statusTitle', 'Productor Creado');
+        session()->flash('statusMessage', 'El productor fue creado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('productores.show', $productor);
     }
 
@@ -48,6 +54,7 @@ class ProductorController extends Controller
     {
         $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
         $localidades = Localidad::pluck('nombre', 'localidad_id');
+
         return view('productores.edit', compact(['productor', 'fabricaciones', 'localidades']));
     }
 
@@ -55,12 +62,20 @@ class ProductorController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $productor->update($request->all());
+        session()->flash('statusTitle', 'Productor Actualizado');
+        session()->flash('statusMessage', 'El productor fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('productores.show', $productor);
     }
 
     public function destroy(Productor $productor)
     {
         $productor->delete();
+        session()->flash('statusTitle', 'Productor Eliminado');
+        session()->flash('statusMessage', 'El productor fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('productores.index');
     }
 }

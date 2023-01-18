@@ -10,6 +10,7 @@ class ContinenteController extends Controller
     public function index()
     {
         $continentes = Continente::orderBy('nombre')->paginate();
+
         return view('continentes.index', compact('continentes'));
     }
 
@@ -22,6 +23,7 @@ class ContinenteController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $continente = Continente::create($request->all());
+
         return redirect()->route('continentes.show', $continente);
     }
 
@@ -39,12 +41,20 @@ class ContinenteController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $continente->update($request->all());
+        session()->flash('statusTitle', 'Continente Actualizado');
+        session()->flash('statusMessage', 'El continente fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('continentes.show', $continente);
     }
     
     public function destroy(Continente $continente)
     {
         $continente->delete();
+        session()->flash('statusTitle', 'Continente Eliminado');
+        session()->flash('statusMessage', 'El continente fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('continentes.index');
     }
 }

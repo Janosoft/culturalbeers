@@ -17,6 +17,10 @@ class ContactoController extends Controller
     {
         $correo = new ContactoMailable($request->all());
         Mail::to('janosoft@gmail.com')->send($correo);
+
+        session()->flash('statusTitle', 'Mensaje Enviado');
+        session()->flash('statusMessage', 'El mensaje fue enviado correctamente.');
+        session()->flash('statusColor', 'success');
         return redirect()->route('contacto.index')->with('info', 'mensaje enviado');
     }
 }

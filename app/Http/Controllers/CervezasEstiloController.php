@@ -11,12 +11,14 @@ class CervezasEstiloController extends Controller
     public function index()
     {
         $cervezas_estilos = CervezasEstilo::orderBy('nombre')->paginate();
+
         return view('cervezas_estilos.index', compact('cervezas_estilos'));
     }
 
     public function create()
     {
         $familias = CervezasFamilia::pluck('nombre', 'familia_id');
+
         return view('cervezas_estilos.create', compact('familias'));
     }
 
@@ -24,6 +26,10 @@ class CervezasEstiloController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cervezas_estilo = CervezasEstilo::create($request->all());
+        session()->flash('statusTitle', 'Estilo Creado');
+        session()->flash('statusMessage', 'El estilo de cervezas fue creado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
 
@@ -35,6 +41,7 @@ class CervezasEstiloController extends Controller
     public function edit(CervezasEstilo $cervezas_estilo)
     {
         $familias = CervezasFamilia::pluck('nombre', 'familia_id');
+
         return view('cervezas_estilos.edit', compact(['cervezas_estilo', 'familias']));
     }
 
@@ -42,12 +49,20 @@ class CervezasEstiloController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cervezas_estilo->update($request->all());
+        session()->flash('statusTitle', 'Estilo Actualizado');
+        session()->flash('statusMessage', 'El estilo de cervezas fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
     }
 
     public function destroy(CervezasEstilo $cervezas_estilo)
     {
         $cervezas_estilo->delete();
+        session()->flash('statusTitle', 'Estilo Eliminado');
+        session()->flash('statusMessage', 'El estilo de cervezas fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_estilos.index');
     }
 }

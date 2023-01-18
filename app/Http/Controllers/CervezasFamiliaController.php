@@ -11,12 +11,14 @@ class CervezasFamiliaController extends Controller
     public function index()
     {
         $cervezas_familias = CervezasFamilia::orderBy('nombre')->paginate();
+
         return view('cervezas_familias.index', compact('cervezas_familias'));
     }
 
     public function create()
     {
         $cervezas_fermentos = CervezasFermento::pluck('nombre', 'fermento_id');
+
         return view('cervezas_familias.create', compact('cervezas_fermentos'));
     }
 
@@ -24,6 +26,10 @@ class CervezasFamiliaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cervezas_familia = CervezasFamilia::create($request->all());
+        session()->flash('statusTitle', 'Familia Creada');
+        session()->flash('statusMessage', 'La familia de cervezas fue creada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
 
@@ -35,6 +41,7 @@ class CervezasFamiliaController extends Controller
     public function edit(CervezasFamilia $cervezas_familia)
     {
         $cervezas_fermentos = CervezasFermento::pluck('nombre', 'fermento_id');
+
         return view('cervezas_familias.edit', compact(['cervezas_familia', 'cervezas_fermentos']));
     }
 
@@ -42,12 +49,20 @@ class CervezasFamiliaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $cervezas_familia->update($request->all());
+        session()->flash('statusTitle', 'Familia Actualizada');
+        session()->flash('statusMessage', 'La familia de cervezas fue actualizada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_familias.show', $cervezas_familia);
     }
 
     public function destroy(CervezasFamilia $cervezas_familia)
     {
         $cervezas_familia->delete();
+        session()->flash('statusTitle', 'Familia Eliminada');
+        session()->flash('statusMessage', 'La familia de cervezas fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas_familias.index');
     }
 }

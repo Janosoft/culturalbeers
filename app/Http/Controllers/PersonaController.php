@@ -12,12 +12,14 @@ class PersonaController extends Controller
     public function index()
     {
         $personas = Persona::orderBy('nombre')->paginate();
+
         return view('personas.index', compact('personas'));
     }
 
     public function create()
     {
         $localidades = Localidad::pluck('nombre', 'localidad_id');
+        
         return view('personas.create', compact('localidades'));
     }
 
@@ -34,6 +36,10 @@ class PersonaController extends Controller
                 'imageable_type' => Persona::class,
             ]);
         }
+        session()->flash('statusTitle', 'Persona Creada');
+        session()->flash('statusMessage', 'La persona fue creada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('personas.show', $persona);
     }
 
@@ -45,6 +51,7 @@ class PersonaController extends Controller
     public function edit(Persona $persona)
     {
         $localidades = Localidad::pluck('nombre', 'localidad_id');
+
         return view('personas.edit', compact(['persona', 'localidades']));
     }
 
@@ -52,12 +59,20 @@ class PersonaController extends Controller
     {
         $request['slug'] = str()->slug($request->nombre);
         $persona->update($request->all());
+        session()->flash('statusTitle', 'Persona Actualizada');
+        session()->flash('statusMessage', 'La persona fue actualizada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('personas.show', $persona);
     }
 
     public function destroy(Persona $persona)
     {
         $persona->delete();
+        session()->flash('statusTitle', 'Persona Eliminada');
+        session()->flash('statusMessage', 'La persona fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('personas.index');
     }
 }

@@ -15,6 +15,7 @@ class CervezaController extends Controller
     public function index()
     {
         $cervezas = Cerveza::orderBy('nombre')->paginate();
+
         return view('cervezas.index', compact('cervezas'));
     }
 
@@ -24,12 +25,13 @@ class CervezaController extends Controller
         $colores = CervezasColor::pluck('nombre', 'color_id');
         $estilos = CervezasEstilo::pluck('nombre', 'estilo_id');
         $envases_tipos = CervezasEnvaseTipo::pluck('nombre', 'envase_id');
+
         return view('cervezas.create', compact(['productores', 'colores', 'estilos', 'envases_tipos']));
     }
 
     public function store(StoreCerveza $request)
     {
-        $productor= Productor::where('productor_id', $request->productor_id)->first();
+        $productor = Productor::where('productor_id', $request->productor_id)->first();
         $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
@@ -42,6 +44,10 @@ class CervezaController extends Controller
                 'imageable_type' => Cerveza::class,
             ]);
         }
+        session()->flash('statusTitle', 'Cerveza Creada');
+        session()->flash('statusMessage', 'La cerveza fue creada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas.show', $cerveza);
     }
 
@@ -57,21 +63,30 @@ class CervezaController extends Controller
         $estilos = CervezasEstilo::pluck('nombre', 'estilo_id');
         $envases_tipos = CervezasEnvaseTipo::pluck('nombre', 'envase_id');
         $envases = $cerveza->envases->pluck('envase_id');
+
         return view('cervezas.edit', compact(['cerveza', 'productores', 'colores', 'estilos', 'envases_tipos', 'envases']));
     }
 
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
-        $productor= Productor::where('productor_id', $request->productor_id)->first();
+        $productor = Productor::where('productor_id', $request->productor_id)->first();
         $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza->update($request->all());
         $cerveza->envases()->sync($request->envases);
+        session()->flash('statusTitle', 'Cerveza Actualizada');
+        session()->flash('statusMessage', 'La cerveza fue actualizada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas.show', $cerveza);
     }
 
     public function destroy(Cerveza $cerveza)
     {
         $cerveza->delete();
+        session()->flash('statusTitle', 'Cerveza Eliminada');
+        session()->flash('statusMessage', 'La cerveza fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
         return redirect()->route('cervezas.index');
     }
 }
