@@ -32,21 +32,7 @@
             </div>
         </div>
 
-        <hr>
-
-        @forelse ($cervezas_fermento->comentarios as $comentario)
-            <div class="row mb-3">
-                <div class="col">
-                    {{ $comentario->comentario }}
-                </div>
-            </div>
-        @empty
-            <div class="row mb-3">
-                <div class="col">
-                    No hay Comentarios
-                </div>
-            </div>
-        @endforelse
+        <x-comentarios :comentarios="$cervezas_fermento->comentarios" />
 
     </div>
 @endsection

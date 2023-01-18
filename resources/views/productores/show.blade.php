@@ -41,21 +41,7 @@
             </div>
         </div>
 
-        <hr>
-
-        @forelse ($productor->comentarios as $comentario)
-            <div class="row mb-3">
-                <div class="col">
-                    {{ $comentario->comentario }}
-                </div>
-            </div>
-        @empty
-            <div class="row mb-3">
-                <div class="col">
-                    No hay Comentarios
-                </div>
-            </div>
-        @endforelse
+        <x-comentarios :comentarios="$productor->comentarios" />
 
     </div>
 @endsection
