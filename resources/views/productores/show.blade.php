@@ -31,15 +31,7 @@
             @endforeach
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($productor->cervezas as $cerveza)
-                        <a href="{{ route('cervezas.show', $cerveza) }}" class="list-group-item list-group-item-action">{{ $cerveza->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <x-cervezas :cervezas="$productor->cervezas" />
 
         <x-comentarios :comentarios="$productor->comentarios" />
 
