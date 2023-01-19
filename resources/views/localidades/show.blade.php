@@ -22,25 +22,9 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($localidad->productores as $productor)
-                        <a href="{{ route('productores.show', $productor) }}" class="list-group-item list-group-item-action">{{ $productor->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($localidad->personas as $persona)
-                        <a href="{{ route('personas.show', $persona) }}" class="list-group-item list-group-item-action">{{ $persona->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <x-productores :productores="$localidad->productores" />
+        
+        <x-personas :personas="$localidad->personas" />
 
         <x-comentarios :comentarios="$localidad->comentarios" />
 

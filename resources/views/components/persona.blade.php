@@ -1,0 +1,1 @@
+<a href="{{ route('personas.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }}</a>

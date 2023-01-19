@@ -23,15 +23,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($cervezas_familia->estilos as $estilo)
-                        <a href="{{ route('cervezas_estilos.show', $estilo) }}" class="list-group-item list-group-item-action">{{ $estilo->nombre }}</a>
-                    @endforeach
-                    </div>
-            </div>
-        </div>
+        <x-cervezas-estilos :estilos="$cervezas_familia->estilos"/>
 
         <x-comentarios :comentarios="$cervezas_familia->comentarios" />
 

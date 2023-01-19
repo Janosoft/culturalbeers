@@ -31,15 +31,7 @@
             @endforeach
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($pais->divisiones_politicas as $division_politica)
-                        <a href="{{ route('divisiones_politicas.show', $division_politica) }}" class="list-group-item list-group-item-action">{{ $division_politica->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <x-divisiones-politicas :divisiones="$pais->divisiones_politicas"/>
 
     </div>
 @endsection

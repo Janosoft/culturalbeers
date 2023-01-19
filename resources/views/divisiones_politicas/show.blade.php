@@ -7,7 +7,8 @@
         <div class="row">
             <div class="col">
                 <h1>{{ $division_politica->nombre }}</h1>
-                <h2><a href="{{ route('paises.show', $division_politica->pais) }}">{{ $division_politica->pais->nombre }}</a></h2>
+                <h2><a href="{{ route('paises.show', $division_politica->pais) }}">{{ $division_politica->pais->nombre }}</a>
+                </h2>
             </div>
         </div>
 
@@ -23,15 +24,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($division_politica->localidades as $localidad)
-                        <a href="{{ route('localidades.show', $localidad) }}" class="list-group-item list-group-item-action">{{ $localidad->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <x-localidades :localidades="$division_politica->localidades" />
 
     </div>
 @endsection
