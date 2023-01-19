@@ -5,7 +5,7 @@
     <div class="container">
         <a href="{{ route('localidades.create') }}">Crear Nuevo</a>
 
-        <x-localidades :continentes="$localidades"/>
+        <x-localidades :localidades="$localidades"/>
 
         {{ $localidades->links() }}
     </div>

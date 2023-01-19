@@ -23,15 +23,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($productores_fabricacion->productores as $productor)
-                        <a href="{{ route('productores.show', $productor) }}" class="list-group-item list-group-item-action">{{ $productor->nombre }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <x-productores :productores="$productores_fabricacion->productores" />
 
     </div>
 @endsection

@@ -21,15 +21,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="list-group">
-                    @foreach ($continente->paises as $pais)
-                        <a href="{{ route('paises.show', $pais) }}" class="list-group-item list-group-item-action">{{ $pais->nombre }}</a>
-                    @endforeach
-                    </div>
-            </div>
-        </div>
+        <x-paises :paises="$continente->paises" />
 
     </div>
 @endsection
