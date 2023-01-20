@@ -10,7 +10,7 @@ class Comentario extends Model
     use HasFactory;
     protected $table = 'comentarios';
     protected $primaryKey = 'comentario_id';
-    protected $guarded = ['created_at', 'updated_at', 'usuario_id'];
+    protected $guarded = ['created_at', 'updated_at'];
 
     /* ATRIBUTOS EXTERNOS */
     public function commentable()

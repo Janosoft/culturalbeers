@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComentario;
 use App\Models\Localidad;
 use App\Http\Requests\StoreLocalidad;
+use App\Models\Comentario;
 use App\Models\DivisionPolitica;
 
 class LocalidadController extends Controller
@@ -51,6 +53,22 @@ class LocalidadController extends Controller
         $localidad->update($request->all());
         session()->flash('statusTitle', 'Localidad Actualizada');
         session()->flash('statusMessage', 'La localidad fue actualizada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('localidades.show', $localidad);
+    }
+
+    public function comment(StoreComentario $request, Localidad $localidad)
+    {
+        Comentario::create([
+            'comentario' => $request->comentario,
+            'commentable_type' => Localidad::class,
+            'commentable_id' => $localidad->localidad_id,
+            'usuario_id'=> 0 //TODO poner el usuario
+        ]);
+
+        session()->flash('statusTitle', 'Comentario Creado');
+        session()->flash('statusMessage', 'El comentario fue creado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('localidades.show', $localidad);

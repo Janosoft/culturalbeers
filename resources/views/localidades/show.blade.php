@@ -28,5 +28,18 @@
 
         <x-comentarios :comentarios="$localidad->comentarios" />
 
+        <form action="{{ route('localidades.comment', $localidad) }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Nuevo Comentario</label>
+                <input type="text" class="form-control" name="comentario" placeholder="Comentario" value="{{ old('comentario') }}">
+                @error('comentario')
+                    <label for="floatingInputInvalid">*{{ $message }}</label>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Comentar</button>
+            </div>
+        </form>
     </div>
 @endsection

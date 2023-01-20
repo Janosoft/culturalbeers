@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\CervezasEstilo;
 use App\Http\Requests\StoreCervezaEstilo;
+use App\Http\Requests\StoreComentario;
 use App\Models\CervezasFamilia;
+use App\Models\Comentario;
 
 class CervezasEstiloController extends Controller
 {
@@ -51,6 +53,22 @@ class CervezasEstiloController extends Controller
         $cervezas_estilo->update($request->all());
         session()->flash('statusTitle', 'Estilo Actualizado');
         session()->flash('statusMessage', 'El estilo de cervezas fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_estilos.show', $cervezas_estilo);
+    }
+
+    public function comment(StoreComentario $request, CervezasEstilo $cervezas_estilo)
+    {
+        Comentario::create([
+            'comentario' => $request->comentario,
+            'commentable_type' => CervezasEstilo::class,
+            'commentable_id' => $cervezas_estilo->estilo_id,
+            'usuario_id'=> 0 //TODO poner el usuario
+        ]);
+
+        session()->flash('statusTitle', 'Comentario Creado');
+        session()->flash('statusMessage', 'El comentario fue creado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_estilos.show', $cervezas_estilo);

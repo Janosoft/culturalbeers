@@ -50,3 +50,12 @@ Route::resource('personas', PersonaController::class);
 Route::resource('productores', ProductorController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
 Route::resource('usuarios', UsuarioController::class);
+
+/* COMENTARIOS */
+Route::post('cervezas/{cerveza}/comment', [CervezaController::class, 'comment'])->name('cervezas.comment');
+Route::post('cervezas_estilos/{cervezas_estilo}/comment', [CervezasEstiloController::class, 'comment'])->name('cervezas_estilos.comment');
+Route::post('cervezas_familias/{cervezas_familia}/comment', [CervezasFamiliaController::class, 'comment'])->name('cervezas_familias.comment');
+Route::post('cervezas_fermentos/{cervezas_fermento}/comment', [CervezasFermentoController::class, 'comment'])->name('cervezas_fermentos.comment');
+Route::post('localidades/{localidad}/comment', [LocalidadController::class, 'comment'])->name('localidades.comment');
+Route::post('productores/{productor}/comment', [ProductorController::class, 'comment'])->name('productores.comment');
+/* COMENTARIOS */

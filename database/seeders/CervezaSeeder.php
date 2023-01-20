@@ -27,7 +27,7 @@ class CervezaSeeder extends Seeder
             Comentario::factory(2)->create([
                 'commentable_id' => $cerveza->cerveza_id,
                 'commentable_type' => Cerveza::class,
-                'usuario_id' => 0
+                'usuario_id' => 0//TODO poner el usuario
             ]);
             $cerveza->envases()->sync([CervezasEnvaseTipo::all()->random()->envase_id]);
         }

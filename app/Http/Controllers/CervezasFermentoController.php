@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CervezasFermento;
 use App\Http\Requests\StoreCervezaFermento;
+use App\Http\Requests\StoreComentario;
+use App\Models\Comentario;
 
 class CervezasFermentoController extends Controller
 {
@@ -43,6 +45,22 @@ class CervezasFermentoController extends Controller
         $cervezas_fermento->update($request->all());
         session()->flash('statusTitle', 'Fermento Creado');
         session()->flash('statusMessage', 'El fermento fue creado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
+    }
+
+    public function comment(StoreComentario $request, CervezasFermento $cervezas_fermento)
+    {
+        Comentario::create([
+            'comentario' => $request->comentario,
+            'commentable_type' => CervezasFermento::class,
+            'commentable_id' => $cervezas_fermento->fermento_id,
+            'usuario_id'=> 0 //TODO poner el usuario
+        ]);
+
+        session()->flash('statusTitle', 'Comentario Creado');
+        session()->flash('statusMessage', 'El comentario fue creado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);

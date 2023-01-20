@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComentario;
 use App\Models\Productor;
 use App\Http\Requests\StoreProductor;
+use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\ProductoresFabricacion;
 use App\Models\Localidad;
@@ -64,6 +66,22 @@ class ProductorController extends Controller
         $productor->update($request->all());
         session()->flash('statusTitle', 'Productor Actualizado');
         session()->flash('statusMessage', 'El productor fue actualizado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('productores.show', $productor);
+    }
+
+    public function comment(StoreComentario $request, Productor $productor)
+    {
+        Comentario::create([
+            'comentario' => $request->comentario,
+            'commentable_type' => Productor::class,
+            'commentable_id' => $productor->productor_id,
+            'usuario_id'=> 0 //TODO poner el usuario
+        ]);
+
+        session()->flash('statusTitle', 'Comentario Creado');
+        session()->flash('statusMessage', 'El comentario fue creado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('productores.show', $productor);

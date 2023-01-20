@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cerveza;
 use App\Http\Requests\StoreCerveza;
+use App\Http\Requests\StoreComentario;
 use App\Models\CervezasColor;
 use App\Models\CervezasEnvaseTipo;
 use App\Models\CervezasEstilo;
+use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\Productor;
 
@@ -75,6 +77,22 @@ class CervezaController extends Controller
         $cerveza->envases()->sync($request->envases);
         session()->flash('statusTitle', 'Cerveza Actualizada');
         session()->flash('statusMessage', 'La cerveza fue actualizada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas.show', $cerveza);
+    }
+
+    public function comment(StoreComentario $request, Cerveza $cerveza)
+    {
+        Comentario::create([
+            'comentario' => $request->comentario,
+            'commentable_type' => Cerveza::class,
+            'commentable_id' => $cerveza->cerveza_id,
+            'usuario_id'=> 0 //TODO poner el usuario
+        ]);
+
+        session()->flash('statusTitle', 'Comentario Creado');
+        session()->flash('statusMessage', 'El comentario fue creado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas.show', $cerveza);
