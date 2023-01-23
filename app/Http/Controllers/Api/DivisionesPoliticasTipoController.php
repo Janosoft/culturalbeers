@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DivisionesPoliticasTipo;
-use Illuminate\Http\Request;
 
 class DivisionesPoliticasTipoController extends Controller
 {

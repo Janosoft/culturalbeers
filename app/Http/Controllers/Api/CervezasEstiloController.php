@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\CervezasEstilo;
-use Illuminate\Http\Request;
 
 class CervezasEstiloController extends Controller
 {
