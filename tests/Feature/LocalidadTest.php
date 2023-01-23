@@ -8,7 +8,6 @@ use App\Models\DivisionPolitica;
 use App\Models\Localidad;
 use App\Models\Pais;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LocalidadTest extends TestCase
@@ -28,7 +27,7 @@ class LocalidadTest extends TestCase
         $this->assertCount(1, Localidad::all()); // Fue Creado
         $localidad = Localidad::first();
         $this->assertEquals($localidad->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/localidades/' . $localidad->slug); // Funciona la redirección
+        $response->assertRedirect('/localidades/'.$localidad->slug); // Funciona la redirección
     }
 
     public function test_localidades_item_can_be_shown()
@@ -38,7 +37,7 @@ class LocalidadTest extends TestCase
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         $localidad = Localidad::factory()->create();
-        $response = $this->get('/localidades/' . $localidad->slug);
+        $response = $this->get('/localidades/'.$localidad->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('localidades.show'); // Se está mostrando la vista correcta
         $localidad = Localidad::first();
@@ -52,14 +51,14 @@ class LocalidadTest extends TestCase
         Pais::factory(2)->create();
         $divisiones_politicas = DivisionPolitica::factory(2)->create();
         $localidad = Localidad::factory()->create();
-        $response = $this->put('/localidades/' . $localidad->slug, [
+        $response = $this->put('/localidades/'.$localidad->slug, [
             'nombre' => 'nombre de prueba',
             'division_politica_id' => $divisiones_politicas->random()->division_politica_id,
         ]);
         $this->assertCount(1, Localidad::all()); // Fue Creado
         $localidad = $localidad->fresh();
         $this->assertEquals($localidad->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/localidades/' . $localidad->slug); // Funciona la redirección
+        $response->assertRedirect('/localidades/'.$localidad->slug); // Funciona la redirección
     }
 
     public function test_localidades_can_be_deleted()
@@ -69,7 +68,7 @@ class LocalidadTest extends TestCase
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         $localidad = Localidad::factory()->create();
-        $response = $this->delete('/localidades/' . $localidad->slug);
+        $response = $this->delete('/localidades/'.$localidad->slug);
         $this->assertCount(0, Localidad::all()); // Fue Eliminado
 
         $response->assertRedirect('/localidades'); // Funciona la redirección

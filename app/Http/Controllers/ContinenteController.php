@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Continente;
 use App\Http\Requests\StoreContinente;
+use App\Models\Continente;
 
 class ContinenteController extends Controller
 {
@@ -47,7 +47,7 @@ class ContinenteController extends Controller
 
         return redirect()->route('continentes.show', $continente);
     }
-    
+
     public function destroy(Continente $continente)
     {
         $continente->delete();

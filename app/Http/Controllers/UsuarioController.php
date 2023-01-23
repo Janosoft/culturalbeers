@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
 use App\Http\Requests\StoreUsuario;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {

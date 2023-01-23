@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductoresFabricacion;
 use App\Http\Requests\StoreProductorFabricacion;
+use App\Models\ProductoresFabricacion;
 
 class ProductoresFabricacionController extends Controller
 {
@@ -50,7 +50,7 @@ class ProductoresFabricacionController extends Controller
 
         return redirect()->route('productores_fabricaciones.show', $productores_fabricacion);
     }
-    
+
     public function destroy(ProductoresFabricacion $productores_fabricacion)
     {
         $productores_fabricacion->delete();

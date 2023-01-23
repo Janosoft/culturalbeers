@@ -15,11 +15,11 @@ class PersonaObserver
      */
     public function deleting(Persona $persona)
     {
-        foreach ($persona->imagenes as $imagen)
-         {
-            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
+        foreach ($persona->imagenes as $imagen) {
+            if (Storage::exists($imagen->url)) {
+                Storage::delete($imagen->url);
+            }
             $imagen->delete();
-         }
+        }
     }
-
 }

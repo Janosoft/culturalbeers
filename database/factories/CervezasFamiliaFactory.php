@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\CervezasFamilia;
 use App\Models\CervezasFermento;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CervezasFamilia>
@@ -19,6 +18,7 @@ class CervezasFamiliaFactory extends Factory
     public function definition()
     {
         $nombre = fake()->unique()->word();
+
         return [
             'nombre' => $nombre,
             'fermento_id' => CervezasFermento::all()->random()->fermento_id,

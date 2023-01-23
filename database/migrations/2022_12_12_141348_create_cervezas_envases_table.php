@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cervezas_envases', function (Blueprint $table) {
-            $table->foreignId('cerveza_id')->constrained('cervezas','cerveza_id')->onDelete('cascade');
-            $table->foreignId('envase_id')->constrained('cervezas_envases_tipos','envase_id')->onDelete('cascade');
+            $table->foreignId('cerveza_id')->constrained('cervezas', 'cerveza_id')->onDelete('cascade');
+            $table->foreignId('envase_id')->constrained('cervezas_envases_tipos', 'envase_id')->onDelete('cascade');
         });
     }
 

@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use App\Models\Localidad;
-use App\Models\ProductoresFabricacion;
-use App\Models\Cerveza;
 
 class Productor extends Model
 {
     use HasFactory;
+
     protected $table = 'productores';
+
     protected $primaryKey = 'productor_id';
+
     protected $guarded = ['created_at', 'updated_at'];
 
     /* MUTATORS */

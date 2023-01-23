@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\CervezasColor;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CervezasColor>
@@ -18,6 +17,7 @@ class CervezasColorFactory extends Factory
     public function definition()
     {
         $nombre = fake()->unique()->word();
+
         return [
             'nombre' => $nombre,
             'slug' => str()->slug($nombre, '-', 'es'),

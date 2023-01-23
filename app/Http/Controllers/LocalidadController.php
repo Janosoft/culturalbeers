@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreComentario;
-use App\Models\Localidad;
 use App\Http\Requests\StoreLocalidad;
 use App\Models\Comentario;
 use App\Models\DivisionPolitica;
+use App\Models\Localidad;
 
 class LocalidadController extends Controller
 {
@@ -64,7 +64,7 @@ class LocalidadController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Localidad::class,
             'commentable_id' => $localidad->localidad_id,
-            'usuario_id'=> 0 //TODO poner el usuario
+            'usuario_id' => 0, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

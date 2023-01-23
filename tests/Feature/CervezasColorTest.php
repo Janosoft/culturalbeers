@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\CervezasColor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CervezasColorTest extends TestCase
@@ -19,13 +18,13 @@ class CervezasColorTest extends TestCase
         $this->assertCount(1, CervezasColor::all()); // Fue Creado
         $cervezas_color = CervezasColor::first();
         $this->assertEquals($cervezas_color->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/cervezas_colores/' . $cervezas_color->slug); // Funciona la redirección
+        $response->assertRedirect('/cervezas_colores/'.$cervezas_color->slug); // Funciona la redirección
     }
 
     public function test_colores_item_can_be_shown()
     {
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->get('/cervezas_colores/' . $cervezas_color->slug);
+        $response = $this->get('/cervezas_colores/'.$cervezas_color->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_colores.show'); // Se está mostrando la vista correcta
         $cervezas_color = CervezasColor::first();
@@ -35,19 +34,19 @@ class CervezasColorTest extends TestCase
     public function test_colores_can_be_updated()
     {
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->put('/cervezas_colores/' . $cervezas_color->slug, [
+        $response = $this->put('/cervezas_colores/'.$cervezas_color->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasColor::all()); // Fue Creado
         $cervezas_color = $cervezas_color->fresh();
         $this->assertEquals($cervezas_color->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/cervezas_colores/' . $cervezas_color->slug); // Funciona la redirección
+        $response->assertRedirect('/cervezas_colores/'.$cervezas_color->slug); // Funciona la redirección
     }
 
     public function test_colores_can_be_deleted()
     {
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->delete('/cervezas_colores/' . $cervezas_color->slug);
+        $response = $this->delete('/cervezas_colores/'.$cervezas_color->slug);
         $this->assertCount(0, CervezasColor::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_colores'); // Funciona la redirección

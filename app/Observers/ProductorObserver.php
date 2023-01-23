@@ -15,11 +15,11 @@ class ProductorObserver
      */
     public function deleting(Productor $productor)
     {
-        foreach ($productor->imagenes as $imagen)
-         {
-            if(Storage::exists($imagen->url)) Storage::delete($imagen->url);
+        foreach ($productor->imagenes as $imagen) {
+            if (Storage::exists($imagen->url)) {
+                Storage::delete($imagen->url);
+            }
             $imagen->delete();
-         }
+        }
     }
-
 }

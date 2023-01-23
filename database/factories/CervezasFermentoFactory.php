@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\CervezasFermento;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CervezasFermento>
@@ -17,7 +16,8 @@ class CervezasFermentoFactory extends Factory
      */
     public function definition()
     {
-        $nombre = implode(" ", fake()->unique()->words(2));
+        $nombre = implode(' ', fake()->unique()->words(2));
+
         return [
             'nombre' => $nombre,
             'slug' => str()->slug($nombre, '-', 'es'),

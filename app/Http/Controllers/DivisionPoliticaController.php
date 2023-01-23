@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DivisionPolitica;
 use App\Http\Requests\StoreDivisionPolitica;
+use App\Models\DivisionPolitica;
 use App\Models\Pais;
 
 class DivisionPoliticaController extends Controller

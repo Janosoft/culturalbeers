@@ -19,6 +19,7 @@ class UsuarioFactory extends Factory
     public function definition()
     {
         $email = fake()->unique()->safeEmail();
+
         return [
             'persona_id' => Persona::all()->random()->persona_id,
             'email' => $email,

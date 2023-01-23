@@ -19,6 +19,7 @@ class PaisFactory extends Factory
     public function definition()
     {
         $nombre = fake()->unique()->word();
+
         return [
             'nombre' => $nombre,
             'continente_id' => Continente::all()->random()->continente_id,

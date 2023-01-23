@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pais;
 use App\Http\Requests\StorePais;
 use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
 use App\Models\Imagen;
+use App\Models\Pais;
 
 class PaisController extends Controller
 {

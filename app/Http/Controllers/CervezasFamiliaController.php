@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CervezasFamilia;
-use App\Models\CervezasFermento;
 use App\Http\Requests\StoreCervezaFamilia;
 use App\Http\Requests\StoreComentario;
+use App\Models\CervezasFamilia;
+use App\Models\CervezasFermento;
 use App\Models\Comentario;
 
 class CervezasFamiliaController extends Controller
@@ -64,7 +64,7 @@ class CervezasFamiliaController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasFamilia::class,
             'commentable_id' => $cervezas_familia->familia_id,
-            'usuario_id'=> 0 //TODO poner el usuario
+            'usuario_id' => 0, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

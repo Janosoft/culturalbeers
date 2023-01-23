@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Localidad;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Productor;
 use App\Models\ProductoresFabricacion;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Productor>
@@ -19,7 +18,8 @@ class ProductorFactory extends Factory
      */
     public function definition()
     {
-        $nombre = implode(" ", fake()->unique()->words(2));
+        $nombre = implode(' ', fake()->unique()->words(2));
+
         return [
             'nombre' => $nombre,
             'fabricacion_id' => ProductoresFabricacion::all()->random()->fabricacion_id,

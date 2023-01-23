@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\ProductoresFabricacion;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ProductoresFabricacionTest extends TestCase
 {
@@ -19,13 +18,13 @@ class ProductoresFabricacionTest extends TestCase
         $this->assertCount(1, ProductoresFabricacion::all()); // Fue Creado
         $productores_fabricacion = ProductoresFabricacion::first();
         $this->assertEquals($productores_fabricacion->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/productores_fabricaciones/' . $productores_fabricacion->slug); // Funciona la redirección
+        $response->assertRedirect('/productores_fabricaciones/'.$productores_fabricacion->slug); // Funciona la redirección
     }
 
     public function test_productores_fabricaciones_item_can_be_shown()
     {
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
-        $response = $this->get('/productores_fabricaciones/' . $productores_fabricacion->slug);
+        $response = $this->get('/productores_fabricaciones/'.$productores_fabricacion->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('productores_fabricaciones.show'); // Se está mostrando la vista correcta
         $productores_fabricacion = ProductoresFabricacion::first();
@@ -35,19 +34,19 @@ class ProductoresFabricacionTest extends TestCase
     public function test_productores_fabricaciones_can_be_updated()
     {
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
-        $response = $this->put('/productores_fabricaciones/' . $productores_fabricacion->slug, [
+        $response = $this->put('/productores_fabricaciones/'.$productores_fabricacion->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, ProductoresFabricacion::all()); // Fue Creado
         $productores_fabricacion = $productores_fabricacion->fresh();
         $this->assertEquals($productores_fabricacion->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/productores_fabricaciones/' . $productores_fabricacion->slug); // Funciona la redirección
+        $response->assertRedirect('/productores_fabricaciones/'.$productores_fabricacion->slug); // Funciona la redirección
     }
 
     public function test_productores_fabricaciones_can_be_deleted()
     {
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
-        $response = $this->delete('/productores_fabricaciones/' . $productores_fabricacion->slug);
+        $response = $this->delete('/productores_fabricaciones/'.$productores_fabricacion->slug);
         $this->assertCount(0, ProductoresFabricacion::all()); // Fue Eliminado
         $response->assertRedirect('/productores_fabricaciones'); // Funciona la redirección
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CervezasColor;
 use App\Http\Requests\StoreCervezaColor;
+use App\Models\CervezasColor;
 
 class CervezasColorController extends Controller
 {

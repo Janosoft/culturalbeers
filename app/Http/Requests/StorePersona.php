@@ -42,13 +42,12 @@ class StorePersona extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'nombre.required' => 'Debe ingresar un nombre a la persona',
             'apellido.required' => 'Debe ingresar un apellido a la persona',
             'localidad_id.required' => 'Debe elegir una localidad actual',
             'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, etc)',
         ];
-        
     }
 }

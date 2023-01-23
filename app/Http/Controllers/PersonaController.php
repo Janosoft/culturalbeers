@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Persona;
 use App\Http\Requests\StorePersona;
 use App\Models\Imagen;
 use App\Models\Localidad;
+use App\Models\Persona;
 
 class PersonaController extends Controller
 {
@@ -19,7 +19,7 @@ class PersonaController extends Controller
     public function create()
     {
         $localidades = Localidad::pluck('nombre', 'localidad_id');
-        
+
         return view('personas.create', compact('localidades'));
     }
 

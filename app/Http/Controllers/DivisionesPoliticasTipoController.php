@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DivisionesPoliticasTipo;
 use App\Http\Requests\StoreDivisionPoliticaTipo;
+use App\Models\DivisionesPoliticasTipo;
 
 class DivisionesPoliticasTipoController extends Controller
 {
@@ -50,7 +50,7 @@ class DivisionesPoliticasTipoController extends Controller
 
         return redirect()->route('divisiones_politicas_tipos.show', $divisiones_politicas_tipo);
     }
-    
+
     public function destroy(DivisionesPoliticasTipo $divisiones_politicas_tipo)
     {
         $divisiones_politicas_tipo->delete();

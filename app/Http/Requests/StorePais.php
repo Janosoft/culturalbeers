@@ -42,13 +42,12 @@ class StorePais extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'nombre.required' => 'Debe ingresar un nombre al país',
             'continente_id.required' => 'Debe elegir el continente al que pertenece',
             'divisiones_politicas_tipo_id.required' => 'Debe elegir el tipo de división política que posee',
             'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, etc)',
         ];
-        
     }
 }

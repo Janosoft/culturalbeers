@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('productor_id');
             $table->string('nombre', 100)->unique();
             $table->foreignId('fabricacion_id')->constrained('productores_fabricaciones', 'fabricacion_id');
-            $table->foreignId('localidad_id')->constrained('localidades','localidad_id');
+            $table->foreignId('localidad_id')->constrained('localidades', 'localidad_id');
             $table->string('imagen_id')->nullable();
             $table->string('slug');
             $table->timestamps();

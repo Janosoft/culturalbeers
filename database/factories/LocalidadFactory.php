@@ -18,6 +18,7 @@ class LocalidadFactory extends Factory
     public function definition()
     {
         $nombre = fake()->unique()->word();
+
         return [
             'nombre' => $nombre,
             'division_politica_id' => DivisionPolitica::all()->random()->division_politica_id,

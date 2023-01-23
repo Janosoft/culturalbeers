@@ -39,11 +39,10 @@ class StoreLocalidad extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'nombre.required' => 'Debe ingresar un nombre a la localidad',
             'division_politica_id.required' => 'Debe elegir una división política',
         ];
-        
     }
 }

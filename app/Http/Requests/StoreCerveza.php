@@ -24,7 +24,7 @@ class StoreCerveza extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:cervezas,nombre, productor_id = ' . $this->productor_id . ',cerveza_id,productor_id,' . $this->productor_id . '|min:3',
+            'nombre' => 'required|unique:cervezas,nombre, productor_id = '.$this->productor_id.',cerveza_id,productor_id,'.$this->productor_id.'|min:3',
             'productor_id' => 'required',
             'color_id' => 'required',
             'estilo_id' => 'required',
@@ -46,7 +46,7 @@ class StoreCerveza extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'nombre.required' => 'Debe ingresar un nombre a la cerveza',
             'productor_id.required' => 'Debe elegir al productor de la cerveza',

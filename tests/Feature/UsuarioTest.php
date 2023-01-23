@@ -10,7 +10,6 @@ use App\Models\Pais;
 use App\Models\Persona;
 use App\Models\Usuario;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UsuarioTest extends TestCase
@@ -36,7 +35,7 @@ class UsuarioTest extends TestCase
         $usuario = Usuario::first();
         $this->assertEquals($usuario->email, 'email@gmail.com'); // El email es correcto y fue convertido
         $this->assertEquals($usuario->password, md5('1234567890')); // El password es correcto y fue codificado
-        $response->assertRedirect('/usuarios/' . $usuario->slug); // Funciona la redirección
+        $response->assertRedirect('/usuarios/'.$usuario->slug); // Funciona la redirección
     }
 
     public function test_usuarios_item_can_be_shown()
@@ -48,7 +47,7 @@ class UsuarioTest extends TestCase
         Localidad::factory(2)->create();
         Persona::factory(2)->create();
         $usuario = Usuario::factory()->create();
-        $response = $this->get('/usuarios/' . $usuario->slug);
+        $response = $this->get('/usuarios/'.$usuario->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('usuarios.show'); // Se está mostrando la vista correcta
         $usuario = Usuario::first();
@@ -64,7 +63,7 @@ class UsuarioTest extends TestCase
         Localidad::factory(2)->create();
         $personas = Persona::factory(2)->create();
         $usuario = Usuario::factory()->create();
-        $response = $this->put('/usuarios/' . $usuario->slug, [
+        $response = $this->put('/usuarios/'.$usuario->slug, [
             'email' => 'EMAIL@gmail.com',
             'password' => '1234567890',
             'persona_id' => $personas->random()->persona_id,
@@ -73,7 +72,7 @@ class UsuarioTest extends TestCase
         $usuario = $usuario->fresh();
         $this->assertEquals($usuario->email, 'email@gmail.com'); // El email es correcto y fue convertido
         $this->assertEquals($usuario->password, md5('1234567890')); // El password es correcto y fue codificado
-        $response->assertRedirect('/usuarios/' . $usuario->slug); // Funciona la redirección
+        $response->assertRedirect('/usuarios/'.$usuario->slug); // Funciona la redirección
     }
 
     public function test_usuarios_can_be_deleted()
@@ -85,7 +84,7 @@ class UsuarioTest extends TestCase
         Localidad::factory(2)->create();
         Persona::factory(2)->create();
         $usuario = Usuario::factory()->create();
-        $response = $this->delete('/usuarios/' . $usuario->slug);
+        $response = $this->delete('/usuarios/'.$usuario->slug);
         $this->assertCount(0, Usuario::all()); // Fue Eliminado
         $response->assertRedirect('/usuarios'); // Funciona la redirección
     }

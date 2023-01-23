@@ -41,7 +41,7 @@ class StoreUsuario extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'email.required' => 'Debe ingresar un email de contacto',
             'persona_id.required' => 'Debe elegir una persona',

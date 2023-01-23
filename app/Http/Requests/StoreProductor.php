@@ -42,13 +42,12 @@ class StoreProductor extends FormRequest
 
     public function messages()
     {
-        // Para personalizar los mensajes de error de validación        
+        // Para personalizar los mensajes de error de validación
         return [
             'nombre.required' => 'Debe ingresar un nombre a la cerveza',
             'fabricacion_id.required' => 'Debe elegir un tipo de fabricación',
             'localidad_id.required' => 'Debe elegir una localidad de origen',
             'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, etc)',
         ];
-        
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CervezasFermento;
 use App\Http\Requests\StoreCervezaFermento;
 use App\Http\Requests\StoreComentario;
+use App\Models\CervezasFermento;
 use App\Models\Comentario;
 
 class CervezasFermentoController extends Controller
@@ -56,7 +56,7 @@ class CervezasFermentoController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasFermento::class,
             'commentable_id' => $cervezas_fermento->fermento_id,
-            'usuario_id'=> 0 //TODO poner el usuario
+            'usuario_id' => 0, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');
@@ -65,7 +65,7 @@ class CervezasFermentoController extends Controller
 
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
     }
-    
+
     public function destroy(CervezasFermento $cervezas_fermento)
     {
         $cervezas_fermento->delete();

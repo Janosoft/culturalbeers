@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Persona;
 use App\Models\Imagen;
+use App\Models\Persona;
+use Illuminate\Database\Seeder;
 
 class PersonaSeeder extends Seeder
 {

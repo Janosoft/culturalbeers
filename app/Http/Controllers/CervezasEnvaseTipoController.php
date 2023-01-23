@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CervezasEnvaseTipo;
 use App\Http\Requests\StoreCervezaEnvaseTipo;
+use App\Models\CervezasEnvaseTipo;
 
 class CervezasEnvaseTipoController extends Controller
 {
@@ -50,7 +50,7 @@ class CervezasEnvaseTipoController extends Controller
 
         return redirect()->route('cervezas_envases_tipos.show', $cervezas_envases_tipo);
     }
-    
+
     public function destroy(CervezasEnvaseTipo $cervezas_envases_tipo)
     {
         $cervezas_envases_tipo->delete();

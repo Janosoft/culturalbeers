@@ -18,6 +18,7 @@ class PersonaFactory extends Factory
     public function definition()
     {
         $nombre = fake()->name();
+
         return [
             'nombre' => $nombre,
             'apellido' => fake()->lastname(),

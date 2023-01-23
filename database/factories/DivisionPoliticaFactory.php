@@ -17,7 +17,8 @@ class DivisionPoliticaFactory extends Factory
      */
     public function definition()
     {
-        $nombre = implode(" ", fake()->unique()->words(2));
+        $nombre = implode(' ', fake()->unique()->words(2));
+
         return [
             'pais_id' => Pais::all()->random()->pais_id,
             'nombre' => $nombre,

@@ -16,7 +16,6 @@ use App\Models\Pais;
 use App\Models\Productor;
 use App\Models\ProductoresFabricacion;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CervezaTest extends TestCase
@@ -47,7 +46,7 @@ class CervezaTest extends TestCase
         $this->assertCount(1, Cerveza::all()); // Fue Creado
         $cerveza = Cerveza::first();
         $this->assertEquals($cerveza->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/cervezas/' . $cerveza->slug); // Funciona la redirección
+        $response->assertRedirect('/cervezas/'.$cerveza->slug); // Funciona la redirección
     }
 
     public function test_cervezas_item_can_be_shown()
@@ -65,7 +64,7 @@ class CervezaTest extends TestCase
         CervezasColor::factory(2)->create();
         CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->get('/cervezas/' . $cerveza->slug);
+        $response = $this->get('/cervezas/'.$cerveza->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas.show'); // Se está mostrando la vista correcta
         $cerveza = Cerveza::first();
@@ -87,7 +86,7 @@ class CervezaTest extends TestCase
         $colores = CervezasColor::factory(2)->create();
         $estilos = CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->put('/cervezas/' . $cerveza->slug, [
+        $response = $this->put('/cervezas/'.$cerveza->slug, [
             'nombre' => 'nombre de prueba',
             'productor_id' => $productores->random()->productor_id,
             'color_id' => $colores->random()->color_id,
@@ -97,7 +96,7 @@ class CervezaTest extends TestCase
         $this->assertCount(1, Cerveza::all()); // Fue Creado
         $cerveza = $cerveza->fresh();
         $this->assertEquals($cerveza->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/cervezas/' . $cerveza->slug); // Funciona la redirección
+        $response->assertRedirect('/cervezas/'.$cerveza->slug); // Funciona la redirección
     }
 
     public function test_cervezas_can_be_deleted()
@@ -115,7 +114,7 @@ class CervezaTest extends TestCase
         CervezasColor::factory(2)->create();
         CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->delete('/cervezas/' . $cerveza->slug);
+        $response = $this->delete('/cervezas/'.$cerveza->slug);
         $this->assertCount(0, Cerveza::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas'); // Funciona la redirección

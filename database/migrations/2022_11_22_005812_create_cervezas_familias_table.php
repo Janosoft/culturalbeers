@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cervezas_familias', function (Blueprint $table) {
             $table->id('familia_id');
             $table->string('nombre', 100)->unique();
-            $table->foreignId('fermento_id')->constrained('cervezas_fermentos','fermento_id');
+            $table->foreignId('fermento_id')->constrained('cervezas_fermentos', 'fermento_id');
             $table->string('slug');
             $table->timestamps();
         });

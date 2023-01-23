@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreComentario;
-use App\Models\Productor;
 use App\Http\Requests\StoreProductor;
 use App\Models\Comentario;
 use App\Models\Imagen;
-use App\Models\ProductoresFabricacion;
 use App\Models\Localidad;
+use App\Models\Productor;
+use App\Models\ProductoresFabricacion;
 
 class ProductorController extends Controller
 {
@@ -77,7 +77,7 @@ class ProductorController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Productor::class,
             'commentable_id' => $productor->productor_id,
-            'usuario_id'=> 0 //TODO poner el usuario
+            'usuario_id' => 0, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

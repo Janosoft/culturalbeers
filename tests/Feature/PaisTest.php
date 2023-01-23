@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Pais;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PaisTest extends TestCase
 {
@@ -25,7 +24,7 @@ class PaisTest extends TestCase
         $this->assertCount(1, Pais::all()); // Fue Creado
         $pais = Pais::first();
         $this->assertEquals($pais->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/paises/' . $pais->slug); // Funciona la redirección
+        $response->assertRedirect('/paises/'.$pais->slug); // Funciona la redirección
     }
 
     public function test_paises_item_can_be_shown()
@@ -33,7 +32,7 @@ class PaisTest extends TestCase
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $pais = Pais::factory()->create();
-        $response = $this->get('/paises/' . $pais->slug);
+        $response = $this->get('/paises/'.$pais->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('paises.show'); // Se está mostrando la vista correcta
         $pais = Pais::first();
@@ -45,7 +44,7 @@ class PaisTest extends TestCase
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
         $continentes = Continente::factory(2)->create();
         $pais = Pais::factory()->create();
-        $response = $this->put('/paises/' . $pais->slug, [
+        $response = $this->put('/paises/'.$pais->slug, [
             'nombre' => 'nombre de prueba',
             'continente_id' => $continentes->random()->continente_id,
             'divisiones_politicas_tipo_id' => $divisiones_politicas_tipo->random()->divisiones_politicas_tipo_id,
@@ -53,7 +52,7 @@ class PaisTest extends TestCase
         $this->assertCount(1, Pais::all()); // Fue Creado
         $pais = $pais->fresh();
         $this->assertEquals($pais->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
-        $response->assertRedirect('/paises/' . $pais->slug); // Funciona la redirección
+        $response->assertRedirect('/paises/'.$pais->slug); // Funciona la redirección
     }
 
     public function test_paises_can_be_deleted()
@@ -61,7 +60,7 @@ class PaisTest extends TestCase
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $pais = Pais::factory()->create();
-        $response = $this->delete('/paises/' . $pais->slug);
+        $response = $this->delete('/paises/'.$pais->slug);
         $this->assertCount(0, Pais::all()); // Fue Eliminado
         $response->assertRedirect('/paises'); // Funciona la redirección
     }

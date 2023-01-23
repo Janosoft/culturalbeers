@@ -1,14 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InicioController;
-use App\Http\Controllers\ContinenteController;
-use App\Http\Controllers\PaisController;
-use App\Http\Controllers\DivisionPoliticaController;
-use App\Http\Controllers\DivisionesPoliticasTipoController;
-use App\Http\Controllers\LocalidadController;
-use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CervezaController;
 use App\Http\Controllers\CervezasColorController;
 use App\Http\Controllers\CervezasEnvaseTipoController;
@@ -16,9 +7,17 @@ use App\Http\Controllers\CervezasEstiloController;
 use App\Http\Controllers\CervezasFamiliaController;
 use App\Http\Controllers\CervezasFermentoController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ContinenteController;
+use App\Http\Controllers\DivisionesPoliticasTipoController;
+use App\Http\Controllers\DivisionPoliticaController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
-
+use App\Http\Controllers\UsuarioController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use App\Models\Persona;
 
 class Usuario extends Model
 {
     use HasFactory;
+
     protected $table = 'usuarios';
+
     protected $primaryKey = 'usuario_id';
-    protected $guarded = ['email_verificado','activado','bloqueado','remember_token','created_at', 'updated_at'];
+
+    protected $guarded = ['email_verificado', 'activado', 'bloqueado', 'remember_token', 'created_at', 'updated_at'];
 
     /* MUTATORS */
     protected function email(): Attribute

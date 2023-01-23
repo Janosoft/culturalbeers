@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('localidades', function (Blueprint $table) {
             $table->id('localidad_id');
             $table->string('nombre', 50);
-            $table->foreignId('division_politica_id')->constrained('divisiones_politicas','division_politica_id');
+            $table->foreignId('division_politica_id')->constrained('divisiones_politicas', 'division_politica_id');
             $table->string('slug');
             $table->timestamps();
 

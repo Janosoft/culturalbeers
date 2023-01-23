@@ -7,10 +7,9 @@ use App\Models\DivisionesPoliticasTipo;
 use App\Models\DivisionPolitica;
 use App\Models\Localidad;
 use App\Models\Pais;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Persona;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PersonaTest extends TestCase
 {
@@ -32,7 +31,7 @@ class PersonaTest extends TestCase
         $persona = Persona::first();
         $this->assertEquals($persona->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
         $this->assertEquals($persona->apellido, 'Apellido De Prueba'); // El apellido es correcto y fue capitalizado
-        $response->assertRedirect('/personas/' . $persona->slug); // Funciona la redirección
+        $response->assertRedirect('/personas/'.$persona->slug); // Funciona la redirección
     }
 
     public function test_personas_item_can_be_shown()
@@ -43,7 +42,7 @@ class PersonaTest extends TestCase
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         $persona = Persona::factory()->create();
-        $response = $this->get('/personas/' . $persona->slug);
+        $response = $this->get('/personas/'.$persona->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('personas.show'); // Se está mostrando la vista correcta
         $persona = Persona::first();
@@ -58,7 +57,7 @@ class PersonaTest extends TestCase
         DivisionPolitica::factory(2)->create();
         $localidades = Localidad::factory(2)->create();
         $persona = Persona::factory()->create();
-        $response = $this->put('/personas/' . $persona->slug, [
+        $response = $this->put('/personas/'.$persona->slug, [
             'nombre' => 'nombre de prueba',
             'apellido' => 'apellido de prueba',
             'localidad_id' => $localidades->random()->localidad_id,
@@ -67,7 +66,7 @@ class PersonaTest extends TestCase
         $persona = $persona->fresh();
         $this->assertEquals($persona->nombre, 'Nombre De Prueba'); // El nombre es correcto y fue capitalizado
         $this->assertEquals($persona->apellido, 'Apellido De Prueba'); // El apellido es correcto y fue capitalizado
-        $response->assertRedirect('/personas/' . $persona->slug); // Funciona la redirección
+        $response->assertRedirect('/personas/'.$persona->slug); // Funciona la redirección
     }
 
     public function test_personas_can_be_deleted()
@@ -78,7 +77,7 @@ class PersonaTest extends TestCase
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         $persona = Persona::factory()->create();
-        $response = $this->delete('/personas/' . $persona->slug);
+        $response = $this->delete('/personas/'.$persona->slug);
         $this->assertCount(0, Persona::all()); // Fue Eliminado
         $response->assertRedirect('/personas'); // Funciona la redirección
     }

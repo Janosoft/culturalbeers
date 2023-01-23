@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('cervezas', function (Blueprint $table) {
             $table->id('cerveza_id');
             $table->string('nombre', 100);
-            $table->foreignId('productor_id')->constrained('productores','productor_id');
-            $table->foreignId('color_id')->constrained('cervezas_colores','color_id');
-            $table->foreignId('estilo_id')->constrained('cervezas_estilos','estilo_id');
+            $table->foreignId('productor_id')->constrained('productores', 'productor_id');
+            $table->foreignId('color_id')->constrained('cervezas_colores', 'color_id');
+            $table->foreignId('estilo_id')->constrained('cervezas_estilos', 'estilo_id');
             $table->string('imagen_id')->nullable();
             $table->string('slug');
             $table->timestamps();
