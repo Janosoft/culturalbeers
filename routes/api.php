@@ -1,6 +1,18 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CervezaController;
+use App\Http\Controllers\Api\CervezasColorController;
+use App\Http\Controllers\Api\CervezasEnvaseTipoController;
+use App\Http\Controllers\Api\CervezasEstiloController;
+use App\Http\Controllers\Api\CervezasFamiliaController;
+use App\Http\Controllers\Api\CervezasFermentoController;
+use App\Http\Controllers\Api\ContinenteController;
+use App\Http\Controllers\Api\DivisionesPoliticasTipoController;
+use App\Http\Controllers\Api\LocalidadController;
+use App\Http\Controllers\Api\PaisController;
+use App\Http\Controllers\Api\PersonaController;
+use App\Http\Controllers\Api\ProductorController;
+use App\Http\Controllers\Api\ProductoresFabricacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +26,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('cervezas', CervezaController::class);
+Route::apiResource('cervezas_colores', CervezasColorController::class);
+Route::apiResource('cervezas_envases_tipos', CervezasEnvaseTipoController::class);
+Route::apiResource('cervezas_estilos', CervezasEstiloController::class);
+Route::apiResource('cervezas_familias', CervezasFamiliaController::class);
+Route::apiResource('cervezas_fermentos', CervezasFermentoController::class);
+Route::apiResource('continentes', ContinenteController::class);
+Route::apiResource('divisiones_politicas_tipos', DivisionesPoliticasTipoController::class);
+Route::apiResource('divisiones_politicas', DivisionesPoliticasTipoController::class);
+Route::apiResource('localidades', LocalidadController::class);
+Route::apiResource('paises', PaisController::class);
+Route::apiResource('personas', PersonaController::class);
+Route::apiResource('productores', ProductorController::class);
+Route::apiResource('productores_fabricaciones', ProductoresFabricacionController::class);
