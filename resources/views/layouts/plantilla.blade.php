@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <link href="{{ asset('style.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     @include('layouts.partials.header')
     @include('layouts.partials.status')
     <div class="container">

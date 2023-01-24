@@ -1,14 +1,16 @@
-<div class="container-fluid bg-light">
-    <footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <span class="mb-3 mb-md-0 text-muted">© 2022 Cultural Beers</span>
+<footer class="footer d-flex flex-wrap justify-content-between align-items-center mt-auto py-3 border-top bg-light">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col align-items-center">
+                <span class="text-muted">© 2022 Cultural Beers</span>
+            </div>
+            <div class="col">
+                <ul class="nav justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="{{ route('contacto.index') }}">Contacto</a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
         </div>
-
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="{{route('contacto.index')}}">Contacto</a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-        </ul>
-    </footer>
-</div>
-
+    </div>
+</footer>
