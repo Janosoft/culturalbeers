@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('commentable_type');
             $table->unsignedBigInteger('commentable_id');
             $table->unsignedBigInteger('usuario_id');
+            $table->boolean('ofensivo')->default(false);
+            $table->boolean('autorizado')->nullable();
             $table->timestamps();
         });
     }

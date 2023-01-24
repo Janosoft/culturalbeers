@@ -64,7 +64,10 @@ class Cerveza extends Model
 
     public function comentarios()
     {
-        return $this->morphMany(Comentario::class, 'commentable');
+        return $this->morphMany(Comentario::class, 'commentable')->where('ofensivo', false)->orWhere(function ($query) {
+            $query->where('ofensivo', true)
+                ->Where('autorizado', true);
+        });
     }
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
