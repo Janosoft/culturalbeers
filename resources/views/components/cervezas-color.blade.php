@@ -1,0 +1,1 @@
+<a href="{{ route('cervezas_colores.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }}</a>
