@@ -13,6 +13,5 @@
     @if (!$localidades->isEmpty()) <x-localidades :localidades="$localidades"/>@endif
     @if (!$paises->isEmpty()) <x-paises :paises="$paises"/>@endif
     @if (!$personas->isEmpty()) <x-personas :personas="$personas" />@endif
-    @if (!$productores->isEmpty()) <x-productores :productores="$productores" />@endif
-    
+    @if (!$productores->isEmpty()) <x-productores :productores="$productores" />@endif    
 @endsection

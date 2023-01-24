@@ -2,11 +2,7 @@
 @section('title', 'Mostrar Productores de Cervezas')
 
 @section('content')
-    <div class="container">
-        <a href="{{ route('productores.create') }}">Crear Nuevo</a>
-        
-        <x-productores :productores="$productores" />
-        
-        {{ $productores->links() }}
-    </div>
+    <a href="{{ route('productores.create') }}">Crear Nuevo</a>
+    <x-productores :productores="$productores" />
+    {{ $productores->links() }}
 @endsection

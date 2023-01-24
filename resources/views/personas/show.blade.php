@@ -2,33 +2,29 @@
 @section('title', 'Mostrar Persona: ' . $persona->nombre)
 
 @section('content')
-    <div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>{{ $persona->nombre . ' ' . $persona->apellido }}</h1>
+            <h2><a href="{{ route('localidades.show', $persona->localidad) }}">{{ $persona->localidad->nombre }}</a></h2>
+        </div>
+    </div>
 
-        <div class="row">
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{{ route('personas.edit', $persona) }}" class="btn btn-primary"> Editar</a>
+            <form action="{{ route('personas.destroy', $persona) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger"> Eliminar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        @foreach ($persona->imagenes as $imagen)
             <div class="col">
-                <h1>{{ $persona->nombre . ' ' . $persona->apellido }}</h1>
-                <h2><a href="{{ route('localidades.show', $persona->localidad) }}">{{ $persona->localidad->nombre }}</a></h2>
+                <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
             </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-                <a href="{{ route('personas.edit', $persona) }}" class="btn btn-primary"> Editar</a>
-                <form action="{{ route('personas.destroy', $persona) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="btn btn-danger"> Eliminar</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            @foreach ($persona->imagenes as $imagen)
-                <div class="col">
-                    <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
-                </div>
-            @endforeach
-        </div>
-
+        @endforeach
     </div>
 @endsection

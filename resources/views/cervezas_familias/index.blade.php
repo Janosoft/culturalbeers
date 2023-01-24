@@ -2,11 +2,7 @@
 @section('title', 'Mostrar Familia de Cervezas')
 
 @section('content')
-    <div class="container">
-        <a href="{{ route('cervezas_familias.create') }}">Crear Nueva</a>
-        
-        <x-cervezas-familias :familias="$cervezas_familias"/>
-
-        {{ $cervezas_familias->links() }}
-    </div>
+    <a href="{{ route('cervezas_familias.create') }}">Crear Nueva</a>
+    <x-cervezas-familias :familias="$cervezas_familias" />
+    {{ $cervezas_familias->links() }}
 @endsection

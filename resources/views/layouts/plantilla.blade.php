@@ -16,7 +16,9 @@
 <body>
     @include('layouts.partials.header')
     @include('layouts.partials.status')
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
     <script src="https://kit.fontawesome.com/f6def5424c.js" crossorigin="anonymous" samesite="none Secure"></script>
     @livewireScripts
     @include('layouts.partials.footer')
