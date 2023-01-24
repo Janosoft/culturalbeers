@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Cultural Beers</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -8,6 +8,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ route('search') }}" class="nav-link {{ request()->routeIs('search') ? 'active' : '' }}">Buscar</a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('cervezas.index') }}" class="nav-link {{ request()->routeIs('cervezas.index') ? 'active' : '' }}">Cervezas</a>
                     </li>
@@ -65,11 +68,11 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
-                    <input class="form-control me-2" type="search" name="search" placeholder="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
             </div>
+            <form class="d-none d-lg-flex" role="search" action="{{ route('search') }}" method="GET">
+                <input class="form-control me-2" type="search" name="search" required>
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
         </div>
     </nav>
 </header>
