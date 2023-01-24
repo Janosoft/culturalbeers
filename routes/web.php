@@ -16,6 +16,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
+use App\Http\Controllers\SeachController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', InicioController::class)->name('inicio');
+Route::get('search', [SeachController::class, 'search'])->name('search');
 Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
 Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');
 
