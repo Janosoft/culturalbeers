@@ -2,7 +2,7 @@
 @section('title', 'Mostrar Usuarios')
 
 @section('content')
-    <a href="{{ route('usuarios.create') }}">Crear Nuevo</a>
+
     <div class="list-group">
         @foreach ($usuarios as $usuario)
             <a href="{{ route('usuarios.show', $usuario) }}"

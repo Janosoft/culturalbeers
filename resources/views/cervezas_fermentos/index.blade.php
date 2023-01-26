@@ -2,7 +2,11 @@
 @section('title', 'Mostrar Tipos de Fermentos')
 
 @section('content')
-    <a href="{{ route('cervezas_fermentos.create') }}">Crear Nuevo</a>
+    
+    <div class="mb-3">
+        <a href="{{ route('cervezas_fermentos.create') }}" class="btn btn-primary" role="button" title="Crear Nuevo"><i class="fa-solid fa-square-plus"></i></a>
+    </div>
+    
     <x-cervezas-fermentos :fermentos="$cervezas_fermentos" />
     {{ $cervezas_fermentos->links() }}
 @endsection

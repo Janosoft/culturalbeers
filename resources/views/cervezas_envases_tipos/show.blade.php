@@ -10,13 +10,12 @@
 
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('cervezas_envases_tipos.edit', $cervezas_envases_tipo) }}" class="btn btn-primary">
-                Editar</a>
+            <a href="{{ route('cervezas_envases_tipos.edit', $cervezas_envases_tipo) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
             <form action="{{ route('cervezas_envases_tipos.destroy', $cervezas_envases_tipo) }}" method="POST"
                 style="display: inline;">
                 @csrf
                 @method('delete')
-                <button type="submit" class="btn btn-danger"> Eliminar</button>
+                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
             </form>
         </div>
     </div>

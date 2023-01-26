@@ -2,7 +2,11 @@
 @section('title', 'Mostrar Tipos de Fabricación')
 
 @section('content')
-    <a href="{{ route('productores_fabricaciones.create') }}">Crear Nuevo</a>
+    
+    <div class="mb-3">
+        <a href="{{ route('productores.productores_fabricaciones') }}" class="btn btn-primary" role="button" title="Crear Nuevo"><i class="fa-solid fa-square-plus"></i></a>
+    </div>
+    
     <x-productores-fabricaciones :fabricaciones="$productores_fabricaciones" />
     {{ $productores_fabricaciones->links() }}
 @endsection

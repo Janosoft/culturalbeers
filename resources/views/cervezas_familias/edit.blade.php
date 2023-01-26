@@ -31,10 +31,10 @@
                     @enderror
                 </div>
 
-
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                 </div>
+                
             </form>
         </div>
     </div>

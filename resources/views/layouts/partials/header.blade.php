@@ -8,7 +8,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li class="nav-item d-lg-none">
                         <a href="{{ route('search') }}" class="nav-link {{ request()->routeIs('search') ? 'active' : '' }}">Buscar</a>
                     </li>
                     <li class="nav-item">
@@ -71,7 +71,7 @@
             </div>
             <form class="d-none d-lg-flex" role="search" action="{{ route('search') }}" method="GET">
                 <input class="form-control me-2" type="search" name="search" required>
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
     </nav>
