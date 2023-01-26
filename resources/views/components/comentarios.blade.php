@@ -1,6 +1,6 @@
 <hr>
 @forelse ($comentarios as $comentario)
-    <x-comentario :comentario="$comentario->comentario" :fecha="$comentario->updated_at->format('d/m/Y')" />
+    <x-comentario :comentario="$comentario" />
 @empty
     <div class="row mb-3">
         <div class="col">

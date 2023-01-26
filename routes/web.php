@@ -6,6 +6,7 @@ use App\Http\Controllers\CervezasEnvaseTipoController;
 use App\Http\Controllers\CervezasEstiloController;
 use App\Http\Controllers\CervezasFamiliaController;
 use App\Http\Controllers\CervezasFermentoController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ContinenteController;
 use App\Http\Controllers\DivisionesPoliticasTipoController;
@@ -53,6 +54,10 @@ Route::resource('productores_fabricaciones', ProductoresFabricacionController::c
 Route::resource('usuarios', UsuarioController::class);
 
 /* COMENTARIOS */
+Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios.index');
+Route::get('comentarios/{comentario}/offensive', [ComentarioController::class, 'offensive'])->name('comentarios.offensive');
+Route::get('comentarios/{comentario}/authorized', [ComentarioController::class, 'authorized'])->name('comentarios.authorized');
+Route::delete('comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
 Route::post('cervezas/{cerveza}/comment', [CervezaController::class, 'comment'])->name('cervezas.comment');
 Route::post('cervezas_estilos/{cervezas_estilo}/comment', [CervezasEstiloController::class, 'comment'])->name('cervezas_estilos.comment');
 Route::post('cervezas_familias/{cervezas_familia}/comment', [CervezasFamiliaController::class, 'comment'])->name('cervezas_familias.comment');

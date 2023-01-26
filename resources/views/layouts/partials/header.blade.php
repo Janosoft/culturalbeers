@@ -65,6 +65,9 @@
                             <li>
                                 <a href="{{ route('usuarios.index') }}" class="dropdown-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuarios</a>
                             </li>
+                            <li>
+                                <a href="{{ route('comentarios.index') }}" class="dropdown-item {{ request()->routeIs('comentarios.*') ? 'active' : '' }}">Comentarios para Autorizar</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
