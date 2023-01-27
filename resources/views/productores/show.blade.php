@@ -23,13 +23,7 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        @foreach ($productor->imagenes as $imagen)
-            <div class="col">
-                <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
-            </div>
-        @endforeach
-    </div>
+    <x-imagenes :imagenes="$productor->imagenes" />
 
     <x-cervezas :cervezas="$productor->cervezas" />
 

@@ -20,11 +20,6 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        @foreach ($persona->imagenes as $imagen)
-            <div class="col">
-                <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
-            </div>
-        @endforeach
-    </div>
+    <x-imagenes :imagenes="$persona->imagenes" />
+
 @endsection

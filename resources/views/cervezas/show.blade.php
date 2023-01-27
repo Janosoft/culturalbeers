@@ -6,14 +6,11 @@
         <div class="col">
             <h1>{{ $cerveza->nombre }}</h1>
             <h2><a href="{{ route('productores.show', $cerveza->productor) }}">{{ $cerveza->productor->nombre }}</a></h2>
+            <h4>IBU: {{$cerveza->IBU}}</h4>
+            <h4>ABV: {{$cerveza->ABV}}</h4>
             <h4>Color: <a href="{{ route('cervezas_colores.show', $cerveza->color) }}">{{ $cerveza->color->nombre }}</a></h4>
             <h4>Estilo: <a href="{{ route('cervezas_estilos.show', $cerveza->estilo) }}">{{ $cerveza->estilo->nombre }}</a></h4>
-            <h4>Envases: <ul class="list-group list-group-horizontal">
-                    @foreach ($cerveza->envases as $envase)
-                        <a class="list-group-item" href="{{ route('cervezas_envases_tipos.show', $envase) }}">{{ $envase->nombre }}</a>
-                    @endforeach
-                </ul>
-            </h4>
+            <h4>Envases: </h4> <x-cervezas-envases-tipos :envases="$cerveza->envases" />
         </div>
     </div>
 
@@ -28,22 +25,22 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        @foreach ($cerveza->imagenes as $imagen)
-            <div class="col">
-                <img class="img-fluid" src="{{ Storage::url($imagen->url) }}">
-            </div>
-        @endforeach
-    </div>
-
+    <x-imagenes :imagenes="$cerveza->imagenes" />
+    
     <x-comentarios :comentarios="$cerveza->comentarios" />
 
     <form action="{{ route('cervezas.comment', $cerveza) }}" method="POST">
         @csrf
 
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="comentario" placeholder="Nuevo Comentario" value="{{ old('comentario') }}">
+            <textarea class="form-control" name="comentario" rows="1" placeholder="Nuevo Comentario" style="resize: none;">{{ old('comentario') }}</textarea>
             <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="fa-solid fa-comment-medical"></i></button>
         </div>
     </form>
+
+    <h2>Mismo Productor</h2>
+    <x-cervezas :cervezas="$cerveza->cervezasMismoProductor()"/>
+    
+    <h2>Mismo Estilo</h2>
+    <x-cervezas :cervezas="$cerveza->cervezasMismoEstilo()"/>
 @endsection

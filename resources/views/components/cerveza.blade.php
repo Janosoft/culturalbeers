@@ -1,4 +1,4 @@
-<div class="col-lg-4 mb-3">
+<div class="col mb-3">
     <a href="{{ route('cervezas.show', $slug) }}">
         <div class="card">
             <div class="card-body">

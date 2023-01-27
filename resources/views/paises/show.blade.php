@@ -23,13 +23,7 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        @foreach ($pais->imagenes as $imagen)
-            <div class="col">
-                <img class="img-fluid" src="../storage/{{ $imagen->url }}">
-            </div>
-        @endforeach
-    </div>
+    <x-imagenes :imagenes="$pais->imagenes" />
 
     <x-divisiones-politicas :divisiones="$pais->divisiones_politicas" />
 @endsection
