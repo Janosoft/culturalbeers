@@ -17,6 +17,22 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="IBU" class="form-label">IBU</label>
+                    <input type="range" min="0" max="100" class="form-control" name="IBU" value="{{ old('IBU') }}">
+                    @error('IBU')
+                        <label for="floatingInputInvalid">*{{ $message }}</label>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="ABV" class="form-label">ABV</label>
+                    <input type="range" min="0" max="100" class="form-control" name="ABV" value="{{ old('ABV') }}">
+                    @error('IBU')
+                        <label for="floatingInputInvalid">*{{ $message }}</label>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="productor_id" class="form-label">Productor</label>
                     <select class="form-select" name="productor_id">
                         <option value="" {{ empty(old('productor_id')) ? '' : 'selected' }}>Elija el productor de

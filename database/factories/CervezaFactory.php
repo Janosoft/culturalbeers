@@ -24,10 +24,12 @@ class CervezaFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'IBU' => fake()->numberBetween(10, 90),
+            'ABV' => fake()->randomFloat(1, 5, 30),
             'productor_id' => $productor->productor_id,
             'color_id' => CervezasColor::all()->random()->color_id,
             'estilo_id' => CervezasEstilo::all()->random()->estilo_id,
-            'slug' => str()->slug($productor->nombre.'-'.$nombre, '-', 'es'),
+            'slug' => str()->slug($productor->nombre . '-' . $nombre, '-', 'es'),
         ];
     }
 }

@@ -25,6 +25,29 @@ class Cerveza extends Model
             }
         );
     }
+
+    protected function IBU(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                if ($value > 100) $value = 100;
+                if ($value < 0) $value = 0;
+                return ($value);
+            }
+        );
+    }
+
+    protected function ABV(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => "{$value}%",
+            set: function ($value) {
+                if ($value > 100) $value = 100;
+                if ($value < 0) $value = 0;
+                return ($value);
+            }
+        );
+    }
     /* MUTATORS */
 
     /* ROUTE NAME */
@@ -69,5 +92,26 @@ class Cerveza extends Model
                 ->Where('autorizado', true);
         });
     }
+
+    public function cervezasMismoEstilo()
+    {
+        $cervezas = Cerveza::inRandomOrder()
+            ->where('estilo_id', $this->estilo_id)
+            ->where('cerveza_id', '!=', $this->cerveza_id)
+            ->limit(4)
+            ->get();
+        return $cervezas;
+    }
+
+    public function cervezasMismoProductor()
+    {
+        $cervezas = Cerveza::inRandomOrder()
+            ->where('productor_id', $this->productor_id)
+            ->where('cerveza_id', '!=', $this->cerveza_id)
+            ->limit(4)
+            ->get();
+        return $cervezas;
+    }
+
     /* ATRIBUTOS EXTERNOS (inversos)*/
 }
