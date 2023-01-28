@@ -34,15 +34,15 @@ class CervezaController extends Controller
     public function store(StoreCerveza $request)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
-            $fileName = time() . '.' . $request->imagen->extension();
+            $fileName = time().'.'.$request->imagen->extension();
             $request->imagen->move(public_path('storage/imagenes'), $fileName);
             Imagen::create([
                 'imageable_id' => $cerveza->cerveza_id,
-                'url' => 'imagenes/' . $fileName,
+                'url' => 'imagenes/'.$fileName,
                 'imageable_type' => Cerveza::class,
             ]);
         }
@@ -72,7 +72,7 @@ class CervezaController extends Controller
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
         $cerveza->update($request->all());
         $cerveza->envases()->sync($request->envases);
         session()->flash('statusTitle', 'Cerveza Actualizada');

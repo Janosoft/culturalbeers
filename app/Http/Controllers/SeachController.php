@@ -22,7 +22,7 @@ class SeachController extends Controller
     {
         $search = $request->input('search');
 
-        if (!empty($search)) {
+        if (! empty($search)) {
             $cervezas = Cerveza::query()
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
@@ -69,20 +69,18 @@ class SeachController extends Controller
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
                 ->get();
-        }
-        else
-        {
-            $cervezas= new Collection();
-            $cervezas_colores= new Collection();
-            $cervezas_envases_tipos= new Collection();
-            $cervezas_estilos= new Collection();
-            $cervezas_familias= new Collection();
-            $cervezas_fermentos= new Collection();
-            $divisiones_politicas= new Collection();
-            $localidades= new Collection();
-            $paises= new Collection();
-            $personas= new Collection();
-            $productores= new Collection();
+        } else {
+            $cervezas = new Collection();
+            $cervezas_colores = new Collection();
+            $cervezas_envases_tipos = new Collection();
+            $cervezas_estilos = new Collection();
+            $cervezas_familias = new Collection();
+            $cervezas_fermentos = new Collection();
+            $divisiones_politicas = new Collection();
+            $localidades = new Collection();
+            $paises = new Collection();
+            $personas = new Collection();
+            $productores = new Collection();
         }
 
         return view('search', compact([

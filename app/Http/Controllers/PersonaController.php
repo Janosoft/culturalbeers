@@ -28,11 +28,11 @@ class PersonaController extends Controller
         $request['slug'] = str()->slug($request->nombre);
         $persona = Persona::create($request->all());
         if ($request->imagen) {
-            $fileName = time() . '.' . $request->imagen->extension();
+            $fileName = time().'.'.$request->imagen->extension();
             $request->imagen->move(public_path('storage/imagenes'), $fileName);
             Imagen::create([
                 'imageable_id' => $persona->persona_id,
-                'url' => 'imagenes/' . $fileName,
+                'url' => 'imagenes/'.$fileName,
                 'imageable_type' => Persona::class,
             ]);
         }

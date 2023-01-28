@@ -9,10 +9,9 @@ class ComentarioController extends Controller
 {
     public function index()
     {
-        $comentarios = Comentario::
-            where('ofensivo', 1)
+        $comentarios = Comentario::where('ofensivo', 1)
             ->where('autorizado', 0)
-            ->orderBy('created_at','desc')
+            ->orderBy('created_at', 'desc')
             ->paginate();
 
         return view('comentarios.index', compact('comentarios'));
@@ -20,7 +19,7 @@ class ComentarioController extends Controller
 
     public function offensive(Comentario $comentario)
     {
-        $comentario->ofensivo= true;
+        $comentario->ofensivo = true;
         $comentario->save();
 
         session()->flash('statusTitle', 'Comentario Ofensivo');
@@ -32,7 +31,7 @@ class ComentarioController extends Controller
 
     public function authorized(Comentario $comentario)
     {
-        $comentario->autorizado= true;
+        $comentario->autorizado = true;
         $comentario->save();
 
         session()->flash('statusTitle', 'Comentario Autorizado');
@@ -41,7 +40,6 @@ class ComentarioController extends Controller
 
         return Redirect::back();
     }
-
 
     public function destroy(Comentario $comentario)
     {

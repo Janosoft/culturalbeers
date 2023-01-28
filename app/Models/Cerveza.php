@@ -30,9 +30,14 @@ class Cerveza extends Model
     {
         return new Attribute(
             set: function ($value) {
-                if ($value > 100) $value = 100;
-                if ($value < 0) $value = 0;
-                return ($value);
+                if ($value > 100) {
+                    $value = 100;
+                }
+                if ($value < 0) {
+                    $value = 0;
+                }
+
+                return $value;
             }
         );
     }
@@ -42,9 +47,14 @@ class Cerveza extends Model
         return new Attribute(
             get: fn ($value) => "{$value}%",
             set: function ($value) {
-                if ($value > 100) $value = 100;
-                if ($value < 0) $value = 0;
-                return ($value);
+                if ($value > 100) {
+                    $value = 100;
+                }
+                if ($value < 0) {
+                    $value = 0;
+                }
+
+                return $value;
             }
         );
     }
@@ -101,6 +111,7 @@ class Cerveza extends Model
             ->where('cerveza_id', '!=', $this->cerveza_id)
             ->limit(4)
             ->get();
+
         return $cervezas;
     }
 
@@ -111,6 +122,7 @@ class Cerveza extends Model
             ->where('cerveza_id', '!=', $this->cerveza_id)
             ->limit(4)
             ->get();
+
         return $cervezas;
     }
 
