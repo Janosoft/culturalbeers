@@ -48,6 +48,7 @@ class Cerveza extends Model
             }
         );
     }
+
     /* MUTATORS */
 
     /* ROUTE NAME */

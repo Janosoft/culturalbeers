@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('cerveza_id');
             $table->string('nombre', 100);
             $table->tinyInteger('IBU');
-            $table->unsignedDecimal('ABV', 2, 1);
+            $table->unsignedDecimal('ABV', 3, 1);
             $table->foreignId('productor_id')->constrained('productores', 'productor_id');
             $table->foreignId('color_id')->constrained('cervezas_colores', 'color_id');
             $table->foreignId('estilo_id')->constrained('cervezas_estilos', 'estilo_id');
