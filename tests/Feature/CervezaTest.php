@@ -38,6 +38,8 @@ class CervezaTest extends TestCase
         $estilos = CervezasEstilo::factory(2)->create();
         $response = $this->post('/cervezas', [
             'nombre' => 'nombre de prueba',
+            'IBU' => '10',
+            'ABV' => '20',
             'productor_id' => $productores->random()->productor_id,
             'color_id' => $colores->random()->color_id,
             'estilo_id' => $estilos->random()->estilo_id,
@@ -88,6 +90,8 @@ class CervezaTest extends TestCase
         $cerveza = Cerveza::factory()->create();
         $response = $this->put('/cervezas/'.$cerveza->slug, [
             'nombre' => 'nombre de prueba',
+            'IBU' => '10',
+            'ABV' => '20',
             'productor_id' => $productores->random()->productor_id,
             'color_id' => $colores->random()->color_id,
             'estilo_id' => $estilos->random()->estilo_id,
