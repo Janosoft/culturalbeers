@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCervezaEstilo extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreCervezaEstilo extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('cervezas_estilos')->ignore($this->cervezas_estilo),
+            ],
             'familia_id' => 'required',
         ];
     }

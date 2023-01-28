@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProductorFabricacion extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreProductorFabricacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('productores_fabricaciones')->ignore($this->productores_fabricacion),
+            ],
         ];
     }
 

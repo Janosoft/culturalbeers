@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCervezaEnvaseTipo extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreCervezaEnvaseTipo extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('cervezas_envases_tipos')->ignore($this->cervezas_envases_tipo),
+            ],
         ];
     }
 

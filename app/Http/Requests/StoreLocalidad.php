@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreLocalidad extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreLocalidad extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('localidades')->ignore($this->localidad),
+            ],
             'division_politica_id' => 'required',
         ];
     }

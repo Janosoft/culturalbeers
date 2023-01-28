@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreContinente extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreContinente extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:8',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('continentes')->ignore($this->continente),
+            ],
         ];
     }
 

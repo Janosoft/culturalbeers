@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreDivisionPolitica extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreDivisionPolitica extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3',
+            'nombre' => [
+                'required',
+                'min:3',
+                Rule::unique('divisiones_politicas')->ignore($this->division_politica),
+            ],
         ];
     }
 
