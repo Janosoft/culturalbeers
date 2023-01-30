@@ -20,6 +20,7 @@ class CervezasColorFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'color' => fake()->hexColor(),
             'slug' => str()->slug($nombre, '-', 'es'),
         ];
     }

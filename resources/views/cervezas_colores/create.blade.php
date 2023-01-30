@@ -17,6 +17,14 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="color" class="form-label">Color</label>
+                    <input type="color" class="form-control form-control-color" name="color" title="Elija un color" value="{{ old('color') }}">
+                    @error('nombre')
+                        <label for="floatingInputInvalid">*{{ $message }}</label>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                 </div>
                 
