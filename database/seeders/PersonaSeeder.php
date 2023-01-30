@@ -20,6 +20,7 @@ class PersonaSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $persona->persona_id,
                 'imageable_type' => Persona::class,
+                'usuario_id' => 1, //TODO poner el usuario
             ]);
         }
     }

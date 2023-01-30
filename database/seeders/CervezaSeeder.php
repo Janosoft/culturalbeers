@@ -22,6 +22,7 @@ class CervezaSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $cerveza->cerveza_id,
                 'imageable_type' => Cerveza::class,
+                'usuario_id' => 1, //TODO poner el usuario
             ]);
             Comentario::factory(2)->create([
                 'commentable_id' => $cerveza->cerveza_id,

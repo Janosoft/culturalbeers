@@ -20,6 +20,7 @@ class PaisSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $pais->pais_id,
                 'imageable_type' => Pais::class,
+                'usuario_id' => 1, //TODO poner el usuario
             ]);
         }
     }
