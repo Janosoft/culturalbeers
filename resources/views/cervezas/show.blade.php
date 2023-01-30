@@ -3,6 +3,9 @@
 
 @section('content')
     <div class="row mb-3">
+        <div class="col-2">
+            <img class="img-fluid" src="{{empty($cerveza->imagen) ? 'https://dummyimage.com/711x400/000000/fff' : Storage::url($cerveza->imagen->url)}}">
+        </div>
         <div class="col">
             <h1>{{ $cerveza->nombre }}</h1>
             <h2><a href="{{ route('productores.show', $cerveza->productor) }}">{{ $cerveza->productor->nombre }}</a></h2>
