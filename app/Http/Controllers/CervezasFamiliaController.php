@@ -64,7 +64,7 @@ class CervezasFamiliaController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasFamilia::class,
             'commentable_id' => $cervezas_familia->familia_id,
-            'usuario_id' => 0, //TODO poner el usuario
+            'usuario_id' => 1, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

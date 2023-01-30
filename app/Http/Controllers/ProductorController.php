@@ -77,7 +77,7 @@ class ProductorController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Productor::class,
             'commentable_id' => $productor->productor_id,
-            'usuario_id' => 0, //TODO poner el usuario
+            'usuario_id' => 1, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

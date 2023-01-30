@@ -64,7 +64,7 @@ class CervezasEstiloController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasEstilo::class,
             'commentable_id' => $cervezas_estilo->estilo_id,
-            'usuario_id' => 0, //TODO poner el usuario
+            'usuario_id' => 1, //TODO poner el usuario
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');
