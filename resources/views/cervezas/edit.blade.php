@@ -20,7 +20,7 @@
 
                 <div class="mb-3">
                     <label for="IBU" class="form-label">IBU</label>
-                    <input type="range" min="0" max="100" class="form-control" name="IBU" value="{{ old('IBU', $cerveza->IBU) }}">
+                    <input type="number" min="0" max="100" step="0.5" class="form-control" name="IBU" value="{{ old('IBU', $cerveza->IBU) }}">
                     @error('IBU')
                         <label for="floatingInputInvalid">*{{ $message }}</label>
                     @enderror
@@ -28,7 +28,7 @@
 
                 <div class="mb-3">
                     <label for="ABV" class="form-label">ABV</label>
-                    <input type="range" min="0" max="100" class="form-control" name="ABV" value="{{ old('ABV', $cerveza->ABV) }}">
+                    <input type="number" min="0" max="100" step="0.5" class="form-control" name="ABV" value="{{ old('ABV', $cerveza->ABV) }}">
                     @error('IBU')
                         <label for="floatingInputInvalid">*{{ $message }}</label>
                     @enderror
