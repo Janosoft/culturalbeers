@@ -16,6 +16,12 @@ class Imagen extends Model
     protected $guarded = ['created_at', 'updated_at'];
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
+
+
     public function imageable()
     {
         return $this->morphTo();

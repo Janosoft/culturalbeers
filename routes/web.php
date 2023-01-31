@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ContinenteController;
 use App\Http\Controllers\DivisionesPoliticasTipoController;
 use App\Http\Controllers\DivisionPoliticaController;
+use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\PaisController;
@@ -52,6 +53,10 @@ Route::resource('personas', PersonaController::class);
 Route::resource('productores', ProductorController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
 Route::resource('usuarios', UsuarioController::class);
+
+/* IMAGENES */
+Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');
+/* IMAGENES */
 
 /* COMENTARIOS */
 Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios.index');
