@@ -11,7 +11,7 @@
     @else
         <div class="row justify-content-center d-lg-none">
             <div class="col-6">
-                <form class="d-flex justify-content-center"" role="search" action="{{ route('search') }}" method="GET">
+                <form class="d-flex justify-content-center" role="search" action="{{ route('search') }}" method="GET">
                     <input class="form-control me-2" type="search" name="search" style="width: 18rem;" required>
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
