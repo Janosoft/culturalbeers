@@ -10,12 +10,8 @@
 
     <div class="row">
         <div class="col">
-            <a href="{{ route('divisiones_politicas_tipos.edit', $divisiones_politicas_tipo) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('divisiones_politicas_tipos.destroy', $divisiones_politicas_tipo) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('divisiones_politicas_tipos.edit', $divisiones_politicas_tipo)" />
+            <x-botones.eliminar :route="route('divisiones_politicas_tipos.destroy', $divisiones_politicas_tipo)" />
         </div>
     </div>
 

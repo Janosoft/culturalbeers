@@ -6,20 +6,14 @@
         <div class="col">
             <h1>{{ $pais->nombre }}</h1>
             <h2><a href="{{ route('continentes.show', $pais->continente) }}">{{ $pais->continente->nombre }}</a></h2>
-            <h2><a
-                    href="{{ route('divisiones_politicas_tipos.show', $pais->division_politica_tipo) }}">{{ $pais->division_politica_tipo->nombre }}</a>
-            </h2>
+            <h2><a href="{{ route('divisiones_politicas_tipos.show', $pais->division_politica_tipo) }}">{{ $pais->division_politica_tipo->nombre }}</a></h2>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('paises.edit', $pais) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('paises.destroy', $pais) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('paises.edit', $pais)" />
+            <x-botones.eliminar :route="route('paises.destroy', $pais)" />
         </div>
     </div>
 

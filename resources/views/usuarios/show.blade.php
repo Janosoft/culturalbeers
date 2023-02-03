@@ -14,12 +14,8 @@
 
     <div class="row">
         <div class="col">
-            <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('usuarios.destroy', $usuario) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('usuarios.edit', $usuario)" />
+            <x-botones.eliminar :route="route('usuarios.destroy', $usuario)" />
         </div>
     </div>
 @endsection

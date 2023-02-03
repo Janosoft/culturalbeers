@@ -14,12 +14,8 @@
 
     <div class="row">
         <div class="col">
-            <a href="{{ route('productores.edit', $productor) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('productores.destroy', $productor) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('productores.edit', $productor)" />
+            <x-botones.eliminar :route="route('productores.destroy', $productor)" />
         </div>
     </div>
 

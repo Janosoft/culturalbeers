@@ -11,13 +11,8 @@
 
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('cervezas_colores.edit', $cervezas_color) }}" class="btn btn-primary" title="Editar"><i
-                    class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('cervezas_colores.destroy', $cervezas_color) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('cervezas_colores.edit', $cervezas_color)" />
+            <x-botones.eliminar :route="route('cervezas_colores.destroy', $cervezas_color)" />
         </div>
     </div>
 

@@ -10,12 +10,8 @@
 
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('continentes.edit', $continente) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('continentes.destroy', $continente) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('continentes.edit', $continente)" />
+            <x-botones.eliminar :route="route('continentes.destroy', $continente)" />
         </div>
     </div>
 

@@ -5,20 +5,14 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_familia->nombre }}</h1>
-            <h2><a
-                    href="{{ route('cervezas_fermentos.show', $cervezas_familia->fermento) }}">{{ $cervezas_familia->fermento->nombre }}</a>
-            </h2>
+            <h2><a href="{{ route('cervezas_fermentos.show', $cervezas_familia->fermento) }}">{{ $cervezas_familia->fermento->nombre }}</a></h2>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('cervezas_familias.edit', $cervezas_familia) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form class="form_destroy" action="{{ route('cervezas_familias.destroy', $cervezas_familia) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <x-botones.editar :route="route('cervezas_familias.edit', $cervezas_familia)" />
+            <x-botones.eliminar :route="route('cervezas_familias.destroy', $cervezas_familia)" />
         </div>
     </div>
 
