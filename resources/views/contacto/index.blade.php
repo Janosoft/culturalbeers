@@ -2,7 +2,7 @@
 @section('title', 'Contacto')
 
 @section('content')
-    <form action="{{ route('contacto.store') }}" method="POST">
+    <form class="form_contacto" action="{{ route('contacto.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre y Apellido</label>
@@ -22,8 +22,7 @@
 
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentario</label>
-            <textarea class="form-control" placeholder="Deje aquí su comentario" id="comentario" name="comentario"
-                style="height: 100px"> {{ old('comentario') }}</textarea>
+            <textarea class="form-control" placeholder="Deje aquí su comentario" id="comentario" name="comentario"> {{ old('comentario') }}</textarea>
             @error('comentario')
                 <div id="comentarioHelp" class="form-text">{{ $message }}</div>
             @enderror

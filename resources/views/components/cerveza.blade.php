@@ -1,10 +1,10 @@
 <div class="col mb-3">
     <a href="{{ route('cervezas.show', $slug) }}">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body card_cerveza">
                 <div class="row">
                     <div class="col-3">
-                        <img class="img-fluid rounded-circle" loading="lazy" src="{{$src}}" alt="{{ $nombre }}" loading="lazy" style="width: 50px;height: 50px;object-fit: cover;">
+                        <img class="img-fluid rounded-circle" loading="lazy" src="{{$src}}" alt="{{ $nombre }}" loading="lazy">
                     </div>
                     <div class="col">
                         {{ $nombre }}

@@ -20,7 +20,7 @@
     <div class="row mb-3">
         <div class="col">
             <a href="{{ route('cervezas.edit', $cerveza) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('cervezas.destroy', $cerveza) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('cervezas.destroy', $cerveza) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
@@ -31,15 +31,7 @@
     <x-imagenes :imagenes="$cerveza->imagenes" />
     
     <x-comentarios :comentarios="$cerveza->comentarios" />
-
-    <form action="{{ route('cervezas.comment', $cerveza) }}" method="POST">
-        @csrf
-
-        <div class="input-group mb-3">
-            <textarea class="form-control" name="comentario" rows="1" placeholder="Nuevo Comentario" style="resize: none;">{{ old('comentario') }}</textarea>
-            <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="fa-solid fa-comment-medical"></i></button>
-        </div>
-    </form>
+    <x-formularios.comentario :action="route('cervezas.comment', $cerveza)" />
 
     <h2>Mismo Productor</h2>
     <x-cervezas :cervezas="$cerveza->cervezasMismoProductor()"/>

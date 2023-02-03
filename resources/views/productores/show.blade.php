@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
             <a href="{{ route('productores.edit', $productor) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('productores.destroy', $productor) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('productores.destroy', $productor) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
@@ -28,13 +28,6 @@
     <x-cervezas :cervezas="$productor->cervezas" />
 
     <x-comentarios :comentarios="$productor->comentarios" />
+    <x-formularios.comentario :action="route('productores.comment', $productor)" />
 
-    <form action="{{ route('productores.comment', $productor) }}" method="POST">
-        @csrf
-        
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="comentario" placeholder="Nuevo Comentario" value="{{ old('comentario') }}">
-            <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="fa-solid fa-comment-medical"></i></button>
-        </div>
-    </form>
 @endsection

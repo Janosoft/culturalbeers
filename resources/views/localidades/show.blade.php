@@ -14,7 +14,7 @@
     <div class="row mb-3">
         <div class="col">
             <a href="{{ route('localidades.edit', $localidad) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('localidades.destroy', $localidad) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('localidades.destroy', $localidad) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
@@ -27,13 +27,6 @@
     <x-personas :personas="$localidad->personas" />
 
     <x-comentarios :comentarios="$localidad->comentarios" />
+    <x-formularios.comentario :action="route('localidades.comment', $localidad)" />
 
-    <form action="{{ route('localidades.comment', $localidad) }}" method="POST">
-        @csrf
-        
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="comentario" placeholder="Nuevo Comentario" value="{{ old('comentario') }}">
-            <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="fa-solid fa-comment-medical"></i></button>
-        </div>
-    </form>
 @endsection

@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
             <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('usuarios.destroy', $usuario) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>

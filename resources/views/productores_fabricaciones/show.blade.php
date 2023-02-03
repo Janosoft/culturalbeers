@@ -12,8 +12,7 @@
         <div class="col">
             <a href="{{ route('productores_fabricaciones.edit', $productores_fabricacion) }}" class="btn btn-primary">
                 Editar</a>
-            <form action="{{ route('productores_fabricaciones.destroy', $productores_fabricacion) }}" method="POST"
-                style="display: inline;">
+            <form class="form_destroy" action="{{ route('productores_fabricaciones.destroy', $productores_fabricacion) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>

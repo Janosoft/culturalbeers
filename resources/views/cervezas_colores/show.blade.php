@@ -13,7 +13,7 @@
         <div class="col">
             <a href="{{ route('cervezas_colores.edit', $cervezas_color) }}" class="btn btn-primary" title="Editar"><i
                     class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('cervezas_colores.destroy', $cervezas_color) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('cervezas_colores.destroy', $cervezas_color) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>

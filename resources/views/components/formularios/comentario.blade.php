@@ -1,4 +1,4 @@
-<form id="form_comentario" action="{{$action}}" method="POST">
+<form class="form_comentario" action="{{$action}}" method="POST">
     @csrf
 
     <div class="input-group mb-3">

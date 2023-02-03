@@ -12,7 +12,7 @@
     <div class="row mb-3">
         <div class="col">
             <a href="{{ route('personas.edit', $persona) }}" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="{{ route('personas.destroy', $persona) }}" method="POST" style="display: inline;">
+            <form class="form_destroy" action="{{ route('personas.destroy', $persona) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
