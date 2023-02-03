@@ -27,6 +27,6 @@
     <x-personas :personas="$localidad->personas" />
 
     <x-comentarios :comentarios="$localidad->comentarios" />
-    <x-formularios.comentario :action="route('localidades.comment', $localidad)" />
+    <x-formularios.comentario :route="route('localidades.comment', $localidad)" />
 
 @endsection

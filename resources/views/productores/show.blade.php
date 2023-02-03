@@ -28,6 +28,6 @@
     <x-cervezas :cervezas="$productor->cervezas" />
 
     <x-comentarios :comentarios="$productor->comentarios" />
-    <x-formularios.comentario :action="route('productores.comment', $productor)" />
+    <x-formularios.comentario :route="route('productores.comment', $productor)" />
 
 @endsection

@@ -25,6 +25,6 @@
     <x-cervezas :cervezas="$cervezas_estilo->cervezas" />
 
     <x-comentarios :comentarios="$cervezas_estilo->comentarios" />
-    <x-formularios.comentario :action="route('cervezas_estilos.comment', $cervezas_estilo)" />
+    <x-formularios.comentario :route="route('cervezas_estilos.comment', $cervezas_estilo)" />
     
 @endsection

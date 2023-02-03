@@ -22,6 +22,6 @@
     <x-cervezas-familias :familias="$cervezas_fermento->familias" />
 
     <x-comentarios :comentarios="$cervezas_fermento->comentarios" />
-    <x-formularios.comentario :action="route('cervezas_fermentos.comment', $cervezas_fermento)" />
+    <x-formularios.comentario :route="route('cervezas_fermentos.comment', $cervezas_fermento)" />
 
 @endsection

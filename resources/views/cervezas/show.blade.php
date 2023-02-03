@@ -31,7 +31,7 @@
     <x-imagenes :imagenes="$cerveza->imagenes" />
     
     <x-comentarios :comentarios="$cerveza->comentarios" />
-    <x-formularios.comentario :action="route('cervezas.comment', $cerveza)" />
+    <x-formularios.comentario :route="route('cervezas.comment', $cerveza)" />
 
     <h2>Mismo Productor</h2>
     <x-cervezas :cervezas="$cerveza->cervezasMismoProductor()"/>
