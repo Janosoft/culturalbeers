@@ -29,7 +29,7 @@
                 <div class="mb-3">
                     <label for="ABV" class="form-label">ABV</label>
                     <input type="number" min="0" max="100" step="0.5" class="form-control" name="ABV" value="{{ old('ABV', $cerveza->ABV) }}">
-                    @error('IBU')
+                    @error('ABV')
                         <label for="floatingInputInvalid">*{{ $message }}</label>
                     @enderror
                 </div>
