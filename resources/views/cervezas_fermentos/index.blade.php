@@ -4,7 +4,11 @@
 @section('content')
     
     <div class="mb-3">
-        <a href="{{ route('cervezas_fermentos.create') }}" class="btn btn-primary" role="button" title="Crear Nuevo"><i class="fa-solid fa-square-plus"></i></a>
+        <div class="row">
+            <div class="col">
+                <x-botones.crear :route="route('cervezas_fermentos.create')" />
+            </div>
+        </div>
     </div>
     
     <x-cervezas-fermentos :fermentos="$cervezas_fermentos" />

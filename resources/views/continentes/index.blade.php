@@ -4,7 +4,11 @@
 @section('content')
     
     <div class="mb-3">
-        <a href="{{ route('continentes.create') }}" class="btn btn-primary" role="button" title="Crear Nuevo"><i class="fa-solid fa-square-plus"></i></a>
+        <div class="row">
+            <div class="col">
+                <x-botones.crear :route="route('continentes.create')" />
+            </div>
+        </div>
     </div>
 
     <x-continentes :continentes="$continentes" />
