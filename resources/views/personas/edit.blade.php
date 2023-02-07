@@ -8,42 +8,11 @@
                 @csrf
                 @method('put')
 
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre"
-                        value="{{ old('nombre', $persona->nombre) }}">
-                    @error('nombre')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" name="apellido" placeholder="Apellido"
-                        value="{{ old('apellido', $persona->apellido) }}">
-                    @error('apellido')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="localidad_id" class="form-label">Localidad Actual</label>
-                    <select class="form-select" name="localidad_id">
-                        @foreach ($localidades as $localidad_id => $localidad)
-                            <option value="{{ $localidad_id }}"
-                                {{ old('localidad_id', $persona->localidad_id) == $localidad_id ? 'selected' : '' }}>
-                                {{ $localidad }} </option>
-                        @endforeach
-                    </select>
-                    @error('localidad_id')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                </div>
-
+                <x-input.text label="Nombre" name="nombre" placeholder="Nombre" :value="old('nombre', $persona->nombre)" />
+                <x-input.text label="Apellido" name="apellido" placeholder="Apellido" :value="old('apellido', $persona->apellido)" />
+                <x-input.select label="Localidad Actual" name="localidad_id" placeholder="Elija la Localidad actual" :objects="$localidades" :value="old('localidad_id', $persona->localidad_id)" />
+                <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen', $persona->imagen)" />
+                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
             </form>
         </div>
     </div>

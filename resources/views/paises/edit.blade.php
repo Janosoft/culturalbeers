@@ -7,49 +7,12 @@
             <form action="{{ route('paises.update', $pais) }}" method="POST">
                 @csrf
                 @method('put')
-                
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del País"
-                        value="{{ old('nombre', $pais->nombre) }}">
-                    @error('nombre')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
 
-                <div class="mb-3">
-                    <label for="continente_id" class="form-label">Continente</label>
-                    <select class="form-select" name="continente_id">
-                        @foreach ($continentes as $continente_id => $continente)
-                            <option value="{{ $continente_id }}"
-                                {{ old('continente_id', $pais->continente_id) == $continente_id ? 'selected' : '' }}>
-                                {{ $continente }} </option>
-                        @endforeach
-                    </select>
-                    @error('continente_id')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="divisiones_politicas_tipo_id" class="form-label">Tipo de División Política</label>
-                    <select class="form-select" name="divisiones_politicas_tipo_id">
-                        @foreach ($divisiones_politicas_tipo as $divisiones_politicas_tipo_id => $divisiones_politicas_tipo)
-                            <option value="{{ $divisiones_politicas_tipo_id }}"
-                                {{ old('divisiones_politicas_tipo_id', $pais->divisiones_politicas_tipo_id) == $divisiones_politicas_tipo_id ? 'selected' : '' }}>
-                                {{ $divisiones_politicas_tipo }} </option>
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('divisiones_politicas_tipo_id')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                </div>
-
+                <x-input.text label="Nombre" name="nombre" placeholder="Nombre del País" :value="old('nombre', $pais->nombre)" />
+                <x-input.select label="Continente" name="continente_id" placeholder="Elija el continente al que pertenece" :objects="$continentes" :value="old('continente_id', $pais->continente_id)" />
+                <x-input.select label="Tipo de División Política" name="divisiones_politicas_tipo_id" placeholder="Elija un tipo de división política" :objects="$divisiones_politicas_tipo" :value="old('divisiones_politicas_tipo_id', $pais->divisiones_politicas_tipo_id)" />
+                <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen', $pais->imagen)" />
+                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
             </form>
         </div>
     </div>

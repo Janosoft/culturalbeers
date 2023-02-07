@@ -8,34 +8,9 @@
                 @csrf
                 @method('put')
 
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la División Política"
-                        value="{{ old('nombre', $division_politica->nombre) }}">
-                    @error('nombre')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="pais_id" class="form-label">País</label>
-                    <select class="form-select" name="pais_id">
-                        @foreach ($paises as $pais_id => $pais)
-                            <option value="{{ $pais_id }}"
-                                {{ old('pais_id', $division_politica->pais_id) == $pais_id ? 'selected' : '' }}>
-                                {{ $pais }} </option>
-                        @endforeach
-                    </select>
-                    @error('pais_id')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                </div>
-
+                <x-input.text label="Nombre" name="nombre" placeholder="Nombre de la Divisón Política" :value="old('nombre', $division_politica->nombre)" />
+                <x-input.select label="País" name="pais_id" placeholder="Elija el país al que pertenece" :objects="$paises" :value="old('pais_id', $division_politica->pais_id)" />
+                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
             </form>
         </div>
     </div>

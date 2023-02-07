@@ -8,19 +8,8 @@
                 @csrf
                 @method('put')
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Email"
-                        value="{{ old('nombre', $usuario->email) }}">
-                    @error('email')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                </div>
-                
+                <x-input.text label="Email" name="email" placeholder="Email" :value="old('email' $usuario->email)" />
+                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
             </form>
         </div>
     </div>

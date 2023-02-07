@@ -8,34 +8,9 @@
                 @csrf
                 @method('put')
 
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la Localidad"
-                        value="{{ old('nombre', $localidad->nombre) }}">
-                    @error('nombre')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="division_politica_id" class="form-label">División Política</label>
-                    <select class="form-select" name="division_politica_id">
-                        <option value="" selected>Elija un tipo de división política</option>
-                        @foreach ($divisiones_politicas as $division_politica_id => $division_politica)
-                            <option value="{{ $division_politica_id }}"
-                                {{ old('division_politica_id', $localidad->division_politica_id) == $division_politica_id ? 'selected' : '' }}>
-                                {{ $division_politica }} </option>
-                        @endforeach
-                    </select>
-                    @error('division_politica_id')
-                        <label for="floatingInputInvalid">*{{ $message }}</label>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                </div>
-
+                <x-input.text label="Nombre" name="nombre" placeholder="Nombre de la Localidad" :value="old('nombre')" />
+                <x-input.select label="División Política" name="division_politica_id" placeholder="División Política a la que pertenece" :objects="$divisiones_politicas" :value="old('division_politica_id', $localidad->division_politica_id)" />
+                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
             </form>
         </div>
     </div>
