@@ -1,1 +1,1 @@
-<a href="{{ route('productores.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }}</a>
+<a href="{{ route('productores.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }} @if ($verificado) <i class="fa-solid fa-circle-check text-warning"></i> @endif</a>
