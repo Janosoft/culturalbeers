@@ -11,7 +11,7 @@
     <div class="row mb-3">
         <div class="col">
             <x-botones.editar :route="route('cervezas_fermentos.edit', $cervezas_fermento)" />
-            <x-botones.eliminar :route="route('cervezas_fermentos.destroy', $cervezas_familia)" />
+            <x-botones.eliminar :route="route('cervezas_fermentos.destroy', $cervezas_fermento)" />
         </div>
     </div>
 
