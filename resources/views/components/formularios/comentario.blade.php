@@ -2,7 +2,7 @@
     @csrf
 
     <div class="input-group mb-3">
-        <textarea class="form-control" name="comentario" id="comentario" rows="1" placeholder="Nuevo Comentario">{{ old('comentario') }}</textarea>
+        <x-input.textarea label="Nuevo Comentario" name="comentario" rows="1" :value="old('nombre')" />
         <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="fa-solid fa-comment-medical"></i></button>
     </div>
 </form>
