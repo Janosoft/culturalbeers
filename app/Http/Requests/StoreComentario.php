@@ -34,4 +34,12 @@ class StoreComentario extends FormRequest
             'comentario' => 'texto del comentario',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'comentario.required' => 'El comentario no puede estar vacío',
+            'comentario.min' => 'El comentario debe tener al menos 10 caracteres',
+        ];
+    }
 }
