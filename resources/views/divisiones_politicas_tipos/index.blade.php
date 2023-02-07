@@ -11,6 +11,6 @@
         </div>
     </div>
 
-    <x-division-politica-tipos :divisiones="$divisiones_politicas_tipos" />
+    <x-division-politica-tipos :tipos="$divisiones_politicas_tipos" />
     {{ $divisiones_politicas_tipos->links() }}
 @endsection
