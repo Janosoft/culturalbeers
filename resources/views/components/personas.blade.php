@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($personas as $persona)
-                <x-persona :nombre="$persona->nombre" :slug="$persona->slug" />
+                <x-persona :persona="$persona" />
             @empty
                 No hay Personas
             @endforelse

@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($productores as $productor)
-                <x-productor :nombre="$productor->nombre" :slug="$productor->slug" :verificado="$productor->verificado" />
+                <x-productor :productor="$productor" />
             @empty
                 No hay Productores
             @endforelse

@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($familias as $familia)
-                <x-cervezas-familia :nombre="$familia->nombre" :slug="$familia->slug" />
+                <x-cervezas-familia :familia="$familia" />
             @empty
                 No hay Familias de Cerveza
             @endforelse

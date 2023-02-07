@@ -1,1 +1,3 @@
-<a href="{{ route('cervezas_envases_tipos.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }}</a>
+<a href="{{ route('cervezas_envases_tipos.show', $envase->slug) }}" class="list-group-item list-group-item-action">
+    {{ $envase->nombre }}
+</a>

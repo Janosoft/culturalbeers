@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($fermentos as $fermento)
-                <x-cervezas-fermento :nombre="$fermento->nombre" :slug="$fermento->slug" />
+                <x-cervezas-fermento :fermento="$fermento" />
             @empty
                 No hay Tipos de Fermentos
             @endforelse

@@ -1,1 +1,3 @@
-<a href="{{ route('divisiones_politicas.show', $slug) }}" class="list-group-item list-group-item-action">{{ $nombre }}</a>
+<a href="{{ route('divisiones_politicas.show', $division->slug) }}" class="list-group-item list-group-item-action">
+    {{ $division->nombre }}
+</a>

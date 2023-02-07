@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($envases as $envase)
-                <x-cervezas-envases-tipo :nombre="$envase->nombre" :slug="$envase->slug" />
+                <x-cervezas-envases-tipo :envase="$envase" />
             @empty
                 No hay Tipos de Envase
             @endforelse

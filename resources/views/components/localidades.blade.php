@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($localidades as $localidad)
-                <x-localidad :nombre="$localidad->nombre" :slug="$localidad->slug" />
+                <x-localidad :localidad="$localidad" />
             @empty
                 No hay Localidades
             @endforelse

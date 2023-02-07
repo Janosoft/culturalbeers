@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($colores as $color)
-                <x-cervezas-color :nombre="$color->nombre" :slug="$color->slug" />
+                <x-cervezas-color :color="$color" />
             @empty
                 No hay Colores de Cerveza
             @endforelse

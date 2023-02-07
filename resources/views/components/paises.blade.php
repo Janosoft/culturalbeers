@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($paises as $pais)
-                <x-pais :nombre="$pais->nombre" :slug="$pais->slug" />
+                <x-pais :pais="$pais" />
             @empty
                 No hay Países
             @endforelse

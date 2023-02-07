@@ -2,7 +2,7 @@
     <div class="col">
         <div class="list-group">
             @forelse ($continentes as $continente)
-                <x-continente :nombre="$continente->nombre" :slug="$continente->slug" />
+                <x-continente :continente="$continente" />
             @empty
                 No hay Continentes
             @endforelse
