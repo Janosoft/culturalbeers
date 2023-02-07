@@ -64,9 +64,8 @@ class CervezaController extends Controller
         $colores = CervezasColor::pluck('nombre', 'color_id');
         $estilos = CervezasEstilo::pluck('nombre', 'estilo_id');
         $envases_tipos = CervezasEnvaseTipo::pluck('nombre', 'envase_id');
-        $envases = $cerveza->envases->pluck('envase_id');
 
-        return view('cervezas.edit', compact(['cerveza', 'productores', 'colores', 'estilos', 'envases_tipos', 'envases']));
+        return view('cervezas.edit', compact(['cerveza', 'productores', 'colores', 'estilos', 'envases_tipos']));
     }
 
     public function update(StoreCerveza $request, Cerveza $cerveza)

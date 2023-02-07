@@ -45,7 +45,7 @@ class Cerveza extends Model
     protected function ABV(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => "{$value}%",
+            get: fn ($value) => "{$value}",
             set: function ($value) {
                 if ($value > 100) {
                     $value = 100;
