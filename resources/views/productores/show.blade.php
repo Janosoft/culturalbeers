@@ -13,7 +13,7 @@
     <div class="row mb-3">
         <div class="col">
             
-            @if (!$productor->verificado) <x-botones.accion :route="route('productores.verify', $productor)" title="Verificar" icon="fa-check-to-slot" />@endif
+            @if (!$productor->verificado) <x-botones.accion :route="route('productores.verify', $productor)" title="Verificar" color="btn-warning" icon="fa-check-to-slot" />@endif
             <x-botones.editar :route="route('productores.edit', $productor)" />
             <x-botones.eliminar :route="route('productores.destroy', $productor)" />
         </div>
