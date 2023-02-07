@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use App\Models\Localidad;
 use App\Models\Productor;
 use App\Models\ProductoresFabricacion;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductorController extends Controller
 {
@@ -85,6 +86,17 @@ class ProductorController extends Controller
         session()->flash('statusColor', 'success');
 
         return redirect()->route('productores.show', $productor);
+    }
+
+    public function verify(Productor $productor)
+    {
+        $productor->verificado= true;
+        $productor->save();
+        session()->flash('statusTitle', 'Productor Verificado');
+        session()->flash('statusMessage', 'El productor fue verificado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return Redirect::back();
     }
 
     public function destroy(Productor $productor)

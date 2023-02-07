@@ -50,9 +50,13 @@ Route::resource('divisiones_politicas_tipos', DivisionesPoliticasTipoController:
 Route::resource('localidades', LocalidadController::class);
 Route::resource('paises', PaisController::class);
 Route::resource('personas', PersonaController::class);
-Route::resource('productores', ProductorController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
 Route::resource('usuarios', UsuarioController::class);
+
+/* PRODUCTORES */
+Route::resource('productores', ProductorController::class);
+Route::get('productores/{productor}/verify', [ProductorController::class, 'verify'])->name('productores.verify');
+/* PRODUCTORES */
 
 /* IMAGENES */
 Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');

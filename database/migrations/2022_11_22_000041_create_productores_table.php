@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('localidad_id')->constrained('localidades', 'localidad_id');
             $table->string('imagen_id')->nullable();
             $table->string('slug');
+            $table->boolean('verificado')->default(false);
             $table->timestamps();
         });
     }
