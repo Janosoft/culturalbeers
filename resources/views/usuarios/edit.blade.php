@@ -9,7 +9,7 @@
                 @method('put')
 
                 <x-input.text label="Email" name="email" placeholder="Email" :value="old('email', $usuario->email)" />
-                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
             </form>
         </div>
     </div>

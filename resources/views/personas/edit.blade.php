@@ -12,7 +12,7 @@
                 <x-input.text label="Apellido" name="apellido" placeholder="Apellido" :value="old('apellido', $persona->apellido)" />
                 <x-input.select label="Localidad Actual" name="localidad_id" placeholder="Elija la Localidad actual" :objects="$localidades" :value="old('localidad_id', $persona->localidad_id)" />
                 <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen', $persona->imagen)" />
-                <x-input.submit label="Guardar" icon="fa-floppy-disk" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
             </form>
         </div>
     </div>

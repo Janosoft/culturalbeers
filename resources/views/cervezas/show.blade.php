@@ -8,7 +8,7 @@
         </div>
         <div class="col">
             <h1>{{ $cerveza->nombre }}</h1>
-            <h2><a href="{{ route('productores.show', $cerveza->productor) }}">{{ $cerveza->productor->nombre}}@if ($cerveza->productor->verificado) <i class="fa-solid fa-circle-check text-warning"></i> @endif</a></h2>
+            <h2><a href="{{ route('productores.show', $cerveza->productor) }}">{{ $cerveza->productor->nombre}}@if ($cerveza->productor->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</a></h2>
             <h4>IBU: {{$cerveza->IBU}}</h4>
             <h4>ABV: {{$cerveza->ABV}}</h4>
             <h4>Color: <a href="{{ route('cervezas_colores.show', $cerveza->color) }}">{{ $cerveza->color->nombre }}</a></h4>

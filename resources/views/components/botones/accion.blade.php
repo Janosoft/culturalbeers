@@ -1,1 +1,1 @@
-<a href="{{ $route }}" class="btn {{ $color }}" title="{{ $title }}"><i class="fa-solid {{ $icon }}"></i></a>
+<a href="{{ $route }}" class="btn {{ $color }}" title="{{ $title }}"><i class="{{ $icon }}"></i></a>

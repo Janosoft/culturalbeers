@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_color->nombre }}</h1>
-            <h4><span>Color <i class="fa-solid fa-beer-mug-empty" style="color: {{ $cervezas_color->color }}"></i></span></h4>
+            <h4><span>Color <i class="bi bi-palette-fill" style="color: {{ $cervezas_color->color }}"></i></span></h4>
         </div>
     </div>
 

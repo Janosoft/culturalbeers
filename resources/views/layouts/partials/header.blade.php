@@ -74,7 +74,7 @@
             </div>
             <form class="d-none d-lg-flex" role="search" action="{{ route('search') }}" method="GET">
                 <input class="form-control me-2" type="search" name="search" required>
-                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </nav>

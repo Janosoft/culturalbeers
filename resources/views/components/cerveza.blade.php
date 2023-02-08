@@ -8,7 +8,7 @@
                     </div>
                     <div class="col">
                         {{ $cerveza->nombre }}
-                        <p class="text-muted m-0">{{ $cerveza->productor->nombre }}@if ($cerveza->productor->verificado) <i class="fa-solid fa-circle-check text-warning"></i> @endif</p>
+                        <p class="text-muted m-0">{{ $cerveza->productor->nombre }}@if ($cerveza->productor->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</p>
                     </div>
                 </div>
             </div>
