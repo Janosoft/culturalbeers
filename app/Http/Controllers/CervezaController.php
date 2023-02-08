@@ -34,17 +34,20 @@ class CervezaController extends Controller
     public function store(StoreCerveza $request)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
-            $fileName = time().'.'.$request->imagen->extension();
+            $fileName = time() . '.' . $request->imagen->extension();
             $request->imagen->move(public_path('storage/imagenes'), $fileName);
-            Imagen::create([
+            $imagen = Imagen::create([
                 'imageable_id' => $cerveza->cerveza_id,
-                'url' => 'imagenes/'.$fileName,
+                'url' => 'imagenes/' . $fileName,
                 'imageable_type' => Cerveza::class,
+                'usuario_id' => 0, //TODO Agregar Usuario
             ]);
+            $cerveza->imagen_id = $imagen->imagen_id;
+            $cerveza->update(['imagen_id']);
         }
         session()->flash('statusTitle', 'Cerveza Creada');
         session()->flash('statusMessage', 'La cerveza fue creada correctamente.');
@@ -71,7 +74,7 @@ class CervezaController extends Controller
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza->update($request->all());
         $cerveza->envases()->sync($request->envases);
         session()->flash('statusTitle', 'Cerveza Actualizada');
