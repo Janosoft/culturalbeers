@@ -36,6 +36,26 @@ class Usuario extends Model
     }
     /* MUTATORS */
 
+    /**
+     * Indica el porcentaje completo del perfil del usuario. En caso de ser 100 no se debería mostrar la barra de estado
+     * 
+     * @return int Porcentaje Completo
+     */
+    public function porcentajeBarraEstado(): int
+    {
+        $cantCompleta = 0;
+        $cantIncompleta = 0;
+
+        if (!$this->email_verificado) $cantIncompleta++;
+        else $cantCompleta++;
+        if (empty($this->persona->imagen)) $cantIncompleta++;
+        else $cantCompleta++;
+        if (empty($this->persona->profesion)) $cantIncompleta++;
+        else $cantCompleta++;
+
+        return round(($cantCompleta / ($cantCompleta + $cantIncompleta) * 100));
+    }
+
     /* ROUTE NAME */
     public function getRouteKeyName()
     {

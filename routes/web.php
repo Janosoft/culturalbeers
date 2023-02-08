@@ -51,7 +51,11 @@ Route::resource('localidades', LocalidadController::class);
 Route::resource('paises', PaisController::class);
 Route::resource('personas', PersonaController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
+
+/* USUARIOS */
+Route::get('account', [UsuarioController::class, 'account'])->name('account');
 Route::resource('usuarios', UsuarioController::class);
+/* USUARIOS */
 
 /* PRODUCTORES */
 Route::resource('productores', ProductorController::class);
