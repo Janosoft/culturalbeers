@@ -13,6 +13,7 @@ class Autosuggest extends Component
     public function buscarLocalidad()
     {
         if (!empty($this->search)) {
+            $this->datalist = [];
             $localidades = Localidad::query()
                 ->where('nombre', 'LIKE', "%{$this->search}%")
                 ->orderBy('nombre')
@@ -20,10 +21,7 @@ class Autosuggest extends Component
                 ->get();
 
             if (!empty($localidades)) {
-                $this->datalist = [];
-                foreach ($localidades as $localidad) {
-                    array_push($this->datalist, $localidad->nombre);
-                }
+                $this->datalist= $localidades->toArray();
             }
         }
     }
