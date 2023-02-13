@@ -27,7 +27,7 @@ class ProductorTest extends TestCase
         $response = $this->post('/productores', [
             'nombre' => 'nombre de prueba',
             'fabricacion_id' => $productores_fabricaciones->random()->fabricacion_id,
-            'localidad_id' => $localidades->random()->localidad_id,
+            'localidad' => $localidades->random()->nombre,
         ]);
         $this->assertCount(1, Productor::all()); // Fue Creado
         $productor = Productor::first();
@@ -63,7 +63,7 @@ class ProductorTest extends TestCase
         $response = $this->put('/productores/'.$productor->slug, [
             'nombre' => 'nombre de prueba',
             'fabricacion_id' => $productores_fabricaciones->random()->fabricacion_id,
-            'localidad_id' => $localidades->random()->localidad_id,
+            'localidad' => $localidades->random()->nombre,
         ]);
         $this->assertCount(1, Productor::all()); // Fue Creado
         $productor = $productor->fresh();
@@ -115,7 +115,7 @@ class ProductorTest extends TestCase
         $response = $this->post('/productores', [
             'nombre' => '',
             'fabricacion_id' => $productores_fabricaciones->random()->fabricacion_id,
-            'localidad_id' => $localidades->random()->localidad_id,
+            'localidad' => $localidades->random()->nombre,
         ]);
         $response->assertSessionHasErrors('nombre');
         $this->assertCount(0, Productor::all()); // No fue Creado
