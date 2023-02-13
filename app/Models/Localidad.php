@@ -27,6 +27,11 @@ class Localidad extends Model
     }
     /* MUTATORS */
 
+    public static function getByName(string $nombre)
+    {
+        return Localidad::where('nombre', $nombre)->first();
+    }
+
     /* ROUTE NAME */
     public function getRouteKeyName()
     {
