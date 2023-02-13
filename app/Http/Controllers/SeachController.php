@@ -27,19 +27,7 @@ class SeachController extends Controller
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
                 ->get();
-            $cervezas_colores = CervezasColor::query()
-                ->where('nombre', 'LIKE', "%{$search}%")
-                ->orderBy('nombre')
-                ->get();
-            $cervezas_envases_tipos = CervezasEnvaseTipo::query()
-                ->where('nombre', 'LIKE', "%{$search}%")
-                ->orderBy('nombre')
-                ->get();
             $cervezas_estilos = CervezasEstilo::query()
-                ->where('nombre', 'LIKE', "%{$search}%")
-                ->orderBy('nombre')
-                ->get();
-            $cervezas_familias = CervezasFamilia::query()
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
                 ->get();
@@ -71,10 +59,7 @@ class SeachController extends Controller
                 ->get();
         } else {
             $cervezas = new Collection();
-            $cervezas_colores = new Collection();
-            $cervezas_envases_tipos = new Collection();
             $cervezas_estilos = new Collection();
-            $cervezas_familias = new Collection();
             $cervezas_fermentos = new Collection();
             $divisiones_politicas = new Collection();
             $localidades = new Collection();
@@ -86,10 +71,7 @@ class SeachController extends Controller
         return view('search', compact([
             'search',
             'cervezas',
-            'cervezas_colores',
-            'cervezas_envases_tipos',
             'cervezas_estilos',
-            'cervezas_familias',
             'cervezas_fermentos',
             'divisiones_politicas',
             'localidades',
