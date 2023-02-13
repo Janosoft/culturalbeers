@@ -31,8 +31,8 @@ class StoreProductor extends FormRequest
                 Rule::unique('productores')->ignore($this->productor),
             ],
             'fabricacion_id' => 'required',
-            'localidad_id' => 'required',
-            'imagen' => 'image',
+            'localidad' => 'required',
+            'imagen' => 'image|mimes:jpg,jpeg,png,webp', //FIXME encontrar porque en esta pantalla aparece como required y no lo es
         ];
     }
 
@@ -41,7 +41,8 @@ class StoreProductor extends FormRequest
         return [
             'nombre' => 'nombre del productor',
             'fabricacion_id' => 'tipo de fabricación',
-            'localidad_id' => 'localidad de origen',
+            'localidad' => 'localidad de origen',
+            'imagen' => 'imagen destacada',
         ];
     }
 
@@ -51,8 +52,9 @@ class StoreProductor extends FormRequest
         return [
             'nombre.required' => 'Debe ingresar un nombre a la cerveza',
             'fabricacion_id.required' => 'Debe elegir un tipo de fabricación',
-            'localidad_id.required' => 'Debe elegir una localidad de origen',
-            'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, etc)',
+            'localidad.required' => 'Debe elegir una localidad de origen',
+            'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, webp)',
+            'imagen.mimes' => 'Debe elegir un archivo con formato de imagen (jpg, png, webp)',
         ];
     }
 }

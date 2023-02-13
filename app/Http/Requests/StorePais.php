@@ -32,7 +32,7 @@ class StorePais extends FormRequest
             ],
             'continente_id' => 'required',
             'divisiones_politicas_tipo_id' => 'required',
-            'imagen' => 'image',
+            'imagen' => 'image|mimes:jpg,jpeg,png,webp',
         ];
     }
 
@@ -52,7 +52,8 @@ class StorePais extends FormRequest
             'nombre.required' => 'Debe ingresar un nombre al país',
             'continente_id.required' => 'Debe elegir el continente al que pertenece',
             'divisiones_politicas_tipo_id.required' => 'Debe elegir el tipo de división política que posee',
-            'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, etc)',
+            'imagen.image' => 'Debe elegir un archivo con formato de imagen (jpg, png, webp)',
+            'imagen.mimes' => 'Debe elegir un archivo con formato de imagen (jpg, png, webp)',
         ];
     }
 }

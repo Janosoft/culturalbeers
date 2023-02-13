@@ -36,7 +36,7 @@ class StoreCerveza extends FormRequest
             'color_id' => 'required',
             'estilo_id' => 'required',
             'envases' => 'required',
-            'imagen' => 'image|mimes:jpg,png,webp',
+            'imagen' => 'image|mimes:jpg,jpeg,png,webp',
         ];
     }
 

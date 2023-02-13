@@ -23,14 +23,14 @@ class ProductorController extends Controller
     public function create()
     {
         $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
-        $localidades = Localidad::pluck('nombre', 'localidad_id');
 
-        return view('productores.create', compact(['fabricaciones', 'localidades']));
+        return view('productores.create', compact(['fabricaciones']));
     }
 
     public function store(StoreProductor $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        //FIXME almacenar en $request['localidad_id'] el resultado de buscar el nombre de la localidad
         $productor = Productor::create($request->all());
         if ($request->imagen) {
             $fileName = time().'.'.$request->imagen->extension();
