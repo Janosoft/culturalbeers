@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cervezas_colores', function (Blueprint $table) {
             $table->id('color_id');
             $table->string('nombre', 100)->unique();
-            $table->string('color',8);
+            $table->string('color', 8);
             $table->string('slug');
             $table->timestamps();
         });

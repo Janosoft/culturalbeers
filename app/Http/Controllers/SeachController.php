@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cerveza;
-use App\Models\CervezasColor;
-use App\Models\CervezasEnvaseTipo;
 use App\Models\CervezasEstilo;
-use App\Models\CervezasFamilia;
 use App\Models\CervezasFermento;
 use App\Models\DivisionPolitica;
 use App\Models\Localidad;

@@ -9,10 +9,11 @@ class UsuarioController extends Controller
 {
     public function account()
     {
-        $usuario= Usuario::first();
+        $usuario = Usuario::first();
+
         return view('usuarios.account', compact('usuario'));
     }
-    
+
     public function index()
     {
         $usuarios = Usuario::orderBy('email')->paginate();

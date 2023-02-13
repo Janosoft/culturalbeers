@@ -14,7 +14,7 @@ class CervezasColorTest extends TestCase
     {
         $response = $this->post('/cervezas_colores', [
             'nombre' => 'nombre de prueba',
-            'color' => '#000'
+            'color' => '#000',
         ]);
         $this->assertCount(1, CervezasColor::all()); // Fue Creado
         $cervezas_color = CervezasColor::first();

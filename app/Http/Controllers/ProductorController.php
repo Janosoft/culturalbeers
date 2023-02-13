@@ -30,7 +30,7 @@ class ProductorController extends Controller
     public function store(StoreProductor $request)
     {
         $request['slug'] = str()->slug($request->nombre);
-        $request['localidad_id']= Localidad::getByName($request->localidad)->localidad_id;
+        $request['localidad_id'] = Localidad::getByName($request->localidad)->localidad_id;
         $productor = Productor::create($request->all());
         if ($request->imagen) {
             $fileName = time().'.'.$request->imagen->extension();
@@ -63,7 +63,7 @@ class ProductorController extends Controller
     public function update(StoreProductor $request, Productor $productor)
     {
         $request['slug'] = str()->slug($request->nombre);
-        $request['localidad_id']= Localidad::getByName($request->localidad)->localidad_id;
+        $request['localidad_id'] = Localidad::getByName($request->localidad)->localidad_id;
         $productor->update($request->all());
         session()->flash('statusTitle', 'Productor Actualizado');
         session()->flash('statusMessage', 'El productor fue actualizado correctamente.');
@@ -90,7 +90,7 @@ class ProductorController extends Controller
 
     public function verify(Productor $productor)
     {
-        $productor->verificado= true;
+        $productor->verificado = true;
         $productor->save();
         session()->flash('statusTitle', 'Productor Verificado');
         session()->flash('statusMessage', 'El productor fue verificado correctamente.');

@@ -98,7 +98,7 @@ class Cerveza extends Model
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function imagenes()
     {
-        return $this->morphMany(Imagen::class, 'imageable')->where('imagen_id', '!=' , $this->imagen_id);
+        return $this->morphMany(Imagen::class, 'imageable')->where('imagen_id', '!=', $this->imagen_id);
     }
 
     public function comentarios()

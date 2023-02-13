@@ -21,7 +21,6 @@ class Imagen extends Model
         return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
-
     public function imageable()
     {
         return $this->morphTo();

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Localidad;
-use Illuminate\Http\Request;
 
 class LocalidadController extends Controller
 {
@@ -37,12 +36,11 @@ class LocalidadController extends Controller
      */
     public function query(string $nombre)
     {
-        $data = Localidad::
-            where("nombre", "LIKE", "%{$nombre}%")
-            ->orderby("nombre")
+        $data = Localidad::where('nombre', 'LIKE', "%{$nombre}%")
+            ->orderby('nombre')
             ->limit(5)
             ->get()
-            ->pluck("nombre");
+            ->pluck('nombre');
 
         return response()->json($data);
     }
