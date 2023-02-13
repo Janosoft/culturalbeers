@@ -32,7 +32,7 @@ class StoreProductor extends FormRequest
             ],
             'fabricacion_id' => 'required',
             'localidad' => 'required',
-            'imagen' => 'image|mimes:jpg,jpeg,png,webp', //FIXME encontrar porque en esta pantalla aparece como required y no lo es
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png,webp',
         ];
     }
 
@@ -42,7 +42,6 @@ class StoreProductor extends FormRequest
             'nombre' => 'nombre del productor',
             'fabricacion_id' => 'tipo de fabricación',
             'localidad' => 'localidad de origen',
-            'imagen' => 'imagen destacada',
         ];
     }
 
@@ -50,7 +49,7 @@ class StoreProductor extends FormRequest
     {
         // Para personalizar los mensajes de error de validación
         return [
-            'nombre.required' => 'Debe ingresar un nombre a la cerveza',
+            'nombre.required' => 'Debe ingresar un nombre al productor',
             'fabricacion_id.required' => 'Debe elegir un tipo de fabricación',
             'localidad.required' => 'Debe elegir una localidad de origen',
             'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, webp)',

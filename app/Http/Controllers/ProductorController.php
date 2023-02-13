@@ -30,7 +30,7 @@ class ProductorController extends Controller
     public function store(StoreProductor $request)
     {
         $request['slug'] = str()->slug($request->nombre);
-        //FIXME almacenar en $request['localidad_id'] el resultado de buscar el nombre de la localidad
+        $request['localidad_id']= Localidad::getByName($request->localidad)->localidad_id;
         $productor = Productor::create($request->all());
         if ($request->imagen) {
             $fileName = time().'.'.$request->imagen->extension();
@@ -56,14 +56,14 @@ class ProductorController extends Controller
     public function edit(Productor $productor)
     {
         $fabricaciones = ProductoresFabricacion::pluck('nombre', 'fabricacion_id');
-        $localidades = Localidad::pluck('nombre', 'localidad_id');
 
-        return view('productores.edit', compact(['productor', 'fabricaciones', 'localidades']));
+        return view('productores.edit', compact(['productor', 'fabricaciones']));
     }
 
     public function update(StoreProductor $request, Productor $productor)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['localidad_id']= Localidad::getByName($request->localidad)->localidad_id;
         $productor->update($request->all());
         session()->flash('statusTitle', 'Productor Actualizado');
         session()->flash('statusMessage', 'El productor fue actualizado correctamente.');

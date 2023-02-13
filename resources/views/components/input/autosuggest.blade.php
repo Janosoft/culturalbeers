@@ -30,12 +30,12 @@
                     }
                 },
                 noResults: true,
-                class: "autoComplete_results",
+                class: "list-group autoComplete",
                 tag: "ul",
             },
             resultItem: {
                 tag: "li",
-                class: "autoComplete_result",
+                class: "list-group-item list-group-item-action",
             },
             events: {
                 input: {
