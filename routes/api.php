@@ -40,3 +40,7 @@ Route::apiResource('paises', PaisController::class);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('productores', ProductorController::class);
 Route::apiResource('productores_fabricaciones', ProductoresFabricacionController::class);
+
+/* BUSCADORES */
+Route::get('/localidades/search/{nombre}', [LocalidadController::class, 'query'])->name('localidades.search');
+/* BUSCADORES */
