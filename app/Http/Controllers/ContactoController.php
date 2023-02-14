@@ -22,6 +22,6 @@ class ContactoController extends Controller
         session()->flash('statusMessage', 'El mensaje fue enviado correctamente.');
         session()->flash('statusColor', 'success');
 
-        return redirect()->route('contacto.index')->with('info', 'mensaje enviado');
+        return redirect()->route('contacto.index');
     }
 }
