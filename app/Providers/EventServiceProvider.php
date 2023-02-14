@@ -2,6 +2,22 @@
 
 namespace App\Providers;
 
+use App\Models\Cerveza;
+use App\Models\CervezasEstilo;
+use App\Models\CervezasFamilia;
+use App\Models\CervezasFermento;
+use App\Models\Localidad;
+use App\Models\Lugar;
+use App\Models\Pais;
+use App\Models\Productor;
+use App\Observers\CervezaObserver;
+use App\Observers\CervezasEstiloObserver;
+use App\Observers\CervezasFamiliaObserver;
+use App\Observers\CervezasFermentoObserver;
+use App\Observers\LocalidadObserver;
+use App\Observers\LugarObserver;
+use App\Observers\PaisObserver;
+use App\Observers\ProductorObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +41,14 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        CervezasEstilo::observe(CervezasFamiliaObserver::class);
+        CervezasFamilia::observe(CervezasEstiloObserver::class);
+        CervezasFermento::observe(CervezasFermentoObserver::class);
+        Cerveza::observe(CervezaObserver::class);
+        Localidad::observe(LocalidadObserver::class);
+        Lugar::observe(LugarObserver::class);
+        Pais::observe(PaisObserver::class);
+        Productor::observe(ProductorObserver::class);
     }
 
     /**

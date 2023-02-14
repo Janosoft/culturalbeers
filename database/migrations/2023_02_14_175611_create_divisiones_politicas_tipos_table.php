@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('divisiones_politicas_tipo', function (Blueprint $table) {
+        Schema::create('divisiones_politicas_tipos', function (Blueprint $table) {
             $table->id('divisiones_politicas_tipo_id');
             $table->string('nombre', 50)->unique();
             $table->string('slug');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('divisiones_politicas_tipo');
+        Schema::dropIfExists('divisiones_politicas_tipos');
     }
 };
