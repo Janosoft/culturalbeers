@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cerveza extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'cervezas';
 
@@ -76,17 +78,17 @@ class Cerveza extends Model
 
     public function productor()
     {
-        return $this->belongsTo(Productor::class, 'productor_id');
+        return $this->belongsTo(Productor::class, 'productor_id')->withTrashed();
     }
 
     public function color()
     {
-        return $this->belongsTo(CervezasColor::class, 'color_id');
+        return $this->belongsTo(CervezasColor::class, 'color_id')->withTrashed();
     }
 
     public function estilo()
     {
-        return $this->belongsTo(CervezasEstilo::class, 'estilo_id');
+        return $this->belongsTo(CervezasEstilo::class, 'estilo_id')->withTrashed();
     }
 
     public function envases()

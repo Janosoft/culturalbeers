@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('division_politica_id')->constrained('divisiones_politicas', 'division_politica_id');
             $table->string('slug');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('nombre');
         });

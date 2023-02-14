@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('fermento_id')->constrained('cervezas_fermentos', 'fermento_id');
             $table->string('slug');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Localidad extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'localidades';
 
@@ -42,7 +44,7 @@ class Localidad extends Model
     /* ATRIBUTOS EXTERNOS */
     public function division_politica()
     {
-        return $this->belongsTo(DivisionPolitica::class, 'division_politica_id');
+        return $this->belongsTo(DivisionPolitica::class, 'division_politica_id')->withTrashed();
     }
     /* ATRIBUTOS EXTERNOS */
 

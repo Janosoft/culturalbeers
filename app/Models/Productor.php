@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Productor extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'productores';
 
@@ -37,12 +39,12 @@ class Productor extends Model
     /* ATRIBUTOS EXTERNOS */
     public function localidad()
     {
-        return $this->belongsTo(Localidad::class, 'localidad_id');
+        return $this->belongsTo(Localidad::class, 'localidad_id')->withTrashed();
     }
 
     public function fabricacion()
     {
-        return $this->belongsTo(ProductoresFabricacion::class, 'fabricacion_id');
+        return $this->belongsTo(ProductoresFabricacion::class, 'fabricacion_id')->withTrashed();
     }
     /* ATRIBUTOS EXTERNOS */
 

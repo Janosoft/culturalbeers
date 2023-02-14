@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pais extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'paises';
 
@@ -37,12 +39,12 @@ class Pais extends Model
     /* ATRIBUTOS EXTERNOS */
     public function continente()
     {
-        return $this->belongsTo(Continente::class, 'continente_id');
+        return $this->belongsTo(Continente::class, 'continente_id')->withTrashed();
     }
 
     public function division_politica_tipo()
     {
-        return $this->belongsTo(DivisionesPoliticasTipo::class, 'divisiones_politicas_tipo_id');
+        return $this->belongsTo(DivisionesPoliticasTipo::class, 'divisiones_politicas_tipo_id')->withTrashed();
     }
     /* ATRIBUTOS EXTERNOS */
 

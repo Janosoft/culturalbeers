@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CervezasFamilia extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'cervezas_familias';
 
@@ -37,7 +39,7 @@ class CervezasFamilia extends Model
     /* ATRIBUTOS EXTERNOS */
     public function fermento()
     {
-        return $this->belongsTo(CervezasFermento::class, 'fermento_id');
+        return $this->belongsTo(CervezasFermento::class, 'fermento_id')->withTrashed();
     }
     /* ATRIBUTOS EXTERNOS */
 

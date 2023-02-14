@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->boolean('verificado')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['nombre', 'localidad_id']);
         });
