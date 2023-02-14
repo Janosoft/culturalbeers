@@ -41,8 +41,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        CervezasEstilo::observe(CervezasFamiliaObserver::class);
-        CervezasFamilia::observe(CervezasEstiloObserver::class);
+        CervezasEstilo::observe(CervezasEstiloObserver::class);
+        CervezasFamilia::observe(CervezasFamiliaObserver::class);
         CervezasFermento::observe(CervezasFermentoObserver::class);
         Cerveza::observe(CervezaObserver::class);
         Localidad::observe(LocalidadObserver::class);
