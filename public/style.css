@@ -1,0 +1,38 @@
+a {
+    text-decoration: none !important;
+    color: #4A4B4C;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: #4A4B4C;
+}
+
+.autoComplete li
+{
+    cursor: pointer;
+}
+
+
+.card_cerveza img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.form_search #search {
+    width: 18rem;
+}
+
+.form_comentario #comentario {
+    resize: none;
+}
+
+.form_contacto #comentario {
+    resize: none;
+    height: 100px;
+}
+
+.form_destroy {
+    display: inline;
+}
