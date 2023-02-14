@@ -10,7 +10,6 @@ class LugarObserver
     /**
      * Handle the Lugar "deleting" event.
      *
-     * @param  \App\Models\Lugar  $lugar
      * @return void
      */
     public function deleting(Lugar $lugar)

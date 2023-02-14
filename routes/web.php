@@ -64,7 +64,6 @@ Route::resource('lugares', LugarController::class);
 Route::get('lugares/{lugar}/verify', [LugarController::class, 'verify'])->name('lugares.verify');
 /* LUGARES */
 
-
 /* IMAGENES */
 Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');
 /* IMAGENES */

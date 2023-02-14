@@ -9,7 +9,6 @@ class LocalidadObserver
     /**
      * Handle the Fermento "deleting" event.
      *
-     * @param  \App\Models\Localidad  $localidad
      * @return void
      */
     public function deleting(Localidad $localidad)

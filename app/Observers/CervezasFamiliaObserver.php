@@ -9,7 +9,6 @@ class CervezasFamiliaObserver
     /**
      * Handle the Familia "deleting" event.
      *
-     * @param  \App\Models\CervezasFamilia  $familia
      * @return void
      */
     public function deleting(CervezasFamilia $familia)

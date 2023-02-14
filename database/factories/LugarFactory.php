@@ -22,7 +22,7 @@ class LugarFactory extends Factory
         return [
             'nombre' => $nombre,
             'localidad_id' => Localidad::all()->random()->localidad_id,
-            'direccion' => implode(' ', fake()->unique()->words(2)) . ' ' . fake()->RandomNumber(3, false),
+            'direccion' => implode(' ', fake()->unique()->words(2)).' '.fake()->RandomNumber(3, false),
             'slug' => str()->slug($nombre, '-', 'es'),
             'verificado' => false,
         ];

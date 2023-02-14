@@ -10,7 +10,6 @@ class ProductorObserver
     /**
      * Handle the Productor "deleting" event.
      *
-     * @param  \App\Models\Productor  $productor
      * @return void
      */
     public function deleting(Productor $productor)

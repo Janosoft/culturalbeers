@@ -32,9 +32,8 @@ return new class extends Migration
             $table->index('nombre');
             $table->index('apellido');
 
-            
-            */
 
+            */
         });
     }
 

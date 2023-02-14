@@ -10,7 +10,6 @@ class CervezaObserver
     /**
      * Handle the Cerveza "deleting" event.
      *
-     * @param  \App\Models\Cerveza  $cerveza
      * @return void
      */
     public function deleting(Cerveza $cerveza)

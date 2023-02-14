@@ -20,7 +20,6 @@ class LugarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(int $id)
@@ -31,7 +30,6 @@ class LugarController extends Controller
     /**
      * Muestra una lista de nombres similares al buscado, en formato JSON
      *
-     * @param  string  $nombre
      * @return \Illuminate\Http\JsonResponse
      */
     public function query(string $nombre)

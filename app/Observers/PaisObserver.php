@@ -10,7 +10,6 @@ class PaisObserver
     /**
      * Handle the Pais "deleting" event.
      *
-     * @param  \App\Models\Pais  $pais
      * @return void
      */
     public function deleting(Pais $pais)
