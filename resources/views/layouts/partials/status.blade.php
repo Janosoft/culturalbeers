@@ -3,7 +3,7 @@
         <div class="toast-container top-0 end-0 p-3">
             <div id="toastStatus" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
-                    <strong class="me-auto">{{ session('statusTitle') }}</strong>
+                    <i class="bi bi-chat-right-dots-fill me-2 text-{{ session('statusColor') }}"></i><strong class="me-auto">{{ session('statusTitle') }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
