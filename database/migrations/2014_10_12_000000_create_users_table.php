@@ -21,6 +21,20 @@ return new class extends Migration
             $table->string('slug');
             $table->rememberToken();
             $table->timestamps();
+
+            /* TODO MIGRAR DESDE PERSONAS
+            $table->string('nombre', 100);
+            $table->string('apellido', 100);
+            $table->string('profesion', 100)->nullable();
+            $table->foreignId('localidad_id')->constrained('localidades', 'localidad_id');
+            $table->string('imagen_id')->nullable();
+
+            $table->index('nombre');
+            $table->index('apellido');
+
+            
+            */
+
         });
     }
 
