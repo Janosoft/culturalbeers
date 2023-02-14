@@ -35,6 +35,7 @@ Route::apiResource('cervezas_fermentos', CervezasFermentoController::class);
 Route::apiResource('continentes', ContinenteController::class);
 Route::apiResource('divisiones_politicas_tipos', DivisionesPoliticasTipoController::class);
 Route::apiResource('divisiones_politicas', DivisionesPoliticasTipoController::class);
+Route::apiResource('lugares', LugarController::class);
 Route::apiResource('localidades', LocalidadController::class);
 Route::apiResource('paises', PaisController::class);
 Route::apiResource('personas', PersonaController::class);

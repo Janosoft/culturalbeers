@@ -39,6 +39,10 @@
         <x-localidades :localidades="$localidades" />
     @endif
 
+    @if (!$lugares->isEmpty())
+        <x-lugares :lugares="$lugares" />
+    @endif
+
     @if (!$paises->isEmpty())
         <x-paises :paises="$paises" />
     @endif

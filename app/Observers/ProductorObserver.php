@@ -21,5 +21,9 @@ class ProductorObserver
             }
             $imagen->delete();
         }
+
+        foreach ($productor->comentarios as $comentario) {
+            $comentario->delete();
+        }
     }
 }

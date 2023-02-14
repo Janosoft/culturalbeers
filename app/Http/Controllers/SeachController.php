@@ -7,6 +7,7 @@ use App\Models\CervezasEstilo;
 use App\Models\CervezasFermento;
 use App\Models\DivisionPolitica;
 use App\Models\Localidad;
+use App\Models\Lugar;
 use App\Models\Pais;
 use App\Models\Persona;
 use App\Models\Productor;
@@ -40,6 +41,10 @@ class SeachController extends Controller
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
                 ->get();
+            $lugares = Lugar::query()
+                ->where('nombre', 'LIKE', "%{$search}%")
+                ->orderBy('nombre')
+                ->get();
             $paises = Pais::query()
                 ->where('nombre', 'LIKE', "%{$search}%")
                 ->orderBy('nombre')
@@ -60,6 +65,7 @@ class SeachController extends Controller
             $cervezas_fermentos = new Collection();
             $divisiones_politicas = new Collection();
             $localidades = new Collection();
+            $lugares = new Collection();
             $paises = new Collection();
             $personas = new Collection();
             $productores = new Collection();
@@ -72,6 +78,7 @@ class SeachController extends Controller
             'cervezas_fermentos',
             'divisiones_politicas',
             'localidades',
+            'lugares',
             'paises',
             'personas',
             'productores',

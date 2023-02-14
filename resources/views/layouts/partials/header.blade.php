@@ -50,6 +50,9 @@
                             <li>
                                 <a href="{{ route('localidades.index') }}" class="dropdown-item {{ request()->routeIs('localidades.*') ? 'active' : '' }}">Localidades</a>
                             </li>
+                            <li>
+                                <a href="{{ route('lugares.index') }}" class="dropdown-item {{ request()->routeIs('lugares.*') ? 'active' : '' }}">Lugares</a>
+                            </li>                            
                         </ul>                        
                     </li>
                     <li class="nav-item dropdown">

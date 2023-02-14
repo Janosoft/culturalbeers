@@ -14,6 +14,7 @@ use App\Http\Controllers\DivisionPoliticaController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\LugarController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProductorController;
@@ -62,6 +63,12 @@ Route::resource('productores', ProductorController::class);
 Route::get('productores/{productor}/verify', [ProductorController::class, 'verify'])->name('productores.verify');
 /* PRODUCTORES */
 
+/* LUGARES */
+Route::resource('lugares', LugarController::class);
+Route::get('lugares/{lugar}/verify', [LugarController::class, 'verify'])->name('lugares.verify');
+/* LUGARES */
+
+
 /* IMAGENES */
 Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');
 /* IMAGENES */
@@ -76,5 +83,6 @@ Route::post('cervezas_estilos/{cervezas_estilo}/comment', [CervezasEstiloControl
 Route::post('cervezas_familias/{cervezas_familia}/comment', [CervezasFamiliaController::class, 'comment'])->name('cervezas_familias.comment');
 Route::post('cervezas_fermentos/{cervezas_fermento}/comment', [CervezasFermentoController::class, 'comment'])->name('cervezas_fermentos.comment');
 Route::post('localidades/{localidad}/comment', [LocalidadController::class, 'comment'])->name('localidades.comment');
+Route::post('lugares/{lugar}/comment', [LugarController::class, 'comment'])->name('lugares.comment');
 Route::post('productores/{productor}/comment', [ProductorController::class, 'comment'])->name('productores.comment');
 /* COMENTARIOS */
