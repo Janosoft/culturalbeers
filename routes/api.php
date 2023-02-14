@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CervezasFermentoController;
 use App\Http\Controllers\Api\ContinenteController;
 use App\Http\Controllers\Api\DivisionesPoliticasTipoController;
 use App\Http\Controllers\Api\LocalidadController;
+use App\Http\Controllers\Api\LugarController;
 use App\Http\Controllers\Api\PaisController;
 use App\Http\Controllers\Api\PersonaController;
 use App\Http\Controllers\Api\ProductorController;
