@@ -47,22 +47,49 @@ Route::resource('continentes', ContinenteController::class)->parameters(['contin
 Route::resource('divisiones_politicas', DivisionPoliticaController::class)->parameters(['divisiones_politicas' => 'division_politica']);
 Route::resource('divisiones_politicas_tipos', DivisionesPoliticasTipoController::class);
 Route::resource('localidades', LocalidadController::class);
+Route::resource('lugares', LugarController::class);
 Route::resource('paises', PaisController::class);
+Route::resource('productores', ProductorController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
 
 /* USUARIOS */
 //Route::get('account', [UsuarioController::class, 'account'])->name('account');
 /* USUARIOS */
 
-/* PRODUCTORES */
-Route::resource('productores', ProductorController::class);
-Route::get('productores/{productor}/verify', [ProductorController::class, 'verify'])->name('productores.verify');
-/* PRODUCTORES */
+/* RESTORE SOFTDELETE */
+Route::get('restore/cervezas_colores/{color_id}', [CervezasColorController::class, 'restore'])->name('cervezas_colores.restore');
+Route::get('restore/cervezas_envases_tipos/{envase_id}', [CervezasEnvaseTipoController::class, 'restore'])->name('cervezas_envases_tipos.restore');
+Route::get('restore/cervezas_estilos/{estilo_id}', [CervezasEstiloController::class, 'restore'])->name('cervezas_estilos.restore');
+Route::get('restore/cervezas_familias/{familia_id}', [CervezasFamiliaController::class, 'restore'])->name('cervezas_familias.restore');
+Route::get('restore/cervezas_fermentos/{fermento_id}', [CervezasFermentoController::class, 'restore'])->name('cervezas_fermentos.restore');
+Route::get('restore/continentes/{continente_id}', [ContinenteController::class, 'restore'])->name('continentes.restore');
+Route::get('restore/divisiones_politicas/{division_politica_id}', [DivisionPoliticaController::class, 'restore'])->name('divisiones_politicas.restore');
+Route::get('restore/divisiones_politicas_tipos/{division_politica_tipo_id}', [DivisionesPoliticasTipoController::class, 'restore'])->name('divisiones_politicas_tipos.restore');
+Route::get('restore/localidades/{localidad_id}', [LocalidadController::class, 'restore'])->name('localidades.restore');
+Route::get('restore/lugares/{lugar_id}', [LugarController::class, 'restore'])->name('lugares.restore');
+Route::get('restore/paises/{pais_id}', [PaisController::class, 'restore'])->name('paises.restore');
+Route::get('restore/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'restore'])->name('productores_fabricaciones.restore');
+/* RESTORE SOFTDELETE */
 
-/* LUGARES */
-Route::resource('lugares', LugarController::class);
-Route::get('lugares/{lugar}/verify', [LugarController::class, 'verify'])->name('lugares.verify');
-/* LUGARES */
+/* FORCE DELETE */
+Route::get('forcedelete/cervezas_colores/{color_id}', [CervezasColorController::class, 'forcedelete'])->name('cervezas_colores.forcedelete');
+Route::get('forcedelete/cervezas_envases_tipos/{envase_id}', [CervezasEnvaseTipoController::class, 'forcedelete'])->name('cervezas_envases_tipos.forcedelete');
+Route::get('forcedelete/cervezas_estilos/{estilo_id}', [CervezasEstiloController::class, 'forcedelete'])->name('cervezas_estilos.forcedelete');
+Route::get('forcedelete/cervezas_familias/{familia_id}', [CervezasFamiliaController::class, 'forcedelete'])->name('cervezas_familias.forcedelete');
+Route::get('forcedelete/cervezas_fermentos/{fermento_id}', [CervezasFermentoController::class, 'forcedelete'])->name('cervezas_fermentos.forcedelete');
+Route::get('forcedelete/continentes/{continente_id}', [ContinenteController::class, 'forcedelete'])->name('continentes.forcedelete');
+Route::get('forcedelete/divisiones_politicas/{division_politica_id}', [DivisionPoliticaController::class, 'forcedelete'])->name('divisiones_politicas.forcedelete');
+Route::get('forcedelete/divisiones_politicas_tipos/{division_politica_tipo_id}', [DivisionesPoliticasTipoController::class, 'forcedelete'])->name('divisiones_politicas_tipos.forcedelete');
+Route::get('forcedelete/localidades/{localidad_id}', [LocalidadController::class, 'forcedelete'])->name('localidades.forcedelete');
+Route::get('forcedelete/lugares/{lugar_id}', [LugarController::class, 'forcedelete'])->name('lugares.forcedelete');
+Route::get('forcedelete/paises/{pais_id}', [PaisController::class, 'forcedelete'])->name('paises.forcedelete');
+Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'forcedelete'])->name('productores_fabricaciones.forcedelete');
+/* FORCE DELETE */
+
+/* VERIFICAR */
+Route::get('verify/productores/{productor}', [ProductorController::class, 'verify'])->name('productores.verify');
+Route::get('verify/lugares/{lugar}', [LugarController::class, 'verify'])->name('lugares.verify');
+/* VERIFICAR */
 
 /* IMAGENES */
 Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');
@@ -70,14 +97,14 @@ Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagen
 
 /* COMENTARIOS */
 Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios.index');
-Route::get('comentarios/{comentario}/offensive', [ComentarioController::class, 'offensive'])->name('comentarios.offensive');
-Route::get('comentarios/{comentario}/authorized', [ComentarioController::class, 'authorized'])->name('comentarios.authorized');
 Route::delete('comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
-Route::post('cervezas/{cerveza}/comment', [CervezaController::class, 'comment'])->name('cervezas.comment');
-Route::post('cervezas_estilos/{cervezas_estilo}/comment', [CervezasEstiloController::class, 'comment'])->name('cervezas_estilos.comment');
-Route::post('cervezas_familias/{cervezas_familia}/comment', [CervezasFamiliaController::class, 'comment'])->name('cervezas_familias.comment');
-Route::post('cervezas_fermentos/{cervezas_fermento}/comment', [CervezasFermentoController::class, 'comment'])->name('cervezas_fermentos.comment');
-Route::post('localidades/{localidad}/comment', [LocalidadController::class, 'comment'])->name('localidades.comment');
-Route::post('lugares/{lugar}/comment', [LugarController::class, 'comment'])->name('lugares.comment');
-Route::post('productores/{productor}/comment', [ProductorController::class, 'comment'])->name('productores.comment');
+Route::get('offensive/comentarios/{comentario}', [ComentarioController::class, 'offensive'])->name('comentarios.offensive');
+Route::get('authorized/comentarios/{comentario}', [ComentarioController::class, 'authorized'])->name('comentarios.authorized');
+Route::post('comment/cervezas/{cerveza}', [CervezaController::class, 'comment'])->name('cervezas.comment');
+Route::post('comment/cervezas_estilos/{cervezas_estilo}', [CervezasEstiloController::class, 'comment'])->name('cervezas_estilos.comment');
+Route::post('comment/cervezas_familias/{cervezas_familia}', [CervezasFamiliaController::class, 'comment'])->name('cervezas_familias.comment');
+Route::post('comment/cervezas_fermentos/{cervezas_fermento}', [CervezasFermentoController::class, 'comment'])->name('cervezas_fermentos.comment');
+Route::post('comment/localidades/{localidad}', [LocalidadController::class, 'comment'])->name('localidades.comment');
+Route::post('comment/lugares/{lugar}', [LugarController::class, 'comment'])->name('lugares.comment');
+Route::post('comment/productores/{productor}', [ProductorController::class, 'comment'])->name('productores.comment');
 /* COMENTARIOS */

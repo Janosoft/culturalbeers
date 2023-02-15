@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCervezaColor;
 use App\Models\CervezasColor;
+use Ramsey\Uuid\Type\Integer;
 
 class CervezasColorController extends Controller
 {
     public function index()
     {
-        $cervezas_colores = CervezasColor::orderBy('nombre')->paginate();
+        $cervezas_colores = CervezasColor::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas_colores.index', compact('cervezas_colores'));
     }
@@ -56,6 +60,36 @@ class CervezasColorController extends Controller
         $cervezas_color->delete();
         session()->flash('statusTitle', 'Color Eliminado');
         session()->flash('statusMessage', 'El color de cervezas fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_colores.index');
+    }
+
+    public function forcedelete(int $color_id)
+    {
+        $cervezas_color = CervezasColor::withTrashed()->find($color_id);
+        $cervezas_color->loadCount('cervezas');
+        if ($cervezas_color->cervezas_count == 0) {
+            $cervezas_color->forceDelete();
+            session()->flash('statusTitle', 'Color Eliminado');
+            session()->flash('statusMessage', 'El color de cervezas fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Color');
+            session()->flash('statusMessage', 'El color está siendo utilizado en al menos una cerveza.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('cervezas_colores.index');
+    }
+
+    public function restore(int $color_id)
+    {
+        CervezasColor::withTrashed()->find($color_id)->restore();
+        session()->flash('statusTitle', 'Color Restaurado');
+        session()->flash('statusMessage', 'El color de cervezas fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_colores.index');
