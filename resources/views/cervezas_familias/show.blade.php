@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_familia->nombre }}</h1>
-            <h2><a href="{{ route('cervezas_fermentos.show', $cervezas_familia->fermento) }}">{{ $cervezas_familia->fermento->nombre }}</a></h2>
+            <h2><x-links.cervezas-fermento :fermento="$cervezas_familia->fermento" /></h2>
         </div>
     </div>
 

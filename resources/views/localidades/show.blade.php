@@ -5,9 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $localidad->nombre }}</h1>
-            <h2><a
-                    href="{{ route('divisiones_politicas.show', $localidad->division_politica) }}">{{ $localidad->division_politica->nombre }}</a>
-            </h2>
+            <h2><x-links.division-politica :divisionpolitica="$localidad->division_politica" /></h2>
         </div>
     </div>
 

@@ -5,8 +5,8 @@
     <div class="row mb-3">
         <div class="col">
             <h1>{{ $productor->nombre }} @if ($productor->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</h1>
-            <h2><a href="{{ route('localidades.show', $productor->localidad) }}">{{ $productor->localidad->nombre }}</a></h2>
-            <h2><a href="{{ route('productores_fabricaciones.show', $productor->fabricacion) }}">{{ $productor->fabricacion->nombre }}</a></h2>
+            <h2><x-links.localidad :localidad="$productor->localidad" /></h2>
+            <h2><x-links.productores-fabricacion :fabricacion="$productor->fabricacion" /></h2>
         </div>
     </div>
 

@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col">
             <h1>{{ $pais->nombre }}</h1>
-            <h2><a href="{{ route('continentes.show', $pais->continente) }}">{{ $pais->continente->nombre }}</a></h2>
-            <h2><a href="{{ route('divisiones_politicas_tipos.show', $pais->division_politica_tipo) }}">{{ $pais->division_politica_tipo->nombre }}</a></h2>
+            <h2><x-links.continente :continente="$pais->continente" /></h2>
+            <h2><x-links.division-politica-tipo :divisionpoliticatipo="$pais->division_politica_tipo" /></h2>
         </div>
     </div>
 
