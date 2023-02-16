@@ -63,6 +63,9 @@
                                 <a href="{{ route('productores_fabricaciones.index') }}" class="dropdown-item {{ request()->routeIs('productores_fabricaciones.*') ? 'active' : '' }}">Tipo de Fabricaciones</a>
                             </li>
                             <li>
+                                <a href="{{ route('lugares_categorias.index') }}" class="dropdown-item {{ request()->routeIs('lugares_categorias.*') ? 'active' : '' }}">Categoría de Lugares</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('comentarios.index') }}" class="dropdown-item {{ request()->routeIs('comentarios.*') ? 'active' : '' }}">Comentarios para Autorizar</a>
                             </li>
                         </ul>

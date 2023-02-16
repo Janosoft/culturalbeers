@@ -15,6 +15,7 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\LugarController;
+use App\Http\Controllers\LugaresCategoriaController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
@@ -48,6 +49,7 @@ Route::resource('divisiones_politicas', DivisionPoliticaController::class)->para
 Route::resource('divisiones_politicas_tipos', DivisionesPoliticasTipoController::class);
 Route::resource('localidades', LocalidadController::class);
 Route::resource('lugares', LugarController::class);
+Route::resource('lugares_categorias', LugaresCategoriaController::class);
 Route::resource('paises', PaisController::class);
 Route::resource('productores', ProductorController::class);
 Route::resource('productores_fabricaciones', ProductoresFabricacionController::class)->parameters(['productores_fabricaciones' => 'productores_fabricacion']);
@@ -68,6 +70,7 @@ Route::get('restore/divisiones_politicas/{division_politica_id}', [DivisionPolit
 Route::get('restore/divisiones_politicas_tipos/{division_politica_tipo_id}', [DivisionesPoliticasTipoController::class, 'restore'])->name('divisiones_politicas_tipos.restore');
 Route::get('restore/localidades/{localidad_id}', [LocalidadController::class, 'restore'])->name('localidades.restore');
 Route::get('restore/lugares/{lugar_id}', [LugarController::class, 'restore'])->name('lugares.restore');
+Route::get('restore/lugares_categorias/{categoria_id}', [LugaresCategoriaController::class, 'restore'])->name('lugares_categorias.restore');
 Route::get('restore/paises/{pais_id}', [PaisController::class, 'restore'])->name('paises.restore');
 Route::get('restore/productores/{productor_id}', [ProductorController::class, 'restore'])->name('productores.restore');
 Route::get('restore/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'restore'])->name('productores_fabricaciones.restore');
@@ -85,6 +88,7 @@ Route::get('forcedelete/divisiones_politicas/{division_politica_id}', [DivisionP
 Route::get('forcedelete/divisiones_politicas_tipos/{division_politica_tipo_id}', [DivisionesPoliticasTipoController::class, 'forcedelete'])->name('divisiones_politicas_tipos.forcedelete');
 Route::get('forcedelete/localidades/{localidad_id}', [LocalidadController::class, 'forcedelete'])->name('localidades.forcedelete');
 Route::get('forcedelete/lugares/{lugar_id}', [LugarController::class, 'forcedelete'])->name('lugares.forcedelete');
+Route::get('forcedelete/lugares_categorias/{categoria_id}', [LugaresCategoriaController::class, 'forcedelete'])->name('lugares_categorias.forcedelete');
 Route::get('forcedelete/paises/{pais_id}', [PaisController::class, 'forcedelete'])->name('paises.forcedelete');
 Route::get('forcedelete/productores/{productor_id}', [ProductorController::class, 'forcedelete'])->name('productores.forcedelete');
 Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'forcedelete'])->name('productores_fabricaciones.forcedelete');

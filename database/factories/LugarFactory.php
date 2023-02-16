@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Localidad;
+use App\Models\LugaresCategoria;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class LugarFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'categoria_id' => LugaresCategoria::all()->random()->categoria_id,
             'localidad_id' => Localidad::all()->random()->localidad_id,
             'direccion' => implode(' ', fake()->unique()->words(2)).' '.fake()->RandomNumber(3, false),
             'slug' => str()->slug($nombre, '-', 'es'),

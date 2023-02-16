@@ -6,6 +6,7 @@
         <div class="col">
             <h1>{{ $lugar->nombre }} @if ($lugar->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</h1>
             <h2>{{ $lugar->direccion }}</h2>
+            <h2><x-links.lugares-categoria :categoria="$lugar->categoria" /></h2>
             <h2><x-links.localidad :localidad="$lugar->localidad" /></h2>
         </div>
     </div>

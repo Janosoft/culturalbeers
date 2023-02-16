@@ -8,6 +8,7 @@ use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\Localidad;
 use App\Models\Lugar;
+use App\Models\LugaresCategoria;
 use Illuminate\Support\Facades\Redirect;
 
 class LugarController extends Controller
@@ -24,7 +25,9 @@ class LugarController extends Controller
 
     public function create()
     {
-        return view('Lugares.create');
+        $categorias = LugaresCategoria::pluck('nombre', 'categoria_id');
+
+        return view('Lugares.create',compact('categorias'));
     }
 
     public function store(StoreLugar $request)
@@ -55,7 +58,8 @@ class LugarController extends Controller
 
     public function edit(Lugar $lugar)
     {
-        return view('lugares.edit', compact(['lugar']));
+        $categorias = LugaresCategoria::pluck('nombre', 'categoria_id');
+        return view('lugares.edit', compact(['lugar','categorias']));
     }
 
     public function update(StoreLugar $request, Lugar $lugar)

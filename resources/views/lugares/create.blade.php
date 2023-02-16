@@ -8,6 +8,7 @@
                 @csrf
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Lugar" :value="old('nombre')" />
+                <x-input.select label="Categoría" name="categoria_id" placeholder="Elija la categoría del lugar" :objects="$categorias" :value="old('categoria_id')" />
                 <x-input.autosuggest label="Localidad de Origen" name="localidad" placeholder="Buscar Localidad..." :url="route('localidades.search','')" :value="old('localidad')"/>
                 <x-input.text label="Dirección" name="direccion" placeholder="Dirección del Lugar" :value="old('direccion')" />
                 <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />

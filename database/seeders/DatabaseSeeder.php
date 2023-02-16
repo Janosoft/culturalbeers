@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\CervezasFamilia::factory(30)->create();
         \App\Models\CervezasEstilo::factory(30)->create();
         $this->call(CervezaSeeder::class);
+        \App\Models\LugaresCategoria::factory(5)->create();
         $this->call(LugarSeeder::class);
     }
 }

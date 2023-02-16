@@ -31,6 +31,7 @@ class StoreLugar extends FormRequest
                 Rule::unique('lugares')->ignore($this->lugar),
             ],
             'direccion' => 'required',
+            'categoria_id' => 'required',
             'localidad' => 'required',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png,webp',
         ];
@@ -41,6 +42,7 @@ class StoreLugar extends FormRequest
         return [
             'nombre' => 'nombre del lugar',
             'direccion' => 'dirección del lugar',
+            'categoria_id' => 'categoría del lugar',
             'localidad' => 'localidad en la que se encuentra',
         ];
     }
@@ -51,6 +53,7 @@ class StoreLugar extends FormRequest
         return [
             'nombre.required' => 'Debe ingresar un nombre al lugar',
             'direccion.required' => 'Debe ingresar una dirección',
+            'categoria_id.required' => 'Debe elegir una categoría',
             'localidad.required' => 'Debe elegir una localidad',
             'imagen.image' => 'Debe elegir un archivo de formato de imagen (jpg, png, webp)',
             'imagen.mimes' => 'Debe elegir un archivo con formato de imagen (jpg, png, webp)',

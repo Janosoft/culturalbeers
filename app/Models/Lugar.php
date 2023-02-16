@@ -37,6 +37,11 @@ class Lugar extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function categoria()
+    {
+        return $this->belongsTo(LugaresCategoria::class, 'categoria_id')->withTrashed();
+    }
+
     public function localidad()
     {
         return $this->belongsTo(Localidad::class, 'localidad_id')->withTrashed();
