@@ -12,7 +12,10 @@ class CervezasEstiloController extends Controller
 {
     public function index()
     {
-        $cervezas_estilos = CervezasEstilo::orderBy('nombre')->paginate();
+        $cervezas_estilos = CervezasEstilo::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas_estilos.index', compact('cervezas_estilos'));
     }
@@ -79,6 +82,37 @@ class CervezasEstiloController extends Controller
         $cervezas_estilo->delete();
         session()->flash('statusTitle', 'Estilo Eliminado');
         session()->flash('statusMessage', 'El estilo de cervezas fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_estilos.index');
+    }
+
+    public function forcedelete(int $estilo_id)
+    {
+        $cervezas_estilo = CervezasEstilo::withTrashed()->find($estilo_id);
+        $cervezas_estilo->loadCount('cervezas');
+        if ($cervezas_estilo->cervezas_count == 0) {
+            $cervezas_estilo->cervezas()->forceDelete();
+            $cervezas_estilo->forceDelete();
+            session()->flash('statusTitle', 'Estilo Eliminado');
+            session()->flash('statusMessage', 'El estilo de cervezas fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Estilo');
+            session()->flash('statusMessage', 'El estilo de cervezas está siendo utilizado en al menos una cerveza.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('cervezas_estilos.index');
+    }
+
+    public function restore(int $estilo_id)
+    {
+        CervezasEstilo::withTrashed()->find($estilo_id)->restore();
+        session()->flash('statusTitle', 'Estilo Restaurado');
+        session()->flash('statusMessage', 'El estilo de cervezas fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_estilos.index');

@@ -14,7 +14,10 @@ class LugarController extends Controller
 {
     public function index()
     {
-        $lugares = Lugar::orderBy('nombre')->paginate();
+        $lugares = Lugar::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('lugares.index', compact('lugares'));
     }
@@ -102,5 +105,26 @@ class LugarController extends Controller
         session()->flash('statusColor', 'success');
 
         return redirect()->route('lugares.index');
+    }
+
+    public function forcedelete(int $lugar_id)
+    {
+        $lugar = Lugar::withTrashed()->find($lugar_id);
+        $lugar->forceDelete();
+        session()->flash('statusTitle', 'Lugar Eliminado');
+        session()->flash('statusMessage', 'El lugar fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('paises.index');
+    }
+
+    public function restore(int $lugar_id)
+    {
+        Lugar::withTrashed()->find($lugar_id)->restore();
+        session()->flash('statusTitle', 'Lugar Restaurado');
+        session()->flash('statusMessage', 'El lugar fue restaurado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('paises.index');
     }
 }

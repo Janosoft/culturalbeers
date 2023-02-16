@@ -10,7 +10,10 @@ class DivisionPoliticaController extends Controller
 {
     public function index()
     {
-        $divisiones_politicas = DivisionPolitica::orderBy('nombre')->paginate();
+        $divisiones_politicas = DivisionPolitica::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('divisiones_politicas.index', compact('divisiones_politicas'));
     }
@@ -61,6 +64,37 @@ class DivisionPoliticaController extends Controller
         $division_politica->delete();
         session()->flash('statusTitle', 'División Política Eliminada');
         session()->flash('statusMessage', 'La división política fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('divisiones_politicas.index');
+    }
+
+    public function forcedelete(int $division_politica_id)
+    {
+        $division_politica = DivisionPolitica::withTrashed()->find($division_politica_id);
+        $division_politica->loadCount('localidades');
+        if ($division_politica->localidades_count == 0) {
+            $division_politica->localidades()->forceDelete();
+            $division_politica->forceDelete();
+            session()->flash('statusTitle', 'División Política Eliminada');
+            session()->flash('statusMessage', 'La división política fue eliminada correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar División Política');
+            session()->flash('statusMessage', 'La división política está siendo utilizada en al menos una localidad.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('divisiones_politicas.index');
+    }
+
+    public function restore(int $division_politica_id)
+    {
+        DivisionPolitica::withTrashed()->find($division_politica_id)->restore();
+        session()->flash('statusTitle', 'División Política Restaurada');
+        session()->flash('statusMessage', 'La división política fue restaurada correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('divisiones_politicas.index');

@@ -15,7 +15,10 @@ class ProductorController extends Controller
 {
     public function index()
     {
-        $productores = Productor::orderBy('nombre')->paginate();
+        $productores = Productor::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('productores.index', compact('productores'));
     }
@@ -104,6 +107,37 @@ class ProductorController extends Controller
         $productor->delete();
         session()->flash('statusTitle', 'Productor Eliminado');
         session()->flash('statusMessage', 'El productor fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('productores.index');
+    }
+
+    public function forcedelete(int $productor_id)
+    {
+        $productor = Productor::withTrashed()->find($productor_id);
+        $productor->loadCount('cervezas');
+        if ($productor->cervezas_count == 0) {
+            $productor->cervezas()->forceDelete();
+            $productor->forceDelete();
+            session()->flash('statusTitle', 'Productor Eliminado');
+            session()->flash('statusMessage', 'El productor fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Productor');
+            session()->flash('statusMessage', 'El productor está siendo utilizado en al menos una cerveza.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('productores.index');
+    }
+
+    public function restore(int $productor_id)
+    {
+        Productor::withTrashed()->find($productor_id)->restore();
+        session()->flash('statusTitle', 'Productor Restaurado');
+        session()->flash('statusMessage', 'El productor fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('productores.index');

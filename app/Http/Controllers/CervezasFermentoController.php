@@ -11,7 +11,10 @@ class CervezasFermentoController extends Controller
 {
     public function index()
     {
-        $cervezas_fermentos = CervezasFermento::orderBy('nombre')->paginate();
+        $cervezas_fermentos = CervezasFermento::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas_fermentos.index', compact('cervezas_fermentos'));
     }
@@ -71,6 +74,37 @@ class CervezasFermentoController extends Controller
         $cervezas_fermento->delete();
         session()->flash('statusTitle', 'Fermento Eliminado');
         session()->flash('statusMessage', 'El fermento fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_fermentos.index');
+    }
+
+    public function forcedelete(int $fermento_id)
+    {
+        $cervezas_fermento = CervezasFermento::withTrashed()->find($fermento_id);
+        $cervezas_fermento->loadCount('familias');
+        if ($cervezas_fermento->familias_count == 0) {
+            $cervezas_fermento->familias()->forceDelete();
+            $cervezas_fermento->forceDelete();
+            session()->flash('statusTitle', 'Fermento Eliminado');
+            session()->flash('statusMessage', 'El fermento fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Fermento');
+            session()->flash('statusMessage', 'El fermento está siendo utilizado en al menos una familia de cervezas.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('cervezas_fermentos.index');
+    }
+
+    public function restore(int $fermento_id)
+    {
+        CervezasFermento::withTrashed()->find($fermento_id)->restore();
+        session()->flash('statusTitle', 'Fermento Restaurado');
+        session()->flash('statusMessage', 'El fermento fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_fermentos.index');

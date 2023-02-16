@@ -54,6 +54,11 @@ class Localidad extends Model
         return $this->hasMany(Productor::class, 'localidad_id');
     }
 
+    public function lugares()
+    {
+        return $this->hasMany(Lugar::class, 'localidad_id');
+    }
+
     public function comentarios()
     {
         return $this->morphMany(Comentario::class, 'commentable');

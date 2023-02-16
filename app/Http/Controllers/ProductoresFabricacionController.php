@@ -9,7 +9,10 @@ class ProductoresFabricacionController extends Controller
 {
     public function index()
     {
-        $productores_fabricaciones = ProductoresFabricacion::orderBy('nombre')->paginate();
+        $productores_fabricaciones = ProductoresFabricacion::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('productores_fabricaciones.index', compact('productores_fabricaciones'));
     }
@@ -56,6 +59,37 @@ class ProductoresFabricacionController extends Controller
         $productores_fabricacion->delete();
         session()->flash('statusTitle', 'Fabricación Eliminada');
         session()->flash('statusMessage', 'El tipo de fabricación fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('productores_fabricaciones.index');
+    }
+
+    public function forcedelete(int $fabricacion_id)
+    {
+        $productores_fabricacion = ProductoresFabricacion::withTrashed()->find($fabricacion_id);
+        $productores_fabricacion->loadCount('productores');
+        if ($productores_fabricacion->productores_count == 0) {
+            $productores_fabricacion->productores()->forceDelete();
+            $productores_fabricacion->forceDelete();
+            session()->flash('statusTitle', 'Fabricación Eliminado');
+            session()->flash('statusMessage', 'El tipo de fabricación fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Fabricación');
+            session()->flash('statusMessage', 'El tipo de fabricación está siendo utilizado en al menos un productor.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('productores_fabricaciones.index');
+    }
+
+    public function restore(int $fabricacion_id)
+    {
+        ProductoresFabricacion::withTrashed()->find($fabricacion_id)->restore();
+        session()->flash('statusTitle', 'Fabricación Restaurado');
+        session()->flash('statusMessage', 'El tipo de fabricación fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('productores_fabricaciones.index');

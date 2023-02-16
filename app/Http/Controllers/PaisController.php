@@ -12,7 +12,10 @@ class PaisController extends Controller
 {
     public function index()
     {
-        $paises = Pais::orderBy('nombre')->paginate();
+        $paises = Pais::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('paises.index', compact('paises'));
     }
@@ -74,6 +77,37 @@ class PaisController extends Controller
         $pais->delete();
         session()->flash('statusTitle', 'País Eliminado');
         session()->flash('statusMessage', 'El país fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('paises.index');
+    }
+
+    public function forcedelete(int $pais_id)
+    {
+        $pais = Pais::withTrashed()->find($pais_id);
+        $pais->loadCount('divisiones_politicas');
+        if ($pais->divisiones_politicas_count == 0) {
+            $pais->divisiones_politicas()->forceDelete();
+            $pais->forceDelete();
+            session()->flash('statusTitle', 'País Eliminado');
+            session()->flash('statusMessage', 'El país fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar País');
+            session()->flash('statusMessage', 'El país está siendo utilizado en al menos una división política.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('paises.index');
+    }
+
+    public function restore(int $pais_id)
+    {
+        Pais::withTrashed()->find($pais_id)->restore();
+        session()->flash('statusTitle', 'País Restaurado');
+        session()->flash('statusMessage', 'El país fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('paises.index');

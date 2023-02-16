@@ -9,7 +9,10 @@ class ContinenteController extends Controller
 {
     public function index()
     {
-        $continentes = Continente::orderBy('nombre')->paginate();
+        $continentes = Continente::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('continentes.index', compact('continentes'));
     }
@@ -53,6 +56,37 @@ class ContinenteController extends Controller
         $continente->delete();
         session()->flash('statusTitle', 'Continente Eliminado');
         session()->flash('statusMessage', 'El continente fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('continentes.index');
+    }
+
+    public function forcedelete(int $continente_id)
+    {
+        $continente = Continente::withTrashed()->find($continente_id);
+        $continente->loadCount('paises');
+        if ($continente->paises_count == 0) {
+            $continente->paises()->forceDelete();
+            $continente->forceDelete();
+            session()->flash('statusTitle', 'Continente Eliminado');
+            session()->flash('statusMessage', 'El continente fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Continente');
+            session()->flash('statusMessage', 'El continente está siendo utilizado en al menos un país.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('continentes.index');
+    }
+
+    public function restore(int $continente_id)
+    {
+        Continente::withTrashed()->find($continente_id)->restore();
+        session()->flash('statusTitle', 'Continente Restaurado');
+        session()->flash('statusMessage', 'El continente fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('continentes.index');

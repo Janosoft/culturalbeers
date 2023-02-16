@@ -9,7 +9,10 @@ class DivisionesPoliticasTipoController extends Controller
 {
     public function index()
     {
-        $divisiones_politicas_tipos = DivisionesPoliticasTipo::orderBy('nombre')->paginate();
+        $divisiones_politicas_tipos = DivisionesPoliticasTipo::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('divisiones_politicas_tipos.index', compact('divisiones_politicas_tipos'));
     }
@@ -56,6 +59,37 @@ class DivisionesPoliticasTipoController extends Controller
         $divisiones_politicas_tipo->delete();
         session()->flash('statusTitle', 'Tipo Eliminado');
         session()->flash('statusMessage', 'El tipo de división política fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('divisiones_politicas_tipos.index');
+    }
+
+    public function forcedelete(int $division_politica_tipo_id)
+    {
+        $divisiones_politicas_tipo = DivisionesPoliticasTipo::withTrashed()->find($division_politica_tipo_id);
+        $divisiones_politicas_tipo->loadCount('paises');
+        if ($divisiones_politicas_tipo->paises_count == 0) {
+            $divisiones_politicas_tipo->paises()->forceDelete();
+            $divisiones_politicas_tipo->forceDelete();
+            session()->flash('statusTitle', 'Tipo Eliminado');
+            session()->flash('statusMessage', 'El tipo de división política fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Tipo');
+            session()->flash('statusMessage', 'El tipo de división política está siendo utilizado en al menos un país.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('divisiones_politicas_tipos.index');
+    }
+
+    public function restore(int $division_politica_tipo_id)
+    {
+        DivisionesPoliticasTipo::withTrashed()->find($division_politica_tipo_id)->restore();
+        session()->flash('statusTitle', 'Tipo Restaurado');
+        session()->flash('statusMessage', 'El tipo de división política fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('divisiones_politicas_tipos.index');

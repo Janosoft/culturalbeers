@@ -9,7 +9,10 @@ class CervezasEnvaseTipoController extends Controller
 {
     public function index()
     {
-        $cervezas_envases_tipos = CervezasEnvaseTipo::orderBy('nombre')->paginate();
+        $cervezas_envases_tipos = CervezasEnvaseTipo::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas_envases_tipos.index', compact('cervezas_envases_tipos'));
     }
@@ -56,6 +59,37 @@ class CervezasEnvaseTipoController extends Controller
         $cervezas_envases_tipo->delete();
         session()->flash('statusTitle', 'Envase Eliminado');
         session()->flash('statusMessage', 'El tipo de envase fue eliminado correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_envases_tipos.index');
+    }
+
+    public function forcedelete(int $envase_id)
+    {
+        $cervezas_envases_tipo = CervezasEnvaseTipo::withTrashed()->find($envase_id);
+        $cervezas_envases_tipo->loadCount('cervezas');
+        if ($cervezas_envases_tipo->cervezas_count == 0) {
+            $cervezas_envases_tipo->cervezas()->forceDelete();
+            $cervezas_envases_tipo->forceDelete();
+            session()->flash('statusTitle', 'Envase Eliminado');
+            session()->flash('statusMessage', 'El tipo de envase fue eliminado correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Envase');
+            session()->flash('statusMessage', 'El tipo de envase está siendo utilizado en al menos una cerveza.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('cervezas_envases_tipos.index');
+    }
+
+    public function restore(int $envase_id)
+    {
+        CervezasEnvaseTipo::withTrashed()->find($envase_id)->restore();
+        session()->flash('statusTitle', 'Envase Restaurado');
+        session()->flash('statusMessage', 'El tipo de envase fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_envases_tipos.index');

@@ -12,7 +12,10 @@ class CervezasFamiliaController extends Controller
 {
     public function index()
     {
-        $cervezas_familias = CervezasFamilia::orderBy('nombre')->paginate();
+        $cervezas_familias = CervezasFamilia::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas_familias.index', compact('cervezas_familias'));
     }
@@ -79,6 +82,37 @@ class CervezasFamiliaController extends Controller
         $cervezas_familia->delete();
         session()->flash('statusTitle', 'Familia Eliminada');
         session()->flash('statusMessage', 'La familia de cervezas fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas_familias.index');
+    }
+
+    public function forcedelete(int $familia_id)
+    {
+        $cervezas_familia = CervezasFamilia::withTrashed()->find($familia_id);
+        $cervezas_familia->loadCount('estilos');
+        if ($cervezas_familia->estilos_count == 0) {
+            $cervezas_familia->estilos()->forceDelete();
+            $cervezas_familia->forceDelete();
+            session()->flash('statusTitle', 'Familia Eliminada');
+            session()->flash('statusMessage', 'La familia de cervezas fue eliminada correctamente.');
+            session()->flash('statusColor', 'success');
+        }
+        else
+        {
+            session()->flash('statusTitle', 'Error al eliminar Familia');
+            session()->flash('statusMessage', 'La familia de cervezas está siendo utilizada en al menos un estilo.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('cervezas_familias.index');
+    }
+
+    public function restore(int $familia_id)
+    {
+        CervezasFamilia::withTrashed()->find($familia_id)->restore();
+        session()->flash('statusTitle', 'Familia Restaurada');
+        session()->flash('statusMessage', 'La familia de cervezas fue restaurada correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas_familias.index');

@@ -16,7 +16,10 @@ class CervezaController extends Controller
 {
     public function index()
     {
-        $cervezas = Cerveza::orderBy('nombre')->paginate();
+        $cervezas = Cerveza::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('cervezas.index', compact('cervezas'));
     }
@@ -105,6 +108,27 @@ class CervezaController extends Controller
         $cerveza->delete();
         session()->flash('statusTitle', 'Cerveza Eliminada');
         session()->flash('statusMessage', 'La cerveza fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas.index');
+    }
+
+    public function forcedelete(int $cerveza_id)
+    {
+        $cerveza = Cerveza::withTrashed()->find($cerveza_id);
+        $cerveza->forceDelete();
+        session()->flash('statusTitle', 'Cerveza Eliminada');
+        session()->flash('statusMessage', 'La cerveza fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas.index');
+    }
+
+    public function restore(int $cerveza_id)
+    {
+        Cerveza::withTrashed()->find($cerveza_id)->restore();
+        session()->flash('statusTitle', 'Cerveza Restaurada');
+        session()->flash('statusMessage', 'La cerveza fue restaurada correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas.index');

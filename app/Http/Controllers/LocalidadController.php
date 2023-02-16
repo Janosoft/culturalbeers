@@ -12,7 +12,10 @@ class LocalidadController extends Controller
 {
     public function index()
     {
-        $localidades = Localidad::orderBy('nombre')->paginate();
+        $localidades = Localidad::withTrashed()
+            ->orderBy('deleted_at')
+            ->orderBy('nombre')
+            ->paginate();
 
         return view('localidades.index', compact('localidades'));
     }
@@ -79,6 +82,45 @@ class LocalidadController extends Controller
         $localidad->delete();
         session()->flash('statusTitle', 'Localidad Eliminada');
         session()->flash('statusMessage', 'La localidad fue eliminada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('localidades.index');
+    }
+
+    public function forcedelete(int $localidad_id)
+    {
+        $localidad = Localidad::withTrashed()->find($localidad_id);
+        $localidad->loadCount('lugares');
+        $localidad->loadCount('productores');
+
+        if ($localidad->lugares_count == 0) {
+            if ($localidad->productores_count == 0) {
+                $localidad->lugares()->forceDelete();
+                $localidad->productores()->forceDelete();
+                $localidad->forceDelete();
+                session()->flash('statusTitle', 'Localidad Eliminada');
+                session()->flash('statusMessage', 'La localidad fue eliminado correctamente.');
+                session()->flash('statusColor', 'success');
+            }
+            else {
+                session()->flash('statusTitle', 'Error al eliminar Localidad');
+                session()->flash('statusMessage', 'La localidad está siendo utilizada en al menos un productor.');
+                session()->flash('statusColor', 'danger');
+            }
+        } else {
+            session()->flash('statusTitle', 'Error al eliminar Localidad');
+            session()->flash('statusMessage', 'La localidad está siendo utilizada en al menos un lugar.');
+            session()->flash('statusColor', 'danger');
+        }
+
+        return redirect()->route('localidades.index');
+    }
+
+    public function restore(int $localidad_id)
+    {
+        Localidad::withTrashed()->find($localidad_id)->restore();
+        session()->flash('statusTitle', 'Localidad Restaurada');
+        session()->flash('statusMessage', 'La localidad fue restaurado correctamente.');
         session()->flash('statusColor', 'success');
 
         return redirect()->route('localidades.index');
