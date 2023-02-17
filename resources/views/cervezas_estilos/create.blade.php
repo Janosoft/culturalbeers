@@ -9,7 +9,7 @@
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Estilo" :value="old('nombre')" />
                 <x-input.select label="Familia" name="familia_id" placeholder="Elija la familia de cerveza a la que pertenece" :objects="$familias" :value="old('familia_id')" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="CrearEstilo" />
             </form>
         </div>
     </div>

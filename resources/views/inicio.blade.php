@@ -1,6 +1,12 @@
 @extends('layouts.plantilla')
-@section('title', 'Búsqueda')
+@section('title', 'Cultural Beers')
 
 @section('content')
-    <x-input.autosuggest label="Localidad" name="localidad" placeholder="Buscar Localidad..." value="Madryn" :url="route('localidades.search','')"/>
+    @auth
+        Hola {{ Auth::user()->name }}<br>
+        <x-botones.cerrar-sesion :route="route('logout')" />
+    @else
+        <a href="{{ route('login') }}" target="_self">Iniciar Sesión</a>
+        <a href="{{ route('register') }}" target="_self">Registrarse</a>
+    @endauth
 @endsection

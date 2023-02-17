@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', InicioController::class)->name('inicio');
+Route::get('/', InicioController::class, 'inicio')->name('inicio');
 Route::get('search', [SeachController::class, 'search'])->name('search');
 Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
 Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');

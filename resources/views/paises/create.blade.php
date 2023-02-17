@@ -11,7 +11,7 @@
                 <x-input.select label="Continente" name="continente_id" placeholder="Elija el continente al que pertenece" :objects="$continentes" :value="old('continente_id')" />
                 <x-input.select label="Tipo de División Política" name="divisiones_politicas_tipo_id" placeholder="Elija un tipo de división política" :objects="$divisiones_politicas_tipo" :value="old('divisiones_politicas_tipo_id')" />
                 <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen')" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="CrearPais" />
             </form>
         </div>
     </div>

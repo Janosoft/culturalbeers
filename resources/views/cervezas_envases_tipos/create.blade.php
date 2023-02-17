@@ -8,7 +8,7 @@
                 @csrf
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Tipo de Envase" :value="old('nombre')" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="CrearEnvase" />
             </form>
         </div>
     </div>

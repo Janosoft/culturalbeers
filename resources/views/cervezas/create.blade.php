@@ -15,7 +15,7 @@
                 <x-input.select label="Estilo" name="estilo_id" placeholder="Elija el estilo de la cerveza" :objects="$estilos" :value="old('estilo_id')" />
                 <x-input.check label="Tipo de Envase" name="envases" :objects="$envases_tipos" :value="old('envases')" />
                 <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen')" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="CrearCerveza" />
             </form>
         </div>
     </div>

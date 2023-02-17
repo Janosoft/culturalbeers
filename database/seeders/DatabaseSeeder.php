@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('imagenes');
         Storage::makeDirectory('imagenes');
 
+        \App\Models\User::factory(1)->create();
         \App\Models\Continente::factory(10)->create();
         \App\Models\DivisionesPoliticasTipo::factory(10)->create();
         $this->call(PaisSeeder::class);

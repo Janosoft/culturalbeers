@@ -9,7 +9,7 @@
                 @method('put')
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Continente" :value="old('nombre', $continente->nombre)" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="EditarContinente" />
             </form>
         </div>
     </div>

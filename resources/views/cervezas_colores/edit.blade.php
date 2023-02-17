@@ -10,7 +10,7 @@
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Color" :value="old('nombre', $cervezas_color->nombre)" />
                 <x-input.color label="Color" name="color" placeholder="Elija un color" :value="old('color', $cervezas_color->color)" />
-                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" />
+                <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="EditarColor" />
             </form>
         </div>
     </div>
