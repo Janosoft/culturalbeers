@@ -31,6 +31,10 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
+        session()->flash('statusTitle', 'Verifique su Cuenta');
+        session()->flash('statusMessage', 'Ingrese a su correo electrónico para verificar su cuenta de email.');
+        session()->flash('statusColor', 'warning');
+        
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
