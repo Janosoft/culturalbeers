@@ -21,6 +21,7 @@ use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
 use App\Http\Controllers\SeachController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
