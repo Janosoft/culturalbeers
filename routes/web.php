@@ -20,6 +20,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
 use App\Http\Controllers\SeachController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,7 @@ Route::get('/', InicioController::class, 'inicio')->name('inicio');
 Route::get('search', [SeachController::class, 'search'])->name('search');
 Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
 Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');
+Route::get('perfil', [UsuarioController::class, 'perfil'])->middleware(['auth'])->name('usuario.perfil');
 
 Route::resource('cervezas', CervezaController::class);
 Route::resource('cervezas_colores', CervezasColorController::class);
