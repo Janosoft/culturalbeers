@@ -8,8 +8,7 @@ a:hover {
     color: #4A4B4C;
 }
 
-.autoComplete li
-{
+.autoComplete li {
     cursor: pointer;
 }
 
@@ -35,4 +34,10 @@ a:hover {
 
 .form_destroy {
     display: inline;
+}
+
+@media (max-width: 575.98px) {
+    .login #logo {
+        max-height: 250px;
+    }
 }
