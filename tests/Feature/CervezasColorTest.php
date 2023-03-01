@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\CervezasColor;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,7 +13,8 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_created()
     {
-        $response = $this->post('/cervezas_colores', [
+        $user= User::factory()->create();        
+        $response = $this->actingAs($user)->post('/cervezas_colores', [
             'nombre' => 'nombre de prueba',
             'color' => '#000',
         ]);
@@ -24,8 +26,9 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_item_can_be_shown()
     {
+        $user= User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->get('/cervezas_colores/'.$cervezas_color->slug);
+        $response = $this->actingAs($user)->get('/cervezas_colores/'.$cervezas_color->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_colores.show'); // Se está mostrando la vista correcta
         $cervezas_color = CervezasColor::first();
@@ -34,8 +37,9 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_updated()
     {
+        $user= User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->put('/cervezas_colores/'.$cervezas_color->slug, [
+        $response = $this->actingAs($user)->put('/cervezas_colores/'.$cervezas_color->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasColor::all()); // Fue Creado
@@ -46,8 +50,9 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_deleted()
     {
+        $user= User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
-        $response = $this->delete('/cervezas_colores/'.$cervezas_color->slug);
+        $response = $this->actingAs($user)->delete('/cervezas_colores/'.$cervezas_color->slug);
         $this->assertCount(0, CervezasColor::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_colores'); // Funciona la redirección
@@ -57,8 +62,9 @@ class CervezasColorTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         CervezasColor::factory(3)->create();
-        $response = $this->get('/cervezas_colores');
+        $response = $this->actingAs($user)->get('/cervezas_colores');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_colores.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('cervezas_colores', function ($cervezas_colores) {
@@ -68,7 +74,8 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_nombre_is_required()
     {
-        $response = $this->post('/cervezas_colores', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_colores', [
             'nombre' => '',
         ]);
         $response->assertSessionHasErrors('nombre');

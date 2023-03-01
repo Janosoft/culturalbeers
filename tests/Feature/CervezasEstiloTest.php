@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\CervezasEstilo;
 use App\Models\CervezasFamilia;
 use App\Models\CervezasFermento;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -14,9 +15,10 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_created()
     {
+        $user= User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familias = CervezasFamilia::factory(2)->create();
-        $response = $this->post('/cervezas_estilos', [
+        $response = $this->actingAs($user)->post('/cervezas_estilos', [
             'nombre' => 'nombre de prueba',
             'familia_id' => $cervezas_familias->random()->familia_id,
         ]);
@@ -28,10 +30,11 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_item_can_be_shown()
     {
+        $user= User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
-        $response = $this->get('/cervezas_estilos/'.$cervezas_estilo->slug);
+        $response = $this->actingAs($user)->get('/cervezas_estilos/'.$cervezas_estilo->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_estilos.show'); // Se está mostrando la vista correcta
         $cervezas_estilo = CervezasEstilo::first();
@@ -40,10 +43,11 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_updated()
     {
+        $user= User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familias = CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
-        $response = $this->put('/cervezas_estilos/'.$cervezas_estilo->slug, [
+        $response = $this->actingAs($user)->put('/cervezas_estilos/'.$cervezas_estilo->slug, [
             'nombre' => 'nombre de prueba',
             'familia_id' => $cervezas_familias->random()->familia_id,
         ]);
@@ -55,10 +59,11 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_deleted()
     {
+        $user= User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
-        $response = $this->delete('/cervezas_estilos/'.$cervezas_estilo->slug);
+        $response = $this->actingAs($user)->delete('/cervezas_estilos/'.$cervezas_estilo->slug);
         $this->assertCount(0, CervezasEstilo::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_estilos'); // Funciona la redirección
@@ -67,10 +72,12 @@ class CervezasEstiloTest extends TestCase
     public function test_estilos_index_can_be_shown()
     {
         $this->withoutExceptionHandling();
+
+        $user= User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         CervezasEstilo::factory(3)->create();
-        $response = $this->get('/cervezas_estilos');
+        $response = $this->actingAs($user)->get('/cervezas_estilos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_estilos.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('cervezas_estilos', function ($cervezas_estilos) {
@@ -80,7 +87,8 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_nombre_is_required()
     {
-        $response = $this->post('/cervezas_estilos', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_estilos', [
             'nombre' => '',
         ]);
         $response->assertSessionHasErrors('nombre');

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Continente;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,7 +13,8 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_created()
     {
-        $response = $this->post('/continentes', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/continentes', [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, Continente::all()); // Fue Creado
@@ -23,8 +25,9 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_item_can_be_shown()
     {
+        $user= User::factory()->create();
         $continente = Continente::factory()->create();
-        $response = $this->get('/continentes/'.$continente->slug);
+        $response = $this->actingAs($user)->get('/continentes/'.$continente->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('continentes.show'); // Se está mostrando la vista correcta
         $continente = Continente::first();
@@ -33,8 +36,9 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_updated()
     {
+        $user= User::factory()->create();
         $continente = Continente::factory()->create();
-        $response = $this->put('/continentes/'.$continente->slug, [
+        $response = $this->actingAs($user)->put('/continentes/'.$continente->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, Continente::all()); // Fue Creado
@@ -45,8 +49,9 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_deleted()
     {
+        $user= User::factory()->create();
         $continente = Continente::factory()->create();
-        $response = $this->delete('/continentes/'.$continente->slug);
+        $response = $this->actingAs($user)->delete('/continentes/'.$continente->slug);
         $this->assertCount(0, Continente::all()); // Fue Eliminado
 
         $response->assertRedirect('/continentes'); // Funciona la redirección
@@ -56,8 +61,9 @@ class ContinenteTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         Continente::factory(3)->create();
-        $response = $this->get('/continentes');
+        $response = $this->actingAs($user)->get('/continentes');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('continentes.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('continentes', function ($continentes) {
@@ -67,7 +73,8 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_nombre_is_required()
     {
-        $response = $this->post('/continentes', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/continentes', [
             'nombre' => '',
         ]);
         $response->assertSessionHasErrors('nombre');

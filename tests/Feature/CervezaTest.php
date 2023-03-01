@@ -15,6 +15,7 @@ use App\Models\Localidad;
 use App\Models\Pais;
 use App\Models\Productor;
 use App\Models\ProductoresFabricacion;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -24,6 +25,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_created()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -36,7 +38,7 @@ class CervezaTest extends TestCase
         $productores = Productor::factory(2)->create();
         $colores = CervezasColor::factory(2)->create();
         $estilos = CervezasEstilo::factory(2)->create();
-        $response = $this->post('/cervezas', [
+        $response = $this->actingAs($user)->post('/cervezas', [
             'nombre' => 'nombre de prueba',
             'IBU' => '10',
             'ABV' => '20',
@@ -53,6 +55,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_item_can_be_shown()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -66,7 +69,7 @@ class CervezaTest extends TestCase
         CervezasColor::factory(2)->create();
         CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->get('/cervezas/'.$cerveza->slug);
+        $response = $this->actingAs($user)->get('/cervezas/'.$cerveza->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas.show'); // Se está mostrando la vista correcta
         $cerveza = Cerveza::first();
@@ -75,6 +78,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_updated()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -88,7 +92,7 @@ class CervezaTest extends TestCase
         $colores = CervezasColor::factory(2)->create();
         $estilos = CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->put('/cervezas/'.$cerveza->slug, [
+        $response = $this->actingAs($user)->put('/cervezas/'.$cerveza->slug, [
             'nombre' => 'nombre de prueba',
             'IBU' => '10',
             'ABV' => '20',
@@ -105,6 +109,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_deleted()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -118,7 +123,7 @@ class CervezaTest extends TestCase
         CervezasColor::factory(2)->create();
         CervezasEstilo::factory(2)->create();
         $cerveza = Cerveza::factory()->create();
-        $response = $this->delete('/cervezas/'.$cerveza->slug);
+        $response = $this->actingAs($user)->delete('/cervezas/'.$cerveza->slug);
         $this->assertCount(0, Cerveza::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas'); // Funciona la redirección
@@ -128,6 +133,7 @@ class CervezaTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -141,7 +147,7 @@ class CervezaTest extends TestCase
         CervezasColor::factory(2)->create();
         CervezasEstilo::factory(2)->create();
         Cerveza::factory(3)->create();
-        $response = $this->get('/cervezas');
+        $response = $this->actingAs($user)->get('/cervezas');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('cervezas', function ($cervezas) {
@@ -151,6 +157,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_nombre_is_required()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -163,7 +170,7 @@ class CervezaTest extends TestCase
         $productores = Productor::factory(2)->create();
         $colores = CervezasColor::factory(2)->create();
         $estilos = CervezasEstilo::factory(2)->create();
-        $response = $this->post('/cervezas', [
+        $response = $this->actingAs($user)->post('/cervezas', [
             'nombre' => '',
             'productor_id' => $productores->random()->productor_id,
             'color_id' => $colores->random()->color_id,

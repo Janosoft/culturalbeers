@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\CervezasFermento;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,7 +13,8 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_created()
     {
-        $response = $this->post('/cervezas_fermentos', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_fermentos', [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasFermento::all()); // Fue Creado
@@ -23,8 +25,9 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_item_can_be_shown()
     {
+        $user= User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
-        $response = $this->get('/cervezas_fermentos/'.$cervezas_fermento->slug);
+        $response = $this->actingAs($user)->get('/cervezas_fermentos/'.$cervezas_fermento->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_fermentos.show'); // Se está mostrando la vista correcta
         $cervezas_fermento = CervezasFermento::first();
@@ -33,8 +36,9 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_updated()
     {
+        $user= User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
-        $response = $this->put('/cervezas_fermentos/'.$cervezas_fermento->slug, [
+        $response = $this->actingAs($user)->put('/cervezas_fermentos/'.$cervezas_fermento->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasFermento::all()); // Fue Creado
@@ -45,8 +49,9 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_deleted()
     {
+        $user= User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
-        $response = $this->delete('/cervezas_fermentos/'.$cervezas_fermento->slug);
+        $response = $this->actingAs($user)->delete('/cervezas_fermentos/'.$cervezas_fermento->slug);
         $this->assertCount(0, CervezasFermento::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_fermentos'); // Funciona la redirección
@@ -56,8 +61,9 @@ class CervezasFermentoTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         CervezasFermento::factory(3)->create();
-        $response = $this->get('/cervezas_fermentos');
+        $response = $this->actingAs($user)->get('/cervezas_fermentos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_fermentos.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('cervezas_fermentos', function ($cervezas_fermentos) {
@@ -67,7 +73,8 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_nombre_is_required()
     {
-        $response = $this->post('/cervezas_fermentos', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_fermentos', [
             'nombre' => '',
         ]);
         $response->assertSessionHasErrors('nombre');

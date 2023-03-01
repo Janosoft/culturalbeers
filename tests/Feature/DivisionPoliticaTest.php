@@ -6,6 +6,7 @@ use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
 use App\Models\DivisionPolitica;
 use App\Models\Pais;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,10 +16,11 @@ class DivisionPoliticaTest extends TestCase
 
     public function test_divisiones_politicas_can_be_created()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $paises = Pais::factory(2)->create();
-        $response = $this->post('/divisiones_politicas', [
+        $response = $this->actingAs($user)->post('/divisiones_politicas', [
             'nombre' => 'nombre de prueba',
             'pais_id' => $paises->random()->pais_id,
         ]);
@@ -30,11 +32,12 @@ class DivisionPoliticaTest extends TestCase
 
     public function test_divisiones_politicas_item_can_be_shown()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         $division_politica = DivisionPolitica::factory()->create();
-        $response = $this->get('/divisiones_politicas/'.$division_politica->slug);
+        $response = $this->actingAs($user)->get('/divisiones_politicas/'.$division_politica->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('divisiones_politicas.show'); // Se está mostrando la vista correcta
         $division_politica = DivisionPolitica::first();
@@ -43,11 +46,12 @@ class DivisionPoliticaTest extends TestCase
 
     public function test_divisiones_politicas_can_be_updated()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $paises = Pais::factory(2)->create();
         $division_politica = DivisionPolitica::factory()->create();
-        $response = $this->put('/divisiones_politicas/'.$division_politica->slug, [
+        $response = $this->actingAs($user)->put('/divisiones_politicas/'.$division_politica->slug, [
             'nombre' => 'nombre de prueba',
             'pais_id' => $paises->random()->pais_id,
         ]);
@@ -59,11 +63,12 @@ class DivisionPoliticaTest extends TestCase
 
     public function test_divisiones_politicas_can_be_deleted()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         $division_politica = DivisionPolitica::factory()->create();
-        $response = $this->delete('/divisiones_politicas/'.$division_politica->slug);
+        $response = $this->actingAs($user)->delete('/divisiones_politicas/'.$division_politica->slug);
         $this->assertCount(0, DivisionPolitica::all()); // Fue Eliminado
 
         $response->assertRedirect('/divisiones_politicas'); // Funciona la redirección
@@ -73,11 +78,12 @@ class DivisionPoliticaTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(3)->create();
-        $response = $this->get('/divisiones_politicas');
+        $response = $this->actingAs($user)->get('/divisiones_politicas');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('divisiones_politicas.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('divisiones_politicas', function ($divisiones_politicas) {
@@ -87,10 +93,11 @@ class DivisionPoliticaTest extends TestCase
 
     public function test_divisiones_politicas_nombre_is_required()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $paises = Pais::factory(2)->create();
-        $response = $this->post('/divisiones_politicas', [
+        $response = $this->actingAs($user)->post('/divisiones_politicas', [
             'nombre' => '',
             'pais_id' => $paises->random()->pais_id,
         ]);

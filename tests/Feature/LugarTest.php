@@ -9,6 +9,7 @@ use App\Models\Localidad;
 use App\Models\Lugar;
 use App\Models\Pais;
 use App\Models\ProductoresFabricacion;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -19,12 +20,13 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_created()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         $localidades = Localidad::factory(2)->create();
-        $response = $this->post('/lugares', [
+        $response = $this->actingAs($user)->post('/lugares', [
             'nombre' => 'nombre de prueba',
             'direccion' => 'dirección de prueba',
             'localidad' => $localidades->random()->nombre,
@@ -37,13 +39,14 @@ class LugarTest extends TestCase
 
     public function test_lugares_item_can_be_shown()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         $lugar = Lugar::factory()->create();
-        $response = $this->get('/lugares/'.$lugar->slug);
+        $response = $this->actingAs($user)->get('/lugares/'.$lugar->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('lugares.show'); // Se está mostrando la vista correcta
         $lugar = Lugar::first();
@@ -52,13 +55,14 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_updated()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         $localidades = Localidad::factory(2)->create();
         $lugar = Lugar::factory()->create();
-        $response = $this->put('/lugares/'.$lugar->slug, [
+        $response = $this->actingAs($user)->put('/lugares/'.$lugar->slug, [
             'nombre' => 'nombre de prueba',
             'direccion' => 'dirección de prueba',
             'localidad' => $localidades->random()->nombre,
@@ -71,13 +75,14 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_deleted()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         $lugar = Lugar::factory()->create();
-        $response = $this->delete('/lugares/'.$lugar->slug);
+        $response = $this->actingAs($user)->delete('/lugares/'.$lugar->slug);
         $this->assertCount(0, Lugar::all()); // Fue Eliminado
         $response->assertRedirect('/lugares'); // Funciona la redirección
     }
@@ -86,13 +91,14 @@ class LugarTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         Lugar::factory(3)->create();
-        $response = $this->get('/lugares');
+        $response = $this->actingAs($user)->get('/lugares');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('lugares.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('lugares', function ($lugares) {
@@ -102,12 +108,13 @@ class LugarTest extends TestCase
 
     public function test_lugares_nombre_is_required()
     {
+        $user= User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
         DivisionPolitica::factory(2)->create();
         $localidades = Localidad::factory(2)->create();
-        $response = $this->post('/lugares', [
+        $response = $this->actingAs($user)->post('/lugares', [
             'nombre' => '',
             'direccion' => 'dirección de prueba',
             'localidad' => $localidades->random()->nombre,

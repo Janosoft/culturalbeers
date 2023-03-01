@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\CervezasEnvaseTipo;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,7 +13,8 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_created()
     {
-        $response = $this->post('/cervezas_envases_tipos', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_envases_tipos', [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasEnvaseTipo::all()); // Fue Creado
@@ -23,8 +25,9 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_item_can_be_shown()
     {
+        $user= User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
-        $response = $this->get('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
+        $response = $this->actingAs($user)->get('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_envases_tipos.show'); // Se está mostrando la vista correcta
         $cervezas_envases_tipo = CervezasEnvaseTipo::first();
@@ -33,8 +36,9 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_updated()
     {
+        $user= User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
-        $response = $this->put('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug, [
+        $response = $this->actingAs($user)->put('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug, [
             'nombre' => 'nombre de prueba',
         ]);
         $this->assertCount(1, CervezasEnvaseTipo::all()); // Fue Creado
@@ -45,8 +49,9 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_deleted()
     {
+        $user= User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
-        $response = $this->delete('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
+        $response = $this->actingAs($user)->delete('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
         $this->assertCount(0, CervezasEnvaseTipo::all()); // Fue Eliminado
 
         $response->assertRedirect('/cervezas_envases_tipos'); // Funciona la redirección
@@ -56,8 +61,9 @@ class CervezasEnvaseTipoTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user= User::factory()->create();
         CervezasEnvaseTipo::factory(3)->create();
-        $response = $this->get('/cervezas_envases_tipos');
+        $response = $this->actingAs($user)->get('/cervezas_envases_tipos');
         $response->assertOk(); // Funciona la vista
         $response->assertViewIs('cervezas_envases_tipos.index'); // Se está mostrando la vista correcta
         $response->assertViewHas('cervezas_envases_tipos', function ($cervezas_envases_tipos) {
@@ -67,7 +73,8 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_nombre_is_required()
     {
-        $response = $this->post('/cervezas_envases_tipos', [
+        $user= User::factory()->create();
+        $response = $this->actingAs($user)->post('/cervezas_envases_tipos', [
             'nombre' => '',
         ]);
         $response->assertSessionHasErrors('nombre');
