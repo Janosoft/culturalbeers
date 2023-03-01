@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Pais;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,7 @@ class DivisionPoliticaFactory extends Factory
             'pais_id' => Pais::all()->random()->pais_id,
             'nombre' => $nombre,
             'slug' => str()->slug($nombre, '-', 'es'),
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

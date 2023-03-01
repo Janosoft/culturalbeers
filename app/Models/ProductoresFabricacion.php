@@ -36,6 +36,13 @@ class ProductoresFabricacion extends Model
     }
     /* ROUTE NAME */
 
+    /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    /* ATRIBUTOS EXTERNOS */
+
     /* ATRIBUTOS EXTERNOS (inversos)*/
     public function productores()
     {

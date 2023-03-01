@@ -11,6 +11,7 @@ use App\Models\CervezasEstilo;
 use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\Productor;
+use Illuminate\Support\Facades\Auth;
 
 class CervezaController extends Controller
 {
@@ -38,6 +39,7 @@ class CervezaController extends Controller
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
         $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
+        $request['user_id'] = Auth::user()->user_id;
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
@@ -47,7 +49,7 @@ class CervezaController extends Controller
                 'imageable_id' => $cerveza->cerveza_id,
                 'url' => 'imagenes/'.$fileName,
                 'imageable_type' => Cerveza::class,
-                'usuario_id' => 0, //TODO Agregar Usuario
+                'user_id' => 0, //TODO Agregar Usuario
             ]);
             $cerveza->imagen_id = $imagen->imagen_id;
             $cerveza->update(['imagen_id']);
@@ -93,7 +95,7 @@ class CervezaController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Cerveza::class,
             'commentable_id' => $cerveza->cerveza_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

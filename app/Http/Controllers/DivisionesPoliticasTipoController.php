@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDivisionPoliticaTipo;
 use App\Models\DivisionesPoliticasTipo;
+use Illuminate\Support\Facades\Auth;
 
 class DivisionesPoliticasTipoController extends Controller
 {
@@ -25,6 +26,7 @@ class DivisionesPoliticasTipoController extends Controller
     public function store(StoreDivisionPoliticaTipo $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::create($request->all());
         session()->flash('statusTitle', 'Tipo Creado');
         session()->flash('statusMessage', 'El tipo de división política fue creado correctamente.');

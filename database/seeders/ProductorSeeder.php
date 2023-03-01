@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Imagen;
 use App\Models\Productor;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ProductorSeeder extends Seeder
@@ -20,7 +21,7 @@ class ProductorSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $productor->productor_id,
                 'imageable_type' => Productor::class,
-                'usuario_id' => 1, //TODO poner el usuario
+                'user_id' => User::all()->random()->user_id,
             ]);
         }
     }

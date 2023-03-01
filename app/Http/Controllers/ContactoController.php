@@ -16,7 +16,7 @@ class ContactoController extends Controller
     public function store(StoreContacto $request)
     {
         $correo = new ContactoMailable($request->all());
-        Mail::to('janosoft@gmail.com')->send($correo);
+        Mail::to('janosoft@gmail.com')->send($correo); //TODO poner el email correcto
 
         session()->flash('statusTitle', 'Mensaje Enviado');
         session()->flash('statusMessage', 'El mensaje fue enviado correctamente.');

@@ -37,6 +37,11 @@ class CervezasEstilo extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function familia()
     {
         return $this->belongsTo(CervezasFamilia::class, 'familia_id')->withTrashed();

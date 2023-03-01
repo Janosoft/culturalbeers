@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('imagen_id')->nullable();
             $table->string('slug');
             $table->boolean('verificado')->default(false);
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
         });

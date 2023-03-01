@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Localidad;
 use App\Models\ProductoresFabricacion;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,6 +27,7 @@ class ProductorFactory extends Factory
             'localidad_id' => Localidad::all()->random()->localidad_id,
             'slug' => str()->slug($nombre, '-', 'es'),
             'verificado' => false,
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

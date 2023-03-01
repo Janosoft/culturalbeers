@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCervezaFermento;
 use App\Http\Requests\StoreComentario;
 use App\Models\CervezasFermento;
 use App\Models\Comentario;
+use Illuminate\Support\Facades\Auth;
 
 class CervezasFermentoController extends Controller
 {
@@ -27,6 +28,7 @@ class CervezasFermentoController extends Controller
     public function store(StoreCervezaFermento $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $cervezas_fermento = CervezasFermento::create($request->all());
 
         return redirect()->route('cervezas_fermentos.show', $cervezas_fermento);
@@ -59,7 +61,7 @@ class CervezasFermentoController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasFermento::class,
             'commentable_id' => $cervezas_fermento->fermento_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

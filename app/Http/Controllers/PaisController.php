@@ -7,6 +7,7 @@ use App\Models\Continente;
 use App\Models\DivisionesPoliticasTipo;
 use App\Models\Imagen;
 use App\Models\Pais;
+use Illuminate\Support\Facades\Auth;
 
 class PaisController extends Controller
 {
@@ -31,6 +32,7 @@ class PaisController extends Controller
     public function store(StorePais $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $pais = Pais::create($request->all());
         if ($request->imagen) {
             $fileName = time().'.'.$request->imagen->extension();

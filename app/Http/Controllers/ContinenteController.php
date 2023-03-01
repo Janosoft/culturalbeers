@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContinente;
 use App\Models\Continente;
+use Illuminate\Support\Facades\Auth;
 
 class ContinenteController extends Controller
 {
@@ -25,6 +26,7 @@ class ContinenteController extends Controller
     public function store(StoreContinente $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $continente = Continente::create($request->all());
 
         return redirect()->route('continentes.show', $continente);

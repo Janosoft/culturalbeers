@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('comentario');
             $table->string('commentable_type');
             $table->unsignedBigInteger('commentable_id');
-            $table->unsignedBigInteger('usuario_id');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->boolean('ofensivo')->default(false);
             $table->boolean('autorizado')->default(false);
             $table->timestamps();

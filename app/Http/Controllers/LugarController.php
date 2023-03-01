@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use App\Models\Localidad;
 use App\Models\Lugar;
 use App\Models\LugaresCategoria;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LugarController extends Controller
@@ -33,6 +34,7 @@ class LugarController extends Controller
     public function store(StoreLugar $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $request['localidad_id'] = Localidad::getByName($request->localidad)->localidad_id;
         $lugar = Lugar::create($request->all());
         if ($request->imagen) {
@@ -80,7 +82,7 @@ class LugarController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Lugar::class,
             'commentable_id' => $lugar->lugar_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

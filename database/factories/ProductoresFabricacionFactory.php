@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class ProductoresFabricacionFactory extends Factory
         return [
             'nombre' => $nombre,
             'slug' => str()->slug($nombre, '-', 'es'),
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

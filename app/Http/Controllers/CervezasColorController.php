@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCervezaColor;
 use App\Models\CervezasColor;
+use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Type\Integer;
 
 class CervezasColorController extends Controller
@@ -26,6 +27,7 @@ class CervezasColorController extends Controller
     public function store(StoreCervezaColor $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $cervezas_color = CervezasColor::create($request->all());
         session()->flash('statusTitle', 'Color Creado');
         session()->flash('statusMessage', 'El color de cervezas fue creado correctamente.');

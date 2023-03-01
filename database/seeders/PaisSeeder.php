@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Imagen;
 use App\Models\Pais;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PaisSeeder extends Seeder
@@ -20,7 +21,7 @@ class PaisSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $pais->pais_id,
                 'imageable_type' => Pais::class,
-                'usuario_id' => 1, //TODO poner el usuario
+                'user_id' => User::all()->random()->user_id,
             ]);
         }
     }

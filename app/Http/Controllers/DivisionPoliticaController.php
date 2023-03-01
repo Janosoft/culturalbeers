@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDivisionPolitica;
 use App\Models\DivisionPolitica;
 use App\Models\Pais;
+use Illuminate\Support\Facades\Auth;
 
 class DivisionPoliticaController extends Controller
 {
@@ -28,6 +29,7 @@ class DivisionPoliticaController extends Controller
     public function store(StoreDivisionPolitica $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $division_politica = DivisionPolitica::create($request->all());
         session()->flash('statusTitle', 'División Política Creada');
         session()->flash('statusMessage', 'La división política fue creada correctamente.');

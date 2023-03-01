@@ -6,6 +6,7 @@ use App\Models\Cerveza;
 use App\Models\CervezasEnvaseTipo;
 use App\Models\Comentario;
 use App\Models\Imagen;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class CervezaSeeder extends Seeder
@@ -22,12 +23,12 @@ class CervezaSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $cerveza->cerveza_id,
                 'imageable_type' => Cerveza::class,
-                'usuario_id' => 1, //TODO poner el usuario
+                'user_id' => User::all()->random()->user_id,
             ]);
             Comentario::factory(2)->create([
                 'commentable_id' => $cerveza->cerveza_id,
                 'commentable_type' => Cerveza::class,
-                'usuario_id' => 1, //TODO poner el usuario
+                'user_id' => User::all()->random()->user_id,
             ]);
             $cerveza->envases()->sync([CervezasEnvaseTipo::all()->random()->envase_id]);
         }

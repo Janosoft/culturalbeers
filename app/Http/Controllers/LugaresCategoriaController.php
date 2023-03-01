@@ -6,6 +6,7 @@ use App\Models\LugaresCategoria;
 use App\Http\Requests\StoreLugaresCategoria;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LugaresCategoriaController extends Controller
 {
@@ -27,6 +28,7 @@ class LugaresCategoriaController extends Controller
     public function store(StoreLugaresCategoria $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $lugares_categoria = LugaresCategoria::create($request->all());
         session()->flash('statusTitle', 'Categoría Creada');
         session()->flash('statusMessage', 'La categoría de lugares fue creada correctamente.');

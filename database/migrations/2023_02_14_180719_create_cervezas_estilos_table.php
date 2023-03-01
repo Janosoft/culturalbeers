@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre', 100)->unique();
             $table->foreignId('familia_id')->constrained('cervezas_familias', 'familia_id');
             $table->string('slug');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -37,6 +37,11 @@ class CervezasFamilia extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function fermento()
     {
         return $this->belongsTo(CervezasFermento::class, 'fermento_id')->withTrashed();

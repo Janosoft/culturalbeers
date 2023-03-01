@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class CervezasColorFactory extends Factory
             'nombre' => $nombre,
             'color' => fake()->hexColor(),
             'slug' => str()->slug($nombre, '-', 'es'),
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\CervezasFamilia;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,7 @@ class CervezasEstiloFactory extends Factory
             'nombre' => $nombre,
             'familia_id' => CervezasFamilia::all()->random()->familia_id,
             'slug' => str()->slug($nombre, '-', 'es'),
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

@@ -37,6 +37,11 @@ class Productor extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function localidad()
     {
         return $this->belongsTo(Localidad::class, 'localidad_id')->withTrashed();

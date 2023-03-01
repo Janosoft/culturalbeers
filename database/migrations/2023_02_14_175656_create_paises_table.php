@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('divisiones_politicas_tipo_id')->constrained('divisiones_politicas_tipos', 'divisiones_politicas_tipo_id');
             $table->string('imagen_id')->nullable();
             $table->string('slug');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
         });

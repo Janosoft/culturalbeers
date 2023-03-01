@@ -71,6 +71,11 @@ class Cerveza extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function imagen()
     {
         return $this->belongsTo(Imagen::class, 'imagen_id');

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Imagen;
 use App\Models\Lugar;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class LugarSeeder extends Seeder
@@ -20,7 +21,7 @@ class LugarSeeder extends Seeder
             Imagen::factory(1)->create([
                 'imageable_id' => $lugar->lugar_id,
                 'imageable_type' => Lugar::class,
-                'usuario_id' => 1, //TODO poner el usuario
+                'user_id' => User::all()->random()->user_id,
             ]);
         }
     }

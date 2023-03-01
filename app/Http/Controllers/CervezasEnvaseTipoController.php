@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCervezaEnvaseTipo;
 use App\Models\CervezasEnvaseTipo;
+use Illuminate\Support\Facades\Auth;
 
 class CervezasEnvaseTipoController extends Controller
 {
@@ -25,6 +26,7 @@ class CervezasEnvaseTipoController extends Controller
     public function store(StoreCervezaEnvaseTipo $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $cervezas_envases_tipo = CervezasEnvaseTipo::create($request->all());
         session()->flash('statusTitle', 'Envase Creado');
         session()->flash('statusMessage', 'El tipo de envase fue creado correctamente.');

@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use App\Models\Localidad;
 use App\Models\Productor;
 use App\Models\ProductoresFabricacion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductorController extends Controller
@@ -33,6 +34,7 @@ class ProductorController extends Controller
     public function store(StoreProductor $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $request['localidad_id'] = Localidad::getByName($request->localidad)->localidad_id;
         $productor = Productor::create($request->all());
         if ($request->imagen) {
@@ -81,7 +83,7 @@ class ProductorController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Productor::class,
             'commentable_id' => $productor->productor_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

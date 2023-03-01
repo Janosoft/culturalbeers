@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('user_id');
             $table->string('nombre', 100);
             $table->string('apellido', 100);
-            $table->bigInteger('localidad_id')->nullable();
+            $table->unsignedBigInteger('localidad_id')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->bigInteger('imagen_id')->nullable();
+            $table->unsignedBigInteger('imagen_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('blocked')->default(false);
             $table->string('slug');

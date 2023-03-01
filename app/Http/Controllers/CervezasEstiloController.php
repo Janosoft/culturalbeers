@@ -7,6 +7,7 @@ use App\Http\Requests\StoreComentario;
 use App\Models\CervezasEstilo;
 use App\Models\CervezasFamilia;
 use App\Models\Comentario;
+use Illuminate\Support\Facades\Auth;
 
 class CervezasEstiloController extends Controller
 {
@@ -30,6 +31,7 @@ class CervezasEstiloController extends Controller
     public function store(StoreCervezaEstilo $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $cervezas_estilo = CervezasEstilo::create($request->all());
         session()->flash('statusTitle', 'Estilo Creado');
         session()->flash('statusMessage', 'El estilo de cervezas fue creado correctamente.');
@@ -67,7 +69,7 @@ class CervezasEstiloController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => CervezasEstilo::class,
             'commentable_id' => $cervezas_estilo->estilo_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

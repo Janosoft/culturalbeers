@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('pais_id')->constrained('paises', 'pais_id');
             $table->string('nombre');
             $table->string('slug');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductorFabricacion;
 use App\Models\ProductoresFabricacion;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoresFabricacionController extends Controller
 {
@@ -25,6 +26,7 @@ class ProductoresFabricacionController extends Controller
     public function store(StoreProductorFabricacion $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $productores_fabricacion = ProductoresFabricacion::create($request->all());
         session()->flash('statusTitle', 'Fabricación Creada');
         session()->flash('statusMessage', 'El tipo de fabricación fue creado correctamente.');

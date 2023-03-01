@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\CervezasColor;
 use App\Models\CervezasEstilo;
 use App\Models\Productor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -30,6 +31,7 @@ class CervezaFactory extends Factory
             'color_id' => CervezasColor::all()->random()->color_id,
             'estilo_id' => CervezasEstilo::all()->random()->estilo_id,
             'slug' => str()->slug($productor->nombre.'-'.$nombre, '-', 'es'),
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreLocalidad;
 use App\Models\Comentario;
 use App\Models\DivisionPolitica;
 use App\Models\Localidad;
+use Illuminate\Support\Facades\Auth;
 
 class LocalidadController extends Controller
 {
@@ -30,6 +31,7 @@ class LocalidadController extends Controller
     public function store(StoreLocalidad $request)
     {
         $request['slug'] = str()->slug($request->nombre);
+        $request['user_id'] = Auth::user()->user_id;
         $localidad = Localidad::create($request->all());
         session()->flash('statusTitle', 'Localidad Creada');
         session()->flash('statusMessage', 'La localidad fue creada correctamente.');
@@ -67,7 +69,7 @@ class LocalidadController extends Controller
             'comentario' => $request->comentario,
             'commentable_type' => Localidad::class,
             'commentable_id' => $localidad->localidad_id,
-            'usuario_id' => 1, //TODO poner el usuario
+            'user_id' => Auth::user()->user_id,
         ]);
 
         session()->flash('statusTitle', 'Comentario Creado');

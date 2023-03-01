@@ -18,7 +18,7 @@ class Imagen extends Model
     /* ATRIBUTOS EXTERNOS */
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'user_id');
     }
 
     public function imageable()

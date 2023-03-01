@@ -16,6 +16,11 @@ class Comentario extends Model
     protected $guarded = ['created_at', 'updated_at'];
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function commentable()
     {
         return $this->morphTo();

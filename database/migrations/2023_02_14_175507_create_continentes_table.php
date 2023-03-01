@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('continente_id');
             $table->string('nombre', 30)->unique();
             $table->string('slug');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
         });

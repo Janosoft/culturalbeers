@@ -37,6 +37,11 @@ class DivisionPolitica extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'pais_id')->withTrashed();

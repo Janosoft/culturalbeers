@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('divisiones_politicas_tipo_id');
             $table->string('nombre', 50)->unique();
             $table->string('slug');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
             $table->softDeletes();
         });

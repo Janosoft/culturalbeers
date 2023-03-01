@@ -37,6 +37,11 @@ class Pais extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function continente()
     {
         return $this->belongsTo(Continente::class, 'continente_id')->withTrashed();

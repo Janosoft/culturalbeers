@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Localidad;
 use App\Models\LugaresCategoria;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,6 +28,7 @@ class LugarFactory extends Factory
             'direccion' => implode(' ', fake()->unique()->words(2)).' '.fake()->RandomNumber(3, false),
             'slug' => str()->slug($nombre, '-', 'es'),
             'verificado' => false,
+            'user_id' => User::all()->random()->user_id,
         ];
     }
 }
