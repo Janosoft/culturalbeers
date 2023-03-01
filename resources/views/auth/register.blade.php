@@ -9,7 +9,8 @@
         <div class="col-lg">
             <form class="mb-3 mt-md-4" action="{{ route('register') }}" method="POST">
                 @csrf
-                <x-input.text label="Nombre" name="name" placeholder="Nombre y Apellido" :value="old('name')" />
+                <x-input.text label="Nombre" name="nombre" placeholder="Nombre y Apellido" :value="old('nombre')" />
+                <x-input.text label="Apellido" name="apellido" placeholder="Nombre y Apellido" :value="old('apellido')" />
                 <x-input.email label="Email" name="email" placeholder="Email" :value="old('email')" />
                 <x-input.password label="Contraseña" name="password" placeholder="Contraseña" />
                 <x-input.password label="Repetir Contraseña" name="password_confirmation" placeholder="Repetir Contraseña" />

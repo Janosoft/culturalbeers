@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,10 +22,13 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
+        'localidad_id',
         'email',
         'slug',
         'password',
+        'imagen_id'
     ];
 
     /**
@@ -45,4 +49,53 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* MUTATORS */
+    protected function nombre(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucwords($value);
+            }
+        );
+    }
+
+    protected function apellido(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucwords($value);
+            }
+        );
+    }
+
+    protected function email(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return mb_strtolower($value);
+            }
+        );
+    }
+    /* MUTATORS */
+
+    /* ROUTE NAME */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /* ROUTE NAME */
+
+    /* ATRIBUTOS EXTERNOS */
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class, 'localidad_id')->withTrashed();
+    }
+
+    public function imagen()
+    {
+        return $this->belongsTo(Imagen::class, 'imagen_id');
+    }
+    /* ATRIBUTOS EXTERNOS */
+
 }

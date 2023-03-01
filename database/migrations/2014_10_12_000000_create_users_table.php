@@ -13,27 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
-            $table->string('name');
+            $table->string('nombre', 100);
+            $table->string('apellido', 100);
+            $table->bigInteger('localidad_id')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->bigInteger('imagen_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('blocked')->default(false);
             $table->string('slug');
             $table->rememberToken();
             $table->timestamps();
 
-            /* TODO MIGRAR DESDE PERSONAS
-            $table->string('nombre', 100);
-            $table->string('apellido', 100);
-            $table->string('profesion', 100)->nullable();
-            $table->foreignId('localidad_id')->constrained('localidades', 'localidad_id');
-            $table->string('imagen_id')->nullable();
-
             $table->index('nombre');
             $table->index('apellido');
-
-
-            */
         });
     }
 

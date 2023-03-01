@@ -20,7 +20,8 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:100'],
+            'apellido' => ['required', 'string', 'max:100'],
             'email' => [
                 'required',
                 'string',
@@ -36,9 +37,10 @@ class CreateNewUser implements CreatesNewUsers
         session()->flash('statusColor', 'warning');
         
         return User::create([
-            'name' => $input['name'],
+            'nombre' => $input['nombre'],
+            'apellido' => $input['apellido'],
             'email' => $input['email'],
-            'slug' => str()->slug($input['name']),
+            'slug' => md5($input['email']),
             'password' => Hash::make($input['password']),
         ]);
     }

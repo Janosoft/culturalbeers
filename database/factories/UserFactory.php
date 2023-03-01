@@ -17,14 +17,15 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $nombre = fake()->name();
+        $email = fake()->unique()->safeEmail();
         return [
-            'name' => $nombre,
-            'email' => 'janosoft@gmail.com',
+            'nombre' => explode(" ",fake()->name())[0],
+            'apellido' => explode(" ",fake()->name())[1],
+            'email' => $email,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'slug' => str()->slug($nombre, '-', 'es'),
+            'slug' => md5($email),
         ];
     }
 

@@ -16,21 +16,21 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('imagenes');
         Storage::makeDirectory('imagenes');
 
-        \App\Models\User::factory(1)->create();
-        \App\Models\Continente::factory(10)->create();
-        \App\Models\DivisionesPoliticasTipo::factory(10)->create();
-        $this->call(PaisSeeder::class);
-        \App\Models\DivisionPolitica::factory(10)->create();
-        \App\Models\Localidad::factory(50)->create();
-        \App\Models\CervezasEnvaseTipo::factory(10)->create();
-        \App\Models\ProductoresFabricacion::factory(3)->create();
-        $this->call(ProductorSeeder::class);
-        \App\Models\CervezasColor::factory(10)->create();
-        \App\Models\CervezasFermento::factory(10)->create();
-        \App\Models\CervezasFamilia::factory(30)->create();
-        \App\Models\CervezasEstilo::factory(30)->create();
-        $this->call(CervezaSeeder::class);
-        \App\Models\LugaresCategoria::factory(5)->create();
-        $this->call(LugarSeeder::class);
+        \App\Models\User::factory(2)->create();
+        // \App\Models\Continente::factory(10)->create();
+        // \App\Models\DivisionesPoliticasTipo::factory(10)->create();
+        // $this->call(PaisSeeder::class);
+        // \App\Models\DivisionPolitica::factory(10)->create();
+        // \App\Models\Localidad::factory(50)->create();
+        // \App\Models\CervezasEnvaseTipo::factory(10)->create();
+        // \App\Models\ProductoresFabricacion::factory(3)->create();
+        // $this->call(ProductorSeeder::class);
+        // \App\Models\CervezasColor::factory(10)->create();
+        // \App\Models\CervezasFermento::factory(10)->create();
+        // \App\Models\CervezasFamilia::factory(30)->create();
+        // \App\Models\CervezasEstilo::factory(30)->create();
+        // $this->call(CervezaSeeder::class);
+        // \App\Models\LugaresCategoria::factory(5)->create();
+        // $this->call(LugarSeeder::class);
     }
 }
