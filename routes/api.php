@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//TODO CONVERTIR MANUALMENTE PARA QUE NO SE PUEDA EDITAR O ELIMINAR POR API
+
 Route::apiResource('cervezas', CervezaController::class);
 Route::apiResource('cervezas_colores', CervezasColorController::class);
 Route::apiResource('cervezas_envases_tipos', CervezasEnvaseTipoController::class);
