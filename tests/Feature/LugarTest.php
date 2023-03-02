@@ -7,6 +7,7 @@ use App\Models\DivisionesPoliticasTipo;
 use App\Models\DivisionPolitica;
 use App\Models\Localidad;
 use App\Models\Lugar;
+use App\Models\LugaresCategoria;
 use App\Models\Pais;
 use App\Models\ProductoresFabricacion;
 use App\Models\User;
@@ -21,15 +22,17 @@ class LugarTest extends TestCase
     public function test_lugares_can_be_created()
     {
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        $localidades = Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        LugaresCategoria::factory()->create();
+        Localidad::factory()->create();
         $response = $this->actingAs($user)->post('/lugares', [
             'nombre' => 'nombre de prueba',
             'direccion' => 'dirección de prueba',
-            'localidad' => $localidades->random()->nombre,
+            'localidad' => Localidad::all()->random()->nombre,
+            'categoria_id' => LugaresCategoria::all()->random()->categoria_id,
         ]);
         $this->assertCount(1, Lugar::all()); // Fue Creado
         $lugar = Lugar::first();
@@ -40,11 +43,12 @@ class LugarTest extends TestCase
     public function test_lugares_item_can_be_shown()
     {
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        Localidad::factory()->create();
+        LugaresCategoria::factory()->create();
         $lugar = Lugar::factory()->create();
         $response = $this->actingAs($user)->get('/lugares/'.$lugar->slug);
         $response->assertOk(); // Funciona la vista
@@ -56,16 +60,18 @@ class LugarTest extends TestCase
     public function test_lugares_can_be_updated()
     {
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        $localidades = Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        LugaresCategoria::factory()->create();
+        Localidad::factory()->create();
         $lugar = Lugar::factory()->create();
         $response = $this->actingAs($user)->put('/lugares/'.$lugar->slug, [
             'nombre' => 'nombre de prueba',
             'direccion' => 'dirección de prueba',
-            'localidad' => $localidades->random()->nombre,
+            'localidad' => Localidad::all()->random()->nombre,
+            'categoria_id' => LugaresCategoria::all()->random()->categoria_id,
         ]);
         $this->assertCount(1, Lugar::all()); // Fue Creado
         $lugar = $lugar->fresh();
@@ -76,11 +82,12 @@ class LugarTest extends TestCase
     public function test_lugares_can_be_deleted()
     {
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        Localidad::factory()->create();
+        LugaresCategoria::factory()->create();
         $lugar = Lugar::factory()->create();
         $response = $this->actingAs($user)->delete('/lugares/'.$lugar->slug);
         $this->assertCount(0, Lugar::all()); // Fue Eliminado
@@ -92,11 +99,12 @@ class LugarTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        Localidad::factory()->create();
+        LugaresCategoria::factory()->create();
         Lugar::factory(3)->create();
         $response = $this->actingAs($user)->get('/lugares');
         $response->assertOk(); // Funciona la vista
@@ -109,15 +117,16 @@ class LugarTest extends TestCase
     public function test_lugares_nombre_is_required()
     {
         $user= User::factory()->create();
-        DivisionesPoliticasTipo::factory(2)->create();
-        Continente::factory(2)->create();
-        Pais::factory(2)->create();
-        DivisionPolitica::factory(2)->create();
-        $localidades = Localidad::factory(2)->create();
+        DivisionesPoliticasTipo::factory()->create();
+        Continente::factory()->create();
+        Pais::factory()->create();
+        DivisionPolitica::factory()->create();
+        LugaresCategoria::factory()->create();
+        Localidad::factory()->create();
         $response = $this->actingAs($user)->post('/lugares', [
             'nombre' => '',
             'direccion' => 'dirección de prueba',
-            'localidad' => $localidades->random()->nombre,
+            'localidad' => Localidad::all()->random()->nombre,
         ]);
         $response->assertSessionHasErrors('nombre');
         $this->assertCount(0, Lugar::all()); // No fue Creado
