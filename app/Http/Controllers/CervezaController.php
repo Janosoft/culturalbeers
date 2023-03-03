@@ -49,7 +49,7 @@ class CervezaController extends Controller
                 'imageable_id' => $cerveza->cerveza_id,
                 'url' => 'imagenes/'.$fileName,
                 'imageable_type' => Cerveza::class,
-                'user_id' => 0, //TODO Agregar Usuario
+                'user_id' => Auth::user()->user_id,
             ]);
             $cerveza->imagen_id = $imagen->imagen_id;
             $cerveza->update(['imagen_id']);
