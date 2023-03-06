@@ -13,7 +13,7 @@ class DivisionesPoliticasTipoTest extends TestCase
 
     public function test_divisiones_politicas_tipos_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/divisiones_politicas_tipos', [
             'nombre' => 'nombre de prueba',
         ]);
@@ -25,7 +25,7 @@ class DivisionesPoliticasTipoTest extends TestCase
 
     public function test_divisiones_politicas_tipos_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory()->create();
         $response = $this->actingAs($user)->get('/divisiones_politicas_tipos/'.$divisiones_politicas_tipo->slug);
         $response->assertOk(); // Funciona la vista
@@ -36,7 +36,7 @@ class DivisionesPoliticasTipoTest extends TestCase
 
     public function test_divisiones_politicas_tipos_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory()->create();
         $response = $this->actingAs($user)->put('/divisiones_politicas_tipos/'.$divisiones_politicas_tipo->slug, [
             'nombre' => 'nombre de prueba',
@@ -49,7 +49,7 @@ class DivisionesPoliticasTipoTest extends TestCase
 
     public function test_divisiones_politicas_tipos_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory()->create();
         $response = $this->actingAs($user)->delete('/divisiones_politicas_tipos/'.$divisiones_politicas_tipo->slug);
         $this->assertCount(0, DivisionesPoliticasTipo::all()); // Fue Eliminado
@@ -61,7 +61,7 @@ class DivisionesPoliticasTipoTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(3)->create();
         $response = $this->actingAs($user)->get('/divisiones_politicas_tipos');
         $response->assertOk(); // Funciona la vista
@@ -73,7 +73,7 @@ class DivisionesPoliticasTipoTest extends TestCase
 
     public function test_divisiones_politicas_tipos_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/divisiones_politicas_tipos', [
             'nombre' => '',
         ]);

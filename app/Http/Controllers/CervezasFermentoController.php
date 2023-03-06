@@ -91,9 +91,7 @@ class CervezasFermentoController extends Controller
             session()->flash('statusTitle', 'Fermento Eliminado');
             session()->flash('statusMessage', 'El fermento fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Fermento');
             session()->flash('statusMessage', 'El fermento está siendo utilizado en al menos una familia de cervezas.');
             session()->flash('statusColor', 'danger');

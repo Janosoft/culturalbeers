@@ -15,7 +15,7 @@ class PaisTest extends TestCase
 
     public function test_paises_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
         $continentes = Continente::factory(2)->create();
         $response = $this->actingAs($user)->post('/paises', [
@@ -31,7 +31,7 @@ class PaisTest extends TestCase
 
     public function test_paises_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $pais = Pais::factory()->create();
@@ -44,7 +44,7 @@ class PaisTest extends TestCase
 
     public function test_paises_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
         $continentes = Continente::factory(2)->create();
         $pais = Pais::factory()->create();
@@ -61,7 +61,7 @@ class PaisTest extends TestCase
 
     public function test_paises_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         $pais = Pais::factory()->create();
@@ -74,7 +74,7 @@ class PaisTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(3)->create();
@@ -88,7 +88,7 @@ class PaisTest extends TestCase
 
     public function test_paises_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $divisiones_politicas_tipo = DivisionesPoliticasTipo::factory(2)->create();
         $continentes = Continente::factory(2)->create();
         $response = $this->actingAs($user)->post('/paises', [

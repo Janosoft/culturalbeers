@@ -28,7 +28,7 @@ class LugarController extends Controller
     {
         $categorias = LugaresCategoria::pluck('nombre', 'categoria_id');
 
-        return view('Lugares.create',compact('categorias'));
+        return view('Lugares.create', compact('categorias'));
     }
 
     public function store(StoreLugar $request)
@@ -61,7 +61,8 @@ class LugarController extends Controller
     public function edit(Lugar $lugar)
     {
         $categorias = LugaresCategoria::pluck('nombre', 'categoria_id');
-        return view('lugares.edit', compact(['lugar','categorias']));
+
+        return view('lugares.edit', compact(['lugar', 'categorias']));
     }
 
     public function update(StoreLugar $request, Lugar $lugar)

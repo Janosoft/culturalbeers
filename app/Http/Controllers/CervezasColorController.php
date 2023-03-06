@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCervezaColor;
 use App\Models\CervezasColor;
 use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Type\Integer;
 
 class CervezasColorController extends Controller
 {
@@ -76,9 +75,7 @@ class CervezasColorController extends Controller
             session()->flash('statusTitle', 'Color Eliminado');
             session()->flash('statusMessage', 'El color de cervezas fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Color');
             session()->flash('statusMessage', 'El color está siendo utilizado en al menos una cerveza.');
             session()->flash('statusColor', 'danger');

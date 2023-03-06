@@ -99,9 +99,7 @@ class CervezasEstiloController extends Controller
             session()->flash('statusTitle', 'Estilo Eliminado');
             session()->flash('statusMessage', 'El estilo de cervezas fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Estilo');
             session()->flash('statusMessage', 'El estilo de cervezas está siendo utilizado en al menos una cerveza.');
             session()->flash('statusColor', 'danger');

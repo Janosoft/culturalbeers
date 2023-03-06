@@ -13,7 +13,7 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_created()
     {
-        $user= User::factory()->create();        
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_colores', [
             'nombre' => 'nombre de prueba',
             'color' => '#000',
@@ -26,7 +26,7 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
         $response = $this->actingAs($user)->get('/cervezas_colores/'.$cervezas_color->slug);
         $response->assertOk(); // Funciona la vista
@@ -37,7 +37,7 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
         $response = $this->actingAs($user)->put('/cervezas_colores/'.$cervezas_color->slug, [
             'nombre' => 'nombre de prueba',
@@ -50,7 +50,7 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_color = CervezasColor::factory()->create();
         $response = $this->actingAs($user)->delete('/cervezas_colores/'.$cervezas_color->slug);
         $this->assertCount(0, CervezasColor::all()); // Fue Eliminado
@@ -62,7 +62,7 @@ class CervezasColorTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasColor::factory(3)->create();
         $response = $this->actingAs($user)->get('/cervezas_colores');
         $response->assertOk(); // Funciona la vista
@@ -74,7 +74,7 @@ class CervezasColorTest extends TestCase
 
     public function test_colores_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_colores', [
             'nombre' => '',
         ]);

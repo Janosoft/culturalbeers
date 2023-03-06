@@ -124,9 +124,7 @@ class ProductorController extends Controller
             session()->flash('statusTitle', 'Productor Eliminado');
             session()->flash('statusMessage', 'El productor fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Productor');
             session()->flash('statusMessage', 'El productor está siendo utilizado en al menos una cerveza.');
             session()->flash('statusColor', 'danger');

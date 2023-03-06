@@ -19,7 +19,7 @@ class ProductorTest extends TestCase
 
     public function test_productores_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -39,7 +39,7 @@ class ProductorTest extends TestCase
 
     public function test_productores_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -56,7 +56,7 @@ class ProductorTest extends TestCase
 
     public function test_productores_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -77,7 +77,7 @@ class ProductorTest extends TestCase
 
     public function test_productores_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -93,8 +93,8 @@ class ProductorTest extends TestCase
     public function test_productores_index_can_be_shown()
     {
         $this->withoutExceptionHandling();
-        
-        $user= User::factory()->create();
+
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -112,7 +112,7 @@ class ProductorTest extends TestCase
 
     public function test_productores_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();

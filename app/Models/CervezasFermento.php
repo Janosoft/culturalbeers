@@ -41,7 +41,7 @@ class CervezasFermento extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function familias()
     {
         return $this->hasMany(CervezasFamilia::class, 'fermento_id');

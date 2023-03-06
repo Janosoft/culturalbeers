@@ -41,7 +41,7 @@ class Lugar extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function categoria()
     {
         return $this->belongsTo(LugaresCategoria::class, 'categoria_id')->withTrashed();

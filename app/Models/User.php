@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -16,6 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users';
+
     protected $primaryKey = 'user_id';
 
     /**
@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'slug',
         'password',
-        'imagen_id'
+        'imagen_id',
     ];
 
     /**
@@ -101,8 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function cervezas_probadas(): BelongsToMany
     {
-        return $this->belongsToMany(Cerveza::class, 'cervezas_probadas','user_id','cerveza_id');
+        return $this->belongsToMany(Cerveza::class, 'cervezas_probadas', 'user_id', 'cerveza_id');
     }
     /* ATRIBUTOS EXTERNOS */
-
 }

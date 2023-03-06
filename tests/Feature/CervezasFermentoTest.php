@@ -13,7 +13,7 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_fermentos', [
             'nombre' => 'nombre de prueba',
         ]);
@@ -25,7 +25,7 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
         $response = $this->actingAs($user)->get('/cervezas_fermentos/'.$cervezas_fermento->slug);
         $response->assertOk(); // Funciona la vista
@@ -36,7 +36,7 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
         $response = $this->actingAs($user)->put('/cervezas_fermentos/'.$cervezas_fermento->slug, [
             'nombre' => 'nombre de prueba',
@@ -49,7 +49,7 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermento = CervezasFermento::factory()->create();
         $response = $this->actingAs($user)->delete('/cervezas_fermentos/'.$cervezas_fermento->slug);
         $this->assertCount(0, CervezasFermento::all()); // Fue Eliminado
@@ -61,7 +61,7 @@ class CervezasFermentoTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(3)->create();
         $response = $this->actingAs($user)->get('/cervezas_fermentos');
         $response->assertOk(); // Funciona la vista
@@ -73,7 +73,7 @@ class CervezasFermentoTest extends TestCase
 
     public function test_fermentos_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_fermentos', [
             'nombre' => '',
         ]);

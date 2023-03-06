@@ -14,7 +14,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $response = $this->actingAs($user)->post('/cervezas_familias', [
             'nombre' => 'nombre de prueba',
@@ -28,7 +28,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familia = CervezasFamilia::factory()->create();
         $response = $this->actingAs($user)->get('/cervezas_familias/'.$cervezas_familia->slug);
@@ -40,7 +40,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $cervezas_familia = CervezasFamilia::factory()->create();
         $response = $this->actingAs($user)->put('/cervezas_familias/'.$cervezas_familia->slug, [
@@ -55,7 +55,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familia = CervezasFamilia::factory()->create();
         $response = $this->actingAs($user)->delete('/cervezas_familias/'.$cervezas_familia->slug);
@@ -68,7 +68,7 @@ class CervezasFamiliaTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(3)->create();
         $response = $this->actingAs($user)->get('/cervezas_familias');
@@ -81,7 +81,7 @@ class CervezasFamiliaTest extends TestCase
 
     public function test_familias_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_fermentos = CervezasFermento::factory(2)->create();
         $response = $this->actingAs($user)->post('/cervezas_familias', [
             'nombre' => '',

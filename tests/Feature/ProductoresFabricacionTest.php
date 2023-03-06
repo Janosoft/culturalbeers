@@ -13,7 +13,7 @@ class ProductoresFabricacionTest extends TestCase
 
     public function test_productores_fabricaciones_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/productores_fabricaciones', [
             'nombre' => 'nombre de prueba',
         ]);
@@ -25,7 +25,7 @@ class ProductoresFabricacionTest extends TestCase
 
     public function test_productores_fabricaciones_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
         $response = $this->actingAs($user)->get('/productores_fabricaciones/'.$productores_fabricacion->slug);
         $response->assertOk(); // Funciona la vista
@@ -36,7 +36,7 @@ class ProductoresFabricacionTest extends TestCase
 
     public function test_productores_fabricaciones_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
         $response = $this->actingAs($user)->put('/productores_fabricaciones/'.$productores_fabricacion->slug, [
             'nombre' => 'nombre de prueba',
@@ -49,7 +49,7 @@ class ProductoresFabricacionTest extends TestCase
 
     public function test_productores_fabricaciones_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $productores_fabricacion = ProductoresFabricacion::factory()->create();
         $response = $this->actingAs($user)->delete('/productores_fabricaciones/'.$productores_fabricacion->slug);
         $this->assertCount(0, ProductoresFabricacion::all()); // Fue Eliminado
@@ -60,7 +60,7 @@ class ProductoresFabricacionTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         ProductoresFabricacion::factory(3)->create();
         $response = $this->actingAs($user)->get('/productores_fabricaciones');
         $response->assertOk(); // Funciona la vista
@@ -72,7 +72,7 @@ class ProductoresFabricacionTest extends TestCase
 
     public function test_productores_fabricaciones_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/productores_fabricaciones', [
             'nombre' => '',
         ]);

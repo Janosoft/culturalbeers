@@ -103,8 +103,7 @@ class LocalidadController extends Controller
                 session()->flash('statusTitle', 'Localidad Eliminada');
                 session()->flash('statusMessage', 'La localidad fue eliminado correctamente.');
                 session()->flash('statusColor', 'success');
-            }
-            else {
+            } else {
                 session()->flash('statusTitle', 'Error al eliminar Localidad');
                 session()->flash('statusMessage', 'La localidad está siendo utilizada en al menos un productor.');
                 session()->flash('statusColor', 'danger');

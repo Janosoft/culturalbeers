@@ -41,7 +41,7 @@ class DivisionPolitica extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'pais_id')->withTrashed();

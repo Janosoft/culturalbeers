@@ -81,9 +81,7 @@ class DivisionPoliticaController extends Controller
             session()->flash('statusTitle', 'División Política Eliminada');
             session()->flash('statusMessage', 'La división política fue eliminada correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar División Política');
             session()->flash('statusMessage', 'La división política está siendo utilizada en al menos una localidad.');
             session()->flash('statusColor', 'danger');

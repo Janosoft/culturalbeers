@@ -76,9 +76,7 @@ class ProductoresFabricacionController extends Controller
             session()->flash('statusTitle', 'Fabricación Eliminado');
             session()->flash('statusMessage', 'El tipo de fabricación fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Fabricación');
             session()->flash('statusMessage', 'El tipo de fabricación está siendo utilizado en al menos un productor.');
             session()->flash('statusColor', 'danger');

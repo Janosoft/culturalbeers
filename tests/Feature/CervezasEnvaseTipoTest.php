@@ -13,7 +13,7 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_envases_tipos', [
             'nombre' => 'nombre de prueba',
         ]);
@@ -25,7 +25,7 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
         $response = $this->actingAs($user)->get('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
         $response->assertOk(); // Funciona la vista
@@ -36,7 +36,7 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
         $response = $this->actingAs($user)->put('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug, [
             'nombre' => 'nombre de prueba',
@@ -49,7 +49,7 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $cervezas_envases_tipo = CervezasEnvaseTipo::factory()->create();
         $response = $this->actingAs($user)->delete('/cervezas_envases_tipos/'.$cervezas_envases_tipo->slug);
         $this->assertCount(0, CervezasEnvaseTipo::all()); // Fue Eliminado
@@ -61,7 +61,7 @@ class CervezasEnvaseTipoTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasEnvaseTipo::factory(3)->create();
         $response = $this->actingAs($user)->get('/cervezas_envases_tipos');
         $response->assertOk(); // Funciona la vista
@@ -73,7 +73,7 @@ class CervezasEnvaseTipoTest extends TestCase
 
     public function test_envases_tipos_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_envases_tipos', [
             'nombre' => '',
         ]);

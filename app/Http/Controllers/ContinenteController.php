@@ -73,9 +73,7 @@ class ContinenteController extends Controller
             session()->flash('statusTitle', 'Continente Eliminado');
             session()->flash('statusMessage', 'El continente fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Continente');
             session()->flash('statusMessage', 'El continente está siendo utilizado en al menos un país.');
             session()->flash('statusColor', 'danger');

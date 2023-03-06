@@ -41,7 +41,7 @@ class Pais extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function continente()
     {
         return $this->belongsTo(Continente::class, 'continente_id')->withTrashed();

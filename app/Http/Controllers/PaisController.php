@@ -94,9 +94,7 @@ class PaisController extends Controller
             session()->flash('statusTitle', 'País Eliminado');
             session()->flash('statusMessage', 'El país fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar País');
             session()->flash('statusMessage', 'El país está siendo utilizado en al menos una división política.');
             session()->flash('statusColor', 'danger');

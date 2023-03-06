@@ -76,9 +76,7 @@ class CervezasEnvaseTipoController extends Controller
             session()->flash('statusTitle', 'Envase Eliminado');
             session()->flash('statusMessage', 'El tipo de envase fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Envase');
             session()->flash('statusMessage', 'El tipo de envase está siendo utilizado en al menos una cerveza.');
             session()->flash('statusColor', 'danger');

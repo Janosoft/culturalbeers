@@ -41,7 +41,7 @@ class CervezasFamilia extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function fermento()
     {
         return $this->belongsTo(CervezasFermento::class, 'fermento_id')->withTrashed();

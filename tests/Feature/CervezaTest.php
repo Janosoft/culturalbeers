@@ -25,7 +25,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -55,7 +55,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -78,7 +78,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -109,7 +109,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -133,7 +133,7 @@ class CervezaTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();
@@ -157,7 +157,7 @@ class CervezaTest extends TestCase
 
     public function test_cervezas_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory(2)->create();
         Continente::factory(2)->create();
         Pais::factory(2)->create();

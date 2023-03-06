@@ -46,7 +46,7 @@ class Localidad extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function division_politica()
     {
         return $this->belongsTo(DivisionPolitica::class, 'division_politica_id')->withTrashed();

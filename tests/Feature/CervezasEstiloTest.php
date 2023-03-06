@@ -15,7 +15,7 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familias = CervezasFamilia::factory(2)->create();
         $response = $this->actingAs($user)->post('/cervezas_estilos', [
@@ -30,7 +30,7 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
@@ -43,7 +43,7 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         $cervezas_familias = CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
@@ -59,7 +59,7 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         $cervezas_estilo = CervezasEstilo::factory()->create();
@@ -73,7 +73,7 @@ class CervezasEstiloTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         CervezasFermento::factory(2)->create();
         CervezasFamilia::factory(2)->create();
         CervezasEstilo::factory(3)->create();
@@ -87,7 +87,7 @@ class CervezasEstiloTest extends TestCase
 
     public function test_estilos_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/cervezas_estilos', [
             'nombre' => '',
         ]);

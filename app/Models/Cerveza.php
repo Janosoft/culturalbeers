@@ -115,7 +115,7 @@ class Cerveza extends Model
 
     public function usuarios_que_probaron(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'cervezas_probadas','cerveza_id', 'user_id');
+        return $this->belongsToMany(User::class, 'cervezas_probadas', 'cerveza_id', 'user_id');
     }
     /* ATRIBUTOS EXTERNOS */
 

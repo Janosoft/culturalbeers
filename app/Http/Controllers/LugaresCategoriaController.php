@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LugaresCategoria;
 use App\Http\Requests\StoreLugaresCategoria;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
+use App\Models\LugaresCategoria;
 use Illuminate\Support\Facades\Auth;
 
 class LugaresCategoriaController extends Controller
@@ -78,9 +76,7 @@ class LugaresCategoriaController extends Controller
             session()->flash('statusTitle', 'Categoría Eliminada');
             session()->flash('statusMessage', 'La categoría de lugares fue eliminada correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Categoría');
             session()->flash('statusMessage', 'La categoría de lugares está siendo utilizada en al menos un lugar.');
             session()->flash('statusColor', 'danger');

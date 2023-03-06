@@ -41,7 +41,7 @@ class CervezasEstilo extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function familia()
     {
         return $this->belongsTo(CervezasFamilia::class, 'familia_id')->withTrashed();

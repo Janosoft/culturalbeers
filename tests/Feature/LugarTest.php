@@ -9,10 +9,8 @@ use App\Models\Localidad;
 use App\Models\Lugar;
 use App\Models\LugaresCategoria;
 use App\Models\Pais;
-use App\Models\ProductoresFabricacion;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LugarTest extends TestCase
@@ -21,7 +19,7 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();
@@ -42,7 +40,7 @@ class LugarTest extends TestCase
 
     public function test_lugares_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();
@@ -59,7 +57,7 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();
@@ -81,7 +79,7 @@ class LugarTest extends TestCase
 
     public function test_lugares_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();
@@ -98,7 +96,7 @@ class LugarTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();
@@ -116,7 +114,7 @@ class LugarTest extends TestCase
 
     public function test_lugares_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         DivisionesPoliticasTipo::factory()->create();
         Continente::factory()->create();
         Pais::factory()->create();

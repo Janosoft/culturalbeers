@@ -76,9 +76,7 @@ class DivisionesPoliticasTipoController extends Controller
             session()->flash('statusTitle', 'Tipo Eliminado');
             session()->flash('statusMessage', 'El tipo de división política fue eliminado correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Tipo');
             session()->flash('statusMessage', 'El tipo de división política está siendo utilizado en al menos un país.');
             session()->flash('statusColor', 'danger');

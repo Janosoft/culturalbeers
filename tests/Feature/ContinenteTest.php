@@ -13,7 +13,7 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_created()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/continentes', [
             'nombre' => 'nombre de prueba',
         ]);
@@ -25,7 +25,7 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_item_can_be_shown()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $continente = Continente::factory()->create();
         $response = $this->actingAs($user)->get('/continentes/'.$continente->slug);
         $response->assertOk(); // Funciona la vista
@@ -36,7 +36,7 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_updated()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $continente = Continente::factory()->create();
         $response = $this->actingAs($user)->put('/continentes/'.$continente->slug, [
             'nombre' => 'nombre de prueba',
@@ -49,7 +49,7 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_can_be_deleted()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $continente = Continente::factory()->create();
         $response = $this->actingAs($user)->delete('/continentes/'.$continente->slug);
         $this->assertCount(0, Continente::all()); // Fue Eliminado
@@ -61,7 +61,7 @@ class ContinenteTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         Continente::factory(3)->create();
         $response = $this->actingAs($user)->get('/continentes');
         $response->assertOk(); // Funciona la vista
@@ -73,7 +73,7 @@ class ContinenteTest extends TestCase
 
     public function test_continentes_nombre_is_required()
     {
-        $user= User::factory()->create();
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->post('/continentes', [
             'nombre' => '',
         ]);

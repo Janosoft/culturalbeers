@@ -20,7 +20,7 @@ class Comentario extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function commentable()
     {
         return $this->morphTo();

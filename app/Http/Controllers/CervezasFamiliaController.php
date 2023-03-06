@@ -99,9 +99,7 @@ class CervezasFamiliaController extends Controller
             session()->flash('statusTitle', 'Familia Eliminada');
             session()->flash('statusMessage', 'La familia de cervezas fue eliminada correctamente.');
             session()->flash('statusColor', 'success');
-        }
-        else
-        {
+        } else {
             session()->flash('statusTitle', 'Error al eliminar Familia');
             session()->flash('statusMessage', 'La familia de cervezas está siendo utilizada en al menos un estilo.');
             session()->flash('statusColor', 'danger');
