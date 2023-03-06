@@ -2,7 +2,7 @@
 @section('title', 'Mi Perfil')
 
 @section('content')
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-lg-3">
             <div class="card">
                 <img src="{{empty(Auth::user()->imagen) ? 'https://dummyimage.com/400x400/000000/fff' : Storage::url(Auth::user()>imagen->url)}}" class="card-img-top" alt="...">
@@ -45,6 +45,12 @@
                     </div>
                 </div>
             @endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Cervezas Probadas</h4>
+            <x-cervezas :cervezas="Auth::user()->cervezas_probadas" />
         </div>
     </div>
 @endsection

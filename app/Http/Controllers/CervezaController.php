@@ -12,6 +12,7 @@ use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\Productor;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CervezaController extends Controller
 {
@@ -103,6 +104,26 @@ class CervezaController extends Controller
         session()->flash('statusColor', 'success');
 
         return redirect()->route('cervezas.show', $cerveza);
+    }
+
+    public function taste(Cerveza $cerveza)
+    {
+        $cerveza->usuarios_que_probaron()->attach(Auth::user()->user_id);
+        session()->flash('statusTitle', 'Cerveza Probada');
+        session()->flash('statusMessage', 'El cerveza fue marcada como probada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return Redirect::back();
+    }
+
+    public function untaste(Cerveza $cerveza)
+    {
+        $cerveza->usuarios_que_probaron()->detach(Auth::user()->user_id);
+        session()->flash('statusTitle', 'Cerveza No Probada');
+        session()->flash('statusMessage', 'El cerveza fue desmarcada como probada correctamente.');
+        session()->flash('statusColor', 'warning');
+
+        return Redirect::back();
     }
 
     public function destroy(Cerveza $cerveza)

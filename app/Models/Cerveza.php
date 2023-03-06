@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Cerveza extends Model
 {
@@ -71,6 +74,15 @@ class Cerveza extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+
+    public function probada()
+    {
+        return DB::table('cervezas_probadas')
+        ->whereCervezaId($this->cerveza_id)
+        ->whereUserId(Auth::user()->user_id)
+        ->count() > 0;
+    }
+
     public function usuario()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -99,6 +111,11 @@ class Cerveza extends Model
     public function envases()
     {
         return $this->belongsToMany(CervezasEnvaseTipo::class, 'cervezas_envases', 'cerveza_id', 'envase_id');
+    }
+
+    public function usuarios_que_probaron(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'cervezas_probadas','cerveza_id', 'user_id');
     }
     /* ATRIBUTOS EXTERNOS */
 
