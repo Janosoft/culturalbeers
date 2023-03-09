@@ -9,16 +9,20 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('cervezas_familias.edit', $cervezas_familia)" />
-            <x-botones.eliminar :route="route('cervezas_familias.destroy', $cervezas_familia)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('cervezas_familias.edit', $cervezas_familia)" />
+                <x-botones.eliminar :route="route('cervezas_familias.destroy', $cervezas_familia)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-cervezas-estilos :estilos="$cervezas_familia->estilos" />
 
     <x-comentarios :comentarios="$cervezas_familia->comentarios" />
-    <x-formularios.comentario :route="route('cervezas_familias.comment', $cervezas_familia)" />
+    @auth
+        <x-formularios.comentario :route="route('cervezas_familias.comment', $cervezas_familia)" />
+    @endauth
 
 @endsection

@@ -11,15 +11,19 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            @if (!$lugar->verificado) <x-botones.accion :route="route('lugares.verify', $lugar)" title="Verificar" color="btn-warning" icon="bi bi-check2-square" />@endif
-            <x-botones.editar :route="route('lugares.edit', $lugar)" />
-            <x-botones.eliminar :route="route('lugares.destroy', $lugar)" />            
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                @if (!$lugar->verificado) <x-botones.accion :route="route('lugares.verify', $lugar)" title="Verificar" color="btn-warning" icon="bi bi-check2-square" />@endif
+                <x-botones.editar :route="route('lugares.edit', $lugar)" />
+                <x-botones.eliminar :route="route('lugares.destroy', $lugar)" />            
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-comentarios :comentarios="$lugar->comentarios" />
-    <x-formularios.comentario :route="route('lugares.comment', $lugar)" />
+    @auth
+        <x-formularios.comentario :route="route('lugares.comment', $lugar)" />
+    @endauth
 
 @endsection

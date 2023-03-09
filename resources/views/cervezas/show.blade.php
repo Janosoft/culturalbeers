@@ -17,22 +17,27 @@
         </div>
     </div>
 
+    @auth
     <div class="row mb-3">
         <div class="col">
             <x-botones.editar :route="route('cervezas.edit', $cerveza)" />
             <x-botones.eliminar :route="route('cervezas.destroy', $cerveza)" />
-            @if (!$cerveza->probada())
-                <x-botones.accion :route="route('cervezas.taste', $cerveza)" title="La probé" color="btn-warning" icon="bi bi-person-check" />                            
-            @else
-                <x-botones.accion :route="route('cervezas.untaste', $cerveza)" title="No la probé" color="btn-danger" icon="bi bi-person-dash" />
-            @endif
+            
+                @if (!$cerveza->probada())
+                    <x-botones.accion :route="route('cervezas.taste', $cerveza)" title="La probé" color="btn-warning" icon="bi bi-person-check" />                            
+                @else
+                    <x-botones.accion :route="route('cervezas.untaste', $cerveza)" title="No la probé" color="btn-danger" icon="bi bi-person-dash" />
+                @endif
         </div>
     </div>
+    @endauth
 
     <x-imagenes :imagenes="$cerveza->imagenes" />
     
     <x-comentarios :comentarios="$cerveza->comentarios" />
-    <x-formularios.comentario :route="route('cervezas.comment', $cerveza)" />
+    @auth
+        <x-formularios.comentario :route="route('cervezas.comment', $cerveza)" />
+    @endauth
 
     <h2>Mismo Productor</h2>
     <x-cervezas :cervezas="$cerveza->cervezasMismoProductor()"/>

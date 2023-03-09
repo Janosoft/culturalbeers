@@ -9,16 +9,20 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('localidades.edit', $localidad)" />
-            <x-botones.eliminar :route="route('localidades.destroy', $localidad)" />            
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('localidades.edit', $localidad)" />
+                <x-botones.eliminar :route="route('localidades.destroy', $localidad)" />            
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-productores :productores="$localidad->productores" />
 
     <x-comentarios :comentarios="$localidad->comentarios" />
-    <x-formularios.comentario :route="route('localidades.comment', $localidad)" />
+    @auth
+        <x-formularios.comentario :route="route('localidades.comment', $localidad)" />
+    @endauth
 
 @endsection

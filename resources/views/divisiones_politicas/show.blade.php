@@ -9,12 +9,14 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('divisiones_politicas.edit', $division_politica)" />
-            <x-botones.eliminar :route="route('divisiones_politicas.destroy', $division_politica)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('divisiones_politicas.edit', $division_politica)" />
+                <x-botones.eliminar :route="route('divisiones_politicas.destroy', $division_politica)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-localidades :localidades="$division_politica->localidades" />
 @endsection

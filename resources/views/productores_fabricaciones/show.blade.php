@@ -8,12 +8,14 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <x-botones.editar :route="route('productores_fabricaciones.edit', $productores_fabricacion)" />
-            <x-botones.eliminar :route="route('productores_fabricaciones.destroy', $productores_fabricacion)" />
+    @auth
+        <div class="row">
+            <div class="col">
+                <x-botones.editar :route="route('productores_fabricaciones.edit', $productores_fabricacion)" />
+                <x-botones.eliminar :route="route('productores_fabricaciones.destroy', $productores_fabricacion)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-productores :productores="$productores_fabricacion->productores" />
 @endsection

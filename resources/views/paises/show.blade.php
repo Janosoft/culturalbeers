@@ -10,12 +10,14 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('paises.edit', $pais)" />
-            <x-botones.eliminar :route="route('paises.destroy', $pais)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('paises.edit', $pais)" />
+                <x-botones.eliminar :route="route('paises.destroy', $pais)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-imagenes :imagenes="$pais->imagenes" />
 

@@ -8,12 +8,14 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <x-botones.editar :route="route('divisiones_politicas_tipos.edit', $divisiones_politicas_tipo)" />
-            <x-botones.eliminar :route="route('divisiones_politicas_tipos.destroy', $divisiones_politicas_tipo)" />
+    @auth
+        <div class="row">
+            <div class="col">
+                <x-botones.editar :route="route('divisiones_politicas_tipos.edit', $divisiones_politicas_tipo)" />
+                <x-botones.eliminar :route="route('divisiones_politicas_tipos.destroy', $divisiones_politicas_tipo)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-paises :paises="$divisiones_politicas_tipo->paises" />
 @endsection

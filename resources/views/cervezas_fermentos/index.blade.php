@@ -3,13 +3,15 @@
 
 @section('content')
     
-    <div class="mb-3">
-        <div class="row">
-            <div class="col">
-                <x-botones.crear :route="route('cervezas_fermentos.create')" />
+    @auth
+        <div class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <x-botones.crear :route="route('cervezas_fermentos.create')" />
+                </div>
             </div>
         </div>
-    </div>
+    @endauth
     
     <x-cervezas-fermentos :fermentos="$cervezas_fermentos" />
     {{ $cervezas_fermentos->links() }}

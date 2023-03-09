@@ -8,12 +8,14 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('cervezas_envases_tipos.edit', $cervezas_envases_tipo)" />
-            <x-botones.eliminar :route="route('cervezas_envases_tipos.destroy', $cervezas_envases_tipo)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('cervezas_envases_tipos.edit', $cervezas_envases_tipo)" />
+                <x-botones.eliminar :route="route('cervezas_envases_tipos.destroy', $cervezas_envases_tipo)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-cervezas :cervezas="$cervezas_envases_tipo->cervezas" />
 @endsection

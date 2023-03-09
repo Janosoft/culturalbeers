@@ -9,12 +9,14 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('cervezas_colores.edit', $cervezas_color)" />
-            <x-botones.eliminar :route="route('cervezas_colores.destroy', $cervezas_color)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('cervezas_colores.edit', $cervezas_color)" />
+                <x-botones.eliminar :route="route('cervezas_colores.destroy', $cervezas_color)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-cervezas :cervezas="$cervezas_color->cervezas" />
 

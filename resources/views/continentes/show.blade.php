@@ -8,12 +8,14 @@
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-botones.editar :route="route('continentes.edit', $continente)" />
-            <x-botones.eliminar :route="route('continentes.destroy', $continente)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-botones.editar :route="route('continentes.edit', $continente)" />
+                <x-botones.eliminar :route="route('continentes.destroy', $continente)" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-paises :paises="$continente->paises" />
 @endsection
