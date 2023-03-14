@@ -79,6 +79,11 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         );
     }
+
+    public function nya(): String
+    {
+        return "{$this->nombre} {$this->apellido}";
+    }
     /* MUTATORS */
 
     /* ROUTE NAME */

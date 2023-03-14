@@ -210,7 +210,7 @@ Route::get('forcedelete/lugares_categorias/{categoria_id}', [LugaresCategoriaCon
 Route::get('paises', [PaisController::class, 'index'])->name('paises.index');
 Route::post('paises', [PaisController::class, 'store'])->middleware('auth')->name('paises.store');
 Route::get('paises/create', [PaisController::class, 'create'])->middleware('auth')->name('paises.create');
-Route::get('paises/{pais}', [PaisController::class, 'show'])->middleware('auth')->name('paises.show');
+Route::get('paises/{pais}', [PaisController::class, 'show'])->name('paises.show');
 Route::match(['put', 'patch'], 'paises/{pais}', [PaisController::class, 'update'])->middleware('auth')->name('paises.update');
 Route::delete('paises/{pais}', [PaisController::class, 'destroy'])->middleware('auth')->name('paises.destroy');
 Route::get('paises/{pais}/edit', [PaisController::class, 'edit'])->middleware('auth')->name('paises.edit');
