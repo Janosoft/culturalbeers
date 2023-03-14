@@ -20,9 +20,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ProductorController;
 use App\Http\Controllers\ProductoresFabricacionController;
 use App\Http\Controllers\SeachController;
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
