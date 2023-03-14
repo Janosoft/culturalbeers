@@ -4,7 +4,32 @@
 @section('content')
     <div class="row mb-3">
         <div class="col-2">
-            <img class="img-fluid" src="{{empty($cerveza->imagen) ? 'https://dummyimage.com/711x400/000000/fff' : Storage::url($cerveza->imagen->url)}}">
+            <div class="row mb-3">
+                <div class="col">
+                    <img class="img-fluid" src="{{empty($cerveza->imagen) ? 'https://dummyimage.com/711x400/000000/fff' : Storage::url($cerveza->imagen->url)}}">
+                </div>
+            </div>
+            @auth
+            <div class="row mb-3 text-center">
+                <div class="col">
+                    <x-botones.editar :route="route('cervezas.edit', $cerveza)" />
+                    <x-botones.eliminar :route="route('cervezas.destroy', $cerveza)" />                    
+                    @if ($cerveza->probada())
+                        <x-botones.accion :route="route('cervezas.untaste', $cerveza)" title="No la probé" color="btn-danger" icon="bi bi-person-dash" />
+                    @else
+                        <x-botones.accion :route="route('cervezas.taste', $cerveza)" title="La probé" color="btn-warning" icon="bi bi-person-check" />
+                    @endif
+                </div>
+            </div>
+            @if ($cerveza->probada())
+                <div class="row mb-3">
+                    <div class="col">
+                        <x-input.starsrating :route="route('cervezas.rate', $cerveza)" :puntaje="$cerveza->puntaje_usuario()" />
+                    </div>
+                </div>
+            @endif
+            @endauth
+            
         </div>
         <div class="col">
             <h1>{{ $cerveza->nombre }}</h1>
@@ -20,14 +45,7 @@
     @auth
     <div class="row mb-3">
         <div class="col">
-            <x-botones.editar :route="route('cervezas.edit', $cerveza)" />
-            <x-botones.eliminar :route="route('cervezas.destroy', $cerveza)" />
             
-                @if (!$cerveza->probada())
-                    <x-botones.accion :route="route('cervezas.taste', $cerveza)" title="La probé" color="btn-warning" icon="bi bi-person-check" />                            
-                @else
-                    <x-botones.accion :route="route('cervezas.untaste', $cerveza)" title="No la probé" color="btn-danger" icon="bi bi-person-dash" />
-                @endif
         </div>
     </div>
     @endauth
@@ -35,7 +53,7 @@
     @auth
         <div class="row mb-3">
             <div class="col">
-                <x-input.starsrating :route="route('cervezas.rate', $cerveza)" :puntaje="$cerveza->puntaje_usuario()" />
+                
             </div>
         </div>
     @endauth
