@@ -54,6 +54,7 @@ Route::get('forcedelete/cervezas/{cerveza_id}', [CervezaController::class, 'forc
 Route::post('comment/cervezas/{cerveza}', [CervezaController::class, 'comment'])->middleware('auth')->name('cervezas.comment');
 Route::get('taste/cervezas/{cerveza}', [CervezaController::class, 'taste'])->middleware('auth')->name('cervezas.taste');
 Route::get('untaste/cervezas/{cerveza}', [CervezaController::class, 'untaste'])->middleware('auth')->name('cervezas.untaste');
+Route::post('rate/cervezas/{cerveza}', [CervezaController::class, 'rate'])->middleware('auth')->name('cervezas.rate');
 /* CERVEZAS */
 
 /* CERVEZAS COLORES */

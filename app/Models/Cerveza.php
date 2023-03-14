@@ -120,6 +120,11 @@ class Cerveza extends Model
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function puntajes()
+    {
+        return $this->morphMany(Puntaje::class, 'puntuable');
+    }
+
     public function imagenes()
     {
         return $this->morphMany(Imagen::class, 'imageable')->where('imagen_id', '!=', $this->imagen_id);

@@ -24,5 +24,9 @@ class CervezaObserver
         foreach ($cerveza->comentarios as $comentario) {
             $comentario->delete();
         }
+
+        foreach ($cerveza->puntajes as $puntaje) {
+            $puntaje->delete();
+        }
     }
 }

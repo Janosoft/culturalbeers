@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCerveza;
 use App\Http\Requests\StoreComentario;
+use App\Http\Requests\StorePuntaje;
 use App\Models\Cerveza;
 use App\Models\CervezasColor;
 use App\Models\CervezasEnvaseTipo;
@@ -11,6 +12,7 @@ use App\Models\CervezasEstilo;
 use App\Models\Comentario;
 use App\Models\Imagen;
 use App\Models\Productor;
+use App\Models\Puntaje;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -124,6 +126,22 @@ class CervezaController extends Controller
         session()->flash('statusColor', 'warning');
 
         return Redirect::back();
+    }
+
+    public function rate(StorePuntaje $request, Cerveza $cerveza)
+    {
+        Puntaje::create([
+            'puntaje' => $request->star,
+            'puntuable_type' => Cerveza::class,
+            'puntuable_id' => $cerveza->cerveza_id,
+            'user_id' => Auth::user()->user_id,
+        ]);
+
+        session()->flash('statusTitle', 'Puntuada Correctamente');
+        session()->flash('statusMessage', 'La cerveza fue puntuada correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return redirect()->route('cervezas.show', $cerveza);
     }
 
     public function destroy(Cerveza $cerveza)

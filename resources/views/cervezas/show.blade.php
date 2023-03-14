@@ -32,6 +32,12 @@
     </div>
     @endauth
 
+    <div class="row mb-3">
+        <div class="col">
+            <x-input.starsrating :route="route('cervezas.rate', $cerveza)" />
+        </div>
+    </div>
+
     <x-imagenes :imagenes="$cerveza->imagenes" />
     
     <x-comentarios :comentarios="$cerveza->comentarios" />
