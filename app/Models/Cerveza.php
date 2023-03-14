@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Type\Integer;
 
 class Cerveza extends Model
 {
@@ -121,8 +120,7 @@ class Cerveza extends Model
 
     public function puntaje_usuario() : int
     {
-        $puntaje= DB::table('puntajes')
-                ->wherePuntuableId($this->cerveza_id)
+        $puntaje= Puntaje::wherePuntuableId($this->cerveza_id)
                 ->wherePuntuableType(Cerveza::class)
                 ->whereUserId(Auth::user()->user_id)
                 ->value('puntaje');

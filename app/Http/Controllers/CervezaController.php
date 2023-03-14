@@ -130,14 +130,12 @@ class CervezaController extends Controller
 
     public function rate(StorePuntaje $request, Cerveza $cerveza)
     {
-        $puntaje = max($request->star, 0);
-        $puntaje = min($request->star, 5);
         Puntaje::updateOrInsert(
             ['puntuable_type' => Cerveza::class, 'puntuable_id' => $cerveza->cerveza_id, 'user_id' => Auth::user()->user_id],
-            ['puntaje' => $puntaje]
+            ['puntaje' => $request->star]
         );
 
-        session()->flash('statusTitle', 'Puntuada Correctamente');
+        session()->flash('statusTitle', 'Cerveza Puntuada');
         session()->flash('statusMessage', 'La cerveza fue puntuada correctamente.');
         session()->flash('statusColor', 'success');
 
