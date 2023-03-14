@@ -41,16 +41,16 @@ class CervezaController extends Controller
     public function store(StoreCerveza $request)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $request['user_id'] = Auth::user()->user_id;
         $cerveza = Cerveza::create($request->all());
         $cerveza->envases()->sync($request->envases);
         if ($request->imagen) {
-            $fileName = time().'.'.$request->imagen->extension();
+            $fileName = time() . '.' . $request->imagen->extension();
             $request->imagen->move(public_path('storage/imagenes'), $fileName);
             $imagen = Imagen::create([
                 'imageable_id' => $cerveza->cerveza_id,
-                'url' => 'imagenes/'.$fileName,
+                'url' => 'imagenes/' . $fileName,
                 'imageable_type' => Cerveza::class,
                 'user_id' => Auth::user()->user_id,
             ]);
@@ -82,7 +82,7 @@ class CervezaController extends Controller
     public function update(StoreCerveza $request, Cerveza $cerveza)
     {
         $productor = Productor::where('productor_id', $request->productor_id)->first();
-        $request['slug'] = str()->slug($productor->nombre.'-'.$request->nombre, '-', 'es');
+        $request['slug'] = str()->slug($productor->nombre . '-' . $request->nombre, '-', 'es');
         $cerveza->update($request->all());
         $cerveza->envases()->sync($request->envases);
         session()->flash('statusTitle', 'Cerveza Actualizada');
@@ -130,12 +130,12 @@ class CervezaController extends Controller
 
     public function rate(StorePuntaje $request, Cerveza $cerveza)
     {
-        Puntaje::create([
-            'puntaje' => $request->star,
-            'puntuable_type' => Cerveza::class,
-            'puntuable_id' => $cerveza->cerveza_id,
-            'user_id' => Auth::user()->user_id,
-        ]);
+        $puntaje = max($request->star, 0);
+        $puntaje = min($request->star, 5);
+        Puntaje::updateOrInsert(
+            ['puntuable_type' => Cerveza::class, 'puntuable_id' => $cerveza->cerveza_id, 'user_id' => Auth::user()->user_id],
+            ['puntaje' => $puntaje]
+        );
 
         session()->flash('statusTitle', 'Puntuada Correctamente');
         session()->flash('statusMessage', 'La cerveza fue puntuada correctamente.');

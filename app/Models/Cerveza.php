@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Type\Integer;
 
 class Cerveza extends Model
 {
@@ -116,6 +117,16 @@ class Cerveza extends Model
     public function usuarios_que_probaron(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'cervezas_probadas', 'cerveza_id', 'user_id');
+    }
+
+    public function puntaje_usuario() : int
+    {
+        $puntaje= DB::table('puntajes')
+                ->wherePuntuableId($this->cerveza_id)
+                ->wherePuntuableType(Cerveza::class)
+                ->whereUserId(Auth::user()->user_id)
+                ->value('puntaje');
+        return $puntaje ?? 0;
     }
     /* ATRIBUTOS EXTERNOS */
 

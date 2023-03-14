@@ -32,11 +32,13 @@
     </div>
     @endauth
 
-    <div class="row mb-3">
-        <div class="col">
-            <x-input.starsrating :route="route('cervezas.rate', $cerveza)" />
+    @auth
+        <div class="row mb-3">
+            <div class="col">
+                <x-input.starsrating :route="route('cervezas.rate', $cerveza)" :puntaje="$cerveza->puntaje_usuario()" />
+            </div>
         </div>
-    </div>
+    @endauth
 
     <x-imagenes :imagenes="$cerveza->imagenes" />
     
