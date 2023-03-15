@@ -37,7 +37,6 @@ Route::get('/', InicioController::class, 'inicio')->name('inicio');
 Route::get('search', [SeachController::class, 'search'])->name('search');
 Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
 Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');
-Route::view('perfil', 'usuarios.perfil')->middleware('auth')->name('usuario.perfil');
 
 /* CERVEZAS */
 Route::get('cervezas', [CervezaController::class, 'index'])->name('cervezas.index');
@@ -240,3 +239,10 @@ Route::get('productores_fabricaciones/{productor}/edit', [ProductoresFabricacion
 Route::get('restore/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'restore'])->middleware('auth')->name('productores_fabricaciones.restore');
 Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'forcedelete'])->middleware('auth')->name('productores_fabricaciones.forcedelete');
 /* PRODUCTORES FABRICACIONES */
+
+
+/* USUARIO */
+Route::view('perfil', 'usuario.perfil')->middleware('auth')->name('usuario.perfil');
+Route::view('probadas', 'usuario.probadas')->middleware('auth')->name('usuario.probadas');
+Route::view('puntuadas', 'usuario.puntuadas')->middleware('auth')->name('usuario.puntuadas');
+/* USUARIO */

@@ -11,13 +11,13 @@
                     <p class="card-text text-center">{{ Auth::user()->email }}</p>
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="account-profile.html"><i class="bi bi-person me-2"></i>Mi Perfil</a>
+                            <a class="nav-link active" href="{{ route('usuario.perfil') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="account-bookings.html"><i class="bi bi-ticket-perforated me-2"></i>My Bookings</a>
+                            <a class="nav-link" href="{{ route('usuario.probadas') }}"><i class="bi bi-person-check me-2"></i>Cervezas Probadas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="account-wishlist.html"><i class="bi bi-heart me-2"></i>Wishlist</a>
+                            <a class="nav-link" href="{{ route('usuario.puntuadas') }}"><i class="bi bi-star-fill me-2"></i>Cervezas Puntuadas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="account-delete.html"><i class="bi bi-trash me-2"></i>Eliminar Perfil</a>
@@ -45,12 +45,6 @@
                     </div>
                 </div>
             @endif
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h4>Cervezas Probadas</h4>
-            <x-cervezas :cervezas="Auth::user()->cervezas_probadas" />
         </div>
     </div>
 @endsection

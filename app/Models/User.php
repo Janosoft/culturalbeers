@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -107,6 +109,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cervezas_probadas(): BelongsToMany
     {
         return $this->belongsToMany(Cerveza::class, 'cervezas_probadas', 'user_id', 'cerveza_id');
+    }
+
+    public function cervezas_puntuadas(): BelongsToMany
+    {
+        return $this->belongsToMany(Cerveza::class, 'puntajes', 'user_id', 'puntuable_id')->wherePivot('puntuable_type', Cerveza::class);
     }
     /* ATRIBUTOS EXTERNOS */
 }
