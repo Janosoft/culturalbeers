@@ -49,26 +49,28 @@
                             </li>                            
                         </ul>                        
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Configuración</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('lugares_categorias.index') }}" class="dropdown-item {{ request()->routeIs('lugares_categorias.*') ? 'active' : '' }}">Categoría de Lugares</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('cervezas_colores.index') }}" class="dropdown-item {{ request()->routeIs('cervezas_colores.*') ? 'active' : '' }}">Colores de Cerveza</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('comentarios.index') }}" class="dropdown-item {{ request()->routeIs('comentarios.*') ? 'active' : '' }}">Comentarios para Autorizar</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('divisiones_politicas_tipos.index') }}" class="dropdown-item {{ request()->routeIs('divisiones_politicas_tipos.*') ? 'active' : '' }}">Tipos de Divisiones Políticas</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('productores_fabricaciones.index') }}" class="dropdown-item {{ request()->routeIs('productores_fabricaciones.*') ? 'active' : '' }}">Tipo de Fabricaciones</a>
-                            </li>
-                        </ul>
-                    </li>
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Configuración</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ route('lugares_categorias.index') }}" class="dropdown-item {{ request()->routeIs('lugares_categorias.*') ? 'active' : '' }}">Categoría de Lugares</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('cervezas_colores.index') }}" class="dropdown-item {{ request()->routeIs('cervezas_colores.*') ? 'active' : '' }}">Colores de Cerveza</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('comentarios.index') }}" class="dropdown-item {{ request()->routeIs('comentarios.*') ? 'active' : '' }}">Comentarios para Autorizar</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('divisiones_politicas_tipos.index') }}" class="dropdown-item {{ request()->routeIs('divisiones_politicas_tipos.*') ? 'active' : '' }}">Tipos de Divisiones Políticas</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('productores_fabricaciones.index') }}" class="dropdown-item {{ request()->routeIs('productores_fabricaciones.*') ? 'active' : '' }}">Tipo de Fabricaciones</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             <form class="d-none d-lg-flex" role="search" action="{{ route('search') }}" method="GET">
