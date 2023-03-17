@@ -225,6 +225,7 @@ Route::delete('productores/{productor}', [ProductorController::class, 'destroy']
 Route::get('productores/{productor}/edit', [ProductorController::class, 'edit'])->middleware('auth')->name('productores.edit');
 Route::get('restore/productores/{productor_id}', [ProductorController::class, 'restore'])->middleware('auth')->name('productores.restore');
 Route::get('forcedelete/productores/{productor_id}', [ProductorController::class, 'forcedelete'])->middleware('auth')->name('productores.forcedelete');
+Route::post('comment/productores/{productor}', [ProductorController::class, 'comment'])->middleware('auth')->name('productores.comment');
 Route::get('verify/productores/{productor}', [ProductorController::class, 'verify'])->middleware('auth')->name('productores.verify');
 /* PRODUCTORES */
 
@@ -232,10 +233,10 @@ Route::get('verify/productores/{productor}', [ProductorController::class, 'verif
 Route::get('productores_fabricaciones', [ProductoresFabricacionController::class, 'index'])->name('productores_fabricaciones.index');
 Route::post('productores_fabricaciones', [ProductoresFabricacionController::class, 'store'])->middleware('auth')->name('productores_fabricaciones.store');
 Route::get('productores_fabricaciones/create', [ProductoresFabricacionController::class, 'create'])->middleware('auth')->name('productores_fabricaciones.create');
-Route::get('productores_fabricaciones/{productor}', [ProductoresFabricacionController::class, 'show'])->name('productores_fabricaciones.show');
-Route::match(['put', 'patch'], 'productores_fabricaciones/{productor}', [ProductoresFabricacionController::class, 'update'])->middleware('auth')->name('productores_fabricaciones.update');
-Route::delete('productores_fabricaciones/{productor}', [ProductoresFabricacionController::class, 'destroy'])->middleware('auth')->name('productores_fabricaciones.destroy');
-Route::get('productores_fabricaciones/{productor}/edit', [ProductoresFabricacionController::class, 'edit'])->middleware('auth')->name('productores_fabricaciones.edit');
+Route::get('productores_fabricaciones/{productores_fabricacion}', [ProductoresFabricacionController::class, 'show'])->name('productores_fabricaciones.show');
+Route::match(['put', 'patch'], 'productores_fabricaciones/{productores_fabricacion}', [ProductoresFabricacionController::class, 'update'])->middleware('auth')->name('productores_fabricaciones.update');
+Route::delete('productores_fabricaciones/{productores_fabricacion}', [ProductoresFabricacionController::class, 'destroy'])->middleware('auth')->name('productores_fabricaciones.destroy');
+Route::get('productores_fabricaciones/{productores_fabricacion}/edit', [ProductoresFabricacionController::class, 'edit'])->middleware('auth')->name('productores_fabricaciones.edit');
 Route::get('restore/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'restore'])->middleware('auth')->name('productores_fabricaciones.restore');
 Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'forcedelete'])->middleware('auth')->name('productores_fabricaciones.forcedelete');
 /* PRODUCTORES FABRICACIONES */
