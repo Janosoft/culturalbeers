@@ -127,4 +127,21 @@ class ProductorTest extends TestCase
         $response->assertSessionHasErrors('nombre');
         $this->assertCount(0, Productor::all()); // No fue Creado
     }
+
+    public function test_productores_can_be_verified()
+    {
+        $user = User::factory()->create();
+        DivisionesPoliticasTipo::factory(2)->create();
+        Continente::factory(2)->create();
+        Pais::factory(2)->create();
+        DivisionPolitica::factory(2)->create();
+        Localidad::factory(2)->create();
+        ProductoresFabricacion::factory(2)->create();
+        $productor= Productor::factory()->create();
+        $this->assertEquals($productor->verificado,0); // No está verificado
+        $this->actingAs($user)->get('/verify/productores/'.$productor->slug);
+        $this->assertCount(1, Productor::all()); // Fue Creado
+        $productor = $productor->fresh();
+        $this->assertEquals($productor->verificado,1); // Fue verificado
+    }
 }

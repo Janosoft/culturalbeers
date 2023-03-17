@@ -180,4 +180,28 @@ class CervezaTest extends TestCase
         $response->assertSessionHasErrors('nombre');
         $this->assertCount(0, Cerveza::all()); // No fue Creado
     }
+
+    public function test_cervezas_can_be_tasted()
+    {
+        $user = User::factory()->create();
+        DivisionesPoliticasTipo::factory(2)->create();
+        Continente::factory(2)->create();
+        Pais::factory(2)->create();
+        DivisionPolitica::factory(2)->create();
+        Localidad::factory(2)->create();
+        ProductoresFabricacion::factory(2)->create();
+        CervezasFermento::factory(2)->create();
+        CervezasFamilia::factory(2)->create();
+        CervezasEnvaseTipo::factory(2)->create();
+        Productor::factory(2)->create();
+        CervezasColor::factory(2)->create();
+        CervezasEstilo::factory(2)->create();
+        $cerveza = Cerveza::factory()->create();
+        $this->actingAs($user)->get('/taste/cervezas/'.$cerveza->slug);
+        $this->assertCount(1, Cerveza::all()); // Fue Creado
+        $cerveza = $cerveza->fresh();
+        $this->assertTrue($cerveza->probada()); // Fue probada
+        $this->actingAs($user)->get('/untaste/cervezas/'.$cerveza->slug);
+        $this->assertFalse($cerveza->probada()); // Fue desprobada
+    }
 }
