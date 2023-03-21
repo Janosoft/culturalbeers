@@ -2,7 +2,7 @@
     @csrf
 
     <div class="input-group mb-3">
-        <x-input.textarea label="Nuevo Comentario" name="comentario" rows="1" :value="old('nombre')" />
+        <x-input.comentario label="Nuevo Comentario" name="comentario" :value="old('nombre')" />
         <button class="btn btn-outline-primary" type="submit" title="Comentar"><i class="bi bi-chat-fill"></i></button>
     </div>
 </form>
