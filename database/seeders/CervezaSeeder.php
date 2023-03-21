@@ -18,7 +18,7 @@ class CervezaSeeder extends Seeder
      */
     public function run()
     {
-        $cervezas = Cerveza::factory(5)->create();
+        $cervezas = Cerveza::factory(10)->create();
         foreach ($cervezas as $cerveza) {
             Imagen::factory(1)->create([
                 'imageable_id' => $cerveza->cerveza_id,

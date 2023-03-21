@@ -27,6 +27,15 @@ class Lugar extends Model
             }
         );
     }
+
+    protected function direccion(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucwords($value);
+            }
+        );
+    }
     /* MUTATORS */
 
     /* ROUTE NAME */

@@ -2,13 +2,12 @@
 @section('title', 'Mostrar Cerveza: ' . $cerveza->nombre)
 
 @section('content')
-    <section class="pt-3 pt-lg-5">
+    <section class="pt-3 pt-lg-5 mb-3">
         <div class="row g-4 g-lg-5">
-            <div class="col-lg-6 position-relative">
-                <img src="{{ empty($cerveza->imagen) ? 'https://dummyimage.com/561x631/000000/fff' : Storage::url($cerveza->imagen->url) }}"
-                    class="img-fluid rounded" alt="">
+            <div class="col-lg-6">
+                <img src="{{ empty($cerveza->imagen) ? 'https://dummyimage.com/561x631/000000/fff' : Storage::url($cerveza->imagen->url) }}" class="img-fluid rounded">
             </div>
-            <div class="col-lg-6 position-relative">
+            <div class="col-lg-6">
                 <h1 class="mt-md-5">{{ $cerveza->nombre }}</h1>
                 <h2 class="mb-3"><x-links.productor :productor="$cerveza->productor" /></h2>
                 @if(!empty($cerveza->descripcion))<p class="mb-3">{{ $cerveza->descripcion }}</p>@endif
@@ -21,6 +20,7 @@
             </div>
         </div>
     </section>
+
     <div class="row mb-3">
         <div class="col-2">
             @auth

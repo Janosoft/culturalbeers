@@ -16,7 +16,7 @@ class ProductorSeeder extends Seeder
      */
     public function run()
     {
-        $productores = Productor::factory(30)->create();
+        $productores = Productor::factory(5)->create();
         foreach ($productores as $productor) {
             Imagen::factory(1)->create([
                 'imageable_id' => $productor->productor_id,
