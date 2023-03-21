@@ -10,19 +10,12 @@
             </div>
             <div class="col-lg-6 position-relative">
                 <h1 class="mt-md-5">{{ $cerveza->nombre }}</h1>
-                <h2 class="mb-3">
-                    <x-links.productor :productor="$cerveza->productor" />
-                </h2>
-                <p class="mb-3">We bring you not only a stay option, but an experience in your budget to enjoy the luxury.
-                </p>
+                <h2 class="mb-3"><x-links.productor :productor="$cerveza->productor" /></h2>
+                @if(!empty($cerveza->descripcion))<p class="mb-3">{{ $cerveza->descripcion }}</p>@endif
                 <h4>IBU: {{ $cerveza->IBU }}</h4>
-                <h4>ABV: {{ $cerveza->ABV }}</h4>
-                <h4>Color:
-                    <x-links.cervezas-color :color="$cerveza->color" />
-                </h4>
-                <h4>Estilo:
-                    <x-links.cervezas-estilo :estilo="$cerveza->estilo" />
-                </h4>
+                <h4>ABV: {{ $cerveza->ABV }}%</h4>
+                <h4>Color: <x-links.cervezas-color :color="$cerveza->color" /></h4>
+                <h4>Estilo: <x-links.cervezas-estilo :estilo="$cerveza->estilo" /></h4>
                 <h4>Envases: </h4>
                 <x-cervezas-envases-tipos :envases="$cerveza->envases" />
             </div>

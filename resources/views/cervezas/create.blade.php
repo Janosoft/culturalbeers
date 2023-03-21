@@ -8,6 +8,7 @@
                 @csrf
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre de la Cerveza" :value="old('nombre')" />
+                <x-input.textarea label="Descripción" name="descripcion" height="87px" :value="old('descripcion')" />
                 <x-input.number label="IBU" name="IBU" min="0" max="100" step="0.5" :value="old('IBU')" />
                 <x-input.number label="ABV" name="ABV" min="0" max="100" step="0.5" :value="old('ABV')" />                
                 <x-input.select label="Productor" name="productor_id" placeholder="Elija el productor de la cerveza" :objects="$productores" :value="old('productor_id')" />

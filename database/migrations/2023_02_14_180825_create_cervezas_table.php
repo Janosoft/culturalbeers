@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cervezas', function (Blueprint $table) {
             $table->id('cerveza_id');
             $table->string('nombre', 100);
+            $table->text('descripcion')->nullable();
             $table->tinyInteger('IBU');
             $table->unsignedDecimal('ABV', 3, 1);
             $table->foreignId('productor_id')->constrained('productores', 'productor_id');

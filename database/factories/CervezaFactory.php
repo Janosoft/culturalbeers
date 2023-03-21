@@ -25,6 +25,7 @@ class CervezaFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'IBU' => fake()->numberBetween(10, 90),
             'ABV' => strval(fake()->randomFloat(1, 5, 30)),
             'productor_id' => $productor->productor_id,
