@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $division_politica->nombre }}</h1>
+            @if(!empty($division_politica->descripcion))<p class="mb-3">{{ $division_politica->descripcion }}</p>@endif
             <h2><x-links.pais :pais="$division_politica->pais" /></a></h2>
         </div>
     </div>

@@ -23,6 +23,7 @@ class DivisionPoliticaFactory extends Factory
         return [
             'pais_id' => Pais::all()->random()->pais_id,
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'slug' => str()->slug($nombre, '-', 'es'),
             'user_id' => User::all()->random()->user_id,
         ];

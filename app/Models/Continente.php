@@ -27,6 +27,15 @@ class Continente extends Model
             }
         );
     }
+
+    protected function descripcion(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucfirst($value);
+            }
+        );
+    }
     /* MUTATORS */
 
     /* ROUTE NAME */

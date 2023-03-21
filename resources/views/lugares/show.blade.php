@@ -9,6 +9,7 @@
             </div>
             <div class="col-lg-6">
                 <h1 class="mt-md-5">{{ $lugar->nombre }} @if ($lugar->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</h1>
+                @if(!empty($lugar->descripcion))<p class="mb-3">{{ $lugar->descripcion }}</p>@endif
                 <h2 class="mb-3"><x-links.localidad :localidad="$lugar->localidad" /></h2>
                 <h4>{{ $lugar->direccion }}</h4>
                 <h4><x-links.lugares-categoria :categoria="$lugar->categoria" /></h4>

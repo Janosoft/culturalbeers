@@ -22,6 +22,7 @@ class LocalidadFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'division_politica_id' => DivisionPolitica::all()->random()->division_politica_id,
             'slug' => str()->slug($nombre, '-', 'es'),
             'user_id' => User::all()->random()->user_id,

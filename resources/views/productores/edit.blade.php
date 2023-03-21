@@ -9,6 +9,7 @@
                 @method('put')
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Productor" :value="old('nombre', $productor->nombre)" />
+                <x-input.textarea label="Descripción" name="descripcion" height="87px" :value="old('descripcion', $productor->descripcion)" />
                 <x-input.select label="Tipo de Fabricación" name="fabricacion_id" placeholder="Elija el tipo de fabricación" :objects="$fabricaciones" :value="old('fabricacion_id', $productor->fabricacion_id)" />
                 <x-input.autosuggest label="Localidad de Origen" name="localidad" placeholder="Buscar Localidad..." :url="route('localidades.search', '')" :value="old('localidad', $productor->localidad->nombre)" />
                 <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen', $productor->imagen)" />

@@ -9,6 +9,7 @@
             </div>
             <div class="col-lg-6">
                 <h1 class="mt-md-5">{{ $pais->nombre }}</h1>
+                @if(!empty($pais->descripcion))<p class="mb-3">{{ $pais->descripcion }}</p>@endif
                 <h2 class="mb-3"><x-links.continente :continente="$pais->continente" /></h2>
                 <h4><x-links.division-politica-tipo :divisionpoliticatipo="$pais->division_politica_tipo" /></h4>
             </div>

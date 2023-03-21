@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('productores_fabricaciones', function (Blueprint $table) {
             $table->id('fabricacion_id');
             $table->string('nombre', 100)->unique();
+            $table->text('descripcion')->nullable();
             $table->string('slug');
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();

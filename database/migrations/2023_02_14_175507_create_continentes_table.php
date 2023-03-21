@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('continentes', function (Blueprint $table) {
             $table->id('continente_id');
             $table->string('nombre', 30)->unique();
+            $table->text('descripcion')->nullable();
             $table->string('slug');
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();

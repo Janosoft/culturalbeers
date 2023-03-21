@@ -9,6 +9,7 @@
             </div>
             <div class="col-lg-6">
                 <h1 class="mt-md-5">{{ $productor->nombre }} @if ($productor->verificado) <i class="bi bi-check-circle-fill text-warning"></i> @endif</h1>
+                @if(!empty($productor->descripcion))<p class="mb-3">{{ $productor->descripcion }}</p>@endif
                 <h2 class="mb-3"><x-links.localidad :localidad="$productor->localidad" /></h2>
                 <h4><x-links.productores-fabricacion :fabricacion="$productor->fabricacion" /></h4>
             </div>

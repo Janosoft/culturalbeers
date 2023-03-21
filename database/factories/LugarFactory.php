@@ -23,6 +23,7 @@ class LugarFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'categoria_id' => LugaresCategoria::all()->random()->categoria_id,
             'localidad_id' => Localidad::all()->random()->localidad_id,
             'direccion' => implode(' ', fake()->unique()->words(2)).' '.fake()->RandomNumber(3, false),

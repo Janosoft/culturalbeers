@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('divisiones_politicas_tipos', function (Blueprint $table) {
             $table->id('divisiones_politicas_tipo_id');
             $table->string('nombre', 50)->unique();
+            $table->text('descripcion')->nullable();
             $table->string('slug');
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();

@@ -8,6 +8,7 @@
                 @csrf
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre del Productor" :value="old('nombre')" />
+                <x-input.textarea label="Descripción" name="descripcion" height="87px" :value="old('descripcion')" />
                 <x-input.select label="Tipo de Fabricación" name="fabricacion_id" placeholder="Elija el tipo de fabricación" :objects="$fabricaciones" :value="old('fabricacion_id')" />
                 <x-input.autosuggest label="Localidad de Origen" name="localidad" placeholder="Buscar Localidad..." :url="route('localidades.search','')" :value="old('localidad')"/>
                 <x-input.image label="Imagen Destacada" name="imagen" :value="old('imagen')" />

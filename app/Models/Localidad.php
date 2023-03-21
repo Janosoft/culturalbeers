@@ -27,6 +27,15 @@ class Localidad extends Model
             }
         );
     }
+
+    protected function descripcion(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucfirst($value);
+            }
+        );
+    }
     /* MUTATORS */
 
     public static function getByName(string $nombre)

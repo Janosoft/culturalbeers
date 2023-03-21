@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_color->nombre }}</h1>
+            @if(!empty($cervezas_color->descripcion))<p class="mb-3">{{ $cervezas_color->descripcion }}</p>@endif
             <h4><span>Color <i class="bi bi-palette-fill" style="color: {{ $cervezas_color->color }}"></i></span></h4>
         </div>
     </div>

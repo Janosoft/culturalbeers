@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('lugares', function (Blueprint $table) {
             $table->id('lugar_id');
             $table->string('nombre', 100);
+            $table->text('descripcion')->nullable();
             $table->foreignId('categoria_id')->constrained('lugares_categorias', 'categoria_id');
             $table->foreignId('localidad_id')->constrained('localidades', 'localidad_id');
             $table->string('direccion', 100);

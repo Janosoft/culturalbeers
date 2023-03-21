@@ -23,6 +23,7 @@ class ProductorFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'fabricacion_id' => ProductoresFabricacion::all()->random()->fabricacion_id,
             'localidad_id' => Localidad::all()->random()->localidad_id,
             'slug' => str()->slug($nombre, '-', 'es'),

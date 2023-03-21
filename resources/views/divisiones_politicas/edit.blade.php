@@ -9,6 +9,7 @@
                 @method('put')
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre de la Divisón Política" :value="old('nombre', $division_politica->nombre)" />
+                <x-input.textarea label="Descripción" name="descripcion" height="87px" :value="old('descripcion', $division_politica->descripcion)" />
                 <x-input.select label="País" name="pais_id" placeholder="Elija el país al que pertenece" :objects="$paises" :value="old('pais_id', $division_politica->pais_id)" />
                 <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="EditarDivision" />
             </form>

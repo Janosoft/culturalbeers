@@ -23,6 +23,7 @@ class PaisFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'continente_id' => Continente::all()->random()->continente_id,
             'divisiones_politicas_tipo_id' => DivisionesPoliticasTipo::all()->random()->divisiones_politicas_tipo_id,
             'slug' => str()->slug($nombre, '-', 'es'),

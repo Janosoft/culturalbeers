@@ -9,6 +9,7 @@
             </div>
             <div class="col-lg-6">
                 <h1 class="mt-md-5">{{ $localidad->nombre }}</h1>
+                @if(!empty($localidad->descripcion))<p class="mb-3">{{ $localidad->descripcion }}</p>@endif
                 <h2 class="mb-3"><x-links.division-politica :divisionpolitica="$localidad->division_politica" /></h2>
             </div>
         </div>

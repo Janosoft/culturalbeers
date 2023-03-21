@@ -22,6 +22,7 @@ class CervezasFamiliaFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'fermento_id' => CervezasFermento::all()->random()->fermento_id,
             'slug' => str()->slug($nombre, '-', 'es'),
             'user_id' => User::all()->random()->user_id,

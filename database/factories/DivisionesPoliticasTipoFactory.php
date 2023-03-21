@@ -21,6 +21,7 @@ class DivisionesPoliticasTipoFactory extends Factory
 
         return [
             'nombre' => $nombre,
+            'descripcion' => fake()->paragraph(),
             'slug' => str()->slug($nombre, '-', 'es'),
             'user_id' => User::all()->random()->user_id,
         ];

@@ -28,6 +28,15 @@ class Lugar extends Model
         );
     }
 
+    protected function descripcion(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucfirst($value);
+            }
+        );
+    }
+
     protected function direccion(): Attribute
     {
         return new Attribute(

@@ -31,6 +31,15 @@ class Cerveza extends Model
         );
     }
 
+    protected function descripcion(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return ucfirst($value);
+            }
+        );
+    }
+
     protected function IBU(): Attribute
     {
         return new Attribute(

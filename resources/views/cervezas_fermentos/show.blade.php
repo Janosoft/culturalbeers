@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_fermento->nombre }}</h1>
+            @if(!empty($cervezas_fermento->descripcion))<p class="mb-3">{{ $cervezas_fermento->descripcion }}</p>@endif
         </div>
     </div>
 

@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $continente->nombre }}</h1>
+            @if(!empty($continente->descripcion))<p class="mb-3">{{ $continente->descripcion }}</p>@endif
         </div>
     </div>
 

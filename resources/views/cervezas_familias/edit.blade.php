@@ -9,6 +9,7 @@
                 @method('put')
 
                 <x-input.text label="Nombre" name="nombre" placeholder="Nombre de la Familia" :value="old('nombre', $cervezas_familia->nombre)" />
+                <x-input.textarea label="Descripción" name="descripcion" height="87px" :value="old('descripcion', $cervezas_familia->descripcion)" />
                 <x-input.select label="Tipo de Fermento" name="fermento_id" placeholder="Elija un tipo de fermento" :objects="$cervezas_fermentos" :value="old('fermento_id', $cervezas_familia->fermento_id)" />
                 <x-input.submit label="Guardar" icon="bi bi-hdd-fill" value="EditarFamilia" />
             </form>

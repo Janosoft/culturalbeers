@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col">
             <h1>{{ $cervezas_familia->nombre }}</h1>
+            @if(!empty($cervezas_familia->descripcion))<p class="mb-3">{{ $cervezas_familia->descripcion }}</p>@endif
             <h2><x-links.cervezas-fermento :fermento="$cervezas_familia->fermento" /></h2>
         </div>
     </div>
