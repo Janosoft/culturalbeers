@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('imageable_id');
             $table->string('imageable_type');
             $table->foreignId('user_id')->constrained('users', 'user_id');
+            $table->boolean('ofensiva')->default(false);
+            $table->boolean('autorizada')->default(false);
             $table->timestamps();
         });
     }

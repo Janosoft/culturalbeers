@@ -27,6 +27,8 @@
         </div>
     @endauth
 
+    <x-imagenes :imagenes="$lugar->imagenes" />
+
     <x-comentarios :comentarios="$lugar->comentarios" />
     @auth
         <x-formularios.comentario :route="route('lugares.comment', $lugar)" />

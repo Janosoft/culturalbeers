@@ -161,7 +161,11 @@ Route::get('forcedelete/divisiones_politicas_tipos/{division_politica_tipo_id}',
 /* DIVISIONES POLITICAS TIPOS*/
 
 /* IMAGENES */
+Route::get('imagenes', [ImagenController::class, 'index'])->name('imagenes.index');
 Route::get('imagenes/{imagen}', [ImagenController::class, 'show'])->name('imagenes.show');
+Route::delete('imagenes/{imagen}', [ImagenController::class, 'destroy'])->middleware('auth')->name('imagenes.destroy');
+Route::get('offensive/imagenes/{imagen}', [ImagenController::class, 'offensive'])->middleware('auth')->name('imagenes.offensive');
+Route::get('authorized/imagenes/{imagen}', [ImagenController::class, 'authorized'])->middleware('auth')->name('imagenes.authorized');
 /* IMAGENES */
 
 /* LOCALIDADES */

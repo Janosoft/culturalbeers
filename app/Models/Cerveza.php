@@ -87,9 +87,9 @@ class Cerveza extends Model
     public function probada()
     {
         return DB::table('cervezas_probadas')
-        ->whereCervezaId($this->cerveza_id)
-        ->whereUserId(Auth::user()->user_id)
-        ->count() > 0;
+            ->whereCervezaId($this->cerveza_id)
+            ->whereUserId(Auth::user()->user_id)
+            ->count() > 0;
     }
 
     public function usuario()
@@ -127,12 +127,12 @@ class Cerveza extends Model
         return $this->belongsToMany(User::class, 'cervezas_probadas', 'cerveza_id', 'user_id');
     }
 
-    public function puntaje_usuario() : int
+    public function puntaje_usuario(): int
     {
-        $puntaje= Puntaje::wherePuntuableId($this->cerveza_id)
-                ->wherePuntuableType(Cerveza::class)
-                ->whereUserId(Auth::user()->user_id)
-                ->value('puntaje');
+        $puntaje = Puntaje::wherePuntuableId($this->cerveza_id)
+            ->wherePuntuableType(Cerveza::class)
+            ->whereUserId(Auth::user()->user_id)
+            ->value('puntaje');
         return $puntaje ?? 0;
     }
     /* ATRIBUTOS EXTERNOS */
@@ -145,7 +145,12 @@ class Cerveza extends Model
 
     public function imagenes()
     {
-        return $this->morphMany(Imagen::class, 'imageable')->where('imagen_id', '!=', $this->imagen_id);
+        return $this->morphMany(Imagen::class, 'imageable')
+            ->where('imagen_id', '!=', $this->imagen_id)
+            ->where('ofensiva', false)->orWhere(function ($query) {
+                $query->where('ofensiva', true)
+                    ->Where('autorizada', true);
+            });
     }
 
     public function comentarios()

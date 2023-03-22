@@ -72,7 +72,12 @@ class Lugar extends Model
 
     public function imagenes()
     {
-        return $this->morphMany(Imagen::class, 'imageable');
+        return $this->morphMany(Imagen::class, 'imageable')
+            ->where('imagen_id', '!=', $this->imagen_id)
+            ->where('ofensiva', false)->orWhere(function ($query) {
+                $query->where('ofensiva', true)
+                    ->Where('autorizada', true);
+            });
     }
 
     public function comentarios()
