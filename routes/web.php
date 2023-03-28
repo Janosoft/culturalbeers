@@ -249,7 +249,6 @@ Route::get('restore/productores_fabricaciones/{fabricacion_id}', [ProductoresFab
 Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [ProductoresFabricacionController::class, 'forcedelete'])->middleware('auth')->name('productores_fabricaciones.forcedelete');
 /* PRODUCTORES FABRICACIONES */
 
-
 /* USUARIO */
 Route::view('perfil', 'usuario.perfil')->middleware('auth')->name('usuario.perfil');
 Route::view('perfil/cervezas_probadas', 'usuario.cervezas_probadas')->middleware('auth')->name('usuario.cervezas_probadas');

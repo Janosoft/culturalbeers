@@ -137,11 +137,11 @@ class ProductorTest extends TestCase
         DivisionPolitica::factory(2)->create();
         Localidad::factory(2)->create();
         ProductoresFabricacion::factory(2)->create();
-        $productor= Productor::factory()->create();
-        $this->assertEquals($productor->verificado,0); // No está verificado
+        $productor = Productor::factory()->create();
+        $this->assertEquals($productor->verificado, 0); // No está verificado
         $this->actingAs($user)->get('/verify/productores/'.$productor->slug);
         $this->assertCount(1, Productor::all()); // Fue Creado
         $productor = $productor->fresh();
-        $this->assertEquals($productor->verificado,1); // Fue verificado
+        $this->assertEquals($productor->verificado, 1); // Fue verificado
     }
 }

@@ -98,6 +98,7 @@ class Cerveza extends Model
             ->whereFollowableType(Cerveza::class)
             ->whereUserId(Auth::user()->user_id)
             ->count() > 0;
+
         return $follow ?? 0;
     }
 
@@ -142,6 +143,7 @@ class Cerveza extends Model
             ->wherePuntuableType(Cerveza::class)
             ->whereUserId(Auth::user()->user_id)
             ->value('puntaje');
+
         return $puntaje ?? 0;
     }
     /* ATRIBUTOS EXTERNOS */

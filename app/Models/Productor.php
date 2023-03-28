@@ -53,6 +53,7 @@ class Productor extends Model
             ->whereFollowableType(Productor::class)
             ->whereUserId(Auth::user()->user_id)
             ->count() > 0;
+
         return $follow ?? 0;
     }
 
@@ -82,7 +83,7 @@ class Productor extends Model
     {
         return $this->morphMany(Follow::class, 'followable')->count();
     }
-    
+
     public function cervezas()
     {
         return $this->hasMany(Cerveza::class, 'productor_id');

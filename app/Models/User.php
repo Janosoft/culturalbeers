@@ -6,8 +6,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -82,7 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
-    public function nya(): String
+    public function nya(): string
     {
         return "{$this->nombre} {$this->apellido}";
     }
@@ -119,7 +117,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function productores_seguidos(): BelongsToMany
     {
         return $this->belongsToMany(Productor::class, 'follows', 'user_id', 'followable_id')->wherePivot('followable_type', Productor::class);
-        
     }
 
     public function cervezas_puntuadas(): BelongsToMany

@@ -16,7 +16,7 @@ class Puntaje extends Model
 
     protected $primaryKey = 'puntaje_id';
 
-    protected $fillable = ['puntaje','puntuable_type','puntuable_id','user_id'];
+    protected $fillable = ['puntaje', 'puntuable_type', 'puntuable_id', 'user_id'];
 
     protected function puntaje(): Attribute
     {
