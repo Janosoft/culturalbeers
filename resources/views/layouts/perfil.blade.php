@@ -16,13 +16,24 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('usuario.probadas') }}" class="nav-link {{ request()->routeIs('usuario.probadas') ? 'active' : '' }}">
+                        <a href="{{ route('usuario.cervezas_probadas') }}" class="nav-link {{ request()->routeIs('usuario.cervezas_probadas') ? 'active' : '' }}">
                             <i class="bi bi-person-check me-2"></i>Cervezas Probadas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('usuario.puntuadas') }}" class="nav-link {{ request()->routeIs('usuario.puntuadas') ? 'active' : '' }}">
-                            <i class="bi bi-star-fill me-2"></i>Cervezas Puntuadas</a>
+                        <a href="{{ route('usuario.cervezas_puntuadas') }}" class="nav-link {{ request()->routeIs('usuario.cervezas_puntuadas') ? 'active' : '' }}">
+                            <i class="bi bi-star-fill me-2"></i>Cervezas Puntuadas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('usuario.cervezas_seguidas') }}" class="nav-link {{ request()->routeIs('usuario.cervezas_seguidas') ? 'active' : '' }}">
+                            <i class="bi bi-heart-fill me-2"></i>Cervezas Seguidas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('usuario.productores_seguidos') }}" class="nav-link {{ request()->routeIs('usuario.productores_seguidos') ? 'active' : '' }}">
+                            <i class="bi bi-heart-fill me-2"></i>Productores Seguidos
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="account-delete.html" class="nav-link text-danger">

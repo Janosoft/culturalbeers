@@ -35,6 +35,13 @@
                             <x-botones.accion :route="route('cervezas.taste', $cerveza)" title="La probé" color="btn-warning"
                                 icon="bi bi-person-check" />
                         @endif
+                        @if ($cerveza->seguida())
+                            <x-botones.accion :route="route('cervezas.unfollow', $cerveza)" title="Dejar de Seguir" color="btn-danger"
+                                icon="bi bi-heart" />
+                        @else
+                            <x-botones.accion :route="route('cervezas.follow', $cerveza)" title="Seguir" color="btn-warning"
+                                icon="bi bi-heart-fill" />
+                        @endif
                     </div>
                 </div>
                 @if ($cerveza->probada())

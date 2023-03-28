@@ -111,6 +111,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Cerveza::class, 'cervezas_probadas', 'user_id', 'cerveza_id');
     }
 
+    public function cervezas_seguidas(): BelongsToMany
+    {
+        return $this->belongsToMany(Cerveza::class, 'follows', 'user_id', 'followable_id')->wherePivot('followable_type', Cerveza::class);
+    }
+
+    public function productores_seguidos(): BelongsToMany
+    {
+        return $this->belongsToMany(Productor::class, 'follows', 'user_id', 'followable_id')->wherePivot('followable_type', Productor::class);
+        
+    }
+
     public function cervezas_puntuadas(): BelongsToMany
     {
         return $this->belongsToMany(Cerveza::class, 'puntajes', 'user_id', 'puntuable_id')->wherePivot('puntuable_type', Cerveza::class);

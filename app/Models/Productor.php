@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Productor extends Model
 {
@@ -46,6 +47,15 @@ class Productor extends Model
     /* ROUTE NAME */
 
     /* ATRIBUTOS EXTERNOS */
+    public function seguido()
+    {
+        $follow = Follow::whereFollowableId($this->productor_id)
+            ->whereFollowableType(Productor::class)
+            ->whereUserId(Auth::user()->user_id)
+            ->count() > 0;
+        return $follow ?? 0;
+    }
+
     public function usuario()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -63,6 +73,16 @@ class Productor extends Model
     /* ATRIBUTOS EXTERNOS */
 
     /* ATRIBUTOS EXTERNOS (inversos)*/
+    public function seguidores()
+    {
+        return $this->morphMany(Follow::class, 'followable');
+    }
+
+    public function seguidores_cantidad(): int
+    {
+        return $this->morphMany(Follow::class, 'followable')->count();
+    }
+    
     public function cervezas()
     {
         return $this->hasMany(Cerveza::class, 'productor_id');

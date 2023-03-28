@@ -10,6 +10,7 @@ use App\Models\CervezasColor;
 use App\Models\CervezasEnvaseTipo;
 use App\Models\CervezasEstilo;
 use App\Models\Comentario;
+use App\Models\Follow;
 use App\Models\Imagen;
 use App\Models\Productor;
 use App\Models\Puntaje;
@@ -112,7 +113,7 @@ class CervezaController extends Controller
     {
         $cerveza->usuarios_que_probaron()->attach(Auth::user()->user_id);
         session()->flash('statusTitle', 'Cerveza Probada');
-        session()->flash('statusMessage', 'El cerveza fue marcada como probada correctamente.');
+        session()->flash('statusMessage', 'La cerveza fue marcada como probada correctamente.');
         session()->flash('statusColor', 'success');
 
         return Redirect::back();
@@ -122,7 +123,34 @@ class CervezaController extends Controller
     {
         $cerveza->usuarios_que_probaron()->detach(Auth::user()->user_id);
         session()->flash('statusTitle', 'Cerveza No Probada');
-        session()->flash('statusMessage', 'El cerveza fue desmarcada como probada correctamente.');
+        session()->flash('statusMessage', 'La cerveza fue desmarcada como probada correctamente.');
+        session()->flash('statusColor', 'warning');
+
+        return Redirect::back();
+    }
+
+    public function follow(Cerveza $cerveza)
+    {
+        Follow::create([
+            'followable_type' => Cerveza::class,
+            'followable_id' => $cerveza->cerveza_id,
+            'user_id' => Auth::user()->user_id,
+        ]);
+        session()->flash('statusTitle', 'Cerveza Seguida');
+        session()->flash('statusMessage', 'La cerveza fue marcada como seguida correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return Redirect::back();
+    }
+
+    public function unfollow(Cerveza $cerveza)
+    {
+        Follow::whereFollowableId($cerveza->cerveza_id)
+            ->whereFollowableType(Cerveza::class)
+            ->whereUserId(Auth::user()->user_id)
+            ->delete();
+        session()->flash('statusTitle', 'Cerveza No Seguida');
+        session()->flash('statusMessage', 'La cerveza fue desmarcada como seguida correctamente.');
         session()->flash('statusColor', 'warning');
 
         return Redirect::back();

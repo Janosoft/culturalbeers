@@ -18,7 +18,14 @@
 
     @auth
         <div class="row mb-3">
-            <div class="col">                
+            <div class="col"> 
+                @if ($productor->seguido())
+                    <x-botones.accion :route="route('productores.unfollow', $productor)" title="Dejar de Seguir" color="btn-danger"
+                        icon="bi bi-heart" />
+                @else
+                    <x-botones.accion :route="route('productores.follow', $productor)" title="Seguir" color="btn-warning"
+                        icon="bi bi-heart-fill" />
+                @endif               
                 @if (!$productor->verificado) <x-botones.accion :route="route('productores.verify', $productor)" title="Verificar" color="btn-warning" icon="bi bi-check2-square" />@endif
                 <x-botones.editar :route="route('productores.edit', $productor)" />
                 <x-botones.eliminar :route="route('productores.destroy', $productor)" />

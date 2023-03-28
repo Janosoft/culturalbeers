@@ -92,6 +92,15 @@ class Cerveza extends Model
             ->count() > 0;
     }
 
+    public function seguida()
+    {
+        $follow = Follow::whereFollowableId($this->cerveza_id)
+            ->whereFollowableType(Cerveza::class)
+            ->whereUserId(Auth::user()->user_id)
+            ->count() > 0;
+        return $follow ?? 0;
+    }
+
     public function usuario()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -159,6 +168,16 @@ class Cerveza extends Model
             $query->where('ofensivo', true)
                 ->Where('autorizado', true);
         });
+    }
+
+    public function seguidores()
+    {
+        return $this->morphMany(Follow::class, 'followable');
+    }
+
+    public function seguidores_cantidad(): int
+    {
+        return $this->morphMany(Follow::class, 'followable')->count();
     }
 
     public function cervezasMismoEstilo()

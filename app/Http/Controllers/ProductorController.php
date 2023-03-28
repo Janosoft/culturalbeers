@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreComentario;
 use App\Http\Requests\StoreProductor;
 use App\Models\Comentario;
+use App\Models\Follow;
 use App\Models\Imagen;
 use App\Models\Localidad;
 use App\Models\Productor;
@@ -100,6 +101,33 @@ class ProductorController extends Controller
         session()->flash('statusTitle', 'Productor Verificado');
         session()->flash('statusMessage', 'El productor fue verificado correctamente.');
         session()->flash('statusColor', 'success');
+
+        return Redirect::back();
+    }
+
+    public function follow(Productor $productor)
+    {
+        Follow::create([
+            'followable_type' => Productor::class,
+            'followable_id' => $productor->productor_id,
+            'user_id' => Auth::user()->user_id,
+        ]);
+        session()->flash('statusTitle', 'Profuctor Seguido');
+        session()->flash('statusMessage', 'El productor fue marcado como seguido correctamente.');
+        session()->flash('statusColor', 'success');
+
+        return Redirect::back();
+    }
+
+    public function unfollow(Productor $productor)
+    {
+        Follow::whereFollowableId($productor->productor_id)
+            ->whereFollowableType(Productor::class)
+            ->whereUserId(Auth::user()->user_id)
+            ->delete();
+        session()->flash('statusTitle', 'Profuctor No Seguido');
+        session()->flash('statusMessage', 'El productor fue desmarcado como seguido correctamente.');
+        session()->flash('statusColor', 'warning');
 
         return Redirect::back();
     }

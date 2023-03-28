@@ -52,6 +52,8 @@ Route::post('comment/cervezas/{cerveza}', [CervezaController::class, 'comment'])
 Route::get('taste/cervezas/{cerveza}', [CervezaController::class, 'taste'])->middleware('auth')->name('cervezas.taste');
 Route::get('untaste/cervezas/{cerveza}', [CervezaController::class, 'untaste'])->middleware('auth')->name('cervezas.untaste');
 Route::post('rate/cervezas/{cerveza}', [CervezaController::class, 'rate'])->middleware('auth')->name('cervezas.rate');
+Route::get('follow/cervezas/{cerveza}', [CervezaController::class, 'follow'])->middleware('auth')->name('cervezas.follow');
+Route::get('unfollow/cervezas/{cerveza}', [CervezaController::class, 'unfollow'])->middleware('auth')->name('cervezas.unfollow');
 /* CERVEZAS */
 
 /* CERVEZAS COLORES */
@@ -231,6 +233,8 @@ Route::get('restore/productores/{productor_id}', [ProductorController::class, 'r
 Route::get('forcedelete/productores/{productor_id}', [ProductorController::class, 'forcedelete'])->middleware('auth')->name('productores.forcedelete');
 Route::post('comment/productores/{productor}', [ProductorController::class, 'comment'])->middleware('auth')->name('productores.comment');
 Route::get('verify/productores/{productor}', [ProductorController::class, 'verify'])->middleware('auth')->name('productores.verify');
+Route::get('follow/productores/{productor}', [ProductorController::class, 'follow'])->middleware('auth')->name('productores.follow');
+Route::get('unfollow/productores/{productor}', [ProductorController::class, 'unfollow'])->middleware('auth')->name('productores.unfollow');
 /* PRODUCTORES */
 
 /* PRODUCTORES FABRICACIONES */
@@ -248,6 +252,8 @@ Route::get('forcedelete/productores_fabricaciones/{fabricacion_id}', [Productore
 
 /* USUARIO */
 Route::view('perfil', 'usuario.perfil')->middleware('auth')->name('usuario.perfil');
-Route::view('probadas', 'usuario.probadas')->middleware('auth')->name('usuario.probadas');
-Route::view('puntuadas', 'usuario.puntuadas')->middleware('auth')->name('usuario.puntuadas');
+Route::view('perfil/cervezas_probadas', 'usuario.cervezas_probadas')->middleware('auth')->name('usuario.cervezas_probadas');
+Route::view('perfil/cervezas_puntuadas', 'usuario.cervezas_puntuadas')->middleware('auth')->name('usuario.cervezas_puntuadas');
+Route::view('perfil/cervezas_seguidas', 'usuario.cervezas_seguidas')->middleware('auth')->name('usuario.cervezas_seguidas');
+Route::view('perfil/productores_seguidos', 'usuario.productores_seguidos')->middleware('auth')->name('usuario.productores_seguidos');
 /* USUARIO */
